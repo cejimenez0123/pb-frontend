@@ -1,5 +1,6 @@
 import React from 'react'
-
+import {logIn} from "../../actions/UserActions"
+import { connect} from "react-redux"
 class LogInForm extends React.Component{
     constructor(){
         super()
@@ -30,6 +31,11 @@ class LogInForm extends React.Component{
                 </form>    
             </div>
         )
+    }
+}
+function mapDispatchToProps(dispatch){
+    return{
+        logIn: (user)=>logIn(user)
     }
 }
 export default LogInForm

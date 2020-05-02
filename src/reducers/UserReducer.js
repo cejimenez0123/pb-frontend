@@ -9,13 +9,14 @@ requesting: false },
         switch (action.type){
             case "SIGN_UP_START":
                 
-                return {...state,users:[...state.users],loggedIn: false}
+                return {...state,requesting: true,loggedIn: false}
             case "SIGN_UP":    
                 let user = action.user
+                debugger
                 return {...state, users: [...state.users.concat(user)],
                     currentUser: user, loggedIn: true }
             case "LOG_IN_START":
-                return {...state}
+                return {...state,requesting: true}
             case "LOG_IN":
                 localStorage.setItem("currentUser",action.user.id)
                 return {...state,users:[state.users],currentUser: action.user, loggedIn: true}

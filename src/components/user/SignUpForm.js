@@ -1,11 +1,11 @@
 import React from "react"
-
+import {signUp} from "../../actions/UserActions"
+import { connect} from "react-redux"
 class SignUpForm extends React.Component{
     constructor(){
         super()
             this.state={
-                firstName:"",
-                lastName:"",
+                name: "",
                 username:"",
                 password:""    
             }
@@ -21,12 +21,9 @@ class SignUpForm extends React.Component{
         return(
             <div class="form">
                 <form onSubmit={this.handleOnSubmit}> 
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" name="firstName" 
+                    <label htmlFor="name">First Name:</label>
+                    <input type="text" name="name" 
                     onChange={this.handleOnChange} />
-                    <br/>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" name="lastName"/>
                     <br/>
                     <label htmlFor="username">Username:</label>
                     <input type="text" name="username"  onChange={this.handleOnChange} />
@@ -41,4 +38,9 @@ class SignUpForm extends React.Component{
         )
     }
 }
-export default SignUpForm
+function mapDispatchToProps(dispatch){
+    return{
+        signUp: (user)=>signUp(user)
+    }
+}
+export default connect(null,mapDispatchToProps)(SignUpForm)
