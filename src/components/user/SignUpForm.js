@@ -21,7 +21,7 @@ class SignUpForm extends React.Component{
         return(
             <div class="form">
                 <form onSubmit={this.handleOnSubmit}> 
-                    <label htmlFor="name">First Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input type="text" name="name" 
                     onChange={this.handleOnChange} />
                     <br/>

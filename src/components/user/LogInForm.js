@@ -1,6 +1,7 @@
 import React from 'react'
-import {logIn} from "../../actions/UserActions"
+import {LOG_IN} from "../../actions/UserActions"
 import { connect} from "react-redux"
+import { Redirect} from 'react-router-dom'
 class LogInForm extends React.Component{
     constructor(){
         super()
@@ -15,11 +16,12 @@ class LogInForm extends React.Component{
     }
     handleOnSubmit = e => {
         e.preventDefault()
+       
         this.props.logIn(this.state)
     }
     render(){
         return(
-            <div class="form">
+            <div className="form">
                 <form onSubmit={this.handleOnSubmit}> 
                     <label htmlFor="username">Username:</label>
                     <input type="text" name="username" onChange={this.handleOnChange}/>
@@ -35,7 +37,7 @@ class LogInForm extends React.Component{
 }
 function mapDispatchToProps(dispatch){
     return{
-        logIn: (user)=>logIn(user)
+        logIn: (user)=>dispatch(LOG_IN(user))
     }
 }
-export default LogInForm
+export default connect(null,mapDispatchToProps)(LogInForm)

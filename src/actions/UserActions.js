@@ -1,9 +1,12 @@
 
+const userPath = "http://localhost:3000/users"
+
 function SIGN_UP_START(){
     return {
     type: "SIGN_UP_START"}
 }
 function signUp (user) { 
+    debugger
     let config = {
         method: 'POST',
         headers: {
@@ -20,24 +23,36 @@ function signUp (user) {
             fetch("http://localhost:3000/users",config)
                 .then(res => res.json())
                 .then(obj =>{
-               
+               debugger
                     let user =  obj.data.attributes
+                    
                     localStorage.setItem("currentUser",user.id)
                     dispatch({ type: 'SIGN_UP', user})
             })
                 .catch(err => {
-                    debugger
+                    
                     console.error(err)
                   });
           })
     
+}
+function getUsers(){
+    
+    return ((dispatch)=>{
+        dispatch({type: "GET_USERS_START"})
+    fetch(userPath).then(res => res.json()).then(obj=>{
+       
+        let users = obj.data
+        dispatch({type: "GET_USERS", users})
+    })})
 }
 function LOG_IN_START(){
     return{
         type: "LOG_IN_START"
     }
 }
-const logIn = (user)=>{
+const LOG_IN = (user)=>{
+
     let config = {
         method: 'POST',
         headers: {
@@ -52,8 +67,23 @@ const logIn = (user)=>{
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
+            debugger
         user = user.data.attributes
         dispatch({type: "LOG_IN",user})
+        
         }).catch(error=>window.alert("incorrent username or password"))
     })
 }
+const SET_CURRENT_USER=()=>{
+    let id = localStorage.getItem("currentUser")
+
+  return ((dispatch)=>{
+      dispatch({type:"START_SET_CURRENT_USER"})
+      fetch(userPath+"/"+id).then(res=>res.json()).then(obj=>{
+        let user = obj.data.attributes
+        dispatch({ type: "SET_CURRENT_USER",user})})
+    
+        
+    })
+}
+export {LOG_IN,signUp, SET_CURRENT_USER, getUsers}

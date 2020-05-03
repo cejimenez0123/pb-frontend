@@ -1,8 +1,9 @@
 import React from 'react'
 
-const ProfileCard =()=>{
+const ProfileCard =(props)=>{
     const renderIf=()=>{
         let user
+    
         if(!!props.currentUser){
       
         user = props.currentUser

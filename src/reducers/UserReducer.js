@@ -18,8 +18,10 @@ requesting: false },
             case "LOG_IN_START":
                 return {...state,requesting: true}
             case "LOG_IN":
-                localStorage.setItem("currentUser",action.user.id)
-                return {...state,users:[state.users],currentUser: action.user, loggedIn: true}
+                console.log("state",state)
+                localStorage.setItem("currentUser",action.user.id) 
+                debugger
+                return{...state,currentUser: action.user, loggedIn: true, requesting: false}
             case "GET_USERS_START":
                 return {...state,requesting: true}
             case "GET_USERS":
@@ -37,9 +39,6 @@ requesting: false },
                 
             case "GET_USERS_START":
                 return{...state}
-            
-            
-        
             default:
                 return state
         }
