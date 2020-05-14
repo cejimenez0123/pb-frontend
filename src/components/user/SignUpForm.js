@@ -1,6 +1,7 @@
 import React from "react"
 import {signUp} from "../../actions/UserActions"
 import { connect} from "react-redux"
+import NavbarContainer from '../../containers/NavbarContainer'
 class SignUpForm extends React.Component{
     constructor(){
         super()
@@ -18,9 +19,9 @@ class SignUpForm extends React.Component{
         this.props.signUp(this.state)    
     }
     render(){
-        return(
-            <div class="form">
-                <form onSubmit={this.handleOnSubmit}> 
+        return(<div>
+            <NavbarContainer/>
+                <form className="SignUpForm" onSubmit={this.handleOnSubmit}> 
                     <label htmlFor="name">Name:</label>
                     <input type="text" name="name" 
                     onChange={this.handleOnChange} />

@@ -67,7 +67,6 @@ const LOG_IN = (user)=>{
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
-            debugger
         user = user.data.attributes
         dispatch({type: "LOG_IN",user})
         
@@ -80,10 +79,15 @@ const SET_CURRENT_USER=()=>{
   return ((dispatch)=>{
       dispatch({type:"START_SET_CURRENT_USER"})
       fetch(userPath+"/"+id).then(res=>res.json()).then(obj=>{
+          debugger
         let user = obj.data.attributes
         dispatch({ type: "SET_CURRENT_USER",user})})
     
         
     })
 }
-export {LOG_IN,signUp, SET_CURRENT_USER, getUsers}
+const END_CURRENT_USER=()=>{
+return(dispatch)=>{
+    dispatch({type:"END_CURRENT_USER"})}
+}
+export {LOG_IN,signUp, SET_CURRENT_USER, getUsers,END_CURRENT_USER}

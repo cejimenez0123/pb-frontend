@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import UserReducer from './reducers/UserReducer'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css';
 const rootReducer = combineReducers({users: UserReducer})
 const store = createStore(rootReducer, applyMiddleware(thunk))
 ReactDOM.render(

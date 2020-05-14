@@ -8,17 +8,23 @@ import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./functions/PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import {getUsers} from "./actions/UserActions"
+import {savePage} from "./actions/PageActions"
+import EditorContainer from './containers/EditorContainer';
 class App extends React.Component{
   componentWillMount(){
     this.props.getUsers()
   }
   render(){
   return (
+ 
     <div className="App">
       < Router>
       
       <Route exact path="/" >
           <HomeContainer/>
+        </Route>
+        <Route path="/pages/:id">
+          <EditorContainer savePage={this.props.savePage}/>
         </Route>
         {this.props.loggedIn ? <Redirect to={`/users/${this.props.currentUser.id}`} /> : <Redirect to={window.location.pathname} />}
         < Switch>
@@ -37,7 +43,8 @@ class App extends React.Component{
 }
 function mapDispatchToProps(dispatch){
   return{ 
-    getUsers: ()=>getUsers()
+    getUsers: ()=>getUsers(),
+    savePage: (data)=>savePage(data)  
   }
 }
 function mapStateToProps(state){

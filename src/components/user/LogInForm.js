@@ -2,6 +2,7 @@ import React from 'react'
 import {LOG_IN} from "../../actions/UserActions"
 import { connect} from "react-redux"
 import { Redirect} from 'react-router-dom'
+import NavbarContainer from '../../containers/NavbarContainer'
 class LogInForm extends React.Component{
     constructor(){
         super()
@@ -21,8 +22,9 @@ class LogInForm extends React.Component{
     }
     render(){
         return(
-            <div className="form">
-                <form onSubmit={this.handleOnSubmit}> 
+            <div className="LogI">
+                <NavbarContainer/>
+                <form class="LogInForm" onSubmit={this.handleOnSubmit}> 
                     <label htmlFor="username">Username:</label>
                     <input type="text" name="username" onChange={this.handleOnChange}/>
                     <br />
