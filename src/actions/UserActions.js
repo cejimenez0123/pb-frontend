@@ -1,41 +1,52 @@
-
+import {history} from "../history"
 const userPath = "http://localhost:3000/users"
 
 function SIGN_UP_START(){
     return {
     type: "SIGN_UP_START"}
 }
-function signUp (user) { 
+function thisDispatch(action){
     debugger
+    return(dispatch)=>{
+        dispatch(action)
+    }
+}
+function signUp(user) { 
+   
     let config = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Accept: "application/json"
+        'Accept': 'application/json'
           },
           body: JSON.stringify({
               name: user.name,
               username: user.username,
               password: user.password  
           })}
-          return ((dispatch) => {
-            dispatch(SIGN_UP_START);
-            fetch("http://localhost:3000/users",config)
-                .then(res => res.json())
-                .then(obj =>{
+         
+        return(dispatch)=>{
+            dispatch(SIGN_UP_START())
+            fetch(userPath,config).then(res => res.json())
+            .then(obj =>{
                debugger
                     let user =  obj.data.attributes
-                    
-                    localStorage.setItem("currentUser",user.id)
-                    dispatch({ type: 'SIGN_UP', user})
-            })
-                .catch(err => {
+                    history.push(`/users/${user.id}`)
+                    localStorage.setItem("currentUser",user.id);
+                  
+                 dispatch({ type: 'SIGN_UP', user})
+                 
+                }
+                 
+                 ).catch(err => {
                     
                     console.error(err)
-                  });
-          })
+                  })}
+          
     
 }
+
+
 function getUsers(){
     
     return ((dispatch)=>{
@@ -57,7 +68,7 @@ const LOG_IN = (user)=>{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Accept: "application/json"
+            'Accept': 'application/json'
             },
             body: JSON.stringify({
                 username: user.username,
@@ -68,9 +79,11 @@ const LOG_IN = (user)=>{
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
         user = user.data.attributes
+        localStorage.setItem("currentUser",user.id)
         dispatch({type: "LOG_IN",user})
         
-        }).catch(error=>window.alert("incorrent username or password"))
+        }
+        ).catch(error=>window.alert("incorrent username or password"))
     })
 }
 const SET_CURRENT_USER=()=>{

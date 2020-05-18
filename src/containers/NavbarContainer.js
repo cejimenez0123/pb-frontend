@@ -33,7 +33,7 @@ class NavbarContainer extends React.Component{
         }
       })
         e.target.classList.add("active")
-        debugger
+       
     }
     render(){
         return(

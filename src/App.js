@@ -8,7 +8,7 @@ import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./functions/PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import {getUsers} from "./actions/UserActions"
-import {savePage} from "./actions/PageActions"
+import {savePage,getAllPages} from "./actions/PageActions"
 import EditorContainer from './containers/EditorContainer';
 class App extends React.Component{
   componentWillMount(){
@@ -18,13 +18,13 @@ class App extends React.Component{
   return (
  
     <div className="App">
-      < Router>
+      
       
       <Route exact path="/" >
-          <HomeContainer/>
+          <HomeContainer getAllPages={this.props.getAllPages}/>
         </Route>
-        <Route path="/pages/:id">
-          <EditorContainer savePage={this.props.savePage}/>
+        <Route path="/pages/:id/edit">
+          <EditorContainer savePage={this.props.savePage} currentPage={this.props.currentPage}/>
         </Route>
         {this.props.loggedIn ? <Redirect to={`/users/${this.props.currentUser.id}`} /> : <Redirect to={window.location.pathname} />}
         < Switch>
@@ -35,23 +35,25 @@ class App extends React.Component{
             <SignUpForm/>
           </Route>
         </Switch>
-        <PrivateRoute path="/users/:userId" ><ProfileContainer/></PrivateRoute>
-      </Router>
+        <PrivateRoute path="/users/:userId" ><ProfileContainer currentUser={this.props.currentUser}/></PrivateRoute>
+     
     </div>
   );
   }
 }
 function mapDispatchToProps(dispatch){
   return{ 
-    getUsers: ()=>getUsers(),
-    savePage: (data)=>savePage(data)  
+    getUsers: ()=>dispatch(getUsers()),
+    savePage: (data)=>dispatch(savePage(data)),
+    getAllPages: ()=>dispatch(getAllPages())  
   }
 }
 function mapStateToProps(state){
-  console.log(state.users)
+
   return{
     loggedIn: state.users.loggedIn,
-    currentUser: state.users.currentUser
+    currentUser: state.users.currentUser,
+    currentPage: state.pages.currentPage
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App);

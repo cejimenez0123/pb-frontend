@@ -12,7 +12,7 @@ requesting: false },
                 return {...state,requesting: true,loggedIn: false}
             case "SIGN_UP":    
                 let user = action.user
-                debugger
+                
                 return {...state, users: [...state.users.concat(user)],
                     currentUser: user, loggedIn: true }
             case "LOG_IN_START":
@@ -26,7 +26,6 @@ requesting: false },
                 return {...state,requesting: true}
             case "GET_USERS":
                 let m =action.users.flat()
-                    debugger
                 return {...state, users: [m], currentUser: state.currentUser,
                 loggedIn: state.loggedIn}
             case "START_SET_CURRENT_USER":

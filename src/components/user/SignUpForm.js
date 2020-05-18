@@ -41,7 +41,7 @@ class SignUpForm extends React.Component{
 }
 function mapDispatchToProps(dispatch){
     return{
-        signUp: (user)=>signUp(user)
+        signUp: (user)=>dispatch(signUp(user))
     }
 }
 export default connect(null,mapDispatchToProps)(SignUpForm)
