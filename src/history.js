@@ -1,3 +1,6 @@
 import { createBrowserHistory } from 'history'
-let history = createBrowserHistory({forceRefresh:true})
+const history = createBrowserHistory()
+history.listen((location, action) => {
+    console.log("inside history listen");
+})
 export {history}

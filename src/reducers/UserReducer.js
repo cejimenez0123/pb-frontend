@@ -18,7 +18,7 @@ requesting: false },
             case "LOG_IN_START":
                 return {...state,requesting: true}
             case "LOG_IN":
-                console.log("state",state)
+                
                 localStorage.setItem("currentUser",action.user.id) 
                 debugger
                 return{...state,currentUser: action.user, loggedIn: true, requesting: false}

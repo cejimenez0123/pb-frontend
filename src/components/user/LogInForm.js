@@ -19,6 +19,7 @@ class LogInForm extends React.Component{
         e.preventDefault()
        
         this.props.logIn(this.state)
+    
     }
     render(){
         return(
@@ -37,9 +38,9 @@ class LogInForm extends React.Component{
         )
     }
 }
-function mapDispatchToProps(dispatch){
-    return{
-        logIn: (user)=>dispatch(LOG_IN(user))
-    }
-}
-export default connect(null,mapDispatchToProps)(LogInForm)
+// function mapDispatchToProps(dispatch){
+//     return{
+//         logIn: (user)=>dispatch(LOG_IN(user))
+//     }
+// }
+export default (LogInForm)

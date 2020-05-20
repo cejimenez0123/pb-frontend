@@ -1,4 +1,8 @@
 import {history} from "../history"
+
+import {push } from 'react-router-redux'
+import store from '../index'
+
 const pageUrl = "http://localhost:3000/pages"
 const userPath = "http://localhost:3000/users"
 const updatePage = (text,title) => {
@@ -21,7 +25,7 @@ const updatePage = (text,title) => {
      })
 }
 const startPage =(title)=>{
-  debugger
+  
   let config = {    
     method: 'POST',
     headers: {
@@ -32,14 +36,17 @@ const startPage =(title)=>{
         title: title,
         userId: localStorage.getItem("currentUser")
       })}
-      return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(obj=>{
+      debugger
+      return(dispatch)=>{
+        dispatch({type:"START_SAVE_PAGE"})
+        fetch(pageUrl,config).then(res=>res.json()).then(page=>{
        
-        let page = obj.data
-        debugger
-        dispatch({type: "SAVE_PAGE",page})
-        history.push(`/pages/${page.id}/edit`)
-       
-
+       page = page.data.attributes
+       console.log("pagex",page)
+       debugger
+       history.push(`/pages/${page.id}/edit`)
+          dispatch({type: "SAVE_PAGE",page})
+        
         
       })}
 

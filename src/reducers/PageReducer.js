@@ -1,13 +1,15 @@
-import { startPage } from "../actions/PageActions"
 
 export default function PageReducer(
-    state={pages:[],currentPage: null, myPages:[],pagesFrom:[]},
+    state={pages:[],currentPage: null, myPages:[],pagesFrom:[],requesting: false},
     action){
 
         switch(action.type){
+            case "START_SAVE_PAGE":
+                return {requesting: true, ...state}
             case "SAVE_PAGE":
                 debugger
-                return { currentPage: action.page.attributes,...state }
+                let page = action.page
+                return { currentPage: page ,...state }
             case "GET_PAGE":
                 return {...state, currentPage: action.page}
             case "GET_ALL_PAGES": 

@@ -1,16 +1,18 @@
 import {history} from "../history"
+import {push} from 'react-router-redux'
+import store from '../index'
 const userPath = "http://localhost:3000/users"
 
+
+function useUserActions(){
+    return {signUp: (user)=>signUp(user),
+            logIn: (user)=>LOG_IN(user)}
+}
 function SIGN_UP_START(){
     return {
     type: "SIGN_UP_START"}
 }
-function thisDispatch(action){
-    debugger
-    return(dispatch)=>{
-        dispatch(action)
-    }
-}
+
 function signUp(user) { 
    
     let config = {
@@ -28,15 +30,11 @@ function signUp(user) {
         return(dispatch)=>{
             dispatch(SIGN_UP_START())
             fetch(userPath,config).then(res => res.json())
-            .then(obj =>{
-               debugger
-                    let user =  obj.data.attributes
-                    history.push(`/users/${user.id}`)
-                    localStorage.setItem("currentUser",user.id);
-                  
-                 dispatch({ type: 'SIGN_UP', user})
-                 
-                }
+            .then(user =>{
+                dispatch({ type: 'SIGN_UP', user})
+                history.push(`/users/${user.id}`)
+                localStorage.setItem("currentUser",user.id);     
+            }
                  
                  ).catch(err => {
                     
@@ -78,12 +76,13 @@ const LOG_IN = (user)=>{
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
-        user = user.data.attributes
+            debugger
         localStorage.setItem("currentUser",user.id)
+        store.dispatch(push(`/users/${user.id}`))
         dispatch({type: "LOG_IN",user})
         
         }
-        ).catch(error=>window.alert("incorrent username or password"))
+        ).catch(error=>window.alert(error))
     })
 }
 const SET_CURRENT_USER=()=>{
@@ -91,9 +90,7 @@ const SET_CURRENT_USER=()=>{
 
   return ((dispatch)=>{
       dispatch({type:"START_SET_CURRENT_USER"})
-      fetch(userPath+"/"+id).then(res=>res.json()).then(obj=>{
-          debugger
-        let user = obj.data.attributes
+      fetch(userPath+"/"+id).then(res=>res.json()).then(user=>{
         dispatch({ type: "SET_CURRENT_USER",user})})
     
         
@@ -103,4 +100,5 @@ const END_CURRENT_USER=()=>{
 return(dispatch)=>{
     dispatch({type:"END_CURRENT_USER"})}
 }
-export {LOG_IN,signUp, SET_CURRENT_USER, getUsers,END_CURRENT_USER}
+export {LOG_IN,signUp, SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
+

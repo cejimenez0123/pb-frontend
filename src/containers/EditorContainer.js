@@ -1,42 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {connect} from 'react-redux'
 import {savePage,getPage,getAllPages} from '../actions/PageActions'
 // import ConsoleButtons from '../../ConsoleButtons';
 
-class EditorContainer extends Component {
-    componentWillMount(){
-        console.log("props",this.props)
-this.props.getPage()
-    }
-    doSetData(editor){
-       
-        if(this.props.currentPage){
+function EditorContainer (props) {
+    let [currentPage] = useState()
+   
+   function doSetData(editor){
+       debugger
+        if(props.currentPage){
             editor.setData("<p>Working</p>")
            
         }
     }
-    savePage(data){
+   function savePage(data){
       
-      this.props.savePage(data)
+      props.savePage(data)
     }
-    deletePage(){
+    function deletePage(){
 
     }
-	render() {
+
         return (
             <div>
                 <h1></h1>
-                <button onClick={this.savePage}>Save</button>
-                <button onClick={this.deletePage}>Delete</button>
+                <button onClick={()=>savePage()}>Save</button>
+                <button onClick={()=>deletePage()}>Delete</button>
             <div className="editor">
                 <CKEditor
                     editor={ ClassicEditor }
                     data="<p>Write Anything</p>"
 
                     onInit={ editor => {
-                        this.doSetData(editor)
+                        doSetData(editor)
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
                     } }
@@ -59,8 +57,8 @@ this.props.getPage()
             
             </div>
         );
-	}
 }
+
 function mapDispatchToProps(dispatch){
     return{ 
       savePage: (data)=>dispatch(savePage(data)),
@@ -69,7 +67,7 @@ function mapDispatchToProps(dispatch){
     }
   }
   function mapStateToProps(state){
-  
+  console.log(state.pages.currentPage)
     return{
   
       currentPage: state.pages.currentPage
