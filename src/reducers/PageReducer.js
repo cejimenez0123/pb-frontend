@@ -7,9 +7,11 @@ export default function PageReducer(
             case "START_SAVE_PAGE":
                 return {requesting: true, ...state}
             case "SAVE_PAGE":
-                debugger
+                
                 let page = action.page
-                return { currentPage: page ,...state }
+                let newState= { ...state ,currentPage: page }
+                debugger
+                return newState
             case "GET_PAGE":
                 return {...state, currentPage: action.page}
             case "GET_ALL_PAGES": 
