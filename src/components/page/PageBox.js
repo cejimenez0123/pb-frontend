@@ -1,24 +1,28 @@
 import React from 'react'
 import {history }from '../../history'
-class PageBox extends React.Component{
-
-    renderIf(){
-        if(this.props.page){
+import {Link} from 'react-router-dom'
+import {usePageActions} from "../../actions/PageActions"
+import { useDispatch } from 'react-redux'
+const PageBox =(props)=>{
+    let com = usePageActions()
+    let dispatch = useDispatch()
+   function renderIf(){
+        if(props.page){
             
-            let page = this.props.page
-           return(<div onClick={()=>{history.push(`/pages/${page.id}`)}}>
-               <h6>{page.title}</h6>
+            let page = props.page
+           return(<div >
+               <Link onClick={()=>{dispatch({type: "GET_PAGE",page})}}to={{pathname:`/pages/${page.id}/edit`}}>{page.title}</Link>
            </div>)
     
         }
     }
 
-    render(){
+
         return(
             <div>
-                {this.renderIf()}
+                {renderIf()}
             </div>
         )
-    }
+    
 }
 export default PageBox

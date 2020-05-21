@@ -6,8 +6,8 @@ import store from '../index'
 const pageUrl = "http://localhost:3000/pages"
 const userPath = "http://localhost:3000/users"
 function usePageActions(){
-  return{myPages: ()=>myPages()
-
+  return{myPages: ()=>myPages(),
+getPageById:(id)=>getPageById(id)
   }
 }
 const updatePage = (text,title) => {
@@ -71,7 +71,7 @@ const savePage = (page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
         obj=>{
-          debugger
+       
           let page=obj.data
           localStorage.setItem("currentPage",page.id)
           dispatch({type:"SAVE_PAGE",page})
@@ -102,7 +102,7 @@ const deletePage=(id)=>{
       console.log(res)
       res.json()}).then(obj=>{
     
-       window.location = (`/users/${localStorage.getItem("currentUser")}`)
+       history.push(`/users/${localStorage.getItem("currentUser")}`)
   }).catch(err=>
       {debugger
           window.location = (`/users/${localStorage.getItem("currentUser")}`)
@@ -112,17 +112,25 @@ const deletePage=(id)=>{
 }
 function getPage(){
   let id = window.location.pathname.split("/")[2]
-  
- return(dispatch)=>{ fetch(`/pages/${id}`,{
-  headers : { 
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-   }}).then(res=>res.json()).then(obj=>{
+  debugger
+  return((dispatch)=>{fetch(`/pages/${id}`).then(res=>res.json()).then(obj=>{
      debugger
-   let page = obj.data
-    dispatch({type: "GET_PAGE",page})
-  })
+   let page = obj.data;
+   dispatch({type: "GET_PAGE",page})}
+ )})
 }
+
+function getPageById(id){
+  return(dispatch)=>{ fetch(`/pages/${id}`,{
+    headers : { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+     }}).then(res=>res.json()).then(obj=>{
+       debugger
+     let page = obj.data
+      dispatch({type: "GET_PAGE",page})
+    })
+  }
 }
 function myPages(){
   let id = localStorage.getItem("currentUser")
@@ -138,4 +146,4 @@ function myPages(){
 }
 
 
-export {updatePage,savePage,getAllPages,startPage,myPages, getPage,usePageActions}
+export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions}
