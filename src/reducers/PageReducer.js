@@ -10,9 +10,10 @@ export default function PageReducer(
                 
                 let page = action.page
                 let newState= { ...state ,currentPage: page }
-                debugger
+                
                 return newState
             case "GET_PAGE":
+                debugger
                 return {...state, currentPage: action.page}
             case "GET_ALL_PAGES": 
                 return {...state,pages: action.pages}

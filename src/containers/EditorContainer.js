@@ -5,27 +5,34 @@ import {connect} from 'react-redux'
 import {savePage,getPage,getAllPages} from '../actions/PageActions'
 // import ConsoleButtons from '../../ConsoleButtons';
 
-function EditorContainer (props) {
-    let [currentPage] = useState()
-   
-   function doSetData(editor){
-       debugger
+class EditorContainer extends React.Component {
+    
+    componentDidMount(){
+        this.props.getPage()
+    }
+   doSetData(editor){
         if(props.currentPage){
             editor.setData("<p>Working</p>")
            
         }
     }
-   function savePage(data){
-      
-      props.savePage(data)
+    xtitler(){
+        if(props.currentPage){
+            return props.currentPage.title
+        }
     }
-    function deletePage(){
+    savePage(data){
+     let  title = document.querySelector("#title")
+      let id= window.location.pathname.split("/")[2]
+      props.savePage({id, data,title: title.innerText})
+    }
+    deletePage(){
 
     }
-
+render(){
         return (
             <div>
-                <h1></h1>
+                <h1 id="title" contentEditable="true">{titler()}</h1>
                 <button onClick={()=>savePage()}>Save</button>
                 <button onClick={()=>deletePage()}>Delete</button>
             <div className="editor">
@@ -56,7 +63,7 @@ function EditorContainer (props) {
             </div>
             
             </div>
-        );
+        );}
 }
 
 function mapDispatchToProps(dispatch){
@@ -67,7 +74,7 @@ function mapDispatchToProps(dispatch){
     }
   }
   function mapStateToProps(state){
-  console.log(state.pages.currentPage)
+  
     return{
   
       currentPage: state.pages.currentPage

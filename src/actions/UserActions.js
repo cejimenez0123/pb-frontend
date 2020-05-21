@@ -78,7 +78,7 @@ const LOG_IN = (user)=>{
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
             debugger
         localStorage.setItem("currentUser",user.id)
-        store.dispatch(push(`/users/${user.id}`))
+        history.push(`/users/${user.id}`)
         dispatch({type: "LOG_IN",user})
         
         }

@@ -1,6 +1,15 @@
 import React from 'react'
 
-const Page = ()=>{
+const Page = (props)=>{
+
+    if(props.page){
+        
+       return(<div>
+           {props.page.data}
+       </div>)
+
+    }
+
     return(<div>
 
     </div>)

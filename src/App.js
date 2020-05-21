@@ -27,7 +27,6 @@ class App extends React.Component{
         </Route>
         
         
-        {this.props.loggedIn ? <Redirect to={`/users/${this.props.currentUser.id}`} /> : <Redirect to={window.location.pathname} />}
         < Switch>
         <Route exact path="/pages/:id/edit" render={()=><EditorContainer savePage={this.props.savePage} currentPage={this.props.currentPage}/>}/>
         

@@ -5,6 +5,11 @@ import store from '../index'
 
 const pageUrl = "http://localhost:3000/pages"
 const userPath = "http://localhost:3000/users"
+function usePageActions(){
+  return{myPages: ()=>myPages()
+
+  }
+}
 const updatePage = (text,title) => {
  
     let id = localStorage.getItem("pageLink")
@@ -36,11 +41,11 @@ const startPage =(title)=>{
         title: title,
         userId: localStorage.getItem("currentUser")
       })}
-      debugger
+   
       return(dispatch)=>{
         dispatch({type:"START_SAVE_PAGE"})
         fetch(pageUrl,config).then(res=>res.json()).then(page=>{
-       
+       debugger
        page = page.data.attributes
        console.log("pagex",page)
        debugger
@@ -48,22 +53,25 @@ const startPage =(title)=>{
           dispatch({type: "SAVE_PAGE",page})
         
         
-      })}
+      }).catch(error=>{history.push(window.location.pathname)})}
 
 }
-const savePage = (data)=>{
+const savePage = (page)=>{
   
   let config = {    
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
       },
       body: JSON.stringify({
-        data: data
+        id: page.id,
+        title: page.title,
+        data: page.data
       })}
-      return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
+      return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
         obj=>{
+          debugger
           let page=obj.data
           localStorage.setItem("currentPage",page.id)
           dispatch({type:"SAVE_PAGE",page})
@@ -103,26 +111,31 @@ const deletePage=(id)=>{
   })
 }
 function getPage(){
-  let id= localStorage.getItem("currentPage")
+  let id = window.location.pathname.split("/")[2]
+  
  return(dispatch)=>{ fetch(`/pages/${id}`,{
   headers : { 
     'Content-Type': 'application/json',
     'Accept': 'application/json'
    }}).then(res=>res.json()).then(obj=>{
+     debugger
    let page = obj.data
     dispatch({type: "GET_PAGE",page})
-  })}
+  })
+}
 }
 function myPages(){
   let id = localStorage.getItem("currentUser")
   return((dispatch)=>{
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
-              let pages = obj.data
+            debugger
+              let pages = Array.from(obj.data)
               dispatch({type: "GET_MY_PAGES",pages})}
       )
   })
   
 }
 
-export {updatePage,savePage,getAllPages,startPage, getPage}
+
+export {updatePage,savePage,getAllPages,startPage,myPages, getPage,usePageActions}
