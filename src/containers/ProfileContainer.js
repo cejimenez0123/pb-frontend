@@ -8,6 +8,7 @@ import NavbarContainer from './NavbarContainer'
 import Pages from "../components/page/pages"
 import EditorContainer from './EditorContainer'
 import PageBoxes from '../components/page/PageBoxes'
+import Editor from "../components/page/editor"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -15,6 +16,7 @@ class ProfileContainer extends React.Component{
     componentDidMount(){
         this.props.setCurrentUser()
         this.props.getMyPages()
+        this.props.getUsers()
     }
     handleOnClick(){
         let title = prompt("Enter a title","untitled")
@@ -29,8 +31,8 @@ class ProfileContainer extends React.Component{
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
                 <PageBoxes pages={this.props.myPages}/>
-                <Pages pages={this.props.myPages}/>
-                
+               
+              
             </div>
         )
     }
@@ -43,7 +45,8 @@ function mapDispatchToProps(dispatch){
     getUsers:()=>getUsers(),
     endSession:()=>END_CURRENT_USER(),
     startPage: (title)=>dispatch(startPage(title)),
-    getMyPages: ()=>dispatch(myPages())}
+    getMyPages: ()=>dispatch(myPages()),
+getUsers: ()=>dispatch(getUsers())}
 }
 function mapStateToProps(state){
     return{

@@ -45,16 +45,7 @@ function signUp(user) {
 }
 
 
-function getUsers(){
-    
-    return ((dispatch)=>{
-        dispatch({type: "GET_USERS_START"})
-    fetch(userPath).then(res => res.json()).then(obj=>{
-       
-        let users = obj.data
-        dispatch({type: "GET_USERS", users})
-    })})
-}
+
 function LOG_IN_START(){
     return{
         type: "LOG_IN_START"
@@ -77,6 +68,7 @@ const LOG_IN = (user)=>{
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
             debugger
+            user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
         history.push(`/users/${user.id}`)
         dispatch({type: "LOG_IN",user})
@@ -100,5 +92,26 @@ const END_CURRENT_USER=()=>{
 return(dispatch)=>{
     dispatch({type:"END_CURRENT_USER"})}
 }
+const shareWith=(user,content)=>{
+
+    let config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: user,
+                content_id: content 
+            })}
+    }
+function getUsers(){
+  return(dispatch)=>{  fetch(userPath).then(res=>res.json()).then(users=>{
+      debugger
+      users=users.data
+    dispatch({type: "GET_USERS",users})
+    })}
+}
+
 export {LOG_IN,signUp, SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
 

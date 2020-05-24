@@ -1,29 +1,31 @@
 import React from 'react'
-class editor extends React.Component{
-componentWillMount(){
-    debugger
-    if(this.props.currentPage){
+import CKEditor from '@ckeditor/ckeditor5-react';
+
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+const Editor=(props)=>{
+    let page 
+    if(props.currentPage){
         debugger
         
     }
+function savePage(){
+  debugger
 }
-savePage(){
-  
-}
-deletePage(){
+function deletePage(){
 
 }
-render() {
+
     return (
         <div>
-            <button onClick={this.savePage}>Save</button>
-            <button onClick={this.deletePage}>Delete</button>
+            <button onClick={()=>savePage()}>Save</button>
+            <button onClick={()=>deletePage()}>Delete</button>
         <div className="editor">
-            <CKEditor
+            <CKEditor id="editor"
                 editor={ ClassicEditor }
                 data="<p>Write Anything</p>"
 
                 onInit={ editor => {
+                    page = editor
                     // You can store the "editor" and use when it is needed.
                     console.log( 'Editor is ready to use!', editor );
                 } }
@@ -47,4 +49,4 @@ render() {
         </div>
     );
 }
-}
+export default Editor

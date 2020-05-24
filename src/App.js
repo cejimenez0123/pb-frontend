@@ -11,9 +11,12 @@ import {getUsers, useUserActions,LOG_IN,signUp} from "./actions/UserActions"
 import {savePage,getAllPages} from "./actions/PageActions"
 import EditorContainer from './containers/EditorContainer';
 import {history} from "./history"
+
 let bot
 class App extends React.Component{
-  
+  componentDidMount(){
+    this.props.getAllPages()
+  }
   bot = useUserActions()
 
   render(){
@@ -23,10 +26,10 @@ class App extends React.Component{
       
   
       <Route exact path="/" >
-          <HomeContainer getAllPages={this.props.getAllPages}/>
+          <HomeContainer getAllPages={this.props.getAllPages} pages={this.props.pages}/>
         </Route>
         
-        
+    
         < Switch>
         <Route exact path="/pages/:id/edit" render={()=><EditorContainer savePage={this.props.savePage} currentPage={this.props.currentPage}/>}/>
         
@@ -58,7 +61,8 @@ function mapStateToProps(state){
   return{
     loggedIn: state.users.loggedIn,
     currentUser: state.users.currentUser,
-    currentPage: state.pages.currentPage
+    currentPage: state.pages.currentPage,
+    pages: state.pages.pages
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

@@ -13,9 +13,10 @@ export default function PageReducer(
                 
                 return newState
             case "GET_PAGE":
-                debugger
+                
                 return {...state, currentPage: action.page}
-            case "GET_ALL_PAGES": 
+            case "GET_ALL_PAGES":
+                debugger 
                 return {...state,pages: action.pages}
             case "GET_MY_PAGES":
                 return {...state, myPages: action.pages}

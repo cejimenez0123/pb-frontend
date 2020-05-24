@@ -57,7 +57,7 @@ const startPage =(title)=>{
 
 }
 const savePage = (page)=>{
-  
+ debugger
   let config = {    
     method: 'PATCH',
     headers: {
@@ -71,8 +71,8 @@ const savePage = (page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
         obj=>{
-       
-          let page=obj.data
+       debugger
+          let page=obj.data.attributes
           localStorage.setItem("currentPage",page.id)
           dispatch({type:"SAVE_PAGE",page})
         }

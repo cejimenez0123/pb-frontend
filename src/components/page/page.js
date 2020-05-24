@@ -1,17 +1,23 @@
 import React from 'react'
+import { render } from 'react-dom'
 
 const Page = (props)=>{
 
-    if(props.page){
-        
-       return(<div>
-           {props.page.data}
-       </div>)
-
+    const renderPage=()=>{
+        debugger
+       
+       let html=  props.page.data
+        return(
+            <div className={`page-${props.page.id}`} dangerouslySetInnerHTML={{__html: 
+                html}}></div>
+        )
     }
+    return(
+        <div id="pages" >
+            {renderPage()}
+        </div>
+    )
 
-    return(<div>
-
-    </div>)
+    
 }
 export default Page
