@@ -16,6 +16,7 @@ let bot
 class App extends React.Component{
   componentDidMount(){
     this.props.getAllPages()
+    this.props.getUsers()
   }
   bot = useUserActions()
 

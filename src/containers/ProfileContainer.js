@@ -5,10 +5,12 @@ import {withRouter} from 'react-router'
 import {startPage,myPages} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
+import SearchUsers from '../components/user/SearchUsers'
 import Pages from "../components/page/pages"
 import EditorContainer from './EditorContainer'
 import PageBoxes from '../components/page/PageBoxes'
 import Editor from "../components/page/editor"
+import SearchCardIndex from "../components/user/SearchCardIndex"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -31,7 +33,8 @@ class ProfileContainer extends React.Component{
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
                 <PageBoxes pages={this.props.myPages}/>
-               
+                
+                <SearchCardIndex/>
               
             </div>
         )
@@ -50,6 +53,7 @@ getUsers: ()=>dispatch(getUsers())}
 }
 function mapStateToProps(state){
     return{
+        users: state.users.users,
         currentUser: state.users.currentUser,
         loggedIn: state.users.loggedIn,
         requesting: state.pages.requesting,

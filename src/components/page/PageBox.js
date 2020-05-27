@@ -11,7 +11,7 @@ const PageBox =(props)=>{
             
             let page = props.page
            return(<div >
-               <Link onClick={()=>{dispatch({type: "GET_PAGE",page})}}to={{pathname:`/pages/${page.id}/edit`}}>{page.title}</Link>
+               <Link onClick={()=>{dispatch({type: "GET_PAGE",page})}}to={{pathname:`/pages/${page.id}/edit`}}>{page.title}</Link><button >Share</button>
            </div>)
     
         }

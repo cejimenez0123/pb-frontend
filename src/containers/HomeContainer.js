@@ -6,7 +6,7 @@ import NavbarContainer from './NavbarContainer'
 import Editor from './EditorContainer'
 import { useStore } from 'react-redux'
 import { render } from 'react-dom'
-
+import SearchCardIndex from '../components/user/SearchCardIndex'
 class HomeContainer extends React.Component{
     //     props.getAllPages()
     // let store = useStore()
@@ -21,7 +21,7 @@ class HomeContainer extends React.Component{
                 < Link to="/signup" >Sign Up</Link>
                 <br/>
                 < Link to="/login">Log In</Link>
-                <BookContainer pages={this.props.pages} />
+                <SearchCardIndex/>
             </div>
         )
         } 

@@ -20,20 +20,21 @@ requesting: false },
             case "LOG_IN":
                 
                 localStorage.setItem("currentUser",action.user.id) 
-                debugger
+               
                 return{...state,currentUser: action.user, loggedIn: true, requesting: false}
             case "GET_USERS_START":
                 return {...state,requesting: true}
             case "GET_USERS":
+                debugger
                 let m =action.users
-                return {...state, users: [m], currentUser: state.currentUser,
+                return {...state, users: m.flat(), currentUser: state.currentUser,
                 loggedIn: state.loggedIn}
             case "START_SET_CURRENT_USER":
                 return {...state,requesting: true}
             case "SET_CURRENT_USER":
             return{...state,currentUser: action.user.data.attributes, loggedIn: true,requesting: false}
                 case "END_CURRENT_USER": 
-                debugger
+              
                 localStorage.setItem("currentUser","")
                 return{...state,currentUser:null,loggedIn: false} 
                 
