@@ -27,7 +27,7 @@ class App extends React.Component{
       
   
       <Route exact path="/" >
-          <HomeContainer getAllPages={this.props.getAllPages} pages={this.props.pages}/>
+          <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>
         </Route>
         
     
@@ -60,6 +60,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state){
 
   return{
+    users: state.users.users,
     loggedIn: state.users.loggedIn,
     currentUser: state.users.currentUser,
     currentPage: state.pages.currentPage,

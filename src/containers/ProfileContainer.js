@@ -34,7 +34,7 @@ class ProfileContainer extends React.Component{
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
                 <PageBoxes pages={this.props.myPages}/>
                 
-                <SearchCardIndex/>
+                <SearchCardIndex users={this.props.users}/>
               
             </div>
         )

@@ -1,14 +1,16 @@
 import React from 'react'
 
-export default function SearchCard(props){
-    const ifProps=()=>{
-        console.log(props)
-        
-        let user = props.user
-        debugger
-        return(<div className="list-group-item">{user.name}- @{user.username}</div>)
+class SearchCard extends React.Component{
+    
+    ifProps=()=>{
+    
+        let user = this.props.user
+       
+        return(<li><p>{user.name}- @{user.username}</p></li>)
     }
+    render(){
 return(<div>
-    {ifProps()}
-</div>)
+    {this.ifProps()}
+</div>)}
 }
+export default SearchCard
