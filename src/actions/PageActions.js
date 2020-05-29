@@ -138,12 +138,13 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
             debugger
+            if(obj.status === 200){
               let pages = Array.from(obj.data)
-              dispatch({type: "GET_MY_PAGES",pages})}
-      )
-  })
+              dispatch({type: "GET_MY_PAGES",pages})}else{
+                dispatch({type: "GET_MY_PAGES",pages: []})
+              }
   
-}
+})})}
 
 
 export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions}

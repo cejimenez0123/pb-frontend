@@ -4,18 +4,16 @@ import { render } from 'react-dom'
 const Page = (props)=>{
 
     const renderPage=()=>{
-        
+
    
-       let html=  (
-           <div>
-           <p>{props.page.user.username}</p>
-           <div>
-           {props.page.data}
-           </div>
-           </div>)
+       let html=  props.page.data
+        
         return(
+            <div>
+                By {props.page.user.username}
             <div className={`page-${props.page.id}`} dangerouslySetInnerHTML={{__html: 
                 html}}></div>
+                </div>
         )
     }
     return(

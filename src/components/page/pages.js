@@ -2,8 +2,7 @@ import React from 'react'
 import Page from "./page"
 class Pages extends React.Component{
     renderIf(){
-     
-        if(this.props.pages !==[]){
+        if(this.props.pages){
         
             return ( this.props.pages.map(page=>{
               page = page.attributes
@@ -13,7 +12,7 @@ class Pages extends React.Component{
             //   return  <Page page={page}/>
             // })
         }else{
-            return(<p>Write Somethings</p>)
+            return(<p>Write Anything</p>)
         }
     }
 

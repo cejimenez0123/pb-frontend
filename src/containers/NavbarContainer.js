@@ -1,27 +1,36 @@
 import React from 'react'
 
 import '../App.css'
+import { useStore } from 'react-redux'
 
-class NavbarContainer extends React.Component{
-    handleOnClick(){
+function NavbarContainer (props){
+  let store = useStore()
+
+    function handleOnClick(){
         this.props.endSession()
     }
-    renderif(){
-        if (this.props.loggedIn){
+    function renderif(){
+        if (props.loggedIn){
             return(
+              <div>
+
+              <li class="nav-item">
+            <a class="nav-link"  onClick={()=>handleActivation()} href="/">Profile</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link"  onClick={()=>this.handleOnClick()} href="/">Log Out</a>
-          </li>)
+            <a class="nav-link"  onClick={()=>handleOnClick()} href="/">Log Out</a>
+          </li>
+          </div>)
         }else{
             return(<li class="nav-item">
-            <a class="nav-link" onClick={(e)=>this.handleActivation(e)} href="/">Sign In</a>
+            <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Sign In</a>
           </li>)
         }
     }
     
 
   
-    handleActivation(e){
+   function handleActivation(e){
       e.preventDefault()
      let items=  document.querySelectorAll(".nav-item")
      
@@ -35,7 +44,7 @@ class NavbarContainer extends React.Component{
         e.target.classList.add("active")
        
     }
-    render(){
+    
         return(
     
             <div >
@@ -46,15 +55,17 @@ class NavbarContainer extends React.Component{
             </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
+      <div>
       <li class="nav-item active">
-        <a class="nav-link" onClick={(e)=>this.handleActivation(e)} href="/">Home</a>
+        <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
       </li>
-      {this.renderif()}
+      </div>
+      {renderif()}
     </ul>
   </div>
 </nav>
             </div>
         )
     }
-}
+
 export default NavbarContainer

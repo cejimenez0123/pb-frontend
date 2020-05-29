@@ -5,8 +5,9 @@
   "dependencies": {
     "@ckeditor/ckeditor5-basic-styles": "^19.0.0",
     "@ckeditor/ckeditor5-build-classic": "^19.0.0",
-    "@ckeditor/ckeditor5-build-inline": "^19.0.0",
+    "@ckeditor/ckeditor5-build-inline": "^19.0.1",
     "@ckeditor/ckeditor5-easy-image": "^19.0.0",
+    "@ckeditor/ckeditor5-editor-inline": "^19.0.1",
     "@ckeditor/ckeditor5-essentials": "^19.0.0",
     "@ckeditor/ckeditor5-paragraph": "^19.0.0",
     "@ckeditor/ckeditor5-react": "^2.1.0",

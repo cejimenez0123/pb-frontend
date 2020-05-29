@@ -31,9 +31,12 @@ function signUp(user) {
             dispatch(SIGN_UP_START())
             fetch(userPath,config).then(res => res.json())
             .then(user =>{
+                debugger
+                user = user.data.attributes
+                localStorage.setItem("currentUser",user.id)
                 dispatch({ type: 'SIGN_UP', user})
                 history.push(`/users/${user.id}`)
-                localStorage.setItem("currentUser",user.id);     
+                ;     
             }
                  
                  ).catch(err => {

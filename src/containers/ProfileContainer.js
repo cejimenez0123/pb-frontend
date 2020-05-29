@@ -12,14 +12,17 @@ import EditorContainer from './EditorContainer'
 import PageBoxes from '../components/page/PageBoxes'
 import Editor from "../components/page/editor"
 import SearchCardIndex from "../components/user/SearchCardIndex"
+import BoxEditor from "../components/page/BoxEditor"
+import BookContainer from './BookContainer'
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
     }
     componentDidMount(){
+
         this.props.setCurrentUser()
-        this.props.getMyPages()
         this.props.getUsers()
+        
     }
     handleOnClick(){
         let title = prompt("Enter a title","untitled")
@@ -32,10 +35,9 @@ class ProfileContainer extends React.Component{
             <div >
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-               
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
-                <PageBoxes pages={this.props.myPages}/>
-                
+                <PageBoxes pages={this.props.myPages} getMyPages={this.props.getMyPages}/>
+           
                 
                 
             </div>
