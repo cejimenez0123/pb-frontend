@@ -1,4 +1,5 @@
 import React from 'react'
+import "../App.css"
 import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
@@ -31,11 +32,12 @@ class ProfileContainer extends React.Component{
             <div >
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+               
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
                 <PageBoxes pages={this.props.myPages}/>
                 
-                <SearchCardIndex users={this.props.users}/>
-              
+                
+                
             </div>
         )
     }

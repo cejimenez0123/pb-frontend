@@ -1,6 +1,8 @@
 import React from 'react'
 import PageBox from "./PageBox"
 class Pages extends React.Component{
+
+    
     renderIf(){
         if(this.props.pages){
             

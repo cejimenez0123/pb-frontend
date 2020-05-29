@@ -25,7 +25,7 @@ requesting: false },
             case "GET_USERS_START":
                 return {...state,requesting: true}
             case "GET_USERS":
-                debugger
+              
                 let m =action.users
                 return {...state, users: m.flat(), currentUser: state.currentUser,
                 loggedIn: state.loggedIn}

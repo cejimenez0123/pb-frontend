@@ -30,11 +30,7 @@ componentDidMount(){
  
 
 }
-// editorConfiguration = ()=>{
-//     return{
-//     plugins: [ Essentials, Bold, Italic, Paragraph,Strikethrough,Code,Subscript,Superscript,Underline],
-//     toolbar: [ 'bold', 'italic','imageUpload','code','underline','striketrough','subscript','superscript' ]}
-// }
+
 
    doSetData(editor){
        element = editor

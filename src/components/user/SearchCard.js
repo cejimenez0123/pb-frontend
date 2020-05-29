@@ -6,7 +6,14 @@ class SearchCard extends React.Component{
     
         let user = this.props.user
        
-        return(<li><p>{user.name}- @{user.username}</p></li>)
+        return(
+            
+        <li className="searchCard">
+            
+            {user.name}- @{user.username}<input className="searchCheckBoc" data-id={user.id}type="checkbox"/></li>
+        
+        
+        )
     }
     render(){
 return(<div>

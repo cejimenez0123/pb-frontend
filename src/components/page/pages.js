@@ -2,7 +2,7 @@ import React from 'react'
 import Page from "./page"
 class Pages extends React.Component{
     renderIf(){
-        debugger
+     
         if(this.props.pages !==[]){
         
             return ( this.props.pages.map(page=>{

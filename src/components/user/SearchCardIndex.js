@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchCard from './SearchCard'
-
+import "../../App.css"
 
 export default class SearchCardIndex extends React.Component{
     constructor(){
@@ -8,19 +8,22 @@ export default class SearchCardIndex extends React.Component{
         this.state = {users: [], filterd:[]}
     }
 
-    componentWillReceiveProps(){
+    componentDidMount(){
         this.setState({users: this.props.users})
+        this.setState({filtered: this.renderIndex(this.props.users)})
+        
     }
 
     renderIndex(arr){
+        console.log(this.state)
     return arr.map((user,i)=>{
-        debugger
         if(user.attributes){
             user = user.attributes
         }
       return  <SearchCard user={user}/>
         
     })
+   
     
 }
    handleOnChange = (e)=>{
@@ -44,10 +47,13 @@ export default class SearchCardIndex extends React.Component{
         
         
     }
+    
+    
+
     render(){
     return(<div >
-        <input type="text" value="" onChange={(e)=>this.handleOnChange(e)}/>
-        <ul className="searchIndex ">
+        <input type="text" value=""   onChange={(e)=>this.handleOnChange(e)}/>
+        <ul className="searchIndex">
             {this.state.filterd}
         </ul>
     </div>)}
