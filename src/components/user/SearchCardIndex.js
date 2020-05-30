@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchCard from './SearchCard'
+import ReactDOM from 'react-dom'
 import "../../App.css"
 
 export default class SearchCardIndex extends React.Component{
@@ -15,12 +16,12 @@ export default class SearchCardIndex extends React.Component{
     }
 
     renderIndex(arr){
-        console.log(this.state)
+        
     return arr.map((user,i)=>{
         if(user.attributes){
             user = user.attributes
         }
-      return  <SearchCard user={user}/>
+      return  <SearchCard user={user} key={i} pageId={this.props.pageId}/>
         
     })
    
@@ -47,12 +48,33 @@ export default class SearchCardIndex extends React.Component{
         
         
     }
+    handleOnClick(){
+        let nodes = document.querySelectorAll(`#${this.props.pageId}`)
+        nodes = Array.from(nodes)
+        debugger
+       let array = nodes.filter(input=>{
+            if(input["checked"]){
+                return input
+            }
+        })
+        array.map(input=>{
+            let id = input["dataset"]["id"]
+            this.props.share(id)
+        }
+
+        )
+        
+        
+        
+    }
     
     
 
     render(){
     return(<div >
-        <input type="text" value=""   onChange={(e)=>this.handleOnChange(e)}/>
+        <button onClick={()=>this.handleOnClick()}>Share with...</button>
+        <input type="text"   onChange={(e)=>this.handleOnChange(e)}/>
+        
         <ul className="searchIndex">
             {this.state.filterd}
         </ul>

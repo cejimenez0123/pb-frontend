@@ -5,6 +5,7 @@ import store from '../index'
 
 const pageUrl = "http://localhost:3000/pages"
 const userPath = "http://localhost:3000/users"
+const sharePath = "http://localhost:3000/shares"
 function usePageActions(){
   return{myPages: ()=>myPages(),
 getPageById:(id)=>getPageById(id)
@@ -87,6 +88,22 @@ const getAllPages = ()=>{
     }
   )}
 }
+const share=(id)=>{
+
+  const config = {    
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          id: id
+      })}
+      fetch(sharePath,config).then(res=>res.json()).then(obj=>{
+      debugger
+      }).catch(error=>window.alert(error))
+
+}
 const deletePage=(id)=>{
 
   const config = {    
@@ -111,8 +128,9 @@ const deletePage=(id)=>{
   })
 }
 function getPage(){
-  let id = window.location.pathname.split("/")[2]
   debugger
+  let id = window.location.pathname.split("/")[2]
+
   return((dispatch)=>{fetch(`/pages/${id}`).then(res=>res.json()).then(obj=>{
      debugger
    let page = obj.data;
@@ -138,13 +156,12 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
             debugger
-            if(obj.status === 200){
+            
               let pages = Array.from(obj.data)
-              dispatch({type: "GET_MY_PAGES",pages})}else{
-                dispatch({type: "GET_MY_PAGES",pages: []})
-              }
+              dispatch({type: "GET_MY_PAGES",pages})}
+              
   
-})})}
+)})}
 
 
-export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions}
+export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share}

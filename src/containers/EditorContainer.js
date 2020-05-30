@@ -21,14 +21,25 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import {connect} from 'react-redux'
 import {savePage,getPage,getAllPages} from '../actions/PageActions'
-
+import {SET_CURRENT_USER} from "../actions/UserActions"
+import NavbarContainer from "./NavbarContainer"
 // import ConsoleButtons from '../../ConsoleButtons';
 let element
 class EditorContainer extends React.Component {
+    constructor(){
+        super()
+        this.state={
+            id: "",
+            title: "",
+            data: "",
+            user: ""
+        }
+    }
     
 componentDidMount(){
  
-
+this.props.getPage()
+this.props.setCurrentUser()
 }
 
 
@@ -58,7 +69,9 @@ componentDidMount(){
     }
 render(){
         return (
+            
             <div>
+                <NavbarContainer/>
                 <h1 id="title" contentEditable="true">{this.titler()}</h1>
                 <button onClick={()=>this.savePage(element.getData())}>Save</button>
                 <button onClick={()=>this.deletePage()}>Delete</button>
@@ -102,7 +115,8 @@ function mapDispatchToProps(dispatch){
     return{ 
       savePage: (data)=>dispatch(savePage(data)),
       getAllPages: ()=>dispatch(getAllPages()) , 
-      getPage: ()=>dispatch(getPage())
+      getPage: ()=>dispatch(getPage()),
+      setCurrentUser: ()=>dispatch(SET_CURRENT_USER())
     }
   }
   function mapStateToProps(state){

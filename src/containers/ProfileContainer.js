@@ -22,6 +22,7 @@ class ProfileContainer extends React.Component{
 
         this.props.setCurrentUser()
         this.props.getUsers()
+        this.props.getMyPages()
         
     }
     handleOnClick(){

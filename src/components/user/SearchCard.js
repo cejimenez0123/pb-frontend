@@ -8,9 +8,9 @@ class SearchCard extends React.Component{
        
         return(
             
-        <li className="searchCard">
+        <li className={`searchCard`}>
             
-            {user.name}- @{user.username}<input className="searchCheckBoc" data-id={user.id}type="checkbox"/></li>
+            {user.name}- @{user.username}<input className="searchCheckBoc" id={this.props.pageId} data-id={user.id} type="checkbox" /></li>
         
         
         )

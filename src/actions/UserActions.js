@@ -1,7 +1,7 @@
 import {history} from "../history"
 import {push} from 'react-router-redux'
 import store from '../index'
-const userPath = "http://localhost:3000/users"
+const userPath = "http://127.0.0.1:3000/users"
 
 
 function useUserActions(){
@@ -70,14 +70,14 @@ const LOG_IN = (user)=>{
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
-            debugger
+           
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
         history.push(`/users/${user.id}`)
         dispatch({type: "LOG_IN",user})
         
         }
-        ).catch(error=>window.alert(error))
+        ).catch(error=>window.alert("Username or Password Incorrect"))
     })
 }
 const SET_CURRENT_USER=()=>{

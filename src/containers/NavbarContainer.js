@@ -10,21 +10,56 @@ function NavbarContainer (props){
         this.props.endSession()
     }
     function renderif(){
+      let user = store.getState()
+    
         if (props.loggedIn){
             return(
-              <div>
-
-              <li class="nav-item">
-            <a class="nav-link"  onClick={()=>handleActivation()} href="/">Profile</a>
+      <div >
+         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                 <a class="navbar-brand navbar" href="/">Pb</a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+               </button>
+     <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+         <li class="nav-item active">
+           <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
+         </li>
+          <li class="nav-item">
+           <a class="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}`}>Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"  onClick={()=>handleOnClick()} href="/">Log Out</a>
           </li>
-          </div>)
+      </ul>
+      
+    </div>
+        </nav>
+      </div>)
         }else{
-            return(<li class="nav-item">
-            <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Sign In</a>
-          </li>)
+            return(
+        <div >
+          <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <a class="navbar-brand navbar" href="/">Pb</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+           <li class="nav-item active">
+              <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
+           </li>
+            <li class="nav-item">
+              <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Sign In</a>
+            </li>
+        </ul>
+      
+          </div>
+        </nav>
+    </div>
+        )
+            
+           
         }
     }
     
@@ -43,27 +78,14 @@ function NavbarContainer (props){
       })
         e.target.classList.add("active")
        
-    }
+   }
     
         return(
     
             <div >
-           <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-              <a class="navbar-brand navbar" href="/">Pb</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <div>
-      <li class="nav-item active">
-        <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
-      </li>
-      </div>
+          
       {renderif()}
-    </ul>
-  </div>
-</nav>
+    
             </div>
         )
     }

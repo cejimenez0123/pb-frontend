@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {usePageActions} from "../../actions/PageActions"
 import { useDispatch, useStore } from 'react-redux'
 import SearchCardIndex from '../user/SearchCardIndex'
+import {share} from '../../actions/PageActions'
 import SearchCard from '../user/SearchCard'
 
 const PageBox =(props)=>{
@@ -17,7 +18,7 @@ const PageBox =(props)=>{
        let div = document.querySelector(`#page-${e.target["dataset"]["pageid"]}`)
        debugger
        if(users){
-       ReactDOM.render(<SearchCardIndex users={users}/>,div)}
+       ReactDOM.render(<SearchCardIndex users={users} share={share} pageId={e.target["dataset"]["pageid"]}/>,div)}
         
        
     }

@@ -25,6 +25,9 @@
 	text-align: center;
 	margin: auto;
 }
+.index{
+	margin-left: 50%;
+}
 .editor {
 			border:solid 1px #ccc;
 			padding: 20px;
