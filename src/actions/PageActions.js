@@ -114,10 +114,14 @@ debugger
 
     }
 const getInbox =()=>{
+  debugger
   return(dispatch)=>{
-    fetch(userPath+"/"+localStorage.getItem("currentUser")).then(res=>res.json()).then(
+    fetch(userPath+"/"+localStorage.getItem("currentUser")+"/inbox").then(res=>res.json()).then(
       obj=>{
         debugger
+        let inbox = obj.data
+        dispatch({type: "MY_INBOX", inbox})
+
       }
     )
   }
@@ -182,4 +186,4 @@ function myPages(){
 )})}
 
 
-export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share}
+export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox}

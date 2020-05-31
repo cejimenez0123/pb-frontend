@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component{
         super(props)
     }
     componentDidMount(){
-
+        this.props.getInbox()
         this.props.setCurrentUser()
         this.props.getUsers()
         this.props.getMyPages()

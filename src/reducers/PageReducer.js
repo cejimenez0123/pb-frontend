@@ -1,6 +1,6 @@
 
 export default function PageReducer(
-    state={pages:[],currentPage: null, myPages:[],pagesFrom:[],requesting: false},
+    state={pages:[],currentPage: null, myPages:[],pagesFrom:[],inbox:[],requesting: false},
     action){
 
         switch(action.type){
@@ -12,6 +12,9 @@ export default function PageReducer(
                 let newState= { ...state ,currentPage: page }
                 
                 return newState
+            case "MY_INBOX":
+                debugger
+                return{...state,inbox: action.inbox}
             case "GET_PAGE":
                 
                 return {...state, currentPage: action.page}
