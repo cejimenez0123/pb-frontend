@@ -29,6 +29,9 @@ function NavbarContainer (props){
            <a class="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}`}>Profile</a>
           </li>
           <li class="nav-item">
+           <a class="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}/inbox`}>Inbox</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link"  onClick={()=>handleOnClick()} href="/">Log Out</a>
           </li>
       </ul>

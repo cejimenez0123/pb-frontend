@@ -88,21 +88,39 @@ const getAllPages = ()=>{
     }
   )}
 }
-const share=(id)=>{
-
+const share=(id,pageId)=>{
+debugger
   const config = {    
-    method: 'DELETE',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
       },
       body: JSON.stringify({
-          id: id
+          id: id,
+          pageId: pageId
       })}
       fetch(sharePath,config).then(res=>res.json()).then(obj=>{
-      debugger
-      }).catch(error=>window.alert(error))
+    
+      let data= obj.data.attributes
+      
+      if (obj.data.id === null && obj.data.type ==="share"){
+        window.alert(`Already sent a cop${data.content.title} to ${data.user.name}`);
+      }else if (obj.data.type ==="share"){
+        window.alert(`Sent ${data.content.title} to ${data.user.name}`);
+      }else{
+        window.alert("error")
+      }}).catch(er=>window.alert(er))
 
+    }
+const getInbox =()=>{
+  return(dispatch)=>{
+    fetch(userPath+"/"+localStorage.getItem("currentUser")).then(res=>res.json()).then(
+      obj=>{
+        debugger
+      }
+    )
+  }
 }
 const deletePage=(id)=>{
 

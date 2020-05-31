@@ -59,7 +59,7 @@ export default class SearchCardIndex extends React.Component{
         })
         array.map(input=>{
             let id = input["dataset"]["id"]
-            this.props.share(id)
+            this.props.share(id,this.props.pageId)
         }
 
         )

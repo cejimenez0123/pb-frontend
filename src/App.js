@@ -10,7 +10,9 @@ import ProfileContainer from './containers/ProfileContainer';
 import {getUsers, useUserActions,LOG_IN,signUp} from "./actions/UserActions"
 import {savePage,getAllPages} from "./actions/PageActions"
 import EditorContainer from './containers/EditorContainer';
+
 import {history} from "./history"
+import InboxContainer from './containers/InboxContainer';
 
 let bot
 class App extends React.Component{
@@ -31,18 +33,19 @@ class App extends React.Component{
         </Route>
         
     
-        < Switch>
+       
+        <PrivateRoute exact path="/users/:userId" ><ProfileContainer currentUser={this.props.currentUser}/></PrivateRoute>
         <Route exact path="/pages/:id/edit" render={()=><EditorContainer savePage={this.props.savePage} currentPage={this.props.currentPage}/>}/>
-        
-        
+        <Route exact path="/users/:id/inbox" ><InboxContainer/></Route>
+          
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>
           </Route>
           <Route exact path="/signup">
             <SignUpForm/>
           </Route>
-        </Switch>
-        <PrivateRoute path="/users/:userId" ><ProfileContainer currentUser={this.props.currentUser}/></PrivateRoute>
+     
+       
      
     </div>
   )}
