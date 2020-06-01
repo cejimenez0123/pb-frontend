@@ -98,7 +98,7 @@ debugger
       },
       body: JSON.stringify({
           id: id,
-          pageId: pageId
+          contentId: pageId
       })}
       fetch(sharePath,config).then(res=>res.json()).then(obj=>{
     
@@ -114,11 +114,11 @@ debugger
 
     }
 const getInbox =()=>{
-  debugger
+ 
   return(dispatch)=>{
     fetch(userPath+"/"+localStorage.getItem("currentUser")+"/inbox").then(res=>res.json()).then(
       obj=>{
-        debugger
+       
         let inbox = obj.data
         dispatch({type: "MY_INBOX", inbox})
 

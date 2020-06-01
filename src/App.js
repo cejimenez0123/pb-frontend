@@ -7,7 +7,7 @@ import LogInForm from "./components/user/LogInForm"
 import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./functions/PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
-import {getUsers, useUserActions,LOG_IN,signUp} from "./actions/UserActions"
+import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER} from "./actions/UserActions"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import EditorContainer from './containers/EditorContainer';
 
@@ -36,7 +36,9 @@ class App extends React.Component{
        
         <PrivateRoute exact path="/users/:userId" ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox}/></PrivateRoute>
         <Route exact path="/pages/:id/edit" render={()=><EditorContainer savePage={this.props.savePage} currentPage={this.props.currentPage}/>}/>
-        <Route exact path="/users/:id/inbox" ><InboxContainer getInbox={this.props.getInbox} inbox={this.props.inbox}/></Route>
+        <Route exact path="/users/:id/inbox" >
+          <InboxContainer getInbox={this.props.getInbox} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser}/>
+          </Route>
           
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>
@@ -58,7 +60,8 @@ function mapDispatchToProps(dispatch){
     getUsers: ()=>dispatch(getUsers()),
     savePage: (data)=>dispatch(savePage(data)),
     getAllPages: ()=>dispatch(getAllPages()),
-    getInbox: ()=>dispatch(getInbox())  
+    getInbox: ()=>dispatch(getInbox()),
+    setCurrentUser:()=>dispatch(SET_CURRENT_USER())  
   }
 }
 function mapStateToProps(state){

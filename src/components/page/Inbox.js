@@ -1,27 +1,20 @@
 import React from 'react'
-
+import Package from "./Package"
 class Inbox extends React.Component{
     constructor(){
         super()
         this.state={inbox:[]}
     }
-    componentDidMount(){
-        debugger
-        if(this.props.inbox){
-            this.props.inbox.map(data=>{
-                debugger
-            })
-        }
-        this.setState({inbox: this.props.inbox})
-    }
-
 
 renderIf(){
-    do{
-        this.props.inbox.map(x=>{
-            debugger
-        })
-    }while(this.props.inbox !== [])
+    debugger 
+    
+  return  this.props.inbox.map(payload=>{
+        
+        let {content,user}= payload.attributes
+        debugger
+        return <Package content={content} user={user}/>
+    })
 }
 
 
@@ -31,7 +24,8 @@ renderIf(){
 
     render(){
         return(<div>
-            {this.renderIf()}
+           Inbox
+           {this.renderIf()}
         </div>)
     }
 }

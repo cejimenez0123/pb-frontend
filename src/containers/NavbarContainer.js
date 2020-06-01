@@ -18,12 +18,12 @@ function NavbarContainer (props){
          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
                  <a className="navbar-brand navbar" href="/">Pb</a>
                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                 <span class="navbar-toggler-icon"></span>
+                 <span className="navbar-toggler-icon"></span>
                </button>
-     <div class="collapse navbar-collapse" id="navbarNav">
-       <ul class="navbar-nav">
-         <li class="nav-item active">
-           <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
+     <div className="collapse navbar-collapse" id="navbarNav">
+       <ul className="navbar-nav">
+         <li className="nav-item active">
+           <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
          </li>
           <li class="nav-item">
            <a class="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}`}>Profile</a>
@@ -48,12 +48,12 @@ function NavbarContainer (props){
             <span className="navbar-toggler-icon"></span>
             </button>
     <div className="collapse navbar-collapse" id="navbarNav">
-       <ul class="navbar-nav">
-           <li class="nav-item active">
-              <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
+       <ul className="navbar-nav">
+           <li className="nav-item active">
+              <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
            </li>
-            <li class="nav-item">
-              <a class="nav-link" onClick={(e)=>handleActivation(e)} href="/">Sign In</a>
+            <li className="nav-item">
+              <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Sign In</a>
             </li>
         </ul>
       
