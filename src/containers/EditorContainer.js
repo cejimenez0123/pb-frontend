@@ -37,42 +37,55 @@ class EditorContainer extends React.Component {
     }
     
 componentDidMount(){
- 
+
+debugger
 this.props.getPage()
 this.props.setCurrentUser()
+console.log(this.state)
 }
-
+componentDidUpdate(){
+    if(this.props.page){
+        debugger
+        
+    element.setData(this.props.page.attributes.data)
+}
+}
+    
 
    doSetData(editor){
        element = editor
-       debugger
+       
         if(this.props.currentPage){
             
+            let page = localStorage.getItem("currentPage")
+            debugger
+            document.querySelector("#title").innerHTML = this.props.currentPage.title
             editor.setData(this.props.currentPage.data)
            
         }
     }
     titler(){
         if(this.props.currentPage){
-            return this.props.currentPage.title
         }
     }
+
+
     savePage(data){
-    
+  
      let  title = document.querySelector("#title")
       let id= window.location.pathname.split("/")[2]
-      debugger
       this.props.savePage({id: id, data: data,title: title.innerText})
     }
     deletePage(){
 
     }
 render(){
+
         return (
             
             <div>
-                <NavbarContainer/>
-                <h1 id="title" contentEditable="true">{this.titler()}</h1>
+                <NavbarContainer loggedIn={this.props.loggedIn }/>
+        <h1 id="title" onLoad={this.titler()} contentEditable="true"></h1>
                 <button onClick={()=>this.savePage(element.getData())}>Save</button>
                 <button onClick={()=>this.deletePage()}>Delete</button>
             <div className="editor">
@@ -87,14 +100,13 @@ render(){
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
                     } }
-
+                    onChange={(event,editor)=>{this.savePage(editor.getData())}}
                     onChange={ ( event, editor ) => {
                      
-                        let data = editor.getData();
-                        this.savePage(data);
+                        
 
                     
-                        console.log( { event, editor, data } );
+                        console.log( { event, editor } );
                     } }
                     onBlur={ ( event, editor ) => {
                         console.log( 'Blur.', editor );

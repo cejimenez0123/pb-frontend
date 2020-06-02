@@ -28,7 +28,7 @@ const Package =(props)=>{
             
             let page = props.content
            return(<div >
-               <Link onClick={()=>{dispatch({type: "GET_PAGE",page})}}to={{pathname:`/pages/${page.id}/edit`}}>{page.title}</Link><button data-pageid={page.id} onClick={(e)=>handleOnClick(e)}>Share</button>
+               <Link onClick={()=>{dispatch({type: "GET_PAGE",page})}}to={{pathname:`/pages/${page.id}/edit`}}>{page.title}-Sent by {props.user.username}</Link><button data-pageid={page.id} onClick={(e)=>handleOnClick(e)}>Share</button>
                <div id={`page-${page.id}`}></div>
            </div>)
     

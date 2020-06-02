@@ -35,9 +35,9 @@ class App extends React.Component{
     
        
         <PrivateRoute exact path="/users/:userId" ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox}/></PrivateRoute>
-        <Route exact path="/pages/:id/edit" render={()=><EditorContainer savePage={this.props.savePage} currentPage={this.props.currentPage}/>}/>
+        <Route exact path="/pages/:id/edit" render={()=><EditorContainer  loggedIn={this.props.loggedIn} currentPage={this.props.currentPage}/>}/>
         <Route exact path="/users/:id/inbox" >
-          <InboxContainer getInbox={this.props.getInbox} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser}/>
+          <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
           
           <Route exact path="/login">

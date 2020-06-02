@@ -16,12 +16,13 @@ export default function PageReducer(
                 debugger
                 return{...state,inbox: action.inbox}
             case "GET_PAGE":
-                
+              console.log("GET PAGE")
                 return {...state, currentPage: action.page}
             case "GET_ALL_PAGES":
                 debugger 
                 return {...state,pages: action.pages}
             case "GET_MY_PAGES":
+                debugger
                 return {...state, myPages: action.pages}
             default:
                 return state

@@ -1,16 +1,18 @@
 import React from 'react'
 import PageBox from "./PageBox"
-class Pages extends React.Component{
+import {Accordion} from 'react-bootstrap'
+class PageBoxes extends React.Component{
     componentDidMount(){
         
     }
 
     renderIf(){
+        
         if(this.props.pages){
-            
-            return ( this.props.pages.map((page)=>{
+            return ( this.props.pages.map((page,i)=>{
+                console.log("hit")
               page = page.attributes
-                return (<PageBox page={page} key={page.id}/>)
+                return (<PageBox page={page} key={i}/>)
             }))
             
             // this.props.pages.map(page=>{
@@ -25,10 +27,11 @@ class Pages extends React.Component{
     render(){
         
         return(<div>
-            {this.renderIf()}
             
+            {this.renderIf()}
+           
         </div>)
     }
 
 }
-export default Pages
+export default PageBoxes

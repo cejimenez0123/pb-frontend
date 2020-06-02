@@ -58,7 +58,7 @@ const startPage =(title)=>{
 
 }
 const savePage = (page)=>{
- debugger
+ 
   let config = {    
     method: 'PATCH',
     headers: {
@@ -72,8 +72,8 @@ const savePage = (page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
         obj=>{
-       debugger
-          let page=obj.data.attributes
+
+          let page=obj.data
           localStorage.setItem("currentPage",page.id)
           dispatch({type:"SAVE_PAGE",page})
         }
@@ -150,14 +150,14 @@ const deletePage=(id)=>{
   })
 }
 function getPage(){
-  debugger
+ 
   let id = window.location.pathname.split("/")[2]
 
-  return((dispatch)=>{fetch(`/pages/${id}`).then(res=>res.json()).then(obj=>{
-     debugger
+  return(dispatch)=>{fetch(pageUrl+`/${id}`).then(res=>res.json()).then(obj=>{
+    debugger
    let page = obj.data;
    dispatch({type: "GET_PAGE",page})}
- )})
+ )}
 }
 
 function getPageById(id){
@@ -173,6 +173,7 @@ function getPageById(id){
   }
 }
 function myPages(){
+
   let id = localStorage.getItem("currentUser")
   return((dispatch)=>{
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
@@ -186,4 +187,4 @@ function myPages(){
 )})}
 
 
-export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox}
+export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage}

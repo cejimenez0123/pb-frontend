@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
 
@@ -11,8 +11,7 @@ function NavbarContainer (props){
     }
     function renderif(){
       let user = store.getState()
-    
-        if (props.loggedIn){
+        if (user.users.loggedIn){
             return(
       <div >
          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -25,14 +24,14 @@ function NavbarContainer (props){
          <li className="nav-item active">
            <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
          </li>
-          <li class="nav-item">
-           <a class="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}`}>Profile</a>
+          <li className="nav-item">
+           <a className="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}`}>Profile</a>
           </li>
-          <li class="nav-item">
-           <a class="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}/inbox`}>Inbox</a>
+          <li className="nav-item">
+           <a className="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}/inbox`}>Inbox</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"  onClick={()=>handleOnClick()} href="/">Log Out</a>
+          <li className="nav-item">
+            <a className="nav-link"  onClick={()=>handleOnClick()} href="/">Log Out</a>
           </li>
       </ul>
       
@@ -94,3 +93,4 @@ function NavbarContainer (props){
     }
 
 export default NavbarContainer
+

@@ -6,8 +6,10 @@ import {usePageActions} from "../../actions/PageActions"
 import { useDispatch, useStore } from 'react-redux'
 import SearchCardIndex from '../user/SearchCardIndex'
 import {share} from '../../actions/PageActions'
+import {Accordion,Card,Button} from 'react-bootstrap'
 import SearchCard from '../user/SearchCard'
-
+import EditorContainer from '../../containers/EditorContainer'
+import Editor from "./editor"
 const PageBox =(props)=>{
     let store = useStore()
     let com = usePageActions()
@@ -22,13 +24,29 @@ const PageBox =(props)=>{
         
        
     }
+
+    
    function renderIf(){
+       debugger
         if(props.page){
-            
+            let title = props.page.title
+            if(title === ""){
+                title = "Untitled"
+            }
             let page = props.page
            return(<div >
-               <Link onClick={()=>{dispatch({type: "GET_PAGE",page})}}to={{pathname:`/pages/${page.id}/edit`}}>{page.title}</Link><button data-pageid={page.id} onClick={(e)=>handleOnClick(e)}>Share</button>
-               <div id={`page-${page.id}`}></div>
+               <Accordion >
+                 <Card>
+                     <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        <input id={`title-${page.id}`} value={title}/>
+                     </Accordion.Toggle>
+                      </Card.Header>
+                      <Accordion.Collapse eventKey="0">
+                      <Card.Body><Editor page={props.page}/></Card.Body>
+               </Accordion.Collapse>
+               </Card>
+               </Accordion>
            </div>)
     
         }
@@ -36,10 +54,10 @@ const PageBox =(props)=>{
 
 
         return(
+            
             <div>
                 {renderIf()}
             </div>
         )
-    
-}
+        } 
 export default PageBox
