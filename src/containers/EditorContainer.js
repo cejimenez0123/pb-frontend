@@ -66,9 +66,9 @@ doSetData(editor){
 
     savePage(data){
   
-     let  title = document.querySelector("#title")
+     let  title = document.querySelector("#title").value
       let id= this.props.currentPage.id
-      this.props.savePage({id: id, data: data,title: title.innerText})
+      this.props.savePage({id: id, data: data,title: title})
     }
     deletePage(){
 
