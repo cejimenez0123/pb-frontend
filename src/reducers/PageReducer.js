@@ -17,6 +17,8 @@ export default function PageReducer(
                 return{...state,inbox: action.inbox}
             case "GET_PAGE":
               console.log("GET PAGE")
+              debugger
+              localStorage.setItem("currentPage",action.page)
                 return {...state, currentPage: action.page}
             case "GET_ALL_PAGES":
                 debugger 

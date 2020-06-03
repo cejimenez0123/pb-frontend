@@ -58,7 +58,7 @@ const startPage =(title)=>{
 
 }
 const savePage = (page)=>{
- 
+ debugger
   let config = {    
     method: 'PATCH',
     headers: {
@@ -72,8 +72,9 @@ const savePage = (page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
         obj=>{
-
-          let page=obj.data
+debugger
+          let page=obj.data.attributes
+          window.alert(`Saved ${page.title}`)
           localStorage.setItem("currentPage",page.id)
           dispatch({type:"SAVE_PAGE",page})
         }
@@ -155,7 +156,7 @@ function getPage(){
 
   return(dispatch)=>{fetch(pageUrl+`/${id}`).then(res=>res.json()).then(obj=>{
     debugger
-   let page = obj.data;
+   let page = obj.data.attributes;
    dispatch({type: "GET_PAGE",page})}
  )}
 }
@@ -178,9 +179,13 @@ function myPages(){
   return((dispatch)=>{
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
-            debugger
+           debugger
             
               let pages = Array.from(obj.data)
+          pages = pages.sort((a,b)=>{
+          return new Date(b.attributes.updated_at )-new Date(a.attributes.updated_at)
+          })
+              debugger
               dispatch({type: "GET_MY_PAGES",pages})}
               
   
