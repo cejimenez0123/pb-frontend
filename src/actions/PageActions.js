@@ -73,7 +73,7 @@ const savePage = (page)=>{
       return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
         obj=>{
 debugger
-          let page=obj.data
+          let page=obj.data.attributes
           window.alert(`Saved ${page.title}`)
           localStorage.setItem("currentPage",page.id)
           dispatch({type:"SAVE_PAGE",page})
@@ -156,7 +156,7 @@ function getPage(){
 
   return(dispatch)=>{fetch(pageUrl+`/${id}`).then(res=>res.json()).then(obj=>{
     debugger
-   let page = obj.data;
+   let page = obj.data.attributes;
    dispatch({type: "GET_PAGE",page})}
  )}
 }

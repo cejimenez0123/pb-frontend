@@ -37,35 +37,29 @@ class EditorContainer extends React.Component {
     }
     
 componentDidMount(){
-
-debugger
 this.props.getPage()
 this.props.setCurrentUser()
 console.log(this.state)
 }
-componentDidUpdate(){
-    if(this.props.page){
-        debugger
-        
-    element.setData(this.props.page.attributes.data)
-}
-}
+
+
     
 
-   doSetData(editor){
+doSetData(editor){
        element = editor
        
         if(this.props.currentPage){
             
             let page = localStorage.getItem("currentPage")
             debugger
-            document.querySelector("#title").innerHTML = this.props.currentPage.title
+            document.querySelector("#title").innerText = this.props.currentPage.title
             editor.setData(this.props.currentPage.data)
            
-        }
+        };
     }
     titler(){
         if(this.props.currentPage){
+            return this.props.currentPage.title
         }
     }
 
@@ -80,12 +74,11 @@ componentDidUpdate(){
 
     }
 render(){
-debugger
         return (
             
             <div>
                 <NavbarContainer loggedIn={this.props.loggedIn }/>
-            <h6><input defaultValue={this.props.currentPage.attributes.title}/></h6>
+            <h6><input id="title" defaultValue={this.titler()}/></h6>
                 <button onClick={()=>this.savePage(element.getData())}>Save</button>
                 <button onClick={()=>this.deletePage()}>Delete</button>
             <div className="editor">

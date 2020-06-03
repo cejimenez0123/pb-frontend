@@ -56,8 +56,10 @@ debugger
                      <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
                         <input id={`title-${page.id}`} onDoubleClick={()=>{
-                           history.push(`/pages/${props.page.id}`)
-                            dispatch("SAVE_PAGE",props.page)
+                          let page= props.page
+                          dispatch({type:"SAVE_PAGE",page})
+                          history.push(`/pages/${props.page.id}/edit`)
+                           
                         }} defaultValue={title}/>Updated at {time}
                      </Accordion.Toggle>
                       </Card.Header>
