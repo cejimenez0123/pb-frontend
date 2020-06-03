@@ -17,6 +17,17 @@ class Editor extends React.Component{
     }
     
 componentDidMount(){
+    // ClassicEditor
+    // .create( document.querySelector( '#editor' ), {
+    //     plugins: [ Essentials],
+    //     toolbar: {items:[]} ]
+    // } )
+    // .then( editor => {
+    //     console.log( 'Editor was initialized', editor );
+    // } )
+    // .catch( error => {
+    //     console.error( error.stack );
+    // } );
 }
 componentDidUpdate(){
     if(this.props.page){
@@ -29,7 +40,7 @@ componentDidUpdate(){
 
    doSetData(editor){
        element = editor
-       element.config={plugins: []}
+      
         if(this.props.currentPage){
             
             let page = localStorage.getItem("currentPage")
@@ -43,13 +54,13 @@ componentDidUpdate(){
         if(this.props.page){
         }
     }
-
-
-    savePage(data){
-        debugger
+    savePage(){
+      let data =  element.getData()
         let id= this.props.page.id
-      
-     let  title = document.querySelector(`#title-${id}`)
+        
+     let  title = document.querySelector(`#title-${id}`).value
+    
+     debugger
      this.props.savePage({id: id, data: data,title: title})
     }
     deletePage(){
@@ -58,11 +69,10 @@ componentDidUpdate(){
 render(){
     return (
         <div>
-            <button onClick={()=>savePage()}>Save</button>
-            <button onClick={()=>deletePage()}>Delete</button>
+            <button onClick={()=>this.savePage()}>Save</button>
+            <button onClick={()=>this.deletePage()}>Delete</button>
         <div className="editor">
             <CKEditor id="editor"
-            config={{}}
                 editor={ ClassicEditor }
                 data="<p>Write Anything</p>"
 
@@ -78,7 +88,7 @@ render(){
                 onChange={ ( event, editor ) => {
                     
                     const data = editor.getData();
-                    this.savePage(data);
+                    ;
                     
                 
                     console.log( { event, editor} );
@@ -101,7 +111,7 @@ export default connect(null,mapDispatchToProps)(Editor)
 
 function mapDispatchToProps(dispatch){
     return{ 
-      savePage: (data)=>dispatch(savePage(data)),
+      savePage: (page)=>dispatch(savePage(page)),
      deletePage:(id)=>dispatch(deletePage(id))
     
     }

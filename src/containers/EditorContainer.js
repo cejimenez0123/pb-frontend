@@ -73,19 +73,19 @@ componentDidUpdate(){
     savePage(data){
   
      let  title = document.querySelector("#title")
-      let id= window.location.pathname.split("/")[2]
+      let id= this.props.currentPage.id
       this.props.savePage({id: id, data: data,title: title.innerText})
     }
     deletePage(){
 
     }
 render(){
-
+debugger
         return (
             
             <div>
                 <NavbarContainer loggedIn={this.props.loggedIn }/>
-        <h1 id="title" onLoad={this.titler()} contentEditable="true"></h1>
+            <h6><input defaultValue={this.props.currentPage.attributes.title}/></h6>
                 <button onClick={()=>this.savePage(element.getData())}>Save</button>
                 <button onClick={()=>this.deletePage()}>Delete</button>
             <div className="editor">
