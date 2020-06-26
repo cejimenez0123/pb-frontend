@@ -14,6 +14,7 @@ import Editor from "../components/page/editor"
 import SearchCardIndex from "../components/user/SearchCardIndex"
 import BoxEditor from "../components/page/BoxEditor"
 import BookContainer from './BookContainer'
+import PartInput from "../components/page/PartInput"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -37,7 +38,7 @@ class ProfileContainer extends React.Component{
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
-                <PageBoxes pages={this.props.myPages} getMyPages={this.props.getMyPages}/>
+                <PartInput/>
            
                 
                 
