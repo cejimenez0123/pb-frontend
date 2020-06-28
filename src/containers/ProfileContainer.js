@@ -3,7 +3,7 @@ import "../App.css"
 import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
-import {startPage,myPages} from "../actions/PageActions"
+import {startPage,myPages,savePage} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
@@ -14,7 +14,8 @@ import Editor from "../components/page/editor"
 import SearchCardIndex from "../components/user/SearchCardIndex"
 import BoxEditor from "../components/page/BoxEditor"
 import BookContainer from './BookContainer'
-import PartInput from "../components/page/PartInput"
+import PageInput from "../components/page/PageInput"
+import PageCards from "../components/page/PageCards"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -38,8 +39,8 @@ class ProfileContainer extends React.Component{
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
-                <PartInput/>
-           
+                <PageInput savePage={this.props.savePage}/>
+                <PageCards myPages={this.props.myPages}/>
                 
                 
             </div>
@@ -55,7 +56,8 @@ function mapDispatchToProps(dispatch){
     endSession:()=>END_CURRENT_USER(),
     startPage: (title)=>dispatch(startPage(title)),
     getMyPages: ()=>dispatch(myPages()),
-getUsers: ()=>dispatch(getUsers())}
+getUsers: ()=>dispatch(getUsers()),
+savePage: (data)=>dispatch(savePage(data))}
 }
 function mapStateToProps(state){
     return{

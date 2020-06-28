@@ -8,30 +8,58 @@ const userPath = "http://localhost:3000/users"
 const sharePath = "http://localhost:3000/shares"
 function usePageActions(){
   return{myPages: ()=>myPages(),
-getPageById:(id)=>getPageById(id)
+getPageById:(id)=>getPageById(id),
+savePage:(data)=>savePage(data)
   }
 }
 const updatePage = (text,title) => {
- 
-    let id = localStorage.getItem("pageLink")
-    const config = {    
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-              id: id,
-            text: text,
-            title: title
-          })}
-     fetch(pageUrl+"/"+id,config).then(res => res.json()).then(obj=>{
-         return((dispatch)=>{dispatch({type: "UPDATE_PAGE",obj})})
+ debugger
+    // let id = localStorage.getItem("pageLink")
+    // const config = {    
+    //     method: 'PATCH',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json'
+    //       },
+    //       body: JSON.stringify({
+    //           id: id,
+    //         text: text,
+    //         title: title
+    //       })}
+    //  fetch(pageUrl+"/"+id,config).then(res => res.json()).then(obj=>{
+    //      return((dispatch)=>{dispatch({type: "UPDATE_PAGE",obj})})
          
-     })
+    //  })
 }
 const startPage =(title)=>{
   
+  // let config = {    
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       userId: localStorage.getItem("currentUser")
+  //       data: 
+  //     })}
+   
+  //     return(dispatch)=>{
+  //       dispatch({type:"START_SAVE_PAGE"})
+  //       fetch(pageUrl,config).then(res=>res.json()).then(page=>{
+  //      debugger
+  //      page = page.data.attributes
+  //      console.log("pagex",page)
+  //      debugger
+  //      history.push(`/pages/${page.id}/edit`)
+  //         dispatch({type: "SAVE_PAGE",page})
+        
+        
+  //     }).catch(error=>{history.push(window.location.pathname)})}
+
+}
+const savePage = (page)=>{
+ debugger
   let config = {    
     method: 'POST',
     headers: {
@@ -39,44 +67,14 @@ const startPage =(title)=>{
       'Accept': 'application/json'
       },
       body: JSON.stringify({
-        title: title,
-        userId: localStorage.getItem("currentUser")
+        userId: localStorage.getItem("currentUser"),
+        data: page
       })}
-   
-      return(dispatch)=>{
-        dispatch({type:"START_SAVE_PAGE"})
-        fetch(pageUrl,config).then(res=>res.json()).then(page=>{
-       debugger
-       page = page.data.attributes
-       console.log("pagex",page)
-       debugger
-       history.push(`/pages/${page.id}/edit`)
-          dispatch({type: "SAVE_PAGE",page})
-        
-        
-      }).catch(error=>{history.push(window.location.pathname)})}
-
-}
-const savePage = (page)=>{
- debugger
-  let config = {    
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        id: page.id,
-        title: page.title,
-        data: page.data
-      })}
-      return(dispatch)=>{fetch(pageUrl+"/"+page.id,config).then(res=>res.json()).then(
+      return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
         obj=>{
 debugger
           let page=obj.data.attributes
-          window.alert(`Saved ${page.title}`)
-          localStorage.setItem("currentPage",page.id)
-          dispatch({type:"SAVE_PAGE",page})
+         dispatch(getAllPages())
         }
       )}
 }
