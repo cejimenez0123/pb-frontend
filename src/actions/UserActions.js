@@ -1,6 +1,7 @@
 import {history} from "../history"
 import {push} from 'react-router-redux'
 import store from '../index'
+import {startBook} from "./BookActions"
 const userPath = "http://127.0.0.1:3000/users"
 
 
@@ -34,6 +35,7 @@ function signUp(user) {
                 debugger
                 user = user.data.attributes
                 localStorage.setItem("currentUser",user.id)
+                dispatch(startBook("My Book"))
                 dispatch({ type: 'SIGN_UP', user})
                 history.push(`/users/${user.id}`)
                 ;     

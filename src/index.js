@@ -8,13 +8,14 @@ import {Router} from 'react-router-dom'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import UserReducer from './reducers/UserReducer'
 import PageReducer from './reducers/PageReducer'
+import BookReducer from './reducers/BookReducer'
 import LibraryReducer from './reducers/LibraryReducer'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import {history} from "./history"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const rootReducer = combineReducers({users: UserReducer,pages: PageReducer,libraries: LibraryReducer})
+const rootReducer = combineReducers({users: UserReducer,pages: PageReducer,books: BookReducer,libraries: LibraryReducer})
 const store = createStore(rootReducer,composeWithDevTools( applyMiddleware(thunk)))
 ReactDOM.render(
   

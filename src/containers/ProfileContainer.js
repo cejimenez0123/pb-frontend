@@ -40,6 +40,7 @@ class ProfileContainer extends React.Component{
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
                 <PageInput savePage={this.props.savePage}/>
+                <Book currentBook={this.props.currentBook}/>
                 <PageCards myPages={this.props.myPages}/>
                 
                 
@@ -65,7 +66,8 @@ function mapStateToProps(state){
         currentUser: state.users.currentUser,
         loggedIn: state.users.loggedIn,
         requesting: state.pages.requesting,
-        myPages: state.pages.myPages
+        myPages: state.pages.myPages,
+
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)
