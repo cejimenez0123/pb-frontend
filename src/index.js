@@ -5,7 +5,7 @@ import App from './App';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, combineReducers,compose } from 'redux';
 import {Router} from 'react-router-dom'
-
+import { composeWithDevTools } from 'redux-devtools-extension';
 import UserReducer from './reducers/UserReducer'
 import PageReducer from './reducers/PageReducer'
 import LibraryReducer from './reducers/LibraryReducer'
@@ -15,7 +15,7 @@ import {history} from "./history"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({users: UserReducer,pages: PageReducer,libraries: LibraryReducer})
-const store = createStore(rootReducer,compose( applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+const store = createStore(rootReducer,composeWithDevTools( applyMiddleware(thunk)))
 ReactDOM.render(
   
   <Provider store={store}>   

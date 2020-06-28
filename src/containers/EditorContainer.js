@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials'
+// import React, { Component, useState } from 'react';
+// import CKEditor from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// // import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials'
 // import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 // import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 // import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
@@ -19,118 +19,118 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // You do not need to import it if you do not want to integrate it.
 // import PresenceList from '@ckeditor/ckeditor5-real-time-collaboration/src/presencelist';
 
-import {connect} from 'react-redux'
-import {savePage,getPage,getAllPages} from '../actions/PageActions'
-import {SET_CURRENT_USER} from "../actions/UserActions"
-import NavbarContainer from "./NavbarContainer"
-// import ConsoleButtons from '../../ConsoleButtons';
-let element
-class EditorContainer extends React.Component {
-    constructor(){
-        super()
-        this.state={
-            id: "",
-            title: "",
-            data: "",
-            user: ""
-        }
-    }
+// import {connect} from 'react-redux'
+// import {savePage,getPage,getAllPages} from '../actions/PageActions'
+// import {SET_CURRENT_USER} from "../actions/UserActions"
+// import NavbarContainer from "./NavbarContainer"
+// // import ConsoleButtons from '../../ConsoleButtons';
+// let element
+// class EditorContainer extends React.Component {
+//     constructor(){
+//         super()
+//         this.state={
+//             id: "",
+//             title: "",
+//             data: "",
+//             user: ""
+//         }
+//     }
     
-componentDidMount(){
-this.props.getPage()
-this.props.setCurrentUser()
-console.log(this.state)
-}
+// componentDidMount(){
+// this.props.getPage()
+// this.props.setCurrentUser()
+// console.log(this.state)
+// }
 
 
     
 
-doSetData(editor){
-       element = editor
+// doSetData(editor){
+//        element = editor
        
-        if(this.props.currentPage){
+//         if(this.props.currentPage){
             
-            let page = localStorage.getItem("currentPage")
-            debugger
-            document.querySelector("#title").innerText = this.props.currentPage.title
-            editor.setData(this.props.currentPage.data)
+//             let page = localStorage.getItem("currentPage")
+//             debugger
+//             document.querySelector("#title").innerText = this.props.currentPage.title
+//             editor.setData(this.props.currentPage.data)
            
-        };
-    }
-    titler(){
-        if(this.props.currentPage){
-            return this.props.currentPage.title
-        }
-    }
+//         };
+//     }
+//     titler(){
+//         if(this.props.currentPage){
+//             return this.props.currentPage.title
+//         }
+//     }
 
 
-    savePage(data){
+//     savePage(data){
   
-     let  title = document.querySelector("#title").value
-      let id= this.props.currentPage.id
-      this.props.savePage({id: id, data: data,title: title})
-    }
-    deletePage(){
+//      let  title = document.querySelector("#title").value
+//       let id= this.props.currentPage.id
+//       this.props.savePage({id: id, data: data,title: title})
+//     }
+//     deletePage(){
 
-    }
-render(){
-        return (
+//     }
+// render(){
+//         return (
             
-            <div>
-                <NavbarContainer loggedIn={this.props.loggedIn }/>
-            <h6><input id="title" defaultValue={this.titler()}/></h6>
-                <button onClick={()=>this.savePage(element.getData())}>Save</button>
-                <button onClick={()=>this.deletePage()}>Delete</button>
-            <div className="editor">
-                <CKEditor
-                // config={this.editorConfiguration()}
-                    editor={ ClassicEditor }
-                    data="<p>Write Anything</p>"
+//             <div>
+//                 <NavbarContainer loggedIn={this.props.loggedIn }/>
+//             <h6><input id="title" defaultValue={this.titler()}/></h6>
+//                 <button onClick={()=>this.savePage(element.getData())}>Save</button>
+//                 <button onClick={()=>this.deletePage()}>Delete</button>
+//             <div className="editor">
+//                 <CKEditor
+//                 // config={this.editorConfiguration()}
+//                     editor={ ClassicEditor }
+//                     data="<p>Write Anything</p>"
                     
-                    onInit={ editor => {
-                        this.doSetData(editor)
-                        editor = editor
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={(event,editor)=>{this.savePage(editor.getData())}}
-                    onChange={ ( event, editor ) => {
+//                     onInit={ editor => {
+//                         this.doSetData(editor)
+//                         editor = editor
+//                         // You can store the "editor" and use when it is needed.
+//                         console.log( 'Editor is ready to use!', editor );
+//                     } }
+//                     onChange={(event,editor)=>{this.savePage(editor.getData())}}
+//                     onChange={ ( event, editor ) => {
                      
                         
 
                     
-                        console.log( { event, editor } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                        let data = editor.getData()
-                        this.savePage(data)
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                />     
-            </div>
+//                         console.log( { event, editor } );
+//                     } }
+//                     onBlur={ ( event, editor ) => {
+//                         console.log( 'Blur.', editor );
+//                         let data = editor.getData()
+//                         this.savePage(data)
+//                     } }
+//                     onFocus={ ( event, editor ) => {
+//                         console.log( 'Focus.', editor );
+//                     } }
+//                 />     
+//             </div>
             
-            </div>
-        );}
-}
+//             </div>
+//         );}
+// }
 
-function mapDispatchToProps(dispatch){
-    return{ 
-      savePage: (data)=>dispatch(savePage(data)),
-      getAllPages: ()=>dispatch(getAllPages()) , 
-      getPage: ()=>dispatch(getPage()),
-      setCurrentUser: ()=>dispatch(SET_CURRENT_USER())
-    }
-  }
-  function mapStateToProps(state){
+// function mapDispatchToProps(dispatch){
+//     return{ 
+//       savePage: (data)=>dispatch(savePage(data)),
+//       getAllPages: ()=>dispatch(getAllPages()) , 
+//       getPage: ()=>dispatch(getPage()),
+//       setCurrentUser: ()=>dispatch(SET_CURRENT_USER())
+//     }
+//   }
+//   function mapStateToProps(state){
   
-    return{
+//     return{
   
-      currentPage: state.pages.currentPage
-    }
-  }
-  export default connect(mapStateToProps,mapDispatchToProps)(EditorContainer);
+//       currentPage: state.pages.currentPage
+//     }
+//   }
+//   export default connect(mapStateToProps,mapDispatchToProps)(EditorContainer);
   
       
