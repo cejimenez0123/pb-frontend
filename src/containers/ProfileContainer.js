@@ -14,8 +14,10 @@ import Editor from "../components/page/editor"
 import SearchCardIndex from "../components/user/SearchCardIndex"
 import BoxEditor from "../components/page/BoxEditor"
 import BookContainer from './BookContainer'
+import {getBooksOfUser,getAllBooks} from "../actions/BookActions"
 import PageInput from "../components/page/PageInput"
 import PageCards from "../components/page/PageCards"
+import Book from "../components/book/book"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -23,8 +25,11 @@ class ProfileContainer extends React.Component{
     componentDidMount(){
         this.props.getInbox()
         this.props.setCurrentUser()
-        this.props.getUsers()
-        this.props.getMyPages()
+        this.props.getUsers()   
+        this.props.getBooksOfUser(localStorage.getItem("currentUser"))
+        this.props.getAllBooks()
+        
+         this.props.getMyPages()
         
     }
     handleOnClick(){
@@ -34,15 +39,15 @@ class ProfileContainer extends React.Component{
        
     }
     render(){
+      
         return(
             <div >
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
-                <PageInput savePage={this.props.savePage}/>
-                <Book currentBook={this.props.currentBook}/>
+            
                 <PageCards myPages={this.props.myPages}/>
-                
+                <Book book={this.props.currentBook}/>
                 
             </div>
         )
@@ -58,7 +63,9 @@ function mapDispatchToProps(dispatch){
     startPage: (title)=>dispatch(startPage(title)),
     getMyPages: ()=>dispatch(myPages()),
 getUsers: ()=>dispatch(getUsers()),
-savePage: (data)=>dispatch(savePage(data))}
+savePage: (data)=>dispatch(savePage(data)),
+getAllBooks: ()=>dispatch(getAllBooks()),
+getBooksOfUser: (id)=>dispatch(getBooksOfUser(id))}
 }
 function mapStateToProps(state){
     return{
@@ -67,7 +74,9 @@ function mapStateToProps(state){
         loggedIn: state.users.loggedIn,
         requesting: state.pages.requesting,
         myPages: state.pages.myPages,
-
+        currentBook: state.books.currentBook,
+        homeBook: state.users.currentUser.home_book,
+        userBooks: state.books.booksOfUser
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)

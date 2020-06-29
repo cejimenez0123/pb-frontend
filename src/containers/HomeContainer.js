@@ -27,9 +27,7 @@ class HomeContainer extends React.Component{
                 <div id="SHomeConatiner">
 
                 </div>
-                <div class="BookContainer">
-                <BookContainer pages={this.props.pages}/>
-                </div>
+                
             </div>
         )
         } 

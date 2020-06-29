@@ -1,7 +1,7 @@
 
 export default function UserReducer(
     state={users: [],
-        currentUser: null,
+        currentUser: {},
     loggedIn: false,
 requesting: false },
     action){
@@ -27,12 +27,12 @@ requesting: false },
             case "GET_USERS":
               
                 let m =action.users
-                return {...state, users: m.flat(), currentUser: state.currentUser,
+                return {...state, users: m, currentUser: state.currentUser,
                 loggedIn: state.loggedIn}
             case "START_SET_CURRENT_USER":
                 return {...state,requesting: true}
             case "SET_CURRENT_USER":
-            return{...state,currentUser: action.user.data.attributes, loggedIn: true,requesting: false}
+            return{...state,currentUser: action.user, loggedIn: true,requesting: false}
                 case "END_CURRENT_USER": 
               
                 localStorage.setItem("currentUser","")

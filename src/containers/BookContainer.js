@@ -1,6 +1,10 @@
 import React from 'react'
 import Pages from '../components/page/pages'
 import NavbarContainer from '../containers/NavbarContainer'
+import Book from "../components/book/book"
+import { connect} from 'react-redux'
+import {savePage} from '../actions/PageActions'
+import PageInput from "../components/page/PageInput"
 class BookContainer extends React.Component{
 
 
@@ -9,9 +13,18 @@ class BookContainer extends React.Component{
     render(){
        
         return(<div>
-    
-            <Pages pages={this.props.pages}/>
+            <PageInput savePage={this.props.savePage}/>
+            <Book/>
         </div>)
     }
 }
-export default BookContainer
+const mapStateToProps=(state)=>{
+    return{ currentBook: state.books.currentBook}
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        savePage: (data)=>dispatch(savePage(data))
+
+    }
+}
+export default  connect(mapStateToProps,mapDispatchToProps)(BookContainer)

@@ -1,10 +1,17 @@
 import React from 'react'
 
-class Book extends React.Component{
+export default function Book (props){
 
-    render(){
-        return(<div>
-        
-        </div>)
+   function renderIf(){
+        if(props.book ){
+            debugger
+            return(<div>
+                <h6>{props.book.title} </h6>
+            </div>)
+        }
     }
+        
+        return(<div>
+    {renderIf()}
+        </div>)
 }

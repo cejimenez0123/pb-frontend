@@ -1,7 +1,7 @@
 import {history} from "../history"
 import {push} from 'react-router-redux'
 import store from '../index'
-import {startBook} from "./BookActions"
+import {startBook,setCurrentBook} from "./BookActions"
 const userPath = "http://127.0.0.1:3000/users"
 
 
@@ -57,10 +57,11 @@ function LOG_IN_START(){
     }
 }
 const LOG_IN = (user)=>{
-
+debugger
     let config = {
         method: 'POST',
         headers: {
+            // 'ACCESS-CONTROL-ALLOW-ORIGIN': 'http://localhost:3000',
             'Content-Type': 'application/json',
             'Accept': 'application/json'
             },
@@ -72,10 +73,11 @@ const LOG_IN = (user)=>{
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
-           
+           debugger
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
         history.push(`/users/${user.id}`)
+        dispatch(setCurrentBook(user.home_book))
         dispatch({type: "LOG_IN",user})
         
         }
@@ -84,10 +86,16 @@ const LOG_IN = (user)=>{
 }
 const SET_CURRENT_USER=()=>{
     let id = localStorage.getItem("currentUser")
+    let path = window.location.pathname
 
+    
   return ((dispatch)=>{
       dispatch({type:"START_SET_CURRENT_USER"})
       fetch(userPath+"/"+id).then(res=>res.json()).then(user=>{
+          user = user.data.attributes
+          if (path === "/users/"+user.id){
+              dispatch(setCurrentBook(user.home_book))
+          }
         dispatch({ type: "SET_CURRENT_USER",user})})
     
         
