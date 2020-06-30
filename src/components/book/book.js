@@ -1,17 +1,30 @@
 import React from 'react'
-
-export default function Book (props){
-
-   function renderIf(){
-        if(props.book ){
-            debugger
+import PageInput from "../page/PageInput"
+export default class Book extends React.Component{
+    constructor(){
+        super()
+        this.state={}
+    }
+    ifEditable(){
+        if(this.props.book.userId === localStorage.getItem("currentUser")){
             return(<div>
-                <h6>{props.book.title} </h6>
+            <PageInput/>
             </div>)
         }
     }
-        
+
+   renderIf(){
+        if(this.props.book ){
+            debugger
+            return(<div>
+                <h6>{this.props.book.title} </h6>
+                {this.ifEditable()}
+            </div>)
+        }
+    }
+      render(){  
         return(<div>
-    {renderIf()}
+    {this.renderIf()}
         </div>)
+      }
 }
