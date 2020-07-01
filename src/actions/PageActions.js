@@ -68,7 +68,8 @@ const savePage = (page)=>{
       },
       body: JSON.stringify({
         userId: localStorage.getItem("currentUser"),
-        data: page
+        data: page.data,
+        bookId: page.bookId
       })}
       return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
         obj=>{

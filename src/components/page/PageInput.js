@@ -8,9 +8,10 @@ function PageInput(props){
    function handleOnSubmit(e){
        
        e.preventDefault()
-       debugger
-        const data = e.target.querySelector("input").value
-    this.props.savePage(data)
+     debugger
+        const value = e.target.querySelector("input").value
+     let   data={data: value,bookId: props.book.id}
+    dispatch(bot.savePage(data))
    }
     return(<div>
 

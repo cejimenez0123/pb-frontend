@@ -57,7 +57,7 @@ function LOG_IN_START(){
     }
 }
 const LOG_IN = (user)=>{
-debugger
+
     let config = {
         method: 'POST',
         headers: {
@@ -73,7 +73,7 @@ debugger
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
-           debugger
+          
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
         history.push(`/users/${user.id}`)
@@ -94,6 +94,7 @@ const SET_CURRENT_USER=()=>{
       fetch(userPath+"/"+id).then(res=>res.json()).then(user=>{
           user = user.data.attributes
           if (path === "/users/"+user.id){
+              debugger
               dispatch(setCurrentBook(user.home_book))
           }
         dispatch({ type: "SET_CURRENT_USER",user})})

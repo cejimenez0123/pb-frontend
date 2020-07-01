@@ -6,16 +6,17 @@ export default class Book extends React.Component{
         this.state={}
     }
     ifEditable(){
-        if(this.props.book.userId === localStorage.getItem("currentUser")){
+      debugger
+        if(this.props.book.user_id === localStorage.getItem("currentUser")){
             return(<div>
-            <PageInput/>
+            <PageInput book={this.props.book}/>
             </div>)
         }
     }
 
    renderIf(){
         if(this.props.book ){
-            debugger
+           
             return(<div>
                 <h6>{this.props.book.title} </h6>
                 {this.ifEditable()}

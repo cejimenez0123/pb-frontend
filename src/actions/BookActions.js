@@ -40,7 +40,7 @@ function getBooksOfUser(id){
     })}
 }
 
- const setCurrentBook =(book)=>{return{type: "SET_CURRENT_BOOK", book}}
+ const setCurrentBook =(book)=>{return{type: "SET_CURRENT_BOOK", book: book}}
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKs",books}}
 export { startBook,getAllBooks,getBooksOfUser,useBookActions,setCurrentBook}
