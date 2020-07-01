@@ -7,6 +7,7 @@ import LogInForm from "./components/user/LogInForm"
 import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./functions/PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
+import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER} from "./actions/UserActions"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import EditorContainer from './containers/EditorContainer';
@@ -39,7 +40,9 @@ class App extends React.Component{
         <Route exact path="/users/:id/inbox" >
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
-          
+          <Route exact path="/books/:id">
+            <BookContainer/>
+          </Route>
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>
           </Route>

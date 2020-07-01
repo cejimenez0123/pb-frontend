@@ -19,7 +19,9 @@ function startBook(title){
     })}
     return(dispatch)=>{fetch(bookPath,config).then(res=>res.json()).then(obj=>{
         debugger
-        const book = obj.data.attributes
+        let book
+        if(obj.data.attributes){
+        book = obj.data.attributes}
     dispatch(setCurrentBook(book))
     })}
 }
@@ -39,8 +41,11 @@ function getBooksOfUser(id){
 
     })}
 }
+function getBook(id){}
 
- const setCurrentBook =(book)=>{return{type: "SET_CURRENT_BOOK", book: book}}
+function setCurrentBook(book){
+}
+ const CurrentBook =(book)=>{return{type: "SET_CURRENT_BOOK", book: book}}
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKs",books}}
 export { startBook,getAllBooks,getBooksOfUser,useBookActions,setCurrentBook}

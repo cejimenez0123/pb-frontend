@@ -14,7 +14,7 @@ import Editor from "../components/page/editor"
 import SearchCardIndex from "../components/user/SearchCardIndex"
 import BoxEditor from "../components/page/BoxEditor"
 import BookContainer from './BookContainer'
-import {getBooksOfUser,getAllBooks} from "../actions/BookActions"
+import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
 import PageInput from "../components/page/PageInput"
 import PageCards from "../components/page/PageCards"
 import Book from "../components/book/book"
@@ -35,7 +35,9 @@ class ProfileContainer extends React.Component{
     handleOnClick(){
         let title = prompt("Enter a title","untitled")
       
-       this.props.startPage(title)
+       this.props.startBook(title).then(obj=>{
+           debugger
+       })
        
     }
     render(){
@@ -45,9 +47,7 @@ class ProfileContainer extends React.Component{
             <div >
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-                <button onClick={()=>this.handleOnClick()}>Start something</button>
-            
-                <PageCards pages={this.props.myPages}/>
+                <button onClick={()=>this.handleOnClick()}>Start Book</button>
                 <Book book={book} />
                 
             </div>
@@ -66,7 +66,8 @@ function mapDispatchToProps(dispatch){
 getUsers: ()=>dispatch(getUsers()),
 savePage: (data)=>dispatch(savePage(data)),
 getAllBooks: ()=>dispatch(getAllBooks()),
-getBooksOfUser: (id)=>dispatch(getBooksOfUser(id))}
+getBooksOfUser: (id)=>dispatch(getBooksOfUser(id)),
+startBook: (title)=>dispatch(startBook(title))}
 }
 function mapStateToProps(state){
     return{

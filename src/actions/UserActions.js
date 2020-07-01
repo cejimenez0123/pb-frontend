@@ -77,6 +77,7 @@ const LOG_IN = (user)=>{
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
         history.push(`/users/${user.id}`)
+        debugger
         dispatch(setCurrentBook(user.home_book))
         dispatch({type: "LOG_IN",user})
         

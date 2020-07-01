@@ -13,8 +13,10 @@ class BookContainer extends React.Component{
     render(){
        
         return(<div>
+        BookContainer
+        <Book/>
             <PageInput savePage={this.props.savePage}/>
-            <Book/>
+            
         </div>)
     }
 }
