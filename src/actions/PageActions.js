@@ -4,12 +4,14 @@ import {push } from 'react-router-redux'
 import store from '../index'
 
 const pageUrl = "http://localhost:3000/pages"
+const bookPath = "http://localhost:3000/books"
 const userPath = "http://localhost:3000/users"
 const sharePath = "http://localhost:3000/shares"
 function usePageActions(){
   return{myPages: ()=>myPages(),
 getPageById:(id)=>getPageById(id),
-savePage:(data)=>savePage(data)
+savePage:(data)=>savePage(data),
+getPagesOfBook: (id)=>getPagesOfBook(id)
   }
 }
 const updatePage = (text,title) => {
@@ -57,6 +59,10 @@ const startPage =(title)=>{
         
   //     }).catch(error=>{history.push(window.location.pathname)})}
 
+}
+const getPagesOfBook=(id)=>{
+  return(dispatch)=>{fetch(bookPath+"/"+id+"/pages").then(res=>res.json()).then(obj=>{debugger
+  })}
 }
 const savePage = (page)=>{
  debugger
@@ -191,4 +197,4 @@ function myPages(){
 )})}
 
 
-export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage}
+export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

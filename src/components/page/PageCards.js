@@ -7,7 +7,7 @@ class PageCards extends React.Component{
     }
    
     renderIf(){
-       return this.props.myPages.map(page=>{
+       return this.props.pages.map(page=>{
             
           return( <div><ListGroup.Item>{ page.attributes.data}</ListGroup.Item></div>)
            

@@ -1,10 +1,14 @@
 import React from 'react'
 import PageInput from "../page/PageInput"
-export default class Book extends React.Component{
+import {connect } from "react-redux"
+import { getPagesOfBook } from "../../actions/PageActions"
+import PageCards from "../page/PageCards"
+class Book extends React.Component{
     constructor(){
         super()
         this.state={}
     }
+   
     ifEditable(){
       debugger
         if(this.props.book.user_id === localStorage.getItem("currentUser")){
@@ -16,10 +20,13 @@ export default class Book extends React.Component{
 
    renderIf(){
         if(this.props.book ){
-           
+           let pages = this.props.pages.filter(page=>{
+               return page.attributes.book_id == this.props.book.id
+           })
             return(<div>
                 <h6>{this.props.book.title} </h6>
                 {this.ifEditable()}
+                <PageCards pages={pages}/>
             </div>)
         }
     }
@@ -29,3 +36,13 @@ export default class Book extends React.Component{
         </div>)
       }
 }
+function mapDispatch(dispatch){
+    return{getPagesOfBook:(id)=>dispatch()}
+}
+function mapState(state){
+    return{
+        pages: state.pages.pages
+    }
+}
+export default connect(mapState,mapDispatch)(Book)
+

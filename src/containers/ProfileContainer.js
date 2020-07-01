@@ -39,15 +39,16 @@ class ProfileContainer extends React.Component{
        
     }
     render(){
-      
+        let book = this.props.currentUser.home_book
+        
         return(
             <div >
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start something</button>
             
-                <PageCards myPages={this.props.myPages}/>
-                <Book book={this.props.currentBook}/>
+                <PageCards pages={this.props.myPages}/>
+                <Book book={book} />
                 
             </div>
         )
