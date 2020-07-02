@@ -29,8 +29,8 @@ debugger
         <NavbarContainer/>
         {this.state.title}
         BookContainer
-        <Book/>
-            <PageInput savePage={this.props.savePage}/>
+        <Book book={this.props.book}/>
+           
             
         </div>)
     }

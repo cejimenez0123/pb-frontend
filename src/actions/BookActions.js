@@ -46,9 +46,12 @@ function getBooksOfUser(id){
     })}
 }
 function getBook(id){
+ 
    return(dispatch)=>{ fetch(bookPath+"/"
     +id).then(res=>res.json()).then(obj=>{
         
+        let book = obj.data.attributes
+        dispatch(setCurrentBook(book))
     })}
 }
 const setCurrentBook=(book)=>{

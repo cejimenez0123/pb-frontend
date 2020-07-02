@@ -44,7 +44,7 @@ class App extends React.Component{
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
           <Route exact path="/books/:id">
-            <BookContainer book={this.props.currentBook} allBooks={this.props.books}/>
+            <BookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
           <Route exact path="/books">
               <BookIndexContainer books={this.props.books}/>
@@ -71,8 +71,8 @@ function mapDispatchToProps(dispatch){
     getAllPages: ()=>dispatch(getAllPages()),
     getInbox: ()=>dispatch(getInbox()),
     setCurrentUser:()=>dispatch(SET_CURRENT_USER()),
-    getAllBooks:()=>dispatch(getAllBooks()
-    ),getBook:(id)=>dispatch(getBook(id))  
+    getAllBooks:()=>dispatch(getAllBooks()),
+    getBook:(id)=>dispatch(getBook(id))  
   }
 }
 function mapStateToProps(state){
