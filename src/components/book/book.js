@@ -10,7 +10,7 @@ class Book extends React.Component{
     }
    
     ifEditable(){
-      debugger
+
         if(this.props.book.user_id === localStorage.getItem("currentUser")){
             return(<div>
             <PageInput book={this.props.book}/>

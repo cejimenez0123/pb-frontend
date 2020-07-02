@@ -11,7 +11,7 @@ import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER} from "./actions/UserActions"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import EditorContainer from './containers/EditorContainer';
-
+import BookIndexContainer from "./containers/BookIndexContainer"
 import {history} from "./history"
 import InboxContainer from './containers/InboxContainer';
 
@@ -42,6 +42,9 @@ class App extends React.Component{
           </Route>
           <Route exact path="/books/:id">
             <BookContainer/>
+          </Route>
+          <Route exact path="/books">
+              <BookIndexContainer books={this.props.books}/>
           </Route>
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>
@@ -74,8 +77,10 @@ function mapStateToProps(state){
     loggedIn: state.users.loggedIn,
     currentUser: state.users.currentUser,
     currentPage: state.pages.currentPage,
+    currentBook: state.books.currentBook,
     pages: state.pages.pages,
-    inbox: state.pages.inbox
+    inbox: state.pages.inbox,
+    books: state.books.books
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

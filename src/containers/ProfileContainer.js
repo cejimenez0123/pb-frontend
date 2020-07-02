@@ -35,9 +35,7 @@ class ProfileContainer extends React.Component{
     handleOnClick(){
         let title = prompt("Enter a title","untitled")
       
-       this.props.startBook(title).then(obj=>{
-           debugger
-       })
+       this.props.startBook(title)
        
     }
     render(){

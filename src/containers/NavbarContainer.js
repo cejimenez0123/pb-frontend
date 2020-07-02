@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
-
+import {Navbar,Nav,Form,FormControl,Button} from 'react-bootstrap'
 function NavbarContainer (props){
   let store = useStore()
 
@@ -12,52 +12,38 @@ function NavbarContainer (props){
     function renderif(){
       let user = store.getState()
         if (user.users.loggedIn){
+          debugger
             return(
       <div >
-         <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-                 <a className="navbar-brand navbar" href="/">Pb</a>
-               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                 <span className="navbar-toggler-icon"></span>
-               </button>
-     <div className="collapse navbar-collapse" id="navbarNav">
-       <ul className="navbar-nav">
-         <li className="nav-item active">
-           <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
-         </li>
-          <li className="nav-item">
-           <a className="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}`}>Profile</a>
-          </li>
-          <li className="nav-item">
-           <a className="nav-link"  onClick={()=>handleActivation()} href={`/users/${user.users.currentUser.id}/inbox`}>Inbox</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link"  onClick={()=>handleOnClick()} href="/">Log Out</a>
-          </li>
-      </ul>
-      
-    </div>
-        </nav>
+        <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="/">Pb</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href={`/users/${user.users.currentUser.id}`}>Home</Nav.Link>
+      <Nav.Link href="">Street</Nav.Link>
+      <Nav.Link href="/books">Local Library</Nav.Link>
+      <Nav.Link  onClick={()=>this.handleOnClick}href="#/">Log Out</Nav.Link>
+    </Nav>
+    <Form inline>
+      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button variant="outline-info">Search</Button>
+    </Form>
+  </Navbar>
       </div>)
         }else{
             return(
         <div >
-          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-          <a className="navbar-brand navbar" href="/">Pb</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-       <ul className="navbar-nav">
-           <li className="nav-item active">
-              <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Home</a>
-           </li>
-            <li className="nav-item">
-              <a className="nav-link" onClick={(e)=>handleActivation(e)} href="/">Sign In</a>
-            </li>
-        </ul>
-      
-          </div>
-        </nav>
+            <Navbar bg="dark" variant="dark">
+    <Navbar.Brand href="/">Pb</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href={`/users/${user.users.currentUser.id}`}>Sign In</Nav.Link>
+      <Nav.Link href="">Street</Nav.Link>
+      <Nav.Link href="#/books">Local Library</Nav.Link>
+    </Nav>
+    <Form inline>
+      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <Button variant="outline-info">Search</Button>
+    </Form>
+  </Navbar>
     </div>
         )
             

@@ -78,7 +78,7 @@ const LOG_IN = (user)=>{
         localStorage.setItem("currentUser",user.id)
         history.push(`/users/${user.id}`)
         debugger
-        dispatch(setCurrentBook(user.home_book))
+        // dispatch(setCurrentBook(user.home_book))
         dispatch({type: "LOG_IN",user})
         
         }
@@ -94,10 +94,7 @@ const SET_CURRENT_USER=()=>{
       dispatch({type:"START_SET_CURRENT_USER"})
       fetch(userPath+"/"+id).then(res=>res.json()).then(user=>{
           user = user.data.attributes
-          if (path === "/users/"+user.id){
-              debugger
-              dispatch(setCurrentBook(user.home_book))
-          }
+          
         dispatch({ type: "SET_CURRENT_USER",user})})
     
         

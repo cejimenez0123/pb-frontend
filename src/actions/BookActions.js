@@ -1,4 +1,4 @@
-
+import {history} from "../history"
 const bookPath = "http://localhost:3000/books"
 const userPath = "http://localhost:3000/users"
 
@@ -42,10 +42,11 @@ function getBooksOfUser(id){
     })}
 }
 function getBook(id){}
-
-function setCurrentBook(book){
+const setCurrentBook=(book)=>{
+    debugger
+    history.push(`/books/${book.id}`)
+    return{type: "SET_CURRENT_BOOK", book: book}
 }
- const CurrentBook =(book)=>{return{type: "SET_CURRENT_BOOK", book: book}}
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKs",books}}
 export { startBook,getAllBooks,getBooksOfUser,useBookActions,setCurrentBook}
