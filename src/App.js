@@ -10,6 +10,7 @@ import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER} from "./actions/UserActions"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
+import {getAllBooks,getBook} from "./actions/BookActions"
 import EditorContainer from './containers/EditorContainer';
 import BookIndexContainer from "./containers/BookIndexContainer"
 import {history} from "./history"
@@ -18,8 +19,10 @@ import InboxContainer from './containers/InboxContainer';
 let bot
 class App extends React.Component{
   componentDidMount(){
+    this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
+    
   }
   bot = useUserActions()
 
@@ -41,7 +44,7 @@ class App extends React.Component{
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
           <Route exact path="/books/:id">
-            <BookContainer/>
+            <BookContainer book={this.props.currentBook} allBooks={this.props.books}/>
           </Route>
           <Route exact path="/books">
               <BookIndexContainer books={this.props.books}/>
@@ -67,7 +70,9 @@ function mapDispatchToProps(dispatch){
     savePage: (data)=>dispatch(savePage(data)),
     getAllPages: ()=>dispatch(getAllPages()),
     getInbox: ()=>dispatch(getInbox()),
-    setCurrentUser:()=>dispatch(SET_CURRENT_USER())  
+    setCurrentUser:()=>dispatch(SET_CURRENT_USER()),
+    getAllBooks:()=>dispatch(getAllBooks()
+    ),getBook:(id)=>dispatch(getBook(id))  
   }
 }
 function mapStateToProps(state){

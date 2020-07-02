@@ -27,7 +27,7 @@ class ProfileContainer extends React.Component{
         this.props.setCurrentUser()
         this.props.getUsers()   
         this.props.getBooksOfUser(localStorage.getItem("currentUser"))
-        this.props.getAllBooks()
+   
         
          this.props.getMyPages()
         

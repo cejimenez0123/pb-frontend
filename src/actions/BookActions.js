@@ -6,7 +6,7 @@ const userPath = "http://localhost:3000/users"
 function useBookActions(){
     return{getBooksOfUser: id=>{getBooksOfUser(id)}}
 }
-function startBook(title){
+function startBook(title,is_Home_Book="false"){
     let config={   
     method: 'POST',
     headers: {
@@ -15,14 +15,18 @@ function startBook(title){
       },
       body: JSON.stringify({
           userId: localStorage.getItem("currentUser"),
-          title: title
+          title: title,
+          isHomeBook: is_Home_Book
     })}
     return(dispatch)=>{fetch(bookPath,config).then(res=>res.json()).then(obj=>{
         debugger
         let book
         if(obj.data.attributes){
-        book = obj.data.attributes}
-    dispatch(setCurrentBook(book))
+        book = obj.data.attributes
+        if(book.is_home_book !== "true"){
+        dispatch(setCurrentBook(book)) 
+        }}
+    
     })}
 }
 function getAllBooks(){
@@ -41,7 +45,12 @@ function getBooksOfUser(id){
 
     })}
 }
-function getBook(id){}
+function getBook(id){
+   return(dispatch)=>{ fetch(bookPath+"/"
+    +id).then(res=>res.json()).then(obj=>{
+        
+    })}
+}
 const setCurrentBook=(book)=>{
     debugger
     history.push(`/books/${book.id}`)
@@ -49,4 +58,4 @@ const setCurrentBook=(book)=>{
 }
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKs",books}}
-export { startBook,getAllBooks,getBooksOfUser,useBookActions,setCurrentBook}
+export { startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

@@ -12,7 +12,6 @@ function NavbarContainer (props){
     function renderif(){
       let user = store.getState()
         if (user.users.loggedIn){
-          debugger
             return(
       <div >
         <Navbar bg="dark" variant="dark">
