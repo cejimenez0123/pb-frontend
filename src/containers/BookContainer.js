@@ -23,7 +23,7 @@ componentDidMount(){
 
     render(){
        
-debugger
+
        
         return(<div>
         <NavbarContainer/>

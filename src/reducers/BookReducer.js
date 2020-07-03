@@ -4,8 +4,8 @@ export default function BookReducer(
 
         switch(action.type){
             case "SET_CURRENT_BOOK":
-            debugger
-            
+       
+
             return {...state,currentBook: action.book}
             case "ALL_BOOKS":
             return{...state, books: action.books}

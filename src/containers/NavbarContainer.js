@@ -2,28 +2,51 @@ import React from 'react'
 import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
-import {Navbar,Nav,Form,FormControl,Button} from 'react-bootstrap'
-function NavbarContainer (props){
-  let store = useStore()
+import {Navbar,Nav,Form,FormControl,Button,ListGroup} from 'react-bootstrap'
+import SearchBar from "../components/SearchBar"
+class NavbarContainer extends React.Component{
+   constructor(){
+     super()
+     this.state={filtered: []}
+   }
+filterFunction(e){
+     let input = e.target.value
+  let filtered = this.props.users.filter(x=>{
+   
+  let  user = x.attributes
+  return  user.name.includes(input) || user.username.includes(input)
 
-    function handleOnClick(){
+  })
+
+ let list = filtered.map((x,i)=>{
+
+  return(
+  <ListGroup.Item>  <a key={i}> {x.attributes.name}</a></ListGroup.Item>)
+
+ })
+ this.setState({filtered: list}) 
+    }
+    
+    
+    handleOnClick(){
         this.props.endSession()
     }
-    function renderif(){
-      let user = store.getState()
-        if (user.users.loggedIn){
+renderif(){
+    
+        if (this.props.loggedIn){
             return(
       <div >
         <Navbar bg="dark" variant="dark">
     <Navbar.Brand href="/">Pb</Navbar.Brand>
     <Nav className="mr-auto">
-      <Nav.Link href={`/users/${user.users.currentUser.id}`}>Home</Nav.Link>
+      <Nav.Link href={`/users/${this.props.currentUser.id}`}>Home</Nav.Link>
       <Nav.Link href="">Street</Nav.Link>
       <Nav.Link href="/books">Local Library</Nav.Link>
       <Nav.Link  onClick={()=>this.handleOnClick}href="#/">Log Out</Nav.Link>
     </Nav>
     <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+      <input type="text" placeholder="Search" onKeyUp={(e)=>this.filterFunction(e)}/>
+      
       <Button variant="outline-info">Search</Button>
     </Form>
   </Navbar>
@@ -34,15 +57,14 @@ function NavbarContainer (props){
             <Navbar bg="dark" variant="dark">
     <Navbar.Brand href="/">Pb</Navbar.Brand>
     <Nav className="mr-auto">
-      <Nav.Link href={`/users/${user.users.currentUser.id}`}>Sign In</Nav.Link>
+      <Nav.Link href={`/users/${this.props.currentUser.id}`}>Sign In</Nav.Link>
       <Nav.Link href="">Street</Nav.Link>
       <Nav.Link href="#/books">Local Library</Nav.Link>
     </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-info">Search</Button>
-    </Form>
+    <SearchBar users={this.props.users}/>
+   
   </Navbar>
+   
     </div>
         )
             
@@ -52,7 +74,7 @@ function NavbarContainer (props){
     
 
   
-   function handleActivation(e){
+    handleActivation(e){
       e.preventDefault()
      let items=  document.querySelectorAll(".nav-item")
      
@@ -66,16 +88,23 @@ function NavbarContainer (props){
         e.target.classList.add("active")
        
    }
-    
+      render(){
         return(
     
             <div >
           
-      {renderif()}
+      {this.renderif()}
     
             </div>
         )
     }
+    }
 
-export default NavbarContainer
+function mapState(state){
+
+  return{users: state.users.users,
+  loggedIn: state.users.loggedIn,
+  currentUser: state.users.currentUser}
+}
+export default connect(mapState)(NavbarContainer)
 

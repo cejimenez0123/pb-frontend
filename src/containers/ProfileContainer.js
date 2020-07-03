@@ -16,6 +16,7 @@ import BoxEditor from "../components/page/BoxEditor"
 import BookContainer from './BookContainer'
 import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
 import PageInput from "../components/page/PageInput"
+import BookIndex from "../components/book/BookIndex"
 import PageCards from "../components/page/PageCards"
 import Book from "../components/book/book"
 class ProfileContainer extends React.Component{
@@ -47,7 +48,7 @@ class ProfileContainer extends React.Component{
                 < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
                 <Book book={book} />
-                
+                <BookIndex books={this.props.userBooks}/>
             </div>
         )
     }

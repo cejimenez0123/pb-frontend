@@ -11,7 +11,17 @@ class Book extends React.Component{
    
     ifEditable(){
 
-        if(this.props.book.user_id === localStorage.getItem("currentUser")){
+let user_id 
+if(this.props.book.user_id){
+    user_id = this.props.book.user_id
+}
+if(this.props.book.user){
+    user_id = this.props.book.user.id
+}
+
+
+        if(user_id== localStorage.getItem("currentUser")){
+          
             return(<div>
             <PageInput book={this.props.book}/>
             </div>)

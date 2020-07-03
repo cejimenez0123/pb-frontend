@@ -8,7 +8,7 @@ import SearchCardIndex from '../user/SearchCardIndex'
 import {share} from '../../actions/PageActions'
 import {Accordion,Card,Button} from 'react-bootstrap'
 import SearchCard from '../user/SearchCard'
-import EditorContainer from '../../containers/EditorContainer'
+
 import Editor from "./editor"
 const PageBox =(props)=>{
     let store = useStore()
