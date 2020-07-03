@@ -5,7 +5,7 @@ import { connect} from "react-redux"
 import HomeContainer from "./containers/HomeContainer"
 import LogInForm from "./components/user/LogInForm"
 import SignUpForm from "./components/user/SignUpForm"
-import PrivateRoute from "./functions/PrivateRoute"
+import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER} from "./actions/UserActions"
@@ -37,10 +37,12 @@ class App extends React.Component{
         
     
        
-        <PrivateRoute exact path="/users/:userId" ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox}/></PrivateRoute>
+        <PrivateRoute exact path={`/users/${this.props.currentUser.id}`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox}/></PrivateRoute>
         {/* <Route exact path="/pages/:id/edit" render={()=><EditorContainer  loggedIn={this.props.loggedIn} currentPage={this.props.currentPage}/>}/> */}
         <Route exact path="/users/:id/inbox" >
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
+          </Route>
+          <Route>
           </Route>
           <Route exact path="/books/:id">
             <BookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>

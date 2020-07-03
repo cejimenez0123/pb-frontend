@@ -45,7 +45,7 @@ class ProfileContainer extends React.Component{
         return(
             <div >
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
-                < ProfileCard currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+                < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
                 <Book book={book} />
                 <BookIndex books={this.props.userBooks}/>

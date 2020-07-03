@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
-import {Navbar,Nav,Form,FormControl,Button,ListGroup} from 'react-bootstrap'
+import {Navbar,Nav,Form,FormControl,Button,ListGroup,OverlayTrigger,Popover} from 'react-bootstrap'
 import SearchBar from "../components/SearchBar"
 class NavbarContainer extends React.Component{
    constructor(){
@@ -61,8 +61,25 @@ renderif(){
       <Nav.Link href="">Street</Nav.Link>
       <Nav.Link href="#/books">Local Library</Nav.Link>
     </Nav>
-    <SearchBar users={this.props.users}/>
-   
+    
+   <>
+    <OverlayTrigger
+      trigger="focus"
+      key={"bottom"}
+      placement={"bottom"}
+      overlay={
+        <Popover id={`popover-positioned-${"bottom"}`}>
+          <Popover.Title as="h3">{`Popover ${'bottom'}`}</Popover.Title>
+          <Popover.Content>
+            {this.state.filtered}
+          </Popover.Content>
+        </Popover>
+      }
+    ><SearchBar users={this.props.users}/>
+      {/* <Button variant="secondary">Popover on {placement}</Button> */}
+    </OverlayTrigger>
+
+</>
   </Navbar>
    
     </div>

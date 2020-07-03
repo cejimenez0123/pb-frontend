@@ -4,9 +4,9 @@ const ProfileCard =(props)=>{
     const renderIf=()=>{
         let user
     
-        if(!!props.currentUser){
+        if(!!props.user){
       
-        user = props.currentUser
+        user = props.user
         return(<div><h3>{user.name}</h3>
              < img src="https://anthropology.columbia.edu/themes/custom/columbia/assets/img/people-default.svg" alt=""  width="50" height="50"/>
              <h4>@{user.username}</h4>
