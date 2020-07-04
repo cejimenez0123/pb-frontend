@@ -11,9 +11,16 @@
 	overflow:hidden; 
 	overflow-y:scroll;
 }
+#Navbar{
+	position: relative
+}
 .signbtns{
 	margin-top: 100px;
 	text-align: center;
+}
+.Navbar-search{
+	position: absolute;
+	left: 60%;
 }
 
 
@@ -40,7 +47,9 @@
 			padding: 5px;
 			border-radius:3px;
         }
-
+.searchForm{
+	position:relative
+}
 .page{
 	height: 864px;
 	width: 816px;

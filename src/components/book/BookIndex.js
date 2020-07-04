@@ -1,8 +1,9 @@
 import React from 'react'
 
 function BookIndex(props){
-        function 
-        renderIf(){    return    props.books.map(book=>{
+        function  renderIf(){   
+            debugger
+    return props.books.map(book=>{
             book = book.attributes
          
             return(<div>
@@ -10,9 +11,13 @@ function BookIndex(props){
             </div>)
         })
         }
+        let name
+        if(props.user){
+                   name= `${props.user.name}'s Books`
+                }
         return(
             <div>
-                Your Books
+                {name}
                 {renderIf()}
             </div>
         )

@@ -35,7 +35,7 @@ renderif(){
     
         if (this.props.loggedIn){
             return(
-      <div >
+      <div id="Navbar">
         <Navbar bg="dark" variant="dark">
     <Navbar.Brand href="/">Pb</Navbar.Brand>
     <Nav className="mr-auto">
@@ -44,11 +44,8 @@ renderif(){
       <Nav.Link href="/books">Local Library</Nav.Link>
       <Nav.Link  onClick={()=>this.handleOnClick}href="#/">Log Out</Nav.Link>
     </Nav>
-    <Form inline>
-      <input type="text" placeholder="Search" onKeyUp={(e)=>this.filterFunction(e)}/>
-      
-      <Button variant="outline-info">Search</Button>
-    </Form>
+   <SearchBar users={this.props.users}/>
+    
   </Navbar>
       </div>)
         }else{
@@ -62,24 +59,15 @@ renderif(){
       <Nav.Link href="#/books">Local Library</Nav.Link>
     </Nav>
     
-   <>
-    <OverlayTrigger
-      trigger="focus"
-      key={"bottom"}
-      placement={"bottom"}
-      overlay={
-        <Popover id={`popover-positioned-${"bottom"}`}>
-          <Popover.Title as="h3">{`Popover ${'bottom'}`}</Popover.Title>
-          <Popover.Content>
-            {this.state.filtered}
-          </Popover.Content>
-        </Popover>
-      }
-    ><SearchBar users={this.props.users}/>
-      {/* <Button variant="secondary">Popover on {placement}</Button> */}
-    </OverlayTrigger>
 
-</>
+           
+     
+    <SearchBar users={this.props.users}/>
+     {this.state.filtered}
+      {/* <Button variant="secondary">Popover on {placement}</Button> */}
+  
+
+
   </Navbar>
    
     </div>

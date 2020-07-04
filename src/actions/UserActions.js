@@ -37,7 +37,7 @@ function signUp(user) {
                 localStorage.setItem("currentUser",user.id)
                 dispatch(startBook("My Book"))
                 dispatch({ type: 'SIGN_UP', user})
-                history.push(`/users/${user.id}`)
+                history.push(`/user/${user.id}`)
                 ;     
             }
                  
@@ -76,7 +76,7 @@ const LOG_IN = (user)=>{
           
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
-        history.push(`/users/${user.id}`)
+        history.push(`/user/${user.id}`)
         debugger
         // dispatch(setCurrentBook(user.home_book))
         dispatch({type: "LOG_IN",user})
@@ -93,12 +93,20 @@ const SET_CURRENT_USER=()=>{
   return ((dispatch)=>{
       dispatch({type:"START_SET_CURRENT_USER"})
       fetch(userPath+"/"+id).then(res=>res.json()).then(user=>{
+          
           user = user.data.attributes
           
         dispatch({ type: "SET_CURRENT_USER",user})})
     
         
     })
+}
+const getUser = (id)=>{
+    return(dispatch)=>{fetch(userPath+"/"+id).then(res=>res.json()).then(obj=>{
+        let user = obj.data.attributes
+        dispatch(userInView(user))
+    debugger
+    })}
 }
 const END_CURRENT_USER=()=>{
 return(dispatch)=>{
@@ -125,5 +133,7 @@ function getUsers(){
     })}
 }
 
-export {LOG_IN,signUp, SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
+function userInView(user){return{type: "USER_IN_VIEW",user}}
+
+export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
 

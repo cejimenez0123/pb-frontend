@@ -2,6 +2,7 @@
 export default function UserReducer(
     state={users: [],
         currentUser: {},
+        userInView: {},
     loggedIn: false,
 requesting: false },
     action){
@@ -15,6 +16,8 @@ requesting: false },
                 
                 return {...state, users: [...state.users.concat(user)],
                     currentUser: user, loggedIn: true }
+            case "USER_IN_VIEW":
+            return {...state,userInView: action.user}
             case "LOG_IN_START":
                 return {...state,requesting: true}
             case "LOG_IN":

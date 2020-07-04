@@ -38,10 +38,11 @@ function getAllBooks(){
     })}
 }
 function getBooksOfUser(id){
-
     return(dispatch)=>{fetch(userPath+"/"+id+"/books").then(res=>res.json()).then(obj=>{
        let book = obj.data
-        dispatch(booksOfUser(book))
+
+        dispatch(booksInView(book))
+        
 
     })}
 }
@@ -56,8 +57,9 @@ function getBook(id){
 }
 const setCurrentBook=(book)=>{
     history.push(`/books/${book.id}`)
-    return{type: "SET_CURRENT_BOOK", book: book}
+    return{type: "SET_CURRENT_BOOK",  book}
 }
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
+ const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKs",books}}
 export { startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

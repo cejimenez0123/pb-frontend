@@ -1,6 +1,7 @@
 import store from "../index"
 import React from 'react'
 import {ListGroup,Dropdown} from 'react-bootstrap'
+import "../App.css"
 export default class SearchBar extends React.Component{
     constructor(){
         super()
@@ -20,7 +21,7 @@ export default class SearchBar extends React.Component{
  let list = filtered.map((x,i)=>{
      let user = x.attributes
   return(
-  <ListGroup.Item>  <a href={`http://localhost:3001/`}key={i}> {user.name}-@{user.username}</a></ListGroup.Item>)
+  <ListGroup.Item>  <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a></ListGroup.Item>)
 
  })
  this.setState({filtered: list}) 
@@ -29,7 +30,7 @@ export default class SearchBar extends React.Component{
         
         let state = store
         
-        return(<div>
+        return(<div className="Navbar-search">
         <form>
             <input type="text" placeholder="search..." onKeyUp={(e)=>this.filterFunction(e)}/><button type="submit">Submit</button>
             
