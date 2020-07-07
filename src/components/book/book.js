@@ -34,23 +34,23 @@ if(this.props.book.user){
     }
 
    renderIf(){
-       debugger 
+      
+        
+    }
+      render(){ 
+         let pages = []
         if(this.props.book ){
-           let pages = this.props.pages.filter(page=>{
+           pages = this.props.pages.filter(page=>{
                return page.attributes.book_id == this.props.book.id
            })
+           debugger
             return(<div>
-                <h6>{this.props.book.title} </h6>
+                <h6>{this.props.book.title} by {this.props.book.user.username} </h6>
+                <button>Add</button>
                 {this.ifEditable()}
                 <PageCards pages={pages}/>
             </div>)
         }
-    }
-      render(){ 
-         
-        return(<div>
-    {this.renderIf()}
-        </div>)
       }
 }
 function mapDispatch(dispatch){

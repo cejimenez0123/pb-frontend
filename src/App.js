@@ -12,7 +12,7 @@ import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser} from "./actions/UserActions"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
-import BookIndexContainer from "./containers/BookIndexContainer"
+// import BookIndexContainer from "./containers/BookIndexContainer"
 import {history} from "./history"
 import InboxContainer from './containers/InboxContainer';
 import UserContainer from "./containers/UserContainer"
@@ -57,9 +57,9 @@ class App extends React.Component{
           <Route exact path="/books/:id">
             <BookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
-          <Route exact path="/street">
+          {/* <Route exact path="/street">
               <BookIndexContainer books={this.props.books}/>
-          </Route>
+          </Route> */}
           <Route path="/libraries/1">
               <LocalLibraryContainer books={this.props.books}/>
           </Route>
