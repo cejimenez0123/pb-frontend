@@ -3,6 +3,7 @@ import {push} from 'react-router-redux'
 import store from '../index'
 import {startBook,setCurrentBook} from "./BookActions"
 const userPath = "http://127.0.0.1:3000/users"
+const followPath = "http://127.0.0.1:3000/follows"
 
 
 function useUserActions(){
@@ -13,7 +14,22 @@ function SIGN_UP_START(){
     return {
     type: "SIGN_UP_START"}
 }
+function followUser(id){
+    let config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              followerId: localStorage.getItem("currentUser"),
+              followedId: id
+          })}
+    fetch(followPath,config).then(res=>res.json()).then(obj=>{
+        debugger
+    })
 
+}
 function signUp(user) { 
    
     let config = {
@@ -111,6 +127,7 @@ const getUser = (id)=>{
 
     })}
 }
+
 const END_CURRENT_USER=()=>{
 return(dispatch)=>{
     dispatch({type:"END_CURRENT_USER"})}
@@ -139,5 +156,5 @@ function getUsers(){
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 
-export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
+export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, followUser,useUserActions}
 

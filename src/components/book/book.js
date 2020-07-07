@@ -27,29 +27,31 @@ if(this.props.book.user){
             <PageInput book={this.props.book}/>
             </div>)
            let  html=(<div>
-
+                    <button>Add</button>
             </div>)
+            debugger
             return html
         }
     }
 
    renderIf(){
-      
-        
-    }
-      render(){ 
-         let pages = []
+ 
         if(this.props.book ){
-           pages = this.props.pages.filter(page=>{
+           let pages = this.props.pages.filter(page=>{
                return page.attributes.book_id == this.props.book.id
            })
             return(<div>
-                <h6><a href={`http://localhost:3001/books/${this.props.book.id}`}>{this.props.book.title}</a> by <a href={`http://localhost:3001/users/${this.props.book.user.id}`}>{this.props.book.user.username}</a></h6>
-                <button>Add</button>
+                <h6>{this.props.book.title} </h6>
                 {this.ifEditable()}
                 <PageCards pages={pages}/>
             </div>)
         }
+    }
+      render(){ 
+         
+        return(<div>
+    {this.renderIf()}
+        </div>)
       }
 }
 function mapDispatch(dispatch){

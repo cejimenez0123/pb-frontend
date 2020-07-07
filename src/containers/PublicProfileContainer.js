@@ -2,6 +2,7 @@ import React from 'react'
 import NavbarContainer from "./NavbarContainer" 
 import ProfileCard from "../components/user/ProfileCard"
 import BookIndex from "../components/book/BookIndex"
+import {followUser} from "../actions/UserActions"
 let id= window.location.pathname.split("/")[2]
  let user
 class PublicProfileContainer extends React.Component{
@@ -26,7 +27,7 @@ class PublicProfileContainer extends React.Component{
             <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
              UserContainer
              < ProfileCard user={this.props.user}/>
-             <button>Follow</button>
+             <button onClick={followUser(this.props.user.id)}>Follow</button>
             <BookIndex books={this.props.booksInView} user={this.props.user}/>
 
             </div>

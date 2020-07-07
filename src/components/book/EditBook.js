@@ -26,10 +26,8 @@ if(this.props.book.user){
             <div>
             <PageInput book={this.props.book}/>
             </div>)
-           let  html=(<div>
-
-            </div>)
-            return html
+            return pageInput
+           
         }
     }
 

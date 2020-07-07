@@ -42,7 +42,7 @@ renderif(){
       <Nav.Link href={`/users/${this.props.currentUser.id}`}>Home</Nav.Link>
       <Nav.Link href="">Street</Nav.Link>
       <Nav.Link href="/libraries/1">Local Library</Nav.Link>
-      <Nav.Link  onClick={()=>this.handleOnClick}href="#/">Log Out</Nav.Link>
+      <Nav.Link  onClick={()=>this.handleOnClick}href="/">Log Out</Nav.Link>
     </Nav>
    <SearchBar users={this.props.users}/>
     

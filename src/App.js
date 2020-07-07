@@ -9,7 +9,7 @@ import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
-import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser} from "./actions/UserActions"
+import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser} from "./actions/UserActions"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
@@ -51,7 +51,7 @@ class App extends React.Component{
           <Switch>
            <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>
           <Route path ={'/users/:id'}>
-            <PublicProfileContainer getUser={this.props.getUdrt} users={this.props.users} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser}/>
+            <PublicProfileContainer getUser={this.props.getUdrt} users={this.props.users} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser} followUser={this.props.followUser}/>
           </Route>
           </Switch>
           <Route exact path="/books/:id">
@@ -88,7 +88,8 @@ function mapDispatchToProps(dispatch){
     getAllBooks:()=>dispatch(getAllBooks()),
     getBook:(id)=>dispatch(getBook(id)),
     getUser:(id)=>dispatch(getUser(id)),
-    getBooksOfUser:(id)=>dispatch(getBooksOfUser(id))
+    getBooksOfUser:(id)=>dispatch(getBooksOfUser(id),
+    )
   }
 }
 function mapStateToProps(state){

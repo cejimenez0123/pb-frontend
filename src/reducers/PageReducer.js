@@ -23,7 +23,7 @@ export default function PageReducer(
             case "GET_ALL_PAGES":
                 return {...state,pages: action.pages}
             case "GET_MY_PAGES":
-                debugger
+         
                 return {...state, myPages: action.pages}
             default:
                 return state

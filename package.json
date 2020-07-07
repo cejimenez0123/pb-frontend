@@ -3,13 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ckeditor/ckeditor5-basic-styles": "^19.0.0",
-    "@ckeditor/ckeditor5-build-inline": "^19.0.1",
-    "@ckeditor/ckeditor5-dev-utils": "^20.0.0",
-    "@ckeditor/ckeditor5-dev-webpack-plugin": "^20.0.0",
-    "@ckeditor/ckeditor5-easy-image": "^19.0.0",
-    "@ckeditor/ckeditor5-editor-inline": "^19.0.1",
-    "@ckeditor/ckeditor5-upload": "^19.0.1",
     "bootstrap": "^4.5.0",
     "draft-js": "^0.11.5",
     "history": "^4.10.1",

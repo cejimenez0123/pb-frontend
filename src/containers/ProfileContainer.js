@@ -18,7 +18,7 @@ import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
 import PageInput from "../components/page/PageInput"
 import BookIndex from "../components/book/BookIndex"
 import PageCards from "../components/page/PageCards"
-import HomeBook from "../components/book/book"
+import EditBook from "../components/book/EditBook"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -47,7 +47,7 @@ class ProfileContainer extends React.Component{
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
-                <HomeBook book={book} />
+                <EditBook book={book} />
                 <BookIndex books={this.props.booksInView}/>
             </div>
         )
