@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter,HashRouter, Route, Switch, Redirect,withRouter} from 'react-router-dom';
 import './App.css';
+import EditBookContainer from "./containers/EditBookContainer"
 import { connect} from "react-redux"
 import HomeContainer from "./containers/HomeContainer"
 import LogInForm from "./components/user/LogInForm"
@@ -43,6 +44,9 @@ class App extends React.Component{
         {/* <Route exact path="/pages/:id/edit" render={()=><EditorContainer  loggedIn={this.props.loggedIn} currentPage={this.props.currentPage}/>}/> */}
         <Route exact path="/users/:id/inbox" >
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
+          </Route>
+         < Route exact path="/books/:id/edit">
+            <EditBookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
           <Switch>
            <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>

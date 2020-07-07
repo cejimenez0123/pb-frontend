@@ -1,10 +1,9 @@
-import React from 
 import React from 'react'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import { getPagesOfBook } from "../../actions/PageActions"
 import PageCards from "../page/PageCards"
-class Book extends React.Component{
+class EditBook extends React.Component{
     constructor(){
         super()
     }
@@ -15,33 +14,43 @@ let user_id
 if(this.props.book.user_id){
     user_id = this.props.book.user_id
 }
+if(this.props.book.user){
+    user_id = this.props.book.user.id
+}
 
 
         if(user_id== localStorage.getItem("currentUser")){
           
-            return(<div>
+            let pageInput = (
+            
+            <div>
             <PageInput book={this.props.book}/>
             </div>)
+           let  html=(<div>
+
+            </div>)
+            return html
         }
     }
 
    renderIf(){
        debugger 
-        
-      render(){ 
-        let pages =[]
         if(this.props.book ){
-            pages = this.props.pages.filter(page=>{
+           let pages = this.props.pages.filter(page=>{
                return page.attributes.book_id == this.props.book.id
            })
-        return(<div>
+            return(<div>
                 <h6>{this.props.book.title} </h6>
-                <button value="Add"/>
                 {this.ifEditable()}
                 <PageCards pages={pages}/>
-        </div>)
+            </div>)
         }
     }
+      render(){ 
+         
+        return(<div>
+    {this.renderIf()}
+        </div>)
       }
 }
 function mapDispatch(dispatch){
@@ -52,4 +61,5 @@ function mapState(state){
         pages: state.pages.pages
     }
 }
-export default connect(mapState,mapDispatch)(Book)
+export default connect(mapState,mapDispatch)(EditBook)
+
