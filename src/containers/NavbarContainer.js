@@ -41,7 +41,7 @@ renderif(){
     <Nav className="mr-auto">
       <Nav.Link href={`/users/${this.props.currentUser.id}`}>Home</Nav.Link>
       <Nav.Link href="">Street</Nav.Link>
-      <Nav.Link href="/books">Local Library</Nav.Link>
+      <Nav.Link href="/libraries/1">Local Library</Nav.Link>
       <Nav.Link  onClick={()=>this.handleOnClick}href="#/">Log Out</Nav.Link>
     </Nav>
    <SearchBar users={this.props.users}/>
@@ -56,15 +56,15 @@ renderif(){
     <Nav className="mr-auto">
       <Nav.Link href={`/users/${this.props.currentUser.id}`}>Sign In</Nav.Link>
       <Nav.Link href="">Street</Nav.Link>
-      <Nav.Link href="#/books">Local Library</Nav.Link>
+      <Nav.Link href="/libraries/1">Local Library</Nav.Link>
     </Nav>
     
 
            
      
     <SearchBar users={this.props.users}/>
-     {this.state.filtered}
-      {/* <Button variant="secondary">Popover on {placement}</Button> */}
+   
+     
   
 
 

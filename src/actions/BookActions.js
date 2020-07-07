@@ -30,7 +30,7 @@ function startBook(title,is_Home_Book="false"){
     })}
 }
 function getAllBooks(){
-
+    console.log("HITTT!!!")
     return(dispatch)=>{fetch(bookPath).then(res=>res.json()).then(obj=>{
      
     let books = obj.data
@@ -61,5 +61,5 @@ const setCurrentBook=(book)=>{
 }
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
- const getallbooks=(books)=>{return{type: "ALL_BOOKs",books}}
+ const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
 export { startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

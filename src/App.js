@@ -15,10 +15,11 @@ import BookIndexContainer from "./containers/BookIndexContainer"
 import {history} from "./history"
 import InboxContainer from './containers/InboxContainer';
 import UserContainer from "./containers/UserContainer"
-
+import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 let bot
 class App extends React.Component{
   componentDidMount(){
+    this.props.setCurrentUser()
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
@@ -44,7 +45,7 @@ class App extends React.Component{
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
           <Switch>
-           <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox}/></PrivateRoute>
+           <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>
           <Route path ={'/users/:id'}>
             <UserContainer users={this.props.users} setCurrentUser={this.props.setCurrentUser} getUser={this.props.getUser} user={this.props.userInview} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser}/>
           </Route>
@@ -52,8 +53,11 @@ class App extends React.Component{
           <Route exact path="/books/:id">
             <BookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
-          <Route exact path="/books">
+          <Route exact path="/street">
               <BookIndexContainer books={this.props.books}/>
+          </Route>
+          <Route path="/libraries/1">
+              <LocalLibraryContainer books={this.props.books}/>
           </Route>
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>

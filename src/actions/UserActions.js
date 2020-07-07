@@ -133,6 +133,7 @@ function getUsers(){
     })}
 }
 
+
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 
 export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}

@@ -1,3 +1,4 @@
+import React from 
 import React from 'react'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
@@ -14,22 +15,13 @@ let user_id
 if(this.props.book.user_id){
     user_id = this.props.book.user_id
 }
-if(this.props.book.user){
-    user_id = this.props.book.user.id
-}
 
 
         if(user_id== localStorage.getItem("currentUser")){
           
-            let pageInput = (
-            
-            <div>
+            return(<div>
             <PageInput book={this.props.book}/>
             </div>)
-           let  html=(<div>
-
-            </div>)
-            return html
         }
     }
 
@@ -62,4 +54,3 @@ function mapState(state){
     }
 }
 export default connect(mapState,mapDispatch)(Book)
-
