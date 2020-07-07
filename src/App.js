@@ -15,7 +15,7 @@ import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
 import {history} from "./history"
 import InboxContainer from './containers/InboxContainer';
-import UserContainer from "./containers/UserContainer"
+import PublicProfileContainer from "./containers/PublicProfileContainer"
 import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 let bot
 class App extends React.Component{
@@ -51,7 +51,7 @@ class App extends React.Component{
           <Switch>
            <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>
           <Route path ={'/users/:id'}>
-            <UserContainer users={this.props.users} setCurrentUser={this.props.setCurrentUser} getUser={this.props.getUser} user={this.props.userInview} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser}/>
+            <PublicProfileContainer getUser={this.props.getUdrt} users={this.props.users} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser}/>
           </Route>
           </Switch>
           <Route exact path="/books/:id">
@@ -102,7 +102,7 @@ function mapStateToProps(state){
     pages: state.pages.pages,
     inbox: state.pages.inbox,
     books: state.books.books,
-    userInview: state.users.userInview,
+    userInView: state.users.userInView,
     booksInView: state.books.booksInView
   }
 }

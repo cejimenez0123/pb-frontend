@@ -102,10 +102,13 @@ const SET_CURRENT_USER=()=>{
     })
 }
 const getUser = (id)=>{
+ 
     return(dispatch)=>{fetch(userPath+"/"+id).then(res=>res.json()).then(obj=>{
+ 
         let user = obj.data.attributes
+        console.log(obj)
         dispatch(userInView(user))
-    debugger
+
     })}
 }
 const END_CURRENT_USER=()=>{

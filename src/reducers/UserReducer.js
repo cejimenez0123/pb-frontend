@@ -17,6 +17,7 @@ requesting: false },
                 return {...state, users: [...state.users.concat(user)],
                     currentUser: user, loggedIn: true }
             case "USER_IN_VIEW":
+            console.log(action.user)
             return {...state,userInView: action.user}
             case "LOG_IN_START":
                 return {...state,requesting: true}

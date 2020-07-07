@@ -4,7 +4,7 @@ function BookIndex(props){
         function  renderIf(){   
            
             if(props.books){
-                 debugger
+
     return props.books.map(book=>{
             book = book.attributes
          
@@ -17,6 +17,7 @@ function BookIndex(props){
         if(props.user){
                    name= `${props.user.name}'s Books`
                 }
+                console.log("BOOKINDDEX")
         return(
             <div>
                 {name}

@@ -43,9 +43,8 @@ if(this.props.book.user){
            pages = this.props.pages.filter(page=>{
                return page.attributes.book_id == this.props.book.id
            })
-           debugger
             return(<div>
-                <h6>{this.props.book.title} by {this.props.book.user.username} </h6>
+                <h6><a href={`http://localhost:3001/books/${this.props.book.id}`}>{this.props.book.title}</a> by <a href={`http://localhost:3001/users/${this.props.book.user.id}`}>{this.props.book.user.username}</a></h6>
                 <button>Add</button>
                 {this.ifEditable()}
                 <PageCards pages={pages}/>

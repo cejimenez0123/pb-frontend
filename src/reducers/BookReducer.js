@@ -7,7 +7,6 @@ export default function BookReducer(
        
                 return {...state,currentBook: action.book}
             case "BOOKS_IN_VIEW":
-            debugger
                 return{ ...state, booksInView: action.books}
             
             case "ALL_BOOKS":

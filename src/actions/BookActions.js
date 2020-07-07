@@ -38,7 +38,10 @@ function getAllBooks(){
     })}
 }
 function getBooksOfUser(id){
+ 
+    console.log("hitt")
     return(dispatch)=>{fetch(userPath+"/"+id+"/books").then(res=>res.json()).then(obj=>{
+        
        let book = obj.data
 
         dispatch(booksInView(book))
