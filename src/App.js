@@ -20,7 +20,7 @@ import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 let bot
 class App extends React.Component{
   componentDidMount(){
-    this.props.setCurrentUser()
+  
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
@@ -89,6 +89,7 @@ function mapDispatchToProps(dispatch){
     getBook:(id)=>dispatch(getBook(id)),
     getUser:(id)=>dispatch(getUser(id)),
     getBooksOfUser:(id)=>dispatch(getBooksOfUser(id),
+    
     )
   }
 }

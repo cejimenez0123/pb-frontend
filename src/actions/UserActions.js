@@ -15,6 +15,7 @@ function SIGN_UP_START(){
     type: "SIGN_UP_START"}
 }
 function followUser(id){
+    console.log("FIJDOOF")
     let config = {
         method: 'POST',
         headers: {
@@ -23,11 +24,12 @@ function followUser(id){
           },
           body: JSON.stringify({
               followerId: localStorage.getItem("currentUser"),
-              followedId: id
+              followedUserId: id
           })}
-    fetch(followPath,config).then(res=>res.json()).then(obj=>{
+  return(dispatch)=>{  fetch(followPath,config).then(res=>res.json()).then(obj=>{
         debugger
-    })
+        dispatch({type: "FOLLOWS"})
+    })}
 
 }
 function signUp(user) { 
