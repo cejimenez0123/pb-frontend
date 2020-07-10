@@ -26,7 +26,7 @@ function startBook(title,is_Home_Book="false"){
         if(book.is_home_book !== "true"){
         dispatch(setCurrentBook(book)) 
         }}
-        return null
+    
     
     })}
 }

@@ -14,24 +14,9 @@ function SIGN_UP_START(){
     return {
     type: "SIGN_UP_START"}
 }
-function followUser(id){
-    console.log("FIJDOOF")
-    let config = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-              followerId: localStorage.getItem("currentUser"),
-              followedUserId: id
-          })}
-  return(dispatch)=>{  fetch(followPath,config).then(res=>res.json()).then(obj=>{
-        debugger
-        dispatch({type: "FOLLOWS"})
-    })}
 
-}
+
+
 function signUp(user) { 
    
     let config = {
@@ -53,9 +38,10 @@ function signUp(user) {
                 debugger
                 user = user.data.attributes
                 localStorage.setItem("currentUser",user.id)
+                history.push(`/user/${user.id}`)
                 dispatch(startBook("My Book"))
                 dispatch({ type: 'SIGN_UP', user})
-                history.push(`/user/${user.id}`)
+                
                 ;     
             }
                  
@@ -158,5 +144,5 @@ function getUsers(){
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 
-export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, followUser,useUserActions}
+export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
 

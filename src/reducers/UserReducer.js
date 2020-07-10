@@ -13,9 +13,8 @@ requesting: false },
                 return {...state,requesting: true,loggedIn: false}
             case "SIGN_UP":    
                 let user = action.user
-                
-                return {...state, users: [...state.users.concat(user)],
-                    currentUser: user, loggedIn: true }
+                debugger
+                return {...state,currentUser: user, loggedIn: true }
             case "USER_IN_VIEW":
             console.log(action.user)
             return {...state,userInView: action.user}
