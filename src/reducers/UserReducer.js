@@ -2,6 +2,8 @@
 export default function UserReducer(
     state={users: [],
         currentUser: {},
+        followedUsers: [],
+        userFollowers: [],
         userInView: {},
     loggedIn: false,
 requesting: false },
@@ -35,8 +37,12 @@ requesting: false },
             case "START_SET_CURRENT_USER":
                 return {...state,requesting: true}
             case "SET_CURRENT_USER":
-            return{...state,currentUser: action.user, loggedIn: true,requesting: false}
-                case "END_CURRENT_USER": 
+                return{...state,currentUser: action.user, loggedIn: true,requesting: false}
+            case "FOLLOWED_USERS":
+                return {...state,followedUsers: action.follows}
+            case "USERS_FOLLOWED":
+                return {...state, userFollowers: action.follows}
+            case "END_CURRENT_USER": 
               
                 localStorage.setItem("currentUser","")
                 return{...state,currentUser:null,loggedIn: false} 

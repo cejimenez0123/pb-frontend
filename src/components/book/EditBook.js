@@ -32,7 +32,7 @@ if(this.props.book.user){
     }
 
    renderIf(){
-       debugger 
+     
         if(this.props.book ){
            let pages = this.props.pages.filter(page=>{
                return page.attributes.book_id == this.props.book.id

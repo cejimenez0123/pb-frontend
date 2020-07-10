@@ -14,6 +14,7 @@ import Editor from "../components/page/editor"
 import SearchCardIndex from "../components/user/SearchCardIndex"
 import BoxEditor from "../components/page/BoxEditor"
 import BookContainer from './BookContainer'
+import {getFollowersOfUser,getFollowedUsersOfUser} from "../actions/FollowActions"
 import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
 import PageInput from "../components/page/PageInput"
 import BookIndex from "../components/book/BookIndex"
@@ -24,10 +25,12 @@ class ProfileContainer extends React.Component{
         super(props)
     }
     componentDidMount(){
+       const id=  localStorage.getItem("currentUser")
         this.props.getInbox()
         this.props.setCurrentUser()
         this.props.getUsers()   
-        this.props.getBooksOfUser(localStorage.getItem("currentUser"))
+        this.props.getFollowedUsers(id)
+        this.props.getBooksOfUser(id)
    
         
          this.props.getMyPages()
@@ -66,7 +69,9 @@ getUsers: ()=>dispatch(getUsers()),
 savePage: (data)=>dispatch(savePage(data)),
 getAllBooks: ()=>dispatch(getAllBooks()),
 getBooksOfUser: (id)=>dispatch(getBooksOfUser(id)),
-startBook: (title)=>dispatch(startBook(title))}
+startBook: (title)=>dispatch(startBook(title)),
+getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
+    getFollowedUsers: (id)=>dispatch(getFollowedUsersOfUser(id))}
 }
 function mapStateToProps(state){
     return{
@@ -77,7 +82,8 @@ function mapStateToProps(state){
         myPages: state.pages.myPages,
         currentBook: state.books.currentBook,
         homeBook: state.users.currentUser.home_book,
-        userBooks: state.books.booksOfUser
+        userBooks: state.books.booksOfUser,
+        FollowedUsers: state.users.followedUsers
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)
