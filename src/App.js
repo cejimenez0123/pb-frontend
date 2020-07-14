@@ -61,7 +61,7 @@ class App extends React.Component{
               <BookIndexContainer books={this.props.books}/>
           </Route> */}
           <Route path="/libraries/1">
-              <LocalLibraryContainer books={this.props.books}/>
+              <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
           </Route>
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>

@@ -32,7 +32,8 @@ filterFunction(e){
         this.props.endSession()
     }
 renderif(){
-    
+      console.log(this.props.loggedIn)
+      console.log(this.props.currentUser)
         if (this.props.loggedIn){
             return(
       <div id="Navbar">
@@ -110,6 +111,9 @@ function mapState(state){
   return{users: state.users.users,
   loggedIn: state.users.loggedIn,
   currentUser: state.users.currentUser}
+}
+function mapDispatch(dispatch){
+  
 }
 export default connect(mapState)(NavbarContainer)
 

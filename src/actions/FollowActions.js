@@ -1,6 +1,7 @@
 const followUserPath="http://localhost:3000/follow_users"
 const userPath = "http://127.0.0.1:3000/users"
 function followUser(id){
+    debugger
     console.log("FIJDOOF")
     let config = {
         method: 'POST',
@@ -14,7 +15,7 @@ function followUser(id){
           })}
   return(dispatch)=>{  fetch(followUserPath,config).then(res=>res.json()).then(obj=>{
         debugger
-        dispatch(getFollowersOfUser(localStorage.getItem("currentUser")))
+        dispatch(getFollowedUsersOfUser(localStorage.getItem("currentUser")))
     })}
 
 }

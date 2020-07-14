@@ -2,7 +2,7 @@ import React from 'react'
 import NavbarContainer from "./NavbarContainer" 
 import ProfileCard from "../components/user/ProfileCard"
 import BookIndex from "../components/book/BookIndex"
-import {followUser} from '../actions/FollowActions'
+import {followUser,getFollowersOfUser} from '../actions/FollowActions'
 import {connect} from "react-redux"
 let id= window.location.pathname.split("/")[2]
  let user
@@ -41,6 +41,7 @@ class PublicProfileContainer extends React.Component{
     }
 }
 const mapDispatch = (dispatch)=>{
-    return{followUser: (id)=>dispatch(followUser(id))}
+    return{followUser: (id)=>dispatch(followUser(id)),
+    getFollowers: (id)=>dispatch(getFollowersOfUser(id))}
 }
 export default connect(null,mapDispatch)(PublicProfileContainer)
