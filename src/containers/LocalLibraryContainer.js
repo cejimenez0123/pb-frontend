@@ -5,6 +5,8 @@ import Library from "../components/library/Library"
 class LocalLibraryContainer extends React.Component{
 
     render(){
+
+        console.log(this.props.books)
         return(<div>
     <NavbarContainer/>
     <Books books={this.props.books}/>

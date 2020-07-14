@@ -1,43 +1,64 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Page from "../page/page"
+import {ListGroup} from 'react-bootstrap'
 class Library extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state={books:[],
         pages: []}
     }
-    componentDidMount(){
-
-        let filterPages 
-        if(this.props.books){
+    componentDidUpdate(){
+      
+       
+ 
+}
+renderThis(){
+ let filterPages = []
+        
+    if(this.props.books.length > 0){
+            
             this.props.books.forEach(book=>{
      filterPages= this.props.allPages.filter(t=>{ 
-                return t.attributes == book.attributes.id
+       
+                return t.attributes.book_id === book.attributes.id
 
         })
         
       })
-   filterPages.map(t=>{
+    
+      }
+
+        if(filterPages.length >0){
             debugger
-            return <Page page={t}/>
-        })
-        this.setState({pages: filterPages}    )     
-}}
+         return filterPages.map((t,i)=>{
+    
+              return (<Page page={t.attributes} key={i}/>)
+
+          })
+          
+          
+         
+      }
+
+    
+}   
     render(){
         return(<div>
-    {this.state.pages}
+  
+    {this.renderThis()}
+
         </div>)
     }
 }
 const mapStateToProps=(state)=>{
     return {
-        libraries: state.libraries.libraries,
+        allLibraries: state.libraries.libraries,
         allBooks: state.books.books,
         allPages: state.pages.pages
     
     }
 }
-export default connect(mapStateToProps)(Library)
+export default connect(mapStateToProps,null)(Library)
 
 
