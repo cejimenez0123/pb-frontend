@@ -30,7 +30,7 @@ renderThis(){
       }
 
         if(filterPages.length >0){
-            debugger
+         
          return filterPages.map((t,i)=>{
     
               return (<Page page={t.attributes} key={i}/>)

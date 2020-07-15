@@ -4,6 +4,7 @@ import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import { getPagesOfBook } from "../../actions/PageActions"
 import PageCards from "../page/PageCards"
+
 class PublishedBook extends React.Component{
     constructor(){
         super()

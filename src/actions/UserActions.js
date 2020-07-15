@@ -5,7 +5,7 @@ import {startBook,setCurrentBook} from "./BookActions"
 const userPath = "http://127.0.0.1:3000/users"
 const followPath = "http://127.0.0.1:3000/follows"
 
-
+const path1= "https://quizzical-colden-c4e470.netlify.app"
 function useUserActions(){
     return {signUp: (user)=>signUp(user),
             logIn: (user)=>LOG_IN(user)}
@@ -33,7 +33,7 @@ function signUp(user) {
          
         return(dispatch)=>{
             dispatch(SIGN_UP_START())
-            fetch(userPath,config).then(res => res.json())
+            fetch(path1+"/users",config).then(res => res.json())
             .then(user =>{
                 debugger
                 user = user.data.attributes
