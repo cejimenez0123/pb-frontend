@@ -30,6 +30,7 @@ class ProfileContainer extends React.Component{
         this.props.setCurrentUser()
         this.props.getUsers()   
         this.props.getFollowedUsers(id)
+        this.props.getFollowers(id)
         this.props.getBooksOfUser(id)
    
         
@@ -46,10 +47,14 @@ class ProfileContainer extends React.Component{
         let book = this.props.currentUser.home_book
         
         return(
-            <div >
+            <div className="aContainer">
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
+                <button>Followers</button>
+                <button>Following</button> 
+                <div className="bContainer">
+                </div>
                 <EditBook book={book} />
                 <BookIndex books={this.props.booksInView}/>
             </div>

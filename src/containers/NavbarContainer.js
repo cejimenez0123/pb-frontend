@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
 import {Navbar,Nav,Form,FormControl,Button,ListGroup,OverlayTrigger,Popover} from 'react-bootstrap'
+import {SET_CURRENT_USER} from "../actions/UserActions"
 import SearchBar from "../components/SearchBar"
 class NavbarContainer extends React.Component{
    constructor(){
@@ -32,9 +33,9 @@ filterFunction(e){
         this.props.endSession()
     }
 renderif(){
-      console.log(this.props.loggedIn)
-      console.log(this.props.currentUser)
-        if (this.props.loggedIn){
+      console.log("xxxx",this.props.loggedIn)
+   
+        if (this.props.loggedIn ){
             return(
       <div id="Navbar">
         <Navbar bg="dark" variant="dark">
@@ -113,7 +114,7 @@ function mapState(state){
   currentUser: state.users.currentUser}
 }
 function mapDispatch(dispatch){
-  
+
 }
 export default connect(mapState)(NavbarContainer)
 

@@ -3,6 +3,7 @@ import Pages from '../components/page/pages'
 import Book from "../components/book/book"
 import NavbarContainer from "./NavbarContainer"
 import { connect} from 'react-redux'
+
 import {savePage} from '../actions/PageActions'
 import PageInput from "../components/page/PageInput"
 class BookContainer extends React.Component{
@@ -10,7 +11,9 @@ constructor(){
     super()
     this.state={title: ""}
 }
+handleOnClick(){
 
+}
 componentDidMount(){
     
     if(this.props.book){
@@ -29,6 +32,7 @@ componentDidMount(){
         <NavbarContainer/>
         {this.state.title}
         BookContainer
+        <button onClick={()=>this.handleOnClick()}>Follow</button>
         <Book book={this.props.book}/>
            
             

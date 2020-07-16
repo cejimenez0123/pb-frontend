@@ -50,6 +50,16 @@
 .searchForm{
 	position:relative
 }
+.bContainer{
+	position: absolute;
+	border-top: rgba(255, 250, 240, 0.932);
+	border-bottom: rgba(255, 250, 240, 0.932);
+	
+	right: 20%;
+	height: 200px;
+	width: 200px;
+}
+.aContainer{position: relative}
 .page{
 	height: 864px;
 	width: 816px;
