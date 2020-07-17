@@ -15,7 +15,7 @@ requesting: false },
                 return {...state,requesting: true,loggedIn: false}
             case "SIGN_UP":    
                 let user = action.user
-                debugger
+            
                 return {...state,currentUser: user, loggedIn: true }
             case "USER_IN_VIEW":
             console.log(action.user)

@@ -9,7 +9,6 @@ import {share} from '../../actions/PageActions'
 import {Accordion,Card,Button} from 'react-bootstrap'
 import SearchCard from '../user/SearchCard'
 
-import Editor from "./editor"
 const PageBox =(props)=>{
     let store = useStore()
     let com = usePageActions()
@@ -64,7 +63,7 @@ debugger
                      </Accordion.Toggle>
                       </Card.Header>
                       <Accordion.Collapse eventKey="0">
-                      <Card.Body><Editor page={props.page}/></Card.Body>
+                      <Card.Body></Card.Body>
                </Accordion.Collapse>
                </Card>
                </Accordion>

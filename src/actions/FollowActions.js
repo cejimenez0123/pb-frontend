@@ -33,6 +33,7 @@ function getFollowedUsersOfUser(id){
     return(dispatch)=>{fetch(userPath+"/"+id+"/followed_users").then(res=>res.json()).then(obj=>{
     
         let follows= obj.data
+        console.log("FollowUSERS",follows)
         dispatch(usersFollowed(follows))
 
     })}
@@ -50,18 +51,22 @@ let config = {
               bookId: id
           })}
     return(dispatch)=>{fetch(followBookPath,config).then(res=>res.json()).then(obj=>{
-debugger
+
+    dispatch(getFollowedBooksOfUser(localStorage.getItem("currentUser")))
      
     })}
 }
 function getFollowedBooksOfUser(id){
+    return (dispatch)=>{fetch(userPath+"/"+id+"/followed_books").then(res=>res.json()).then(obj=>{
+        let follows = obj.data
+        dispatch(followedBooks(follows))
+    })}
 
-    
 }
 
 
 const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
               
 const usersFollowed=(follows)=>{return{type: "USERS_FOLLOWED",follows}}
-const followedBooks=(follows)=>{return{type: "FOLLOWED_BOOKS",follows}}
-export {followUser, getFollowersOfUser,getFollowedUsersOfUser}
+const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
+export {followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}

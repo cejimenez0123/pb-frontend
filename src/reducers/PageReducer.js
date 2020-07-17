@@ -1,6 +1,6 @@
 
 export default function PageReducer(
-    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false},
+    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: []},
     action){
 
         switch(action.type){

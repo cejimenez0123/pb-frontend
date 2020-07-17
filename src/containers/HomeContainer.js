@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import BookContainer from "./BookContainer"
 import Navbar from './NavbarContainer'
 import NavbarContainer from './NavbarContainer'
-import Editor from './EditorContainer'
 import { useStore } from 'react-redux'
 import { render } from 'react-dom'
 import SearchCardIndex from '../components/user/SearchCardIndex'

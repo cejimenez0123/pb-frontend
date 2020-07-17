@@ -8,18 +8,19 @@ import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserAction
 import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
 import Pages from "../components/page/pages"
-import EditorContainer from './EditorContainer'
+import ReactDOM from 'react-dom'
 import PageBoxes from '../components/page/PageBoxes'
-import Editor from "../components/page/editor"
+
 import SearchCardIndex from "../components/user/SearchCardIndex"
-import BoxEditor from "../components/page/BoxEditor"
+
 import BookContainer from './BookContainer'
-import {getFollowersOfUser,getFollowedUsersOfUser} from "../actions/FollowActions"
+import {getFollowersOfUser,getFollowedUsersOfUser,getFollowedBooksOfUser} from "../actions/FollowActions"
 import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
 import PageInput from "../components/page/PageInput"
 import BookIndex from "../components/book/BookIndex"
 import PageCards from "../components/page/PageCards"
 import EditBook from "../components/book/EditBook"
+import FollowingFeed from '../components/feed/FollowingFeed'
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -32,7 +33,8 @@ class ProfileContainer extends React.Component{
         this.props.getFollowedUsers(id)
         this.props.getFollowers(id)
         this.props.getBooksOfUser(id)
-   
+        this.props.getFollowedUsers(id)
+        this.props.getFollowedBooks(id)
         
          this.props.getMyPages()
         
@@ -43,6 +45,14 @@ class ProfileContainer extends React.Component{
        this.props.startBook(title)
        
     }
+    handleClickFollowers(){
+
+    }
+    handleClickFollowing(){
+        let container = document.querySelector(".bContainer")
+        ReactDOM.render(<FollowingFeed books={this.props.followedBooks} users={this.props.followedUsers} pages={this.props.pages}/>,container)
+        
+    }
     render(){
         let book = this.props.currentUser.home_book
         
@@ -52,7 +62,7 @@ class ProfileContainer extends React.Component{
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
                 <button>Followers</button>
-                <button>Following</button> 
+                <button onClick={()=>this.handleClickFollowing()}>Following</button> 
                 <div className="bContainer">
                 </div>
                 <EditBook book={book} />
@@ -76,7 +86,8 @@ getAllBooks: ()=>dispatch(getAllBooks()),
 getBooksOfUser: (id)=>dispatch(getBooksOfUser(id)),
 startBook: (title)=>dispatch(startBook(title)),
 getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
-    getFollowedUsers: (id)=>dispatch(getFollowedUsersOfUser(id))}
+    getFollowedUsers: (id)=>dispatch(getFollowedUsersOfUser(id)),
+    getFollowedBooks:(id)=>dispatch(getFollowedBooksOfUser(id))}
 }
 function mapStateToProps(state){
     return{
@@ -88,7 +99,9 @@ function mapStateToProps(state){
         currentBook: state.books.currentBook,
         homeBook: state.users.currentUser.home_book,
         userBooks: state.books.booksOfUser,
-        FollowedUsers: state.users.followedUsers
+        followedUsers: state.users.followedUsers,
+        followedBooks: state.books.followedBooks,
+        pages: state.pages.pages
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)

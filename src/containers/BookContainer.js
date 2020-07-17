@@ -3,7 +3,7 @@ import Pages from '../components/page/pages'
 import Book from "../components/book/book"
 import NavbarContainer from "./NavbarContainer"
 import { connect} from 'react-redux'
-
+import {followBook} from "../actions/FollowActions"
 import {savePage} from '../actions/PageActions'
 import PageInput from "../components/page/PageInput"
 class BookContainer extends React.Component{
@@ -12,7 +12,7 @@ constructor(){
     this.state={title: ""}
 }
 handleOnClick(){
-
+    this.props.followBook(this.props.book.id)
 }
 componentDidMount(){
     
@@ -44,7 +44,8 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
     return{
-        savePage: (data)=>dispatch(savePage(data))
+        savePage: (data)=>dispatch(savePage(data)),
+        followBook:(id)=>dispatch(followBook(id))
 
     }
 }

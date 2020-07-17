@@ -14,13 +14,14 @@ class Library extends React.Component{
  
 }
 renderThis(){
+  
  let filterPages = []
         
     if(this.props.books.length > 0){
             
             this.props.books.forEach(book=>{
      filterPages= this.props.allPages.filter(t=>{ 
-       
+
                 return t.attributes.book_id === book.attributes.id
 
         })
@@ -30,7 +31,7 @@ renderThis(){
       }
 
         if(filterPages.length >0){
-         
+        
          return filterPages.map((t,i)=>{
     
               return (<Page page={t.attributes} key={i}/>)

@@ -38,6 +38,7 @@ class LocalLibraryContainer extends React.Component{
     <NavbarContainer/>
     <button onClick={(e)=>this.handleOnClick(e)}>Books</button><button onClick={(e)=>this.handleOnClick(e)}>Pages</button>
     <div className="LibraryContainer">
+       
         <Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>
     </div>
     
