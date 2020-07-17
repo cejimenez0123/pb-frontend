@@ -22,19 +22,20 @@ function followUser(id){
 }
 function getFollowersOfUser(id){
     return(dispatch)=>{fetch(userPath+"/"+id+"/followers").then(obj=>obj.json()).then(obj=>{
- 
+
         let follows = obj.data
-        dispatch(followedUsers(follows))
+        dispatch(usersFollowers(follows))
 
     })}
 
 }
 function getFollowedUsersOfUser(id){
+    console.log("EEAST")
     return(dispatch)=>{fetch(userPath+"/"+id+"/followed_users").then(res=>res.json()).then(obj=>{
-    
+
         let follows= obj.data
         console.log("FollowUSERS",follows)
-        dispatch(usersFollowed(follows))
+        dispatch(followedUsers(follows))
 
     })}
 
@@ -67,6 +68,6 @@ function getFollowedBooksOfUser(id){
 
 const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
               
-const usersFollowed=(follows)=>{return{type: "USERS_FOLLOWED",follows}}
+const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
 export {followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}

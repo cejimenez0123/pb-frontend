@@ -27,16 +27,15 @@ class ProfileContainer extends React.Component{
     }
     componentDidMount(){
        const id=  localStorage.getItem("currentUser")
-        this.props.getInbox()
+        // this.props.getInbox()
         this.props.setCurrentUser()
-        this.props.getUsers()   
-        this.props.getFollowedUsers(id)
-        this.props.getFollowers(id)
+        this.props.getFollowedUsers(id)  
+       this.props.getMyPages()
         this.props.getBooksOfUser(id)
-        this.props.getFollowedUsers(id)
-        this.props.getFollowedBooks(id)
         
-         this.props.getMyPages()
+        this.props.getFollowedBooks(id)
+         this.props.getFollowers(id)
+         
         
     }
     handleOnClick(){
@@ -49,13 +48,17 @@ class ProfileContainer extends React.Component{
 
     }
     handleClickFollowing(){
+       
         let container = document.querySelector(".bContainer")
         ReactDOM.render(<FollowingFeed books={this.props.followedBooks} users={this.props.followedUsers} pages={this.props.pages}/>,container)
         
     }
+    componentDidUpdate(){
+        console.log(this.props.followedUsers)
+    }
     render(){
         let book = this.props.currentUser.home_book
-        
+         
         return(
             <div className="aContainer">
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />

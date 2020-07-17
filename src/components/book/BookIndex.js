@@ -5,11 +5,11 @@ function BookIndex(props){
            
             if(props.books){
 
-    return props.books.map(book=>{
+    return props.books.map((book,i)=>{
             book = book.attributes
          
             return(<div>
-                    <a href={`http://localhost:3001/books/${book.id}`}>{book.title}</a>
+                    <a key={i} href={`http://localhost:3001/books/${book.id}`}>{book.title}</a>
             </div>)
         })}
         }

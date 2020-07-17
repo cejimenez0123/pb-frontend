@@ -34,7 +34,7 @@ filterFunction(e){
     }
 renderif(){
       console.log("xxxx",this.props.loggedIn)
-   
+ 
         if (this.props.loggedIn ){
             return(
       <div id="Navbar">

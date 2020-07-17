@@ -39,8 +39,10 @@ requesting: false },
             case "SET_CURRENT_USER":
                 return{...state,currentUser: action.user, loggedIn: true,requesting: false}
             case "FOLLOWED_USERS":
+         
                 return {...state,followedUsers: action.follows}
-            case "USERS_FOLLOWED":
+            case "USERS_FOLLOWERS":
+            
                 return {...state, userFollowers: action.follows}
             case "END_CURRENT_USER": 
               
