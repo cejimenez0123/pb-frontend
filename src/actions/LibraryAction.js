@@ -38,4 +38,4 @@ function getUserLibraries(id){
 
 function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
-export {startLibrary}
+export {startLibrary,getUserLibraries,getAllLibraries}

@@ -1,13 +1,18 @@
 import React from 'react'
+import LibraryIndexBox from "./LibraryIndexBox"
 
+function LibraryIndex(props){
 
-class LibraryIndex extends React.Component{
-
-
-    render(){
-        debugger
+   let t = []
+   if(props.libraries){
+  t = props.libraries.map(t=>{return(<LibraryIndexBox library={t}/>)})
+   }
+  
         return(<div>
+        <ul>
+        {t}
+        </ul>
         </div>)
-    }
+    
 }
 export default LibraryIndex

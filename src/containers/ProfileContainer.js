@@ -11,7 +11,7 @@ import SearchUsers from '../components/user/SearchUsers'
 import Pages from "../components/page/pages"
 import ReactDOM from 'react-dom'
 import PageBoxes from '../components/page/PageBoxes'
-
+import LibraryIndex from "../components/library/LibraryIndex"
 import SearchCardIndex from "../components/user/SearchCardIndex"
 
 import BookContainer from './BookContainer'
@@ -33,7 +33,7 @@ class ProfileContainer extends React.Component{
         this.props.getFollowedUsers(id)  
        this.props.getMyPages()
         this.props.getBooksOfUser(id)
-        
+        this.props.getUserLibraries(id)
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
          
@@ -56,7 +56,10 @@ class ProfileContainer extends React.Component{
     }
     handleStartLib(){
         let name = prompt("Name your Library","unititled")
-        this.props.startLibrary(name)
+        if(name!==null){
+            this.props.startLibrary(name)
+        }
+        
     }
     componentDidUpdate(){
         console.log(this.props.followedUsers)
@@ -76,6 +79,7 @@ class ProfileContainer extends React.Component{
                 </div>
                 <EditBook book={book} />
                 <BookIndex books={this.props.booksInView}/>
+                <LibraryIndex libraries={this.props.libraries}/>
             </div>
         )
     }
@@ -97,7 +101,8 @@ startBook: (title)=>dispatch(startBook(title)),
 getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getFollowedUsers: (id)=>dispatch(getFollowedUsersOfUser(id)),
     getFollowedBooks:(id)=>dispatch(getFollowedBooksOfUser(id)),
-    startLibrary:(name)=>dispatch(startLibrary(name))}
+    startLibrary:(name)=>dispatch(startLibrary(name)),
+    getUserLibraries: (id)=>dispatch(getUserLibraries(id))}
 }
 function mapStateToProps(state){
     return{
