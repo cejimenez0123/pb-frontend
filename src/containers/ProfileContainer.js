@@ -3,6 +3,7 @@ import "../App.css"
 import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
+import {startLibrary} from "../actions/LibraryAction"
 import {startPage,myPages,savePage} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
@@ -53,6 +54,10 @@ class ProfileContainer extends React.Component{
         ReactDOM.render(<FollowingFeed books={this.props.followedBooks} users={this.props.followedUsers} pages={this.props.pages}/>,container)
         
     }
+    handleStartLib(){
+        let name = prompt("Name your Library","unititled")
+        this.props.startLibrary(name)
+    }
     componentDidUpdate(){
         console.log(this.props.followedUsers)
     }
@@ -63,6 +68,7 @@ class ProfileContainer extends React.Component{
             <div className="aContainer">
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+                <button onClick={()=>this.handleStartLib()}>Start Library</button>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
                 <button>Followers</button>
                 <button onClick={()=>this.handleClickFollowing()}>Following</button> 

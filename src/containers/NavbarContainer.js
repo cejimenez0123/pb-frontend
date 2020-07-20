@@ -111,7 +111,9 @@ function mapState(state){
 
   return{users: state.users.users,
   loggedIn: state.users.loggedIn,
-  currentUser: state.users.currentUser}
+  currentUser: state.users.currentUser,
+  books: state.books.books,
+  libraries: state.libraries.libraries}
 }
 function mapDispatch(dispatch){
 
