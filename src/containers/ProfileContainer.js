@@ -3,7 +3,7 @@ import "../App.css"
 import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
-import {startLibrary} from "../actions/LibraryAction"
+import {startLibrary,getUserLibraries} from "../actions/LibraryAction"
 import {startPage,myPages,savePage} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
@@ -63,7 +63,7 @@ class ProfileContainer extends React.Component{
     }
     render(){
         let book = this.props.currentUser.home_book
-         
+         console.log(this.props)
         return(
             <div className="aContainer">
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
@@ -96,7 +96,8 @@ getBooksOfUser: (id)=>dispatch(getBooksOfUser(id)),
 startBook: (title)=>dispatch(startBook(title)),
 getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getFollowedUsers: (id)=>dispatch(getFollowedUsersOfUser(id)),
-    getFollowedBooks:(id)=>dispatch(getFollowedBooksOfUser(id))}
+    getFollowedBooks:(id)=>dispatch(getFollowedBooksOfUser(id)),
+    startLibrary:(name)=>dispatch(startLibrary(name))}
 }
 function mapStateToProps(state){
     return{
@@ -110,7 +111,8 @@ function mapStateToProps(state){
         userBooks: state.books.booksOfUser,
         followedUsers: state.users.followedUsers,
         followedBooks: state.books.followedBooks,
-        pages: state.pages.pages
+        pages: state.pages.pages,
+        libraries: state.libraries.librariesInView
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)
