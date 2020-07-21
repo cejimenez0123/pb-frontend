@@ -3,7 +3,7 @@ import Book from './book'
 import PublishedBook from "./PublishedBook"
 const Books =(props)=>{
     let books="location not available"
-    if(window.location.pathname=="/libraries/1"){
+    if(window.location.pathname.includes("libraries")){
         books = props.books.map((book,i)=>{
             return (<PublishedBook book={book.attributes} key={i}/>)
         })

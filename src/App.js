@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser} from "./actions/UserActions"
+import {getLibrary,getBooksOfLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
@@ -47,7 +48,7 @@ class App extends React.Component{
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
           <Route path="/libraries/:id">
-            <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages}/>
+            <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib}/>
             </Route>
          < Route exact path="/books/:id/edit">
             <EditBookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
@@ -92,9 +93,9 @@ function mapDispatchToProps(dispatch){
     getAllBooks:()=>dispatch(getAllBooks()),
     getBook:(id)=>dispatch(getBook(id)),
     getUser:(id)=>dispatch(getUser(id)),
-    getBooksOfUser:(id)=>dispatch(getBooksOfUser(id),
-    
-    )
+    getBooksOfUser:(id)=>dispatch(getBooksOfUser(id)),
+    getLibrary:(id)=>dispatch(getLibrary(id)),
+    getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id))
   }
 }
 function mapStateToProps(state){
@@ -109,7 +110,8 @@ function mapStateToProps(state){
     inbox: state.pages.inbox,
     books: state.books.books,
     userInView: state.users.userInView,
-    booksInView: state.books.booksInView
+    booksInView: state.books.booksInView,
+    libraryInView: state.libraries.libraryInView
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)
