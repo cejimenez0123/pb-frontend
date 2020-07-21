@@ -3,6 +3,7 @@ import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import { getPagesOfBook } from "../../actions/PageActions"
 import PageCards from "../page/PageCards"
+
 class Book extends React.Component{
     constructor(){
         super()

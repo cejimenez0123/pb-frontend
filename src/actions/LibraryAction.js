@@ -1,6 +1,7 @@
 
 const libraryPath = "http://localhost:3000/libraries"
 const userPath = "http://localhost:3000/users"
+const bookLibPath = "http://localhost:3000/book_libraries"
 function startLibrary(name){
  let config = {
         method: 'POST',
@@ -35,7 +36,21 @@ function getUserLibraries(id){
     }
 
 }
+function addBookToLibrary({bookId,libraryId}){
+    debugger
+        let config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              bookId: bookId,
+              libraryId: libraryId
+          })}
+          fetch()
+}
 
 function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
-export {startLibrary,getUserLibraries,getAllLibraries}
+export {startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary}
