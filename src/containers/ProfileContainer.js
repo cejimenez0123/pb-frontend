@@ -78,7 +78,9 @@ class ProfileContainer extends React.Component{
                 <div className="bContainer">
                 </div>
                 <EditBook book={book} />
+                <h3>Books</h3>
                 <BookIndex books={this.props.booksInView}/>
+                <h3>Libraries</h3>
                 <LibraryIndex libraries={this.props.libraries}/>
             </div>
         )

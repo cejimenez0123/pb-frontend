@@ -20,6 +20,11 @@ function startLibrary(name){
       }).catch(err=>alert(err))}
     
 }
+function getLibrary(id){
+    return(dispatch)=>{fetch(libraryPath+`/${id}`).then(res=>res.json()).then(obj=>{
+        debugger
+    })}
+}
 function getAllLibraries(){
 
     return(dispatch)=>(fetch(libraryPath).then(res=>res.json()).then(obj=>{
@@ -36,6 +41,15 @@ function getUserLibraries(id){
     }
 
 }
+
+function getBookLibraries(){
+
+    return(dispatch)=>{fetch(bookLibPath).then(res=>res.json()).then(obj=>{
+        let books = obj.data
+        dispatch(allBookLibraries(books))
+
+    })}
+}
 function addBookToLibrary({bookId,libraryId}){
     debugger
         let config = {
@@ -48,9 +62,22 @@ function addBookToLibrary({bookId,libraryId}){
               bookId: bookId,
               libraryId: libraryId
           })}
-          fetch()
+          fetch(bookLibPath,config).then(res=>res.json()).then(obj=>{
+              debugger
+          })
 }
+function getBooksOfLibraries(id){
 
+
+    return(dispatch)=>{fetch(libraryPath+`/${id}/books`).then(res=>res.json()).then(obj=>{
+        debugger
+        let books = obj.data
+        dispatch(booksInView(books))
+    })}
+
+}
+function booksInView(books){return{type:"BOOKS_IN_VIEW",books}}
 function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
+function allBookLibraries(books){return{type:"ALL_BOOK_LIBRARIES",books}}
 export {startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary}

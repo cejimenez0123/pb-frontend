@@ -17,6 +17,7 @@ import {history} from "./history"
 import InboxContainer from './containers/InboxContainer';
 import PublicProfileContainer from "./containers/PublicProfileContainer"
 import LocalLibraryContainer from "./containers/LocalLibraryContainer"
+import LibraryContainer from "./containers/LibraryContainer"
 let bot
 class App extends React.Component{
   componentDidMount(){
@@ -37,7 +38,7 @@ class App extends React.Component{
       <Route exact path="/" >
           <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>
         </Route>
-        
+    
     
        
        
@@ -45,6 +46,9 @@ class App extends React.Component{
         <Route exact path="/users/:id/inbox" >
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
+          <Route path="/libraries/:id">
+            <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages}/>
+            </Route>
          < Route exact path="/books/:id/edit">
             <EditBookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
