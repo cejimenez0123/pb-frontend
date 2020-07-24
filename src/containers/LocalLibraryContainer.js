@@ -6,6 +6,8 @@ import Library from "../components/library/Library"
 import {connect,Provider} from 'react-redux'
 import {createStore} from 'redux'
 import store from '../index'
+import Pages from "../components/page/pages"
+let toggle = "pages"
 class LocalLibraryContainer extends React.Component{
     constructor(){
         super()
@@ -20,26 +22,43 @@ class LocalLibraryContainer extends React.Component{
   
         let container=document.querySelector(".LibraryContainer")
         if(e.target.innerHTML =="Books"){
-
+        //     // this.setState(inView: ()=>{return (<div><Books books={this.props.books}/></div>)})
+           
             ReactDOM.render(
             <Provider store={store}><Books  books={this.props.books}/></Provider>,container)
         }else if(e.target.innerText=="Pages"){
           
-            ReactDOM.render(<Provider store={store}><Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/></Provider>,container)
+        //    this.setState(inView: ()=>{return(<Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>)})
+           
+            ReactDOM.render(<Provider store={store}><Pages pages={this.props.pages}/></Provider>,container)
         }
         
 
 
     }
+    // renderContent(){
+    //     let content = null
+    //    if(toggle === "pages"){
+   
+    //         content = (<Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>)
+    //     }else if(toggle === "books"){
+    //         content = (<Books  books={this.props.books}/>)
+
+    //     }
+    
+    //     return content
+    // }
     render(){
 
-        console.log(this.props.books)
+        console.log("pages",this.props.pages)
+        console.log("users",this.props.users)
         return(<div>
     <NavbarContainer/>
     <button onClick={(e)=>this.handleOnClick(e)}>Books</button><button onClick={(e)=>this.handleOnClick(e)}>Pages</button>
     <div className="LibraryContainer">
        
-        <Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>
+    {/* <Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/> */}
+    <Pages pages={this.props.pages}/>
     </div>
     
     

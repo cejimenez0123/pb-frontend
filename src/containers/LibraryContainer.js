@@ -1,5 +1,6 @@
 import React from 'react'
 import Books from "../components/book/books"
+import NavbarContainer from "./NavbarContainer"
 class LibraryContainer extends React.Component{
     constructor(){
         super()
@@ -22,6 +23,7 @@ class LibraryContainer extends React.Component{
         }
        
         return(<div>
+        <NavbarContainer/>
         {lib.name}
     <Books books={this.props.books}/>
         </div>)

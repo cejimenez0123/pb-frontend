@@ -14,9 +14,9 @@ class Library extends React.Component{
  
 }
 renderThis(){
-  
+  console.log(this.props.pages)
  let filterPages = []
-        
+       console.log("HHHH",this.props.books) 
     if(this.props.books.length > 0){
             
             this.props.books.forEach(book=>{
@@ -29,11 +29,12 @@ renderThis(){
       })
     
       }
-
+      console.log("foofofof",this.props.pages)
+ console.log("foofofof",filterPages.length)
         if(filterPages.length >0){
         
          return filterPages.map((t,i)=>{
-    
+   
               return (<Page page={t.attributes} key={i}/>)
 
           })
@@ -45,6 +46,7 @@ renderThis(){
     
 }   
     render(){
+        
         return(<div>
   
     {this.renderThis()}

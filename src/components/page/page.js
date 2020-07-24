@@ -4,12 +4,13 @@ import {ListGroup} from 'react-bootstrap'
 const Page = (props)=>{
     function handleDbClick(){
         debugger
-        
+
     }
+    console.log(props.page)
      if(props.page){
         return(
         <div id="pages" >
-           <ListGroup.Item onDoubleClick={handleDbClick}>
+           <ListGroup.Item>
            {props.page.data}
            </ListGroup.Item>
         </div>

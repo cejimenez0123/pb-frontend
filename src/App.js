@@ -47,9 +47,14 @@ class App extends React.Component{
         <Route exact path="/users/:id/inbox" >
           <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
           </Route>
-          <Route path="/libraries/:id">
+      <Switch>
+        <Route exact path="/library/1">
+            <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
+        </Route>
+        <Route path="/libraries/:id">
             <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib}/>
-            </Route>
+        </Route>
+      </Switch>
          < Route exact path="/books/:id/edit">
             <EditBookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
@@ -65,9 +70,7 @@ class App extends React.Component{
           {/* <Route exact path="/street">
               <BookIndexContainer books={this.props.books}/>
           </Route> */}
-          <Route path="/libraries/1">
-              <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
-          </Route>
+          
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>
           </Route>

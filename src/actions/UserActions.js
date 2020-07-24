@@ -37,6 +37,7 @@ function signUp(user) {
             .then(user =>{
                 user = user.data.attributes
                 localStorage.setItem("currentUser",user.id)
+                localStorage.setItem("loggedIn",true)
                 history.push(`/user/${user.id}`)
                 dispatch(startBook("My Book"))
                 dispatch({ type: 'SIGN_UP', user})
@@ -79,6 +80,7 @@ const LOG_IN = (user)=>{
           
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
+        localStorage.setItem("loggedIn",true)
         history.push(`/user/${user.id}`)
         debugger
         // dispatch(setCurrentBook(user.home_book))
@@ -117,6 +119,8 @@ const getUser = (id)=>{
 
 const END_CURRENT_USER=()=>{
 return(dispatch)=>{
+    localStorage.setItem("currentUser","")
+    localStorage.setItem("loggedIn",false)
     dispatch({type:"END_CURRENT_USER"})}
 }
 const shareWith=(user,content)=>{
