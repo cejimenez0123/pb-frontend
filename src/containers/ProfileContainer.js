@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom'
 import PageBoxes from '../components/page/PageBoxes'
 import LibraryIndex from "../components/library/LibraryIndex"
 import SearchCardIndex from "../components/user/SearchCardIndex"
-
+import {Button,Modal } from 'react-bootstrap'
 import BookContainer from './BookContainer'
 import {getFollowersOfUser,getFollowedUsersOfUser,getFollowedBooksOfUser} from "../actions/FollowActions"
 import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
@@ -22,6 +22,8 @@ import BookIndex from "../components/book/BookIndex"
 import PageCards from "../components/page/PageCards"
 import EditBook from "../components/book/EditBook"
 import FollowingFeed from '../components/feed/FollowingFeed'
+import FollowingBtn from "../components/user/FollowingBtn"
+import FollowersBtn from "../components/user/FollowersBtn"
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -73,8 +75,8 @@ class ProfileContainer extends React.Component{
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleStartLib()}>Start Library</button>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
-                <button>Followers</button>
-                <button onClick={()=>this.handleClickFollowing()}>Following</button> 
+                <FollowersBtn/>
+               <FollowingBtn/> 
                 <div className="bContainer">
                 </div>
                 <EditBook book={book} />

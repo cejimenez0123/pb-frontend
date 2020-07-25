@@ -43,12 +43,13 @@ renderif(){
     <div>    <a class="navbar-brand" href="/">Pb</a>
     
         
-        <SearchBar/>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <SearchBar/>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href={`/users/${this.props.currentUser.id}`}>Profile <span class="sr-only">(current)</span></a>
@@ -69,29 +70,18 @@ renderif(){
       </nav>
          
     </div>
-//       <div id="Navbar">
-//         <Navbar bg="dark" variant="dark">
-//     <Navbar.Brand href="/">Pb</Navbar.Brand>
-//     <Nav className="mr-auto">
-//       <Nav.Link >Home</Nav.Link>
-//       <Nav.Link href="">Street</Nav.Link>
-//       <Nav.Link href="/library/1">Local Library</Nav.Link>
-//       <Nav.Link  onClick={()=>this.handleOnClick}href="/">Log Out</Nav.Link>
-//     </Nav>
-//    <SearchBar users={this.props.users}/>
-    
-//   </Navbar>
-//       </div>
+
 )
         }else{
             return(
         <div >
 
          <nav class="navbar navbar-expand-lg navbar-light bg-success">
-    <div>    <a class="navbar-brand" href="/">Pb</a>
+      <a class="navbar-brand" href="/">Pb</a>
     
-        
-        <SearchBar/>
+        <div>  
+        <SearchBar/>       
+       
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -104,6 +94,9 @@ renderif(){
             <li class="nav-item">
               <a class="nav-link" href="/library/1">Library</a>
             </li>
+        
+              
+         
           </ul>
 </div>
 

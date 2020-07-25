@@ -16,6 +16,7 @@ function followUser(id){
           })}
   return(dispatch)=>{  fetch(followUserPath,config).then(res=>res.json()).then(obj=>{
         debugger
+        window.alert("user followed")
         dispatch(getFollowedUsersOfUser(localStorage.getItem("currentUser")))
     })}
 
@@ -32,7 +33,7 @@ function getFollowersOfUser(id){
 function getFollowedUsersOfUser(id){
     console.log("EEAST")
     return(dispatch)=>{fetch(userPath+"/"+id+"/followed_users").then(res=>res.json()).then(obj=>{
-
+debugger
         let follows= obj.data
         console.log("FollowUSERS",follows)
         dispatch(followedUsers(follows))
@@ -52,7 +53,7 @@ let config = {
               bookId: id
           })}
     return(dispatch)=>{fetch(followBookPath,config).then(res=>res.json()).then(obj=>{
-
+window.alert("follow sent")
     dispatch(getFollowedBooksOfUser(localStorage.getItem("currentUser")))
      
     })}
