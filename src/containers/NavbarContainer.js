@@ -33,55 +33,96 @@ filterFunction(e){
         this.props.endSession()
     }
 renderif(){
-      console.log("xxxx",this.props.loggedIn)
+//       console.log("xxxx",this.props.loggedIn)
  
         if (this.props.loggedIn ){
             return(
-      <div id="Navbar">
-        <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="/">Pb</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href={`/users/${this.props.currentUser.id}`}>Home</Nav.Link>
-      <Nav.Link href="">Street</Nav.Link>
-      <Nav.Link href="/library/1">Local Library</Nav.Link>
-      <Nav.Link  onClick={()=>this.handleOnClick}href="/">Log Out</Nav.Link>
-    </Nav>
-   <SearchBar users={this.props.users}/>
+              <div >
+
+         <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <div>    <a class="navbar-brand" href="/">Pb</a>
     
-  </Navbar>
-      </div>)
+        
+        <SearchBar/>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href={`/users/${this.props.currentUser.id}`}>Profile <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/library/1">Library</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"o nClick={()=>this.handleOnClick()}href="/">Log Out</a>
+            </li>
+          </ul>
+</div>
+
+         </div>  
+      
+ 
+        
+      </nav>
+         
+    </div>
+//       <div id="Navbar">
+//         <Navbar bg="dark" variant="dark">
+//     <Navbar.Brand href="/">Pb</Navbar.Brand>
+//     <Nav className="mr-auto">
+//       <Nav.Link >Home</Nav.Link>
+//       <Nav.Link href="">Street</Nav.Link>
+//       <Nav.Link href="/library/1">Local Library</Nav.Link>
+//       <Nav.Link  onClick={()=>this.handleOnClick}href="/">Log Out</Nav.Link>
+//     </Nav>
+//    <SearchBar users={this.props.users}/>
+    
+//   </Navbar>
+//       </div>
+)
         }else{
             return(
         <div >
-            <Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="/">Pb</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href={`/users/${this.props.currentUser.id}`}>Sign In</Nav.Link>
-      <Nav.Link href="">Street</Nav.Link>
-      <Nav.Link href="/library/1">Local Library</Nav.Link>
-    </Nav>
+
+         <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <div>    <a class="navbar-brand" href="/">Pb</a>
     
+        
+        <SearchBar/>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Log In <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/library/1">Library</a>
+            </li>
+          </ul>
+</div>
 
-           
-     
-    <SearchBar users={this.props.users}/>
-   
-     
-  
-
-
-  </Navbar>
-   
+         </div>  
+      
+ 
+        
+      </nav>
+         
     </div>
-        )
-            
-           
-        }
-    }
+  )
+  
+  }
+}
+
     
 
   
-    handleActivation(e){
+     handleActivation(e){
       e.preventDefault()
      let items=  document.querySelectorAll(".nav-item")
      
@@ -94,7 +135,7 @@ renderif(){
       })
         e.target.classList.add("active")
        
-   }
+   } 
       render(){
         return(
     

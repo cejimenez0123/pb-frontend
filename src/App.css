@@ -64,6 +64,26 @@
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
+.navbar {
+	padding: 1em 2em 1em 2em;
+	background-color: red;
+}
+.all-content {
+	margin-top: 2em;
+}
+.profile-pic {
+	width: 7.5em;
+	border-radius: 8%;
+}
+.following-buttons {
+	padding-left: 1.6em;
+	padding-right: 1.6em;
+}
+.following-list {
+	padding-top: 1em;
+	padding-left: .5em;
+}
+
   /* Modal Content */
   .bookPopContent {
 	background-color: #fefefe;
