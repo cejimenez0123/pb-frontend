@@ -1,55 +1,82 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import { getPagesOfBook } from "../../actions/PageActions"
 import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 
-class Book extends React.Component{
-    constructor(){
-        super()
-        this.state={isEdit: false}
-    }
+function Book(props){
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
    
-    ifEditable(){
+   function ifEditable(){
 
 let user_id 
-if(this.props.book.user_id){
-    user_id = this.props.book.user_id
+if(props.book.user_id){
+    user_id = props.book.user_id
 }
-if(this.props.book.user){
-    user_id = this.props.book.user.id
+if(props.book.user){
+    user_id = props.book.user.id
 }     
     if(user_id==localStorage.getItem("currentUser")){
        return(<div>
-            <PageInput book={this.props.book}/>
+            <PageInput book={props.book}/>
             </div>)       
         }
     }
 
-renderIf(){
-       debugger
-        if(this.props.book ){
-           let pages = this.props.pages.filter(page=>{
-               return page.attributes.book_id == this.props.book.id
+function renderIf(){
+    
+        if(props.book ){
+           let pages = props.pages.filter(page=>{
+               return page.attributes.book_id == props.book.id
            })
             return(<div>
-                <h6>{this.props.book.title} </h6>
-                {this.ifEditable()}
+                <h3>{props.book.title} </h3>
+                {ifEditable()}
                 <PageCards pages={pages}/>
             </div>)
         };
     };
-  render(){ 
-         
+   function editBtn(){
+       let btn = null
+        if(props.book.user.id === localStorage.getItem("currentUser")){
+            btn = (<button>Edit Book</button>)
+        }
+        return btn
+    }
+    
+let book = props.book
+     
         return(<div>
-    {this.renderIf()}
-        </div>)
-      }
+        <div onDoubleClick={handleShow}>
+        {renderIf()}
+  </div>
+  <div>
+ <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+      by  <a by href={`/users/${book.user.id}`}> {book.user.username}</a>
+      {editBtn()}
+      
+       </Modal.Header>
+        <Modal.Body>{renderIf()}</Modal.Body>
+       <Modal.Footer>
+            
+         <Button variant="secondary" onClick={handleClose}>
+            Close
+           </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+       </Modal> 
+</div>
+ </div>
+        )
 
 }
-
-
 function mapDispatch(dispatch){
     return{getPagesOfBook:(id)=>dispatch()}
 }

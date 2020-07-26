@@ -4,7 +4,7 @@ import {useStore } from 'react-redux'
 import {ListGroup,Modal,Button} from 'react-bootstrap'
 const Page = (props)=>{
     function handleDbClick(){
-        debugger
+       
 
     }
     const store = useStore()
@@ -12,11 +12,15 @@ const Page = (props)=>{
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  debugger
-   
+    
+   let editBtn = null
      if(props.page.attributes){
      
          let page= props.page.attributes
+         
+        if (page.user.id === localStorage.getItem("currentUser")){
+            editBtn = (<button>Edit Page</button>)
+        }
         return(
              <div id="pages" >
            {/* <ListGroup.Item>
