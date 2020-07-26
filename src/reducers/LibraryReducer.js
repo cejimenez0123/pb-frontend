@@ -12,7 +12,7 @@ export default function LibraryReducers(
         case "ALL_BOOK_LIBRARIES":
             return{...state,bookLibraries: action.books}
         case "LIBRARY_IN_VIEW":
-        debugger
+     
             return{...state,libraryInView: action.library}
             default:
                 return state

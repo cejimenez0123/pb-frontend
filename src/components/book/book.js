@@ -2,6 +2,7 @@ import React from 'react'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import { getPagesOfBook } from "../../actions/PageActions"
+import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 
 class Book extends React.Component{
@@ -25,8 +26,9 @@ if(this.props.book.user){
             </div>)       
         }
     }
+
 renderIf(){
-       
+       debugger
         if(this.props.book ){
            let pages = this.props.pages.filter(page=>{
                return page.attributes.book_id == this.props.book.id

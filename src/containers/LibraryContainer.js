@@ -24,7 +24,7 @@ class LibraryContainer extends React.Component{
        
         return(<div>
         <NavbarContainer/>
-        {lib.name}
+        <h1>{lib.name}</h1>
     <Books books={this.props.books}/>
         </div>)
     }

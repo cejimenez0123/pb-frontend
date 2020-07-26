@@ -40,16 +40,17 @@ renderif(){
               <div >
 
          <nav class="navbar navbar-expand-lg navbar-light bg-success">
-    <div>    <a class="navbar-brand" href="/">Pb</a>
+     <a class="navbar-brand" href="/">Pb</a>
     
         
-        
+        <SearchBar/>
+         <div>  
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <SearchBar/>
+       
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href={`/users/${this.props.currentUser.id}`}>Profile <span class="sr-only">(current)</span></a>

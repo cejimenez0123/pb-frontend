@@ -1,14 +1,20 @@
 import React, {useState} from 'react'
 import {Button,Modal} from 'react-bootstrap'
 import {useStore} from 'react-redux'
-
+import FollowerCard from "./FollowerCard"
 function FollowersBtn(props){
     const store = useStore()
     const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+  let userFollowers = store.getState().users.userFollowers
+  let users = userFollowers.map(x=>{
+
+   return <FollowerCard user={x.attributes.follower}/>
+
+  })
+    
     return(<div>
     <Button variant="primary" onClick={handleShow}>
        Followers
@@ -16,15 +22,12 @@ function FollowersBtn(props){
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{users}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

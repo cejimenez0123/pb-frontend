@@ -14,24 +14,24 @@ savePage:(data)=>savePage(data),
 getPagesOfBook: (id)=>getPagesOfBook(id)
   }
 }
-const updatePage = (text,title) => {
- debugger
-    // let id = localStorage.getItem("pageLink")
-    // const config = {    
-    //     method: 'PATCH',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json'
-    //       },
-    //       body: JSON.stringify({
-    //           id: id,
-    //         text: text,
-    //         title: title
-    //       })}
-    //  fetch(pageUrl+"/"+id,config).then(res => res.json()).then(obj=>{
-    //      return((dispatch)=>{dispatch({type: "UPDATE_PAGE",obj})})
+const updatePage = ({id,data}) => {
+ 
+    
+    const config = {    
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              id: id,
+            data: data
+          })}
+     fetch(pageUrl+"/"+id,config).then(res => res.json()).then(obj=>{
+       debugger
+         return((dispatch)=>{dispatch({type: "UPDATE_PAGE",obj})})
          
-    //  })
+     })
 }
 const startPage =(title)=>{
   

@@ -1,18 +1,22 @@
 import React, {useState} from 'react'
 import { render } from 'react-dom'
+import {useStore } from 'react-redux'
 import {ListGroup,Modal,Button} from 'react-bootstrap'
 const Page = (props)=>{
     function handleDbClick(){
         debugger
 
     }
+    const store = useStore()
+    
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-    console.log(props.page)
-     if(props.page){
-        
-         let page= props.page
+  debugger
+   
+     if(props.page.attributes){
+     
+         let page= props.page.attributes
         return(
              <div id="pages" >
            {/* <ListGroup.Item>
@@ -38,14 +42,10 @@ const Page = (props)=>{
         </Modal.Footer>
       </Modal>
         </div>
-        // <div id="pages" >
-        //    <ListGroup.Item>
-        //    {props.page.data}
-        //    </ListGroup.Item>
-        // </div>
+      
     )
-    }else if(props.page.attributes){
-        let page = props.page.attributes
+    }else if(props.page){
+        let page = props.page
         return(
         <div id="pages" >
            {/* <ListGroup.Item>
