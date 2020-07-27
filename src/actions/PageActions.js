@@ -217,7 +217,7 @@ const config = {
 
 }
 function getPageComments(id){
-
+debugger
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
     debugger
     const comments = obj.data
@@ -233,4 +233,4 @@ debugger
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 
 
-export {commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

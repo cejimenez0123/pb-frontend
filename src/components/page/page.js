@@ -7,11 +7,12 @@ import PageCommentIndex from "./PageCommentIndex"
 const Page = (props)=>{
     
     function editPage(page){
-        debugger
+
         let div = document.getElementsByClassName("ModalBody")[0]
     }
     const store = useStore()
-    debugger
+    let comments = store.getState().pages.pageCommentsInView
+
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,7 +44,7 @@ const Page = (props)=>{
         {page.data}
         </div>
         <PageCommentInput page={page}/>
-        <PageCommentIndex page={page}/>
+        <PageCommentIndex page={page} comments={comments}/>
         </Modal.Body>
         </div>
         <Modal.Footer>
