@@ -67,7 +67,7 @@ class App extends React.Component{
           </Route>
           </Switch>
           <Route exact path="/books/:id">
-            <BookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
+            <BookContainer book={this.props.bookInView} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
           {/* <Route exact path="/street">
               <BookIndexContainer books={this.props.books}/>
@@ -110,7 +110,7 @@ function mapStateToProps(state){
     loggedIn: state.users.loggedIn,
     currentUser: state.users.currentUser,
     currentPage: state.pages.currentPage,
-    currentBook: state.books.currentBook,
+    bookInView: state.books.bookInView,
     pages: state.pages.pages,
     inbox: state.pages.inbox,
     books: state.books.books,

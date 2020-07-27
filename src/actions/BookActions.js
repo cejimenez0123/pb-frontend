@@ -54,13 +54,12 @@ function getBook(id){
  
    return(dispatch)=>{ fetch(bookPath+"/"
     +id).then(res=>res.json()).then(obj=>{
-        
+        debugger
         let book = obj.data.attributes
         dispatch(setCurrentBook(book))
     })}
 }
 const setCurrentBook=(book)=>{
-    history.push(`/books/${book.id}`)
     return{type: "SET_CURRENT_BOOK",  book}
 }
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}

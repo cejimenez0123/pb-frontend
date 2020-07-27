@@ -17,7 +17,9 @@ export default function BookIndex(props){
     return props.books.map((book,i)=>{
             book = book.attributes
          
-           return(<BookIndexBox key={i} book={book}/>)
+           return(<BookIndexBox key={i} book={book}/>
+           
+           )
 })}}
         let name
         if(props.user){

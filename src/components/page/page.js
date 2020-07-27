@@ -3,9 +3,10 @@ import { render } from 'react-dom'
 import {useStore } from 'react-redux'
 import {ListGroup,Modal,Button} from 'react-bootstrap'
 const Page = (props)=>{
-    function handleDbClick(){
-       
-
+    
+    function editPage(page){
+        debugger
+        let div = document.getElementsByClassName("ModalBody")[0]
     }
     const store = useStore()
     
@@ -19,7 +20,7 @@ const Page = (props)=>{
          let page= props.page.attributes
          
         if (page.user.id === localStorage.getItem("currentUser")){
-            editBtn = (<button>Edit Page</button>)
+            editBtn = (<button onClick={()=>editPage(props.page)}>Edit Page</button>)
         }
         return(
              <div id="pages" >
@@ -32,9 +33,14 @@ const Page = (props)=>{
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-       by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>
+       by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
         </Modal.Header>
-        <Modal.Body>{page.data}</Modal.Body>
+        <div className="body">
+        <Modal.Body>
+        <div className="ModalBody">
+        {page.data}
+        </div></Modal.Body>
+        </div>
         <Modal.Footer>
         
           <Button variant="secondary" onClick={handleClose}>
