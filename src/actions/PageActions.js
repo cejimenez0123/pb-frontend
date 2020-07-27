@@ -184,7 +184,7 @@ function myPages(){
   return((dispatch)=>{
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
-    
+
             
               let pages = Array.from(obj.data)
           pages = pages.sort((a,b)=>{
@@ -196,7 +196,30 @@ function myPages(){
   
 )})}
 
+function commentOnPage(page){
+debugger
+const config = {    
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            page_id: page.page_id,
+            text: page.text
+        })}
+      fetch(pageUrl,config).then(res=>res.json()).then(obj=>{
+        debugger
+      })
+
+
+}
+function commentOnPageComment(page){
+debugger
+
+}
 
 
 
-export {updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+
+export {commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { render } from 'react-dom'
 import {useStore } from 'react-redux'
 import {ListGroup,Modal,Button} from 'react-bootstrap'
+import PageCommentBox from "./PageCommentBox"
 const Page = (props)=>{
     
     function editPage(page){
@@ -39,7 +40,9 @@ const Page = (props)=>{
         <Modal.Body>
         <div className="ModalBody">
         {page.data}
-        </div></Modal.Body>
+        </div>
+        <PageCommentBox page={page}/>
+        </Modal.Body>
         </div>
         <Modal.Footer>
         
