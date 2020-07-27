@@ -208,18 +208,29 @@ const config = {
             page_id: page.page_id,
             text: page.text
         })}
-      fetch(pageUrl,config).then(res=>res.json()).then(obj=>{
+      return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment`,config).then(res=>res.json()).then(obj=>{
+
         debugger
-      })
+        dispatch({type: "FALL"})
+      })}
 
 
+}
+function getPageComments(id){
+
+  return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
+    debugger
+    const comments = obj.data
+    dispatch(pageComments(comments))
+
+  })}
 }
 function commentOnPageComment(page){
 debugger
 
 }
 
-
+const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 
 
 export {commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

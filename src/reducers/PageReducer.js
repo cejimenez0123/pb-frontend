@@ -1,6 +1,6 @@
 
 export default function PageReducer(
-    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: []},
+    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: [],pageCommentsInView:[]},
     action){
 
         switch(action.type){
@@ -12,6 +12,9 @@ export default function PageReducer(
                 let newState= { ...state ,currentPage: page }
                 
                 return newState
+                case "PAGE_COMMENTS":
+                debugger
+                return {...state, pageCommentsInView: action.comments}
             case "MY_INBOX":
               
                 return{...state,inbox: action.inbox}

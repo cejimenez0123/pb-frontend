@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import { render } from 'react-dom'
 import {useStore } from 'react-redux'
 import {ListGroup,Modal,Button} from 'react-bootstrap'
-import PageCommentBox from "./PageCommentBox"
+import PageCommentInput from "./PageCommentInput"
+import PageCommentIndex from "./PageCommentIndex"
 const Page = (props)=>{
     
     function editPage(page){
@@ -10,7 +11,7 @@ const Page = (props)=>{
         let div = document.getElementsByClassName("ModalBody")[0]
     }
     const store = useStore()
-    
+    debugger
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -41,7 +42,8 @@ const Page = (props)=>{
         <div className="ModalBody">
         {page.data}
         </div>
-        <PageCommentBox page={page}/>
+        <PageCommentInput page={page}/>
+        <PageCommentIndex page={page}/>
         </Modal.Body>
         </div>
         <Modal.Footer>
