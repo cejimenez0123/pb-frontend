@@ -83,7 +83,9 @@
 	padding-top: 1em;
 	padding-left: .5em;
 }
-
+#pageCommentBox{padding-top: 20px;
+padding-bottom: 20px;
+border: 1px solid #888}
   /* Modal Content */
   .bookPopContent {
 	background-color: #fefefe;

@@ -46,7 +46,7 @@ const Page = (props)=>{
         {page.data}
         </div>
         <PageCommentInput page={page}/>
-        <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))}page={page} />
+        <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
         </Modal.Body>
         </div>
         <Modal.Footer>

@@ -228,8 +228,23 @@ function getPageComments(id){
 }
 function commentOnPageComment(page){
 debugger
+let config ={
+  method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            pageId: page.page_id,
+            userId: localStorage.getItem("currentUser"),
+            text: page.text,
+            parentId: page.parent_id
+        })}
+      
+  return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment_on_comment`,config).then(res=>res.json()).then(obj=>{
+debugger
+  })}}
 
-}
 
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 

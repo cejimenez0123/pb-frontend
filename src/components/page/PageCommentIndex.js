@@ -9,20 +9,26 @@ class PageCommentIndex extends React.Component{
     componentDidMount(){
         this.props.getPageComments(this.props.page.id)
     }
-    componentDidUpdate(){
-         debugger
-    if (this.props.comments.length > 0){
-        debugger
- html=  this.props.comments.map((comment,i)=>{
+   
      
-       return (<PageCommentBox key={i} comment={comment.attributes}/>)
-    })}else{
-        html = "no comments"
+    renderIndex(){
+        if (this.props.comments.length > 0){
+       
+return this.props.comments.map((comment,i)=>{
+     
+       return (<PageCommentBox page={this.props.page} key={i} comment={comment.attributes}/>)
+       
+    })
+     }else{
+        return "no comments"
     }}
+    
    render(){
     return(<div><ul>
-    {html}
-    </ul></div>)}
+    {this.renderIndex()}
+    </ul></div>
+    
+    )}
 }
 
 function mapStateToProps(state){
