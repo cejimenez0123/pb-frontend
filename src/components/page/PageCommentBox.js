@@ -2,7 +2,8 @@ import React from 'react'
 
 function PageCommentBox(props){
     debugger
-
-    return(<div></div>)
+    let comment = props.comment.text
+    let user = props.comment.user
+    return(<div><p>{comment}</p></div>)
 }
 export default PageCommentBox

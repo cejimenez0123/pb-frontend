@@ -13,7 +13,6 @@ export default function PageReducer(
                 
                 return newState
                 case "PAGE_COMMENTS":
-                debugger
                 return {...state, pageCommentsInView: action.comments}
             case "MY_INBOX":
               

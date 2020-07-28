@@ -1,15 +1,17 @@
 import React, {useState} from 'react'
 import { render } from 'react-dom'
-import {useStore } from 'react-redux'
+import {useStore,useDispatch } from 'react-redux'
 import {ListGroup,Modal,Button} from 'react-bootstrap'
+import {getPageComments} from "../../actions/PageActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
 const Page = (props)=>{
-    
+    const dispatch = useDispatch()
     function editPage(page){
 
         let div = document.getElementsByClassName("ModalBody")[0]
     }
+    
     const store = useStore()
     let comments = store.getState().pages.pageCommentsInView
 
@@ -36,15 +38,15 @@ const Page = (props)=>{
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-       by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
-        </Modal.Header>
+      <h2> by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
+        </h2></Modal.Header>
         <div className="body">
         <Modal.Body>
         <div className="ModalBody">
         {page.data}
         </div>
         <PageCommentInput page={page}/>
-        <PageCommentIndex page={page} comments={comments}/>
+        <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))}page={page} />
         </Modal.Body>
         </div>
         <Modal.Footer>

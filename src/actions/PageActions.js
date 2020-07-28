@@ -197,7 +197,7 @@ function myPages(){
 )})}
 
 function commentOnPage(page){
-debugger
+
 const config = {    
       method: 'POST',
       headers: {
@@ -206,20 +206,21 @@ const config = {
         },
         body: JSON.stringify({
             page_id: page.page_id,
+            userId: localStorage.getItem("currentUser"),
             text: page.text
         })}
       return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment`,config).then(res=>res.json()).then(obj=>{
-
-        debugger
-        dispatch({type: "FALL"})
+debugger
+      dispatch(getPageComments(obj.data.attributes.page_id))
+        
       })}
 
 
 }
 function getPageComments(id){
-debugger
+
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
-    debugger
+ 
     const comments = obj.data
     dispatch(pageComments(comments))
 

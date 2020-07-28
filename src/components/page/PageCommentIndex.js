@@ -1,17 +1,33 @@
-import React from 'react'
+import React ,{useState,setUpdate,useEffect} from 'react'
+import {connect} from 'react-redux'
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentBox from "./PageCommentBox"
 import {useStore,useDispatch} from 'react-redux'
-function PageCommentIndex(props){
-    const dispatch = useDispatch()
-    const store = useStore()
-    dispatch(getPageComments(props.page.id))
-    let comments = store.getState().pages.pageCommentsInView
-   comments.map(comment=>{
-       return (<PageCommentBox comment={comment.attributes}/>)
-    })
+let html = null
+class PageCommentIndex extends React.Component{
    
-    return(<div>{comments}</div>)
+    componentDidMount(){
+        this.props.getPageComments(this.props.page.id)
+    }
+    componentDidUpdate(){
+         debugger
+    if (this.props.comments.length > 0){
+        debugger
+ html=  this.props.comments.map((comment,i)=>{
+     
+       return (<PageCommentBox key={i} comment={comment.attributes}/>)
+    })}else{
+        html = "no comments"
+    }}
+   render(){
+    return(<div><ul>
+    {html}
+    </ul></div>)}
 }
 
-export default PageCommentIndex
+function mapStateToProps(state){
+
+    return{comments: state.pages.pageCommentsInView}
+}
+
+export default connect(mapStateToProps,null)(PageCommentIndex)
