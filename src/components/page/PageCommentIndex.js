@@ -1,4 +1,4 @@
-import React ,{useState,setUpdate,useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentBox from "./PageCommentBox"
@@ -12,6 +12,7 @@ class PageCommentIndex extends React.Component{
    
      
     renderIndex(){
+        debugger
         if (this.props.comments.length > 0){
        
 return this.props.comments.map((comment,i)=>{

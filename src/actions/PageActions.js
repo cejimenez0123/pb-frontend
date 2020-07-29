@@ -185,8 +185,8 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
 
-            
-              let pages = Array.from(obj.data)
+       
+              let pages = obj.data
           pages = pages.sort((a,b)=>{
           return new Date(b.attributes.updated_at )-new Date(a.attributes.updated_at)
           })
@@ -220,7 +220,7 @@ debugger
 function getPageComments(id){
 
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
- 
+    debugger
     const comments = obj.data
     dispatch(pageComments(comments))
 
