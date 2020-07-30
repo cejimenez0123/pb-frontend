@@ -2,7 +2,7 @@ import {history} from "../history"
 
 import {push } from 'react-router-redux'
 import store from '../index'
-
+const pageComPath="http://localhost:3000/page_comments"
 const pageUrl = "http://localhost:3000/pages"
 const bookPath = "http://localhost:3000/books"
 const userPath = "http://localhost:3000/users"
@@ -211,6 +211,7 @@ const config = {
         })}
       return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment`,config).then(res=>res.json()).then(obj=>{
 debugger
+
       dispatch(getPageComments(obj.data.attributes.page_id))
         
       })}
@@ -220,11 +221,18 @@ debugger
 function getPageComments(id){
 
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
-    debugger
-    const comments = obj.data
+ 
+    const comments = obj
     dispatch(pageComments(comments))
 
   })}
+}
+function getPageCommentComments(id){
+  return fetch(pageComPath+`/${id}`).then(res=>res.json()).then(obj=>{
+    debugger
+    return obj
+  }
+  )
 }
 function commentOnPageComment(page){
 debugger
@@ -242,11 +250,11 @@ let config ={
         })}
       
   return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment_on_comment`,config).then(res=>res.json()).then(obj=>{
-debugger
+    dispatch(getPageComments(page.page_id))
   })}}
 
 
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 
 
-export {getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

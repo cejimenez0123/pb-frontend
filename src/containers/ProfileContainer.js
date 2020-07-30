@@ -10,6 +10,7 @@ import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
 import Pages from "../components/page/pages"
 import ReactDOM from 'react-dom'
+import Book from "../components/book/book"
 import PageBoxes from '../components/page/PageBoxes'
 import LibraryIndex from "../components/library/LibraryIndex"
 import SearchCardIndex from "../components/user/SearchCardIndex"
@@ -24,6 +25,7 @@ import EditBook from "../components/book/EditBook"
 import FollowingFeed from '../components/feed/FollowingFeed'
 import FollowingBtn from "../components/user/FollowingBtn"
 import FollowersBtn from "../components/user/FollowersBtn"
+let book
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
@@ -33,8 +35,9 @@ class ProfileContainer extends React.Component{
         // this.props.getInbox()
         this.props.setCurrentUser()
         this.props.getFollowedUsers(id)  
-       this.props.getMyPages()
         this.props.getBooksOfUser(id)
+       this.props.getMyPages()
+        
         this.props.getUserLibraries(id)
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
@@ -67,11 +70,20 @@ class ProfileContainer extends React.Component{
         console.log(this.props.followedUsers)
     }
     render(){
-        let book = this.props.currentUser.home_book
+        
+      
+       if(this.props.userBooks.length >0 && this.props.currentUser){
+         
+        book  = this.props.userBooks.find(x=>{return x.id == this.props.currentUser.home_book.id})
+           if(book.attributes){book=book.attributes}
+           
+       }
+  
          console.log(this.props)
         return(
             <div className="aContainer">
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+              <a href={`/user/${this.props.currentUser.id}/settings`} ><img src="https://img.icons8.com/ios/50/000000/settings.png"/></a>
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleStartLib()}>Start Library</button>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>

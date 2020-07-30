@@ -49,7 +49,7 @@ function renderIf(){
     }
     
 let book = props.book
-     
+  
         return(<div>
         <div onDoubleClick={handleShow}>
         {renderIf()}
@@ -57,7 +57,7 @@ let book = props.book
   <div>
  <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-      by  <a by href={`/users/${book.user.id}`}> {book.user.username}</a>
+      by  <a by href={`/users/${props.book.user.id}`}> {props.book.user.username}</a>
       {editBtn()}
       
        </Modal.Header>

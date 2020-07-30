@@ -12,13 +12,13 @@ class PageCommentIndex extends React.Component{
    
      
     renderIndex(){
-        debugger
+   
         if (this.props.comments.length > 0){
-       
+    
 return this.props.comments.map((comment,i)=>{
-     
-       return (<PageCommentBox page={this.props.page} key={i} comment={comment.attributes}/>)
-       
+    
+       return (<PageCommentBox page={this.props.page} key={i} comment={comment}/>)
+
     })
      }else{
         return "no comments"

@@ -1,21 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import { getPagesOfBook } from "../../actions/PageActions"
 import PageCards from "../page/PageCards"
-class EditBook extends React.Component{
-    constructor(){
-        super()
-    }
-   
-    ifEditable(){
+import {Modal,Button} from "react-bootstrap"
+function EditBook (props){
+   const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+    function ifEditable(){
 
 let user_id 
-if(this.props.book.user_id){
-    user_id = this.props.book.user_id
+if(props.book.user_id){
+    user_id = props.book.user_id
 }
-if(this.props.book.user){
-    user_id = this.props.book.user.id
+if(props.book.user){
+    user_id = props.book.user.id
 }
 
 
@@ -24,32 +25,52 @@ if(this.props.book.user){
             let pageInput = (
             
             <div>
-            <PageInput book={this.props.book}/>
+            <PageInput book={props.book}/>
             </div>)
             return pageInput
            
         }
     }
-
-   renderIf(){
-     
-        if(this.props.book ){
-           let pages = this.props.pages.filter(page=>{
-               return page.attributes.book_id == this.props.book.id
+   let html = null 
+   function renderIf(){
+    
+        if(props.book ){
+           let pages = props.pages.filter(page=>{
+               return page.attributes.book_id == props.book.id
            })
             return(<div>
-                <h6>{this.props.book.title} </h6>
-                {this.ifEditable()}
+            <div onClick={handleShow}>
+                <h6>{props.book.title} </h6>
+                </div>
+                {ifEditable()}
                 <PageCards pages={pages}/>
             </div>)
         }
     }
-      render(){ 
+      
          
         return(<div>
-    {this.renderIf()}
+    {renderIf()}
+
+
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+     
+      
+       </Modal.Header>
+        <Modal.Body></Modal.Body>
+       <Modal.Footer>
+            
+         <Button variant="secondary" onClick={handleClose}>
+            Close
+           </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+       </Modal>
         </div>)
-      }
+      
 }
 function mapDispatch(dispatch){
     return{getPagesOfBook:(id)=>dispatch()}

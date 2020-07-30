@@ -38,8 +38,8 @@ const Page = (props)=>{
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-      <h2> by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
-        </h2></Modal.Header>
+      <h5> by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
+        </h5></Modal.Header>
         <div className="body">
         <Modal.Body>
         <div className="ModalBody">

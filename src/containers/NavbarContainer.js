@@ -56,7 +56,7 @@ renderif(){
               <a class="nav-link" href={`/users/${this.props.currentUser.id}`}>Profile <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/library/1">Library</a>
+              <a class="nav-link" href="/library/1">Local Library</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"o nClick={()=>this.handleOnClick()}href="/">Log Out</a>
@@ -93,7 +93,7 @@ renderif(){
               <a class="nav-link" href="#">Log In <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/library/1">Library</a>
+              <a class="nav-link" href="/library/1">Local Library</a>
             </li>
         
               
