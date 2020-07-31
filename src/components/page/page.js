@@ -11,7 +11,7 @@ const Page = (props)=>{
 
         let div = document.getElementsByClassName("ModalBody")[0]
     }
-    
+
     const store = useStore()
     let comments = store.getState().pages.pageCommentsInView
 
@@ -27,8 +27,10 @@ const Page = (props)=>{
         if (page.user.id === localStorage.getItem("currentUser")){
             editBtn = (<button onClick={()=>editPage(props.page)}>Edit Page</button>)
         }
+       
         return(
              <div id="pages" >
+             <li>
            {/* <ListGroup.Item>
            
            </ListGroup.Item> */}
@@ -38,7 +40,7 @@ const Page = (props)=>{
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-      <h5> by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
+      <h5> from {page.book.title} by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
         </h5></Modal.Header>
         <div className="body">
         <Modal.Body>
@@ -59,6 +61,7 @@ const Page = (props)=>{
           </Button>
         </Modal.Footer>
       </Modal>
+      </li>
         </div>
       
     )
@@ -66,6 +69,7 @@ const Page = (props)=>{
         let page = props.page
         return(
         <div id="pages" >
+            <li>
            {/* <ListGroup.Item>
            
            </ListGroup.Item> */}
@@ -75,9 +79,12 @@ const Page = (props)=>{
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title><h5>from {page.book.title} by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
+        </h5></Modal.Title>
         </Modal.Header>
-        <Modal.Body>{page.data}</Modal.Body>
+        <Modal.Body>{page.data}
+        <PageCommentInput page={page}/>
+        <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -87,6 +94,7 @@ const Page = (props)=>{
           </Button>
         </Modal.Footer>
       </Modal>
+      </li>
         </div>)
 
     }

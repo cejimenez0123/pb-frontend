@@ -29,7 +29,7 @@ renderThis(){
       })
     
       }
-      console.log("foofofof",this.props.pages)
+      console.log("foofofof",filterPages.length)
  console.log("foofofof",filterPages.length)
         if(filterPages.length >0){
         

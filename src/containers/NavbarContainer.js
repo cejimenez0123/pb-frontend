@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
+
 import {Navbar,Nav,Form,FormControl,Button,ListGroup,OverlayTrigger,Popover} from 'react-bootstrap'
 import {SET_CURRENT_USER} from "../actions/UserActions"
 import SearchBar from "../components/SearchBar"
@@ -9,6 +10,9 @@ class NavbarContainer extends React.Component{
    constructor(){
      super()
      this.state={filtered: []}
+   }
+   componentDidMount(){
+     this.props.getCurrentUser()
    }
 filterFunction(e){
      let input = e.target.value
@@ -53,7 +57,10 @@ renderif(){
        
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href={`/users/${this.props.currentUser.id}`}>Profile <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href={`/user/${this.props.currentUser.id}`}>Profile <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href={`/street`}>Street</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/library/1">Local Library</a>
@@ -91,6 +98,9 @@ renderif(){
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Log In <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+              <a class="nav-link" href={`/user/${this.props.currentUser.id}`}>Street</a>
+            </li>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/library/1">Local Library</a>
@@ -151,7 +161,7 @@ function mapState(state){
   libraries: state.libraries.libraries}
 }
 function mapDispatch(dispatch){
-
+  return{getCurrentUser: ()=>dispatch(SET_CURRENT_USER())}
 }
-export default connect(mapState)(NavbarContainer)
+export default connect(mapState,mapDispatch)(NavbarContainer)
 

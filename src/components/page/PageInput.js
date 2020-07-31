@@ -13,7 +13,7 @@ function PageInput(props){
      let   data={data: value,bookId: props.book.id}
     dispatch(bot.savePage(data))
    }
-    return(<div>
+    return(<div id={`book-${props.book.id}`} style={{display: "none"}}>
 
     <form onSubmit={(e)=>handleOnSubmit(e)}> 
         <input type="text"/><input type="submit"/>

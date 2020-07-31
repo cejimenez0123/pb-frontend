@@ -3,7 +3,7 @@ import "../App.css"
 import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
-import {startLibrary,getUserLibraries} from "../actions/LibraryAction"
+import {startLibrary,getUserLibraries,getAllLibraries} from "../actions/LibraryAction"
 import {startPage,myPages,savePage} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
@@ -37,7 +37,7 @@ class ProfileContainer extends React.Component{
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
        this.props.getMyPages()
-        
+        this.props.getAllLibraries()
         this.props.getUserLibraries(id)
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
@@ -72,8 +72,8 @@ class ProfileContainer extends React.Component{
     render(){
         
       
-       if(this.props.userBooks.length >0 && this.props.currentUser){
-         
+       if(this.props.userBooks.length >0 && this.props.currentUser.home_book){
+         console.log(this.props.currentUser)
         book  = this.props.userBooks.find(x=>{return x.id == this.props.currentUser.home_book.id})
            if(book.attributes){book=book.attributes}
            
@@ -118,7 +118,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getFollowedUsers: (id)=>dispatch(getFollowedUsersOfUser(id)),
     getFollowedBooks:(id)=>dispatch(getFollowedBooksOfUser(id)),
     startLibrary:(name)=>dispatch(startLibrary(name)),
-    getUserLibraries: (id)=>dispatch(getUserLibraries(id))}
+    getUserLibraries: (id)=>dispatch(getUserLibraries(id)),
+    getAllLibraries: ()=>dispatch(getAllLibraries())}
 }
 function mapStateToProps(state){
     return{

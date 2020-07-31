@@ -49,7 +49,7 @@ function getBookLibraries(){
     return(dispatch)=>{fetch(bookLibPath).then(res=>res.json()).then(obj=>{
         let books = obj.data
         dispatch(allBookLibraries(books))
-
+        return books
     })}
 }
 function addBookToLibrary({bookId,libraryId}){
@@ -66,7 +66,9 @@ function addBookToLibrary({bookId,libraryId}){
           })}
           fetch(bookLibPath,config).then(res=>res.json()).then(obj=>{
               debugger
-          })
+              window.alert("success")
+
+          }).catch(err=>alert(err))
 }
 function getBooksOfLibrary(id){
 
@@ -82,4 +84,4 @@ function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
 function libraryInView(library){return{type:"LIBRARY_IN_VIEW",library}}
 function allBookLibraries(books){return{type:"ALL_BOOK_LIBRARIES",books}}
-export {startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary}
+export {startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary,getBookLibraries}

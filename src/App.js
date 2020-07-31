@@ -15,6 +15,7 @@ import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
 import {history} from "./history"
+import StreetContainer from "./containers/StreetContainer"
 import InboxContainer from './containers/InboxContainer';
 import PublicProfileContainer from "./containers/PublicProfileContainer"
 import LocalLibraryContainer from "./containers/LocalLibraryContainer"
@@ -71,9 +72,9 @@ class App extends React.Component{
           <Route exact path="/books/:id">
             <BookContainer book={this.props.bookInView} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
-          {/* <Route exact path="/street">
-              <BookIndexContainer books={this.props.books}/>
-          </Route> */}
+          <Route exact path="/street">
+              <StreetContainer books={this.props.books}/>
+          </Route>
           
           <Route exact path="/login">
             <LogInForm logIn={this.props.logIn}/>

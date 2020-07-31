@@ -1,18 +1,20 @@
 import React,{useState} from 'react'
 import LibraryIndex from "../library/LibraryIndex"
 import LibrariesList from "../library/LibrariesList"
-import {useStore,useDispatch} from 'react-redux'
+import {connect,useStore,useDispatch} from 'react-redux'
+import {getAllLibraries} from "../../actions/LibraryAction"
 import Book from "./book"
 import {Modal,Button} from 'react-bootstrap'
 import Popup from "reactjs-popup"
 function BookIndexBox(props){
     const store = useStore()
-const dispatch = useDispatch()
+
  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-    const lib = store.getState().libraries
+    
+ 
 let book
 if(props.book.attributes){
     book = props.book.attributes
@@ -24,7 +26,7 @@ if(props.book.attributes){
     <div onClick={handleShow}>
  -         <a>{book.title}</a></div> <Popup trigger={<button>Add to Libray</button> } position="right center">
  
-                  <LibrariesList book={book} libraries={lib.librariesInView}/>      
+                  <LibrariesList book={book} libraries={props.allLibraries}/>      
                </Popup>
                <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -45,4 +47,8 @@ if(props.book.attributes){
        </Modal> 
         </div>)
 }
-export default BookIndexBox
+function mapState(state){
+
+    return{allLibraries: state.libraries.libraries}
+}
+export default connect(mapState,null)(BookIndexBox)

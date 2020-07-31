@@ -36,18 +36,7 @@ class LocalLibraryContainer extends React.Component{
 
 
     }
-    // renderContent(){
-    //     let content = null
-    //    if(toggle === "pages"){
-   
-    //         content = (<Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>)
-    //     }else if(toggle === "books"){
-    //         content = (<Books  books={this.props.books}/>)
 
-    //     }
-    
-    //     return content
-    // }
     render(){
 
         console.log("pages",this.props.pages)

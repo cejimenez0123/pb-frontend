@@ -4,7 +4,7 @@ import {addBookToLibrary} from '../../actions/LibraryAction'
 function AddToLibraryList(props){
     const dispatch = useDispatch()
     function handleOnClick(){
-        dispatch(addBookToLibrary({bookId: props.book.id,libraryId: props.library.id}))
+        addBookToLibrary({bookId: props.book.id,libraryId: props.library.id})
     }
     let jsx = []
     if(props.library.attributes){

@@ -19,8 +19,9 @@ class Pages extends React.Component{
 
     render(){
         return(<div>
+        <ul>
             {this.renderIf()}
-            
+            </ul>
         </div>)
     }
 
