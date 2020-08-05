@@ -9,7 +9,8 @@ function LibraryIndex(props){
      
 
   t = props.libraries.map(t=>{
-     let  books =props.bookLibraries.filter(x=>{
+    
+     let books =props.bookLibraries.filter(x=>{
          return x.attributes.library.id == t.id
       })
    

@@ -3,7 +3,7 @@ import "../App.css"
 import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
-import {startLibrary,getUserLibraries,getAllLibraries} from "../actions/LibraryAction"
+import {startLibrary,getUserLibraries,getAllLibraries,getBookLibraries} from "../actions/LibraryAction"
 import {startPage,myPages,savePage} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
@@ -37,6 +37,7 @@ class ProfileContainer extends React.Component{
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
        this.props.getMyPages()
+       this.props.getBookLibraries()
         this.props.getAllLibraries()
         this.props.getUserLibraries(id)
         this.props.getFollowedBooks(id)
@@ -84,6 +85,7 @@ class ProfileContainer extends React.Component{
             <div className="aContainer">
                 <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
               <a href={`/user/${this.props.currentUser.id}/settings`} ><img src="https://img.icons8.com/ios/50/000000/settings.png"/></a>
+            
                 < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                 <button onClick={()=>this.handleStartLib()}>Start Library</button>
                 <button onClick={()=>this.handleOnClick()}>Start Book</button>
@@ -91,11 +93,11 @@ class ProfileContainer extends React.Component{
                <FollowingBtn/> 
                 <div className="bContainer">
                 </div>
-                <EditBook book={book} />
+                {/* <EditBook book={book} /> */}
                 <h3>Books</h3>
                 <BookIndex books={this.props.booksInView}/>
                 <h3>Libraries</h3>
-                <LibraryIndex libraries={this.props.libraries}/>
+                <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
             </div>
         )
     }
@@ -119,7 +121,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getFollowedBooks:(id)=>dispatch(getFollowedBooksOfUser(id)),
     startLibrary:(name)=>dispatch(startLibrary(name)),
     getUserLibraries: (id)=>dispatch(getUserLibraries(id)),
-    getAllLibraries: ()=>dispatch(getAllLibraries())}
+    getAllLibraries: ()=>dispatch(getAllLibraries()),
+    getBookLibraries: ()=>dispatch(getBookLibraries())}
 }
 function mapStateToProps(state){
     return{
@@ -134,7 +137,8 @@ function mapStateToProps(state){
         followedUsers: state.users.followedUsers,
         followedBooks: state.books.followedBooks,
         pages: state.pages.pages,
-        libraries: state.libraries.librariesInView
+        libraries: state.libraries.librariesInView,
+        bookLibraries: state.libraries.bookLibraries
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)

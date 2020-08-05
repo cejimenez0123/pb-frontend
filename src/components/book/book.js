@@ -14,6 +14,7 @@ function Book(props){
 let ifEdit = false
 const handleEditClick = () => {
      let div= document.getElementById(`book-${props.book.id}`)
+     debugger
     if(ifEdit){
        ifEdit=false
        div.style.display = "none"
@@ -35,8 +36,10 @@ const handleEditClick = () => {
         if(props.book.user){
           user_id = props.book.user.id
         }   
- let user ={id: null} 
+ let user 
    user = props.users.find(user=>{return user.id == user_id})
+
+   user = user.attributes
    function ifEditable(){
 
 
@@ -51,44 +54,54 @@ function renderIf(){
            let pages = props.pages.filter(page=>{
                return page.attributes.book.id == props.book.id
            })
+          
             return(<div>
-                <h3 onDoubleClick={handleShow} >{props.book.title} </h3>{editBtn()}
-               
-            <PageInput book={props.book}/>
+                
+              
+            
            
                 {ifEditable()}
-                
+                <PageInput book={book}/>
                 <Pages pages={pages}/>
                
             </div>)
         };
     };
    function editBtn(){
-       let btn = null
-  
-        if(user_id === localStorage.getItem("currentUser")){
-            btn = (<button onClick={handleEditClick}>Edit Book</button>)
-        }
-        return btn
-    }
+    //    let btn 
+
+      
+    //         btn = ()
     
+    //     return btn
+    
+   }
 
   if(book){
+  
         return(<div>
         <div >
-        {renderIf()}
+        <h3 onClick={handleShow} >{book.title} </h3>
+        
   </div>
+  {renderIf()}
   <div>
  <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-      by  <a by href={`/users/${user.id}`}> {user.username}</a>
-      {editBtn()}
+    
       
-      
+        
        </Modal.Header>
-        <Modal.Body>{renderIf()}</Modal.Body>
+      
+        <Modal.Body>
+         
+        
+        
+        
+
+        </Modal.Body>
        <Modal.Footer>
-            
+          
          <Button variant="secondary" onClick={handleClose}>
             Close
            </Button>

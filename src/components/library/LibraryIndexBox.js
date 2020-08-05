@@ -13,6 +13,7 @@ function LibraryIndexBox(props){
         
         let lib = props.library.attributes
         jsx=(<div><li onClick={handleShow} >{lib.name}</li>
+        
        <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title><h3>{lib.name}</h3></Modal.Title>
@@ -31,6 +32,7 @@ function LibraryIndexBox(props){
     }else if(props.library){
         let lib = props.library
         jsx=(<div><li onClick={handleShow}>{lib.name}</li>
+        
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title><h3>{lib.name}</h3></Modal.Title>

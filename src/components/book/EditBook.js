@@ -19,17 +19,19 @@ if(props.book.user){
     user_id = props.book.user.id
 }
 
-
-        if(user_id== localStorage.getItem("currentUser")){
-          
-            let pageInput = (
+let pageInput = null
+       if(user_id== localStorage.getItem("currentUser")){
+          console.log("GDFSD")
+            pageInput = (
             
             <div>
-            <PageInput book={props.book}/>
+            
             </div>)
             return pageInput
            
         }
+
+        return PageInput
     }
    let html = null 
    function renderIf(){
@@ -41,8 +43,9 @@ if(props.book.user){
             html =(<div>
             <div onClick={handleShow}>
                 <h6>{props.book.title} </h6>
-                </div>
-                {ifEditable()}
+                
+                </div><PageInput book={props.book}/>
+                
                 <PageCards pages={pages}/>
             </div>)
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Book from "../book/book"
 function BookLibrary(props){
-
+debugger
 let x=  props.booksOfLib.map(x=> <Book book={x.attributes.book}/>)
     
     return(<div>
