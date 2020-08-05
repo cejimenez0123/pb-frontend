@@ -14,6 +14,7 @@ import {getLibrary,getBooksOfLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
+import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
 import {history} from "./history"
 import StreetContainer from "./containers/StreetContainer"
 import InboxContainer from './containers/InboxContainer';
@@ -41,21 +42,19 @@ class App extends React.Component{
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
       </head>
   
-      <Route exact path="/" >
-          <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>
-        </Route>
-    
-    
-       
-       
-        {/* <Route exact path="/pages/:id/edit" render={()=><EditorContainer  loggedIn={this.props.loggedIn} currentPage={this.props.currentPage}/>}/> */}
-        <Route exact path="/users/:id/inbox" >
-          <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
-          </Route>
-      <Switch>
-        <Route exact path="/library/1">
-            <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
-        </Route>
+  <Route exact path="/" >
+    <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>
+  </Route>
+  <Route exact path="/users/:id/inbox" >
+    <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
+  </Route>
+<Switch>
+  <Route exact path="/library/1">
+   <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
+  </Route>
+  <Route exact path="/user/:id/settings">
+    <ProfileSettingsContainer currentUser={this.props.currentUser}/>
+  </Route>
         <Route path="/libraries/:id">
             <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib}/>
         </Route>
