@@ -82,23 +82,25 @@ class ProfileContainer extends React.Component{
   
          console.log(this.props)
         return(
-            <div className="aContainer">
-                <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
-              <a href={`/user/${this.props.currentUser.id}/settings`} ><img src="https://img.icons8.com/ios/50/000000/settings.png"/></a>
+    <div className="aContainer">
+        <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+            <a href={`/user/${this.props.currentUser.id}/settings`} >
+              <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
+            </a>
             
-                < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-                <button onClick={()=>this.handleStartLib()}>Start Library</button>
-                <button onClick={()=>this.handleOnClick()}>Start Book</button>
-                <FollowersBtn/>
-               <FollowingBtn/> 
-                <div className="bContainer">
+        < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+            <button onClick={()=>this.handleStartLib()}>Start Library</button>
+            <button onClick={()=>this.handleOnClick()}>Start Book</button>
+        <FollowersBtn/>
+        <FollowingBtn/> 
+            <div className="bContainer">
                 </div>
                 {/* <EditBook book={book} /> */}
                 <h3>Books</h3>
                 <BookIndex books={this.props.booksInView}/>
                 <h3>Libraries</h3>
                 <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
-            </div>
+        </div>
         )
     }
 

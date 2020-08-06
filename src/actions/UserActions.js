@@ -143,6 +143,25 @@ function getUsers(){
     dispatch({type: "GET_USERS",users})
     })}
 }
+function updateUser(user){
+    let config = {  
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                id: localStorage.getItem("currentUser"),
+                username: user.username,
+                name: user.name
+                password: user.password
+            })}
+    }
+    return(dispatch)=>{fetch(userPath+`/${localStorage.getItem("currentUser")}`,config).then(res=>res.json()).then(obj=>{
+        debugger
+    })}
+    
+}
 
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
