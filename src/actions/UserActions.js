@@ -77,7 +77,7 @@ const LOG_IN = (user)=>{
         dispatch(LOG_IN_START);
        
         fetch("http://localhost:3000/login",config).then(res=>res.json()).then(user =>{
-          
+          debugger
             user = user.data.attributes
         localStorage.setItem("currentUser",user.id)
         localStorage.setItem("loggedIn",true)
@@ -144,27 +144,27 @@ function getUsers(){
     })}
 }
 function updateUser(user){
+    debugger
     let config = {  
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
             },
             body: JSON.stringify({
                 id: localStorage.getItem("currentUser"),
-                username: user.username,
-                name: user.name
-                password: user.password
+                profile_picture: user.profile_picture,
+
             })}
-    }
-    return(dispatch)=>{fetch(userPath+`/${localStorage.getItem("currentUser")}`,config).then(res=>res.json()).then(obj=>{
+    
+   fetch("http://elasticbeanstalk-us-east-2-516284340122.s3-website.us-east-2.amazonaws.com",config).then(res=>res.json()).then(obj=>{
         debugger
-    })}
+    })
     
 }
 
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 
-export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions}
+export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
 

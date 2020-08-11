@@ -7,8 +7,9 @@ const ProfileCard =(props)=>{
         if(!!props.user){
       
         user = props.user
+        debugger
         return(<div><h3>{user.name}</h3>
-             < img src="https://anthropology.columbia.edu/themes/custom/columbia/assets/img/people-default.svg" alt=""  width="50" height="50"/>
+             < img src={user.photo} alt=""  width="50px" height="auto"/>
              <h4>@{user.username}</h4>
             </div>)
     

@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "blueimp-file-upload": "^10.31.0",
     "bootstrap": "^4.5.0",
     "draft-js": "^0.11.5",
     "history": "^4.10.1",
+    "jodit": "^3.4.20",
+    "jodit-react": "^1.0.56",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^3.1.0",
     "react": "^16.13.1",

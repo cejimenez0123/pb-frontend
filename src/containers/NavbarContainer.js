@@ -12,7 +12,7 @@ class NavbarContainer extends React.Component{
      this.state={filtered: []}
    }
    componentDidMount(){
-     this.props.getCurrentUser()
+    //  this.props.getCurrentUser()
    }
 filterFunction(e){
      let input = e.target.value
@@ -66,7 +66,7 @@ renderif(){
               <a class="nav-link" href="/library/1">Local Library</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"o nClick={()=>this.handleOnClick()}href="/">Log Out</a>
+              <a class="nav-link"  onClick={()=>this.handleOnClick()}href="/">Log Out</a>
             </li>
           </ul>
 </div>
