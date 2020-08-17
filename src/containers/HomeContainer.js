@@ -44,8 +44,7 @@ class HomeContainer extends React.Component{
                 < Link to="/login">Log In</Link>
                 </div>
                 <div id="SHomeConatiner">
-    <input type="file" onChange={(e)=>this.uploadPhoto(e)}/>
-        <img style={{width :"50px",height:"100px"}}src="http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d9f84108639caf4715980dcbdd9b6cb5e7e5bd1f/9696CA31-6191-40C2-BCDF-ED4AC59C1610.jpg"/>
+   
                 </div>
                 
             </div>

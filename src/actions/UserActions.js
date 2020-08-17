@@ -2,10 +2,12 @@ import {history} from "../history"
 import {push} from 'react-router-redux'
 import store from '../index'
 import {startBook,setCurrentBook} from "./BookActions"
-const userPath = "http://127.0.0.1:3000/users"
-const followPath = "http://127.0.0.1:3000/follows"
+const path1= "https://elegant-croissant-40634.herokuapp.com"
+const path2="http://127.0.0.1:3000"
+const userPath = `${path2}/users`
+const followPath = `${path2}/follows`
 
-const path1= "https://elegant-croissant-40634.herokuapp.com/"
+
 function useUserActions(){
     return {signUp: (user)=>signUp(user),
             logIn: (user)=>LOG_IN(user)}
@@ -15,7 +17,15 @@ function SIGN_UP_START(){
     type: "SIGN_UP_START"}
 }
 
+function newUser(){
+let user
+  fetch(userPath+"/new").then(res=>res.json()).then(obj=>{
+       debugger
+     user = obj.data.attributes  
+       localStorage.setItem("profile_photo",obj.data.attributes.photo)
+})
 
+return user }
 
 function signUp(user) { 
    
@@ -166,5 +176,5 @@ function updateUser(user){
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 
-export {LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
+export {LOG_IN,signUp,newUser, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
 

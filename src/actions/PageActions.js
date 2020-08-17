@@ -2,8 +2,10 @@ import {history} from "../history"
 
 import {push } from 'react-router-redux'
 import store from '../index'
-const pageComPath="http://localhost:3000/page_comments"
-const pageUrl = "http://localhost:3000/pages"
+const path1= "https://elegant-croissant-40634.herokuapp.com"
+const path2="http://localhost:3000"
+const pageComPath=`${path2}/page_comments`
+const pageUrl = `${path2}/pages`
 const bookPath = "http://localhost:3000/books"
 const userPath = "http://localhost:3000/users"
 const sharePath = "http://localhost:3000/shares"
