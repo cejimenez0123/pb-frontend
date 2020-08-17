@@ -1,8 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+After a git clone of the repository. Go into the actions folders within app folder and change your base route for the server from localhost to the heroku path(path1). After run npm start
 
 ### `yarn start`
 
