@@ -38,7 +38,8 @@ function signUp(user) {
           body: JSON.stringify({
               name: user.name,
               username: user.username,
-              password: user.password  
+              password: user.password,
+              file: user.file  
           })}
          
         return(dispatch)=>{

@@ -24,7 +24,7 @@ function startBook(title,is_Home_Book="false"){
         if(obj.data.attributes){
         book = obj.data.attributes
         if(book.is_home_book !== "true"){
-        dispatch(setCurrentBook(book)) 
+        dispatch(bookInView(book)) 
         }}
     
     
@@ -54,9 +54,9 @@ function getBook(id){
  
    return(dispatch)=>{ fetch(bookPath+"/"
     +id).then(res=>res.json()).then(obj=>{
-        debugger
+       
         let book = obj.data.attributes
-        dispatch(setCurrentBook(book))
+        dispatch(bookInView(book))
     })}
 }
 const setCurrentBook=(book)=>{
@@ -64,5 +64,6 @@ const setCurrentBook=(book)=>{
 }
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
+ const bookInView = (book)=>{return{type:"BOOK_IN_VIEW",book}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
 export { startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

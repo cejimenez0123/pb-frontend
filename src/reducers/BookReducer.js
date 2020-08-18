@@ -3,7 +3,7 @@ export default function BookReducer(
     action, followedBooks:[]){
 
         switch(action.type){
-            case "SET_CURRENT_BOOK":
+            case "BOOK_IN_VIEW":
    
                 return {...state,bookInView: action.book}
             case "BOOKS_IN_VIEW":

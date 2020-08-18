@@ -14,15 +14,15 @@ constructor(){
 handleOnClick(){
     this.props.followBook(this.props.book.id)
 }
+componentDidMount(){
+    let id = window.location.pathname.split("/")[2]
+    this.props.getBook(id)
+}
 componentDidUpdate(){
-    debugger
-    if(this.props.book !== null){
-        this.setState({title: this.props.book.title})
-    }else{
-        debugger
-        let id = window.location.pathname.split("/")[2]
-        this.props.getBook(id)
-    }
+    
+    // if(this.props.book !== null){
+    //     this.setState({title: this.props.book.title})
+    // }
 }
 
     render(){
@@ -41,7 +41,8 @@ componentDidUpdate(){
     }
 }
 const mapStateToProps=(state)=>{
-    return{ book: state.books.bookInView}
+    return{ book: state.books.bookInView,
+    users: state.users.users}
 }
 const mapDispatchToProps=(dispatch)=>{
     return{

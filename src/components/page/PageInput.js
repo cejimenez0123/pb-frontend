@@ -1,6 +1,7 @@
 import React from 'react'
 import { usePageActions} from '../../actions/PageActions'
 import {useDispatch} from 'react-redux'
+import Editor from "./editor"
 function PageInput(props){
 
     const bot = usePageActions()
@@ -14,7 +15,7 @@ function PageInput(props){
     dispatch(bot.savePage(data))
    }
     return(<div id={`book-${props.book.id}`} >
-
+    <Editor/>
     <form onSubmit={(e)=>handleOnSubmit(e)}> 
         <input type="text"/><input type="submit"/>
     </form>

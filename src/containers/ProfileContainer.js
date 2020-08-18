@@ -25,6 +25,7 @@ import EditBook from "../components/book/EditBook"
 import FollowingFeed from '../components/feed/FollowingFeed'
 import FollowingBtn from "../components/user/FollowingBtn"
 import FollowersBtn from "../components/user/FollowersBtn"
+import Editor from "../components/page/editor"
 let book
 class ProfileContainer extends React.Component{
     constructor(props){
@@ -93,6 +94,7 @@ class ProfileContainer extends React.Component{
             <button onClick={()=>this.handleOnClick()}>Start Book</button>
         <FollowersBtn/>
         <FollowingBtn/> 
+        <Editor/>
             <div className="bContainer">
                 </div>
                 {/* <EditBook book={book} /> */}

@@ -8,9 +8,10 @@ import Pages from "../page/pages"
 let book
 function Book(props){
     book = props.books.find(book=>{return book.id==props.book.id } )
-    book = book.attributes
-
-    const [show, setShow,readyEdit,setReadyEdit] = useState(false);
+  
+   
+    const [show, setShow] = useState(false);
+    const [title,setTitle]=useState("")
 let ifEdit = false
 const handleEditClick = () => {
      let div= document.getElementById(`book-${props.book.id}`)
@@ -25,21 +26,22 @@ const handleEditClick = () => {
     }
     
  };
-  const handleCloseEdit = () => { };
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+//   const handleCloseEdit = () => { };
+//   const handleClose = () => setShow(false);
+//   const handleShow = () => setShow(true);
 
      let user_id 
-        if(props.book.user_id){
-            user_id = props.book.user_id
-        }
-        if(props.book.user){
-          user_id = props.book.user.id
-        }   
- let user 
-   user = props.users.find(user=>{return user.id == user_id})
+  
+     let user 
+//         if(props.book && props.book.user_id){
+//             setTitle(props.book.title)
+//             user_id = props.book.user_id
+//             user = props.users.find(user=>{return user.id == user_id})
 
-   user = user.attributes
+//    user = user.attributes
+//         }else 
+ 
+   
    function ifEditable(){
 
 
@@ -47,79 +49,41 @@ const handleEditClick = () => {
    
     }
 
-function renderIf(){
-    
+    let html
+    let pages
         if(props.book ){
        
-           let pages = props.pages.filter(page=>{
+         pages = props.pages.filter(page=>{
                return page.attributes.book.id == props.book.id
            })
-          
-            return(<div>
                 
               
             
            
-                {ifEditable()}
-                <PageInput book={book}/>
-                <Pages pages={pages}/>
+              return (<div>div>
+      <div >
+       <button>Edit Book</button>
+      <h3 >{props.book.title} </h3>
+        {
                
-            </div>)
+               ifEditable()}
+                <PageInput book={props.book}/>
+                <Pages pages={pages}/>
+
+
+              </div> 
+            </div>)}else{
+                return(<div></div>)
+            }
         };
-    };
-   function editBtn(){
-    //    let btn 
 
-      
-    //         btn = ()
-    
-    //     return btn
-    
-   }
 
-  if(book){
-  
-        return(<div>
-        <div >
-        <h3 onClick={handleShow} >{book.title} </h3>
-        
-  </div>
-  {renderIf()}
-  <div>
- <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-    
-      
-        
-       </Modal.Header>
-      
-        <Modal.Body>
-         
-        
-        
-        
-
-        </Modal.Body>
-       <Modal.Footer>
-          
-         <Button variant="secondary" onClick={handleClose}>
-            Close
-           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-       </Modal> 
-</div>
- </div>
-        )}
-
-}
 function mapDispatch(dispatch){
     return{getPagesOfBook:(id)=>dispatch()}
 }
 function mapState(state){
     return{
+        bookInView: state.books.bookInView,
         pages: state.pages.pages,
         books: state.books.books,
         users: state.users.users

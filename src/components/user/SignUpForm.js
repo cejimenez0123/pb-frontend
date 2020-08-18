@@ -15,29 +15,37 @@ class SignUpForm extends React.Component{
     }
     componentDidMount(){
        user = new Promise((resolve, reject) => {
-  // We call resolve(...) when what we were doing asynchronously was successful, and reject(...) when it failed.
-  // In this example, we use setTimeout(...) to simulate async code. 
-  // In reality, you will probably be using something like XHR or an HTML5 API.
+
  return newUser()
 }) 
        
     }
-    handleOnChange = e =>{   
+    handleOnChange = e =>{ 
+        debugger
+        if(e.target["name"]="file"){
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    
+ debugger
+    this.setState({file: formData})
+
+       ;
+        }else{ 
         this.setState({[e.target["name"]]: e.target.value})
+        }
+    
     }
     handleOnSubmit = e =>{
         e.preventDefault()
         this.props.signUp(this.state)    
     }
     render(){
-       console.log(user)
+      
         return(<div>
             <NavbarContainer/>
                 <form className="SignUpForm" onSubmit={this.handleOnSubmit}> 
 
-                    <label htmlFor="file">Profile Picture: </label>
-                    <img src={localStorage.getItem("profile_photo")}/>
-                    <input type='file'/>
+                    <br/>
                     <label htmlFor="name">Name:</label>
                     <input type="text" name="name" 
                     onChange={this.handleOnChange} />
