@@ -1,11 +1,11 @@
 import React, {useState, useRef} from 'react';
-import {useDispatch} from 'react-redux'
-
+import {useDispatch,connect} from 'react-redux'
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
 import {savePage,newPage} from '../../actions/PageActions'
-const Editor = ({book}) => {
+let page
+const Editor = (props) => {
     
 	const editor = useRef(null)
 	const [content, setContent] = useState('')
@@ -16,34 +16,70 @@ const Editor = ({book}) => {
 		readonly: false
      // all options from https://xdsoft.net/jodit/doc/
 	}
-    
+    function debounce(func, wait, immediate) {
+        var timeout;
 
-    function handleOnClick(){
+            return function executedFunction() {
+                 var context = this;
+                var args = arguments;
+	    
+                var later = function() {
+             timeout = null;
+        if (!immediate) func.apply(context, args);
+    };
+
+    var callNow = immediate && !timeout;
+	
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+	
+    if (callNow) func.apply(context, args);
+  };
+};
+if(props.currentPage){
+    debugger
+}
+    
+    
+    function handleOnClick(e){
         debugger
-        let page = {data: content,bookId: book.id}
-        dispatch(savePage(page))
+        setContent(e)
+        if(props.currentPage){
+         page = {id: props.currentPage.id,data: e,bookId: props.book.id}
+        }else{
+            page={id: null,data:e,bookId: props.book.id}
+        }
         
+    }
+    function handleSave(){
+        
+        dispatch(savePage(page))
     }
     console.log(content)
     function doSetContent(e){
         debugger
     setContent(e)
     }
+   
+    
 	
 	return (<div>
-    <link rel="stylesheet" href="build/jodit.min.css"/>
-<script src="build/jodit.min.js"></script>
-<button onClick={()=>handleOnClick()}>save</button>
-            <JoditEditor
+    <button onClick={()=>handleSave()}>Save</button>
+ <JoditEditor
             	ref={editor}
                 value={content}
                 config={config}
 		tabIndex={1} // tabIndex of textarea
-        onChange={(e)=>{doSetContent(e)}}
-		// onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                // onKeyUp={()=>dispatch(savePage(page))}
+		onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                onChange={newContent => {debounce(handleOnClick(newContent),2000)}}
             />
         </div>
         );
 }
-export default Editor
+const mapState = (state)=>{
+    return{
+        currentPage: state.pages.currentPage
+    }
+}
+export default connect(mapState)(Editor)

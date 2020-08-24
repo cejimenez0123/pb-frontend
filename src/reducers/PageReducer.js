@@ -1,6 +1,7 @@
 
 export default function PageReducer(
-    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: [],pageCommentsInView:[]},
+    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: [],pageCommentsInView:[],currentPage: null},
+    
     action){
 
         switch(action.type){
@@ -17,6 +18,8 @@ export default function PageReducer(
             case "MY_INBOX":
               
                 return{...state,inbox: action.inbox}
+            case "CURRENT_PAGE":
+            return {...state,currentPage: action.page}
             case "GET_PAGE":
               console.log("GET PAGE")
        

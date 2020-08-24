@@ -82,26 +82,30 @@ const newPage=(page)=>{
     return(dispatch)=>{fetch(pageUrl+"/new",config).then(res=>res.json()).then(obj=>{
       debugger
       let page=obj.data.attributes
+          dispatch(currentPage(page))
          dispatch(getAllPages())
+         
     })}
 }
 const savePage = (page)=>{
  debugger
   let config = {    
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
       },
       body: JSON.stringify({
+        id: page.id,
         userId: localStorage.getItem("currentUser"),
         data: page.data,
         bookId: page.bookId
       })}
       return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
         obj=>{
-
+debugger
           let page=obj.data.attributes
+          dispatch(currentPage(page))
          dispatch(getAllPages())
         }
       )}
@@ -277,6 +281,6 @@ let config ={
 
 
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
-
+const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
 export {newPage,getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
