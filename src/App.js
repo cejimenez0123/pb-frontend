@@ -69,7 +69,7 @@ class App extends React.Component{
           </Route>
           </Switch>
           <Route exact path="/books/:id">
-            <BookContainer allBooks={this.props.books} getBook={this.props.getBook}/>
+            <BookContainer allBooks={this.props.books} getBook={this.props.getBook} getAllPages={this.props.getAllPages}/>
           </Route>
           <Route exact path="/street">
               <StreetContainer books={this.props.books}/>

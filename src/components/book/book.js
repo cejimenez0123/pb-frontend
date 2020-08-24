@@ -52,7 +52,10 @@ const handleEditClick = () => {
     let html
     let pages
         if(props.book ){
-       
+            if(props.pages.length > 0){
+               
+                pages= props.pages
+            }
          pages = props.pages.filter(page=>{
                return page.attributes.book.id == props.book.id
            })

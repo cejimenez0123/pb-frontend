@@ -25,6 +25,8 @@ export default function PageReducer(
        
               localStorage.setItem("currentPage",action.page)
                 return {...state, currentPage: action.page}
+            case "PAGES_IN_VIEW":
+                return {...state,pagesInView: action.pages}
             case "GET_ALL_PAGES":
         
                 return {...state,pages: action.pages}

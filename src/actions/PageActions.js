@@ -64,6 +64,8 @@ const startPage =(title)=>{
 }
 const getPagesOfBook=(id)=>{
   return(dispatch)=>{fetch(bookPath+"/"+id+"/pages").then(res=>res.json()).then(obj=>{debugger
+  let pages=obj.data
+  dispatch(pagesInView(pages))
   })}
 }
 const newPage=(page)=>{
@@ -281,6 +283,7 @@ let config ={
 
 
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
+const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
 export {newPage,getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

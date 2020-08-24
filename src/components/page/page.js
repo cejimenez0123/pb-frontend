@@ -35,7 +35,7 @@ const Page = (props)=>{
            
            </ListGroup.Item> */}
            <div variant="primary" onClick={handleShow}>
-           {page.data}
+            <div dangerouslySetInnerHTML={{__html: page.data}}/>
            </div>
 
       <Modal show={show} onHide={handleClose}>
@@ -45,7 +45,8 @@ const Page = (props)=>{
         <div className="body">
         <Modal.Body>
         <div className="ModalBody">
-        {page.data}
+        <div dangerouslySetInnerHTML={{__html: page.data}}/>
+       
         </div>
         <PageCommentInput page={page}/>
         <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
@@ -74,7 +75,7 @@ const Page = (props)=>{
            
            </ListGroup.Item> */}
            <div variant="primary" onClick={handleShow}>
-           {page.data}
+            <div dangerouslySetInnerHTML={{__html: page.data}}/>
            </div>
 
       <Modal show={show} onHide={handleClose}>
