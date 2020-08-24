@@ -1,19 +1,20 @@
 import React, {useState, useRef} from 'react';
-import {useDispatch,connect} from 'react-redux'
+import {useDispatch,connect,useStore} from 'react-redux'
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
 import {savePage,newPage} from '../../actions/PageActions'
 let page
 const Editor = (props) => {
-    
+    const store = useStore()
 	const editor = useRef(null)
 	const [content, setContent] = useState('')
 	
     let dispatch = useDispatch()
     
 	const config = {
-		readonly: false
+		readonly: false,
+        iframe: true
      // all options from https://xdsoft.net/jodit/doc/
 	}
     function debounce(func, wait, immediate) {
@@ -37,13 +38,13 @@ const Editor = (props) => {
     if (callNow) func.apply(context, args);
   };
 };
-if(props.currentPage){
-    debugger
-}
+
+
+
     
     
     function handleOnClick(e){
-        debugger
+    
         setContent(e)
         if(props.currentPage){
          page = {id: props.currentPage.id,data: e,bookId: props.book.id}

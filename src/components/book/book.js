@@ -5,6 +5,7 @@ import { getPagesOfBook } from "../../actions/PageActions"
 import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 import Pages from "../page/pages"
+import Infinite from "react-infinite"
 let book
 function Book(props){
     book = props.books.find(book=>{return book.id==props.book.id } )
@@ -63,18 +64,24 @@ const handleEditClick = () => {
               
             
            
-              return (<div>div>
-      <div >
+              return (<div>
+               <div>
+               
+     
+      
        <button>Edit Book</button>
       <h3 >{props.book.title} </h3>
         {
                
                ifEditable()}
+               
                 <PageInput book={props.book}/>
+               <div className={"scroll"}>
                 <Pages pages={pages}/>
+                </div>
 
-
-              </div> 
+       
+              </div>  
             </div>)}else{
                 return(<div></div>)
             }

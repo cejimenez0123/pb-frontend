@@ -18,7 +18,7 @@ class Pages extends React.Component{
 
 
     render(){
-        return(<div>
+        return(<div className={"pagesHome"}>
         <ul>
             {this.renderIf()}
             </ul>
