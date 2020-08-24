@@ -66,6 +66,25 @@ const getPagesOfBook=(id)=>{
   return(dispatch)=>{fetch(bookPath+"/"+id+"/pages").then(res=>res.json()).then(obj=>{debugger
   })}
 }
+const newPage=(page)=>{
+
+  let config = {    
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        userId: localStorage.getItem("currentUser"),
+        data: page.data,
+        bookId: page.bookId
+      })}
+    return(dispatch)=>{fetch(pageUrl+"/new",config).then(res=>res.json()).then(obj=>{
+      debugger
+      let page=obj.data.attributes
+         dispatch(getAllPages())
+    })}
+}
 const savePage = (page)=>{
  debugger
   let config = {    
@@ -187,8 +206,9 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
 
-       
+       debugger
               let pages = obj.data
+              
           pages = pages.sort((a,b)=>{
           return new Date(b.attributes.updated_at )-new Date(a.attributes.updated_at)
           })
@@ -196,7 +216,7 @@ function myPages(){
               dispatch({type: "GET_MY_PAGES",pages})}
               
   
-)})}
+).catch(err=>alert(err))})}
 
 function commentOnPage(page){
 
@@ -259,4 +279,4 @@ let config ={
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 
 
-export {getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {newPage,getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

@@ -15,7 +15,7 @@ function PageInput(props){
     dispatch(bot.savePage(data))
    }
     return(<div id={`book-${props.book.id}`} >
-    <Editor/>
+    <Editor book={props.book}/>
     <form onSubmit={(e)=>handleOnSubmit(e)}> 
         <input type="text"/><input type="submit"/>
     </form>
