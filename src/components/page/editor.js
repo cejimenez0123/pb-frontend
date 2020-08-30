@@ -3,20 +3,16 @@ import {useDispatch,connect,useStore} from 'react-redux'
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
-import {savePage,newPage} from '../../actions/PageActions'
+import {savePage} from '../../actions/PageActions'
 let page
 const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
-	const [content, setContent] = useState('')
+	let [content, setContent] = useState('')
 	
     let dispatch = useDispatch()
     
-	const config = {
-		readonly: false,
-        iframe: true
-     // all options from https://xdsoft.net/jodit/doc/
-	}
+	
     function debounce(func, wait, immediate) {
         var timeout;
 
@@ -38,32 +34,51 @@ const Editor = (props) => {
     if (callNow) func.apply(context, args);
   };
 };
-
-
-
+   
     
+
+    if(props.currentPage){
+         
+         page = {id: props.currentPage.id,data: props.currentPage.data,bookId: props.book.id}
+        }else{
+            page={id: null,data:content,bookId: props.book.id}
+        }
+    if(!props.currentPage){
     
+    }
     function handleOnClick(e){
-    
-        setContent(e)
+ 
         if(props.currentPage){
+        
          page = {id: props.currentPage.id,data: e,bookId: props.book.id}
         }else{
             page={id: null,data:e,bookId: props.book.id}
         }
-        
+        localStorage.setItem("workingPage",page.data)
     }
+    
+    
     function handleSave(){
-        
+        debugger
         dispatch(savePage(page))
     }
     console.log(content)
     function doSetContent(e){
-        debugger
+       
     setContent(e)
     }
    
-    
+    const config = {
+		readonly: false,
+        iframe: true
+
+	}
+    function handleLoad(){
+        debugger
+        if(localStorage.getItem("workingPage").length !==0){
+        setContent(localStorage.getItem("workingPage"))
+        }
+    }
 	
 	return (<div>
     <button onClick={()=>handleSave()}>Save</button>
@@ -71,9 +86,10 @@ const Editor = (props) => {
             	ref={editor}
                 value={content}
                 config={config}
-		tabIndex={1} // tabIndex of textarea
-		onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                onChange={newContent => {debounce(handleOnClick(newContent),2000)}}
+                
+		// tabIndex={1} // tabIndex of textarea
+		// onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                onChange={newContent => {handleOnClick(newContent)}}
             />
         </div>
         );

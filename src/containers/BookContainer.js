@@ -23,9 +23,7 @@ componentDidMount(){
 }
 componentDidUpdate(){
     
-    // if(this.props.book !== null){
-    //     this.setState({title: this.props.book.title})
-    // }
+
 }
 
     render(){

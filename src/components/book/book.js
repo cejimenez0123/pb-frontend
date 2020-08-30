@@ -69,7 +69,7 @@ const handleEditClick = () => {
                
      
       
-       <button>Edit Book</button>
+       <button>Edit Book</button><a href={`/books/${props.book.id}/drafts`}>Draft</a>
       <h3 >{props.book.title} </h3>
         {
                

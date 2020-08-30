@@ -29,8 +29,8 @@ const Page = (props)=>{
         }
        
         return(
-             <div id="pages" >
-             <li>
+             <div  >
+             <li >
            {/* <ListGroup.Item>
            
            </ListGroup.Item> */}
@@ -69,7 +69,7 @@ const Page = (props)=>{
     }else if(props.page){
         let page = props.page
         return(
-        <div id="pages" >
+        <div  >
             <li>
            {/* <ListGroup.Item>
            

@@ -94,7 +94,7 @@ class ProfileContainer extends React.Component{
             <button onClick={()=>this.handleOnClick()}>Start Book</button>
         <FollowersBtn/>
         <FollowingBtn/> 
-        <Editor/>
+        
             <div className="bContainer">
                 </div>
                 {/* <EditBook book={book} /> */}

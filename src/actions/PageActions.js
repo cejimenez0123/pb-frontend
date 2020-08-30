@@ -63,35 +63,40 @@ const startPage =(title)=>{
 
 }
 const getPagesOfBook=(id)=>{
-  return(dispatch)=>{fetch(bookPath+"/"+id+"/pages").then(res=>res.json()).then(obj=>{debugger
+  return(dispatch)=>{fetch(bookPath+"/"+id+"/pages").then(res=>res.json()).then(obj=>{
   let pages=obj.data
   dispatch(pagesInView(pages))
   })}
 }
-const newPage=(page)=>{
-
-  let config = {    
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        userId: localStorage.getItem("currentUser"),
-        data: page.data,
-        bookId: page.bookId
-      })}
-    return(dispatch)=>{fetch(pageUrl+"/new",config).then(res=>res.json()).then(obj=>{
-      debugger
-      let page=obj.data.attributes
-          dispatch(currentPage(page))
-         dispatch(getAllPages())
-         
-    })}
+const getDraftsOfBook=(id)=>{
+  return(dispatch)=>{fetch(bookPath+"/"+id+"/drafts").then(res=>res.json()).then(obj=>{
+  let pages=obj.data
+  dispatch(pagesInView(pages))
+  })}
 }
-const savePage = (page)=>{
- debugger
-  let config = {    
+// const newPage=(page)=>{
+
+//   let config = {    
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         userId: localStorage.getItem("currentUser"),
+//         data: page.data,
+//         bookId: page.bookId
+//       })}
+//     return(dispatch)=>{fetch(pageUrl+"/new",config).then(res=>res.json()).then(obj=>{
+ 
+//       let page=obj.data.attributes
+//           dispatch(currentPage(page))
+//          dispatch(getAllPages())
+         
+//     })}
+// }
+const publishPage=(page)=>{
+   let config = {    
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -101,7 +106,31 @@ const savePage = (page)=>{
         id: page.id,
         userId: localStorage.getItem("currentUser"),
         data: page.data,
-        bookId: page.bookId
+        bookId: page.bookId,
+        status: "published"
+      })}
+      return(dispatch)=>{fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
+        obj=>{
+          let page=obj.data.attributes
+          
+         dispatch(getAllPages())
+        }
+      )}
+}
+const savePage = (page)=>{
+ debugger
+  let config = {    
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        id: page.id,
+        userId: localStorage.getItem("currentUser"),
+        data: page.data,
+        bookId: page.bookId,
+        status: "draft"
       })}
       return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
         obj=>{
@@ -286,4 +315,4 @@ const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {newPage,getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getDraftsOfBook,getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

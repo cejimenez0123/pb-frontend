@@ -3,6 +3,7 @@ import { BrowserRouter,HashRouter, Route, Switch, Redirect,withRouter} from 'rea
 import './App.css';
 import EditBookContainer from "./containers/EditBookContainer"
 import { connect} from "react-redux"
+import BookDraftsContainer from "./containers/BookDraftsContainer"
 import HomeContainer from "./containers/HomeContainer"
 import LogInForm from "./components/user/LogInForm"
 import SignUpForm from "./components/user/SignUpForm"
@@ -70,6 +71,9 @@ class App extends React.Component{
           </Switch>
           <Route exact path="/books/:id">
             <BookContainer allBooks={this.props.books} getBook={this.props.getBook} getAllPages={this.props.getAllPages}/>
+          </Route>
+          <Route exact path="/books/:id/drafts">
+            <BookDraftsContainer getBook={this.props.getBook}/>
           </Route>
           <Route exact path="/street">
               <StreetContainer books={this.props.books}/>

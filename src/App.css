@@ -14,6 +14,7 @@
 #Navbar{
 	position: relative
 }
+
 /* .scroll{
 	position:relative;
 	max-height:225px;  /*height to show an exact number of spans  - in this case span is 45px (40 height plus 5 margin as margins collapse) and we are showing 5 spans to start */
@@ -36,7 +37,7 @@
   } */
   /* @keyframes scroll {
 	  100% { top: -360px; }  top is the number of spans (in this case 8) multiplied by span height (45px as described above) */
-  
+
 .signbtns{
 	margin-top: 100px;
 	text-align: center;
