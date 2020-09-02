@@ -41,8 +41,9 @@ componentDidUpdate(){
         BookContainer
 
         <button onClick={()=>this.handleOnClick()}>Follow</button>
+        <div style={{alignItems: "center" }}>
         <Book book={this.props.book} pages={this.props.pagesInView}/>
-           
+           </div>
             
         </div>)
     }

@@ -69,7 +69,8 @@ const Editor = (props) => {
     }
    
     const config = {
-        width: 800,
+        width: 900,
+        height: "auto",
 		readonly: false,
         iframe: true
 

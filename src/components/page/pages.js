@@ -18,7 +18,7 @@ class Pages extends React.Component{
 
 
     render(){
-        return(<div className={"pages"}>
+        return(<div style={{margin: "auto"}}className={"pages"}>
        
             {this.renderIf()}
           

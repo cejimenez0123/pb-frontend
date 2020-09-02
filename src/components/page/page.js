@@ -20,10 +20,19 @@ export default function Page(props){
     
     let comments = store.getState().pages.pageCommentsInView
 
-   
+   const handleCommentClick=(e)=>{
+     debugger
+   let div = document.querySelector(`#modal-${props.page.id}`)
+   div.style.display = "block"
+   }
+   const handleModalClose=()=>{
+     debugger
+     let div = document.querySelector(`#modal-${props.page.id}`)
+   div.style.display = "none"
+   }
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-    const config={readonly: true,width: 700,iframe: true}
+    const config={readonly: true,width: 900,iframe: true}
    let editBtn = null
      if(props.page.attributes){
      
@@ -84,12 +93,26 @@ export default function Page(props){
         <div  >
            
             <div className="page" style={{height: "0px"}}>
+            <div>
             <JoditEditor
             	ref={editor}
                 value={content}
                 config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
             />
+            <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
+            <div id={`modal-${page.id}`}onBlur={handleModalClose} class="modal">
+ <div class="modal-content">
+    <span class="close">&times;</span>
+    <JoditEditor
+            	ref={editor}
+                value={content}
+                config={config}
+                // onChange={newContent => {handleOnClick(newContent)}}
+            />
+  </div>
+            </div>
+            </div>
             </div>
            {/* <ListGroup.Item>
            
@@ -98,13 +121,19 @@ export default function Page(props){
             <div dangerouslySetInnerHTML={{__html: page.data}}/>
            </div> */}
 
-      {/* <Modal show={show} onHide={handleClose}>
+{/* 
+      <Modal size="lg" show={show} onHide={handleClose} style={{width: "1220px"}}>
         <Modal.Header closeButton>
           <Modal.Title><h5>from {page.book.title} by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
         </h5></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <div dangerouslySetInnerHTML={{__html: page.data}}/>
+        <JoditEditor
+            	ref={editor}
+                value={content}
+                config={config}
+                // onChange={newContent => {handleOnClick(newContent)}}
+            />
         <PageCommentInput page={page}/>
         <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} /></Modal.Body>
         <Modal.Footer>
