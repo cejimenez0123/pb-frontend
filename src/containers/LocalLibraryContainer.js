@@ -23,7 +23,7 @@ class LocalLibraryContainer extends React.Component{
         let container=document.querySelector(".LibraryContainer")
         if(e.target.innerHTML =="Books"){
         //     // this.setState(inView: ()=>{return (<div><Books books={this.props.books}/></div>)})
-           
+           debugger
             ReactDOM.render(
             <Provider store={store}><Books  books={this.props.books}/></Provider>,container)
         }else if(e.target.innerText=="Pages"){

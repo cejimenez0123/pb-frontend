@@ -26,8 +26,8 @@ let bot
 class App extends React.Component{
   componentDidMount(){
   
-    // this.props.getAllBooks()
-    // this.props.getAllPages()
+    this.props.getAllBooks()
+    this.props.getAllPages()
     this.props.getUsers()
     
   }
@@ -73,7 +73,7 @@ class App extends React.Component{
             <BookContainer allBooks={this.props.books} getBook={this.props.getBook} getAllPages={this.props.getAllPages}/>
           </Route>
           <Route exact path="/books/:id/drafts">
-            <BookDraftsContainer getBook={this.props.getBook}/>
+            <BookDraftsContainer getBook={this.props.getBook} bookInView={this.props.bookInView}/>
           </Route>
           <Route exact path="/street">
               <StreetContainer books={this.props.books}/>

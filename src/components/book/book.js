@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
+import Editor from "../page/editor"
 import { getPagesOfBook } from "../../actions/PageActions"
 import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 import Pages from "../page/pages"
 import Infinite from "react-infinite"
 let book
+let truthy=true
 function Book(props){
     book = props.books.find(book=>{return book.id==props.book.id } )
   
@@ -42,10 +44,25 @@ const handleEditClick = () => {
 //    user = user.attributes
 //         }else 
  
+   function changeTruthy(e){
    
+       if(e.target.nextElementSibling.style.display === "block"){
+           truthy=false
+           e.target.nextElementSibling.style.display ="none"
+       }else{
+           e.target.nextElementSibling.style.display ="block"
+            truthy=true
+       }
+   }
    function ifEditable(){
 
-
+    //    if(truthy){
+        
+    //        return(<div></div>)
+    //    }else{
+    //        debugger
+    //        return(<div><Editor book={props.book}/></div>)
+    //    }
     
    
     }
@@ -69,13 +86,16 @@ const handleEditClick = () => {
                
      
       
-       <button>Edit Book</button><a href={`/books/${props.book.id}/drafts`}>Draft</a>
+       <button>Edit Book</button><a href={`/books/${props.book.id}/drafts`}>Drafts</a>
       <h3 >{props.book.title} </h3>
         {
                
                ifEditable()}
-               
-                <PageInput book={props.book}/>
+               <button onClick={(e)=>changeTruthy(e)}>Add Page</button>
+               <div style={{display: "none"}}>
+               <Editor book={props.book}/>
+               </div>
+                {/* <PageInput book={props.book}/> */}
                <div className={"scroll"}>
                 <Pages pages={pages}/>
                 </div>

@@ -8,7 +8,7 @@ let page
 const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
-	let [content, setContent] = useState('')
+	let [content, setContent] = useState(localStorage.getItem("workingPage"))
 	
     let dispatch = useDispatch()
     
@@ -35,12 +35,12 @@ const Editor = (props) => {
   };
 };
    
-    
 
     if(props.currentPage){
          
          page = {id: props.currentPage.id,data: props.currentPage.data,bookId: props.book.id}
-        }else{
+        }else if(props.book){
+         
             page={id: null,data:content,bookId: props.book.id}
         }
     if(!props.currentPage){
@@ -51,10 +51,10 @@ const Editor = (props) => {
         if(props.currentPage){
         
          page = {id: props.currentPage.id,data: e,bookId: props.book.id}
-        }else{
+        }else if(props.book){
             page={id: null,data:e,bookId: props.book.id}
         }
-        localStorage.setItem("workingPage",page.data)
+        
     }
     
     
@@ -69,18 +69,19 @@ const Editor = (props) => {
     }
    
     const config = {
+        width: 800,
 		readonly: false,
         iframe: true
 
 	}
-    function handleLoad(){
-        debugger
-        if(localStorage.getItem("workingPage").length !==0){
-        setContent(localStorage.getItem("workingPage"))
-        }
-    }
+    // function handleLoad(){
+    //     debugger
+    //     if(localStorage.getItem("workingPage").length !==0){
+    //     setContent(localStorage.getItem("workingPage"))
+    //     }
+    // }
 	
-	return (<div>
+	return (<div className="editor">
     <button onClick={()=>handleSave()}>Save</button>
  <JoditEditor
             	ref={editor}

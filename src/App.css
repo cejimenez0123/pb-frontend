@@ -47,23 +47,27 @@
 	left: 60%;
 }
 
-
 #SHomeContainer{
 	height: 200px;
 }
+
 .BookContainer{
 	margin-top: 400px;
 	text-align: center;
 	margin: auto;
 }
+.pages{display: inline-block;
+	align-items: center;}
+.page .jodit-toolbar__box{
+	display: none;
+}
+.page{display: inline-block;
+	height: 0px;
+}
 .index{
 	margin-left: 50%;
 }
-.editor {
-			border:solid 1px #ccc;
-			padding: 20px;
-			min-height:200px;
-        }
+
 
 .toolbar {
 			border:solid 1px #ddd;

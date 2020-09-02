@@ -144,7 +144,7 @@ debugger
 const getAllPages = ()=>{
   return(dispatch)=>{fetch(pageUrl).then(res=>res.json()).then(
     obj=>{
- 
+  
       let pages = obj.data
       dispatch({type: "GET_ALL_PAGES", pages})
     }

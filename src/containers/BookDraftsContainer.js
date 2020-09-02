@@ -1,12 +1,26 @@
 import React from 'react'
+import NavbarContainer from './NavbarContainer'
+import EditPages from '../components/page/EditPages'
+
 import {connect } from 'react-redux'
 class BookDraftsContainer extends React.Component{
-
+    constructor(){
+        super()
+        this.state={title:""}
+    }
+    componentDidMount(){
+       let id = window.location.pathname.split("/")[2]
+       this.props.getBook(id)
+    }
 
 
     render(){
         return(<div>
-            BookDraftsContainer
+           
+            <NavbarContainer/>
+        {this.bookInView.title} Draft's
+       DraftBookContainer
+        <EditPages/>
         </div>)
     }
 }
