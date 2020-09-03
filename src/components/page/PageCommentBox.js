@@ -10,7 +10,7 @@ function PageCommentBox(props){
     let comment
      let user 
     if(props.comment.self){
-        debugger
+    
     comment = props.comment.self
 
    
@@ -45,7 +45,7 @@ function PageCommentBox(props){
         let obj ={page_id: props.page.id,parent_id: comment.id,text: value}
         dispatch(commentOnPageComment(obj))
     }
-    debugger
+  
     return(<div>
      <div ><li><p>{comment.text}</p>from <a href={`/users/${user.id}`}>@{user.username}</a>
     <Popup trigger={<button >reply</button>} position="bottom center">

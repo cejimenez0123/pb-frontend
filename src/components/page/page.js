@@ -21,14 +21,20 @@ export default function Page(props){
     let comments = store.getState().pages.pageCommentsInView
 
    const handleCommentClick=(e)=>{
-     debugger
+     
    let div = document.querySelector(`#modal-${props.page.id}`)
    div.style.display = "block"
    }
-   const handleModalClose=()=>{
-     debugger
+   const handleModalClose=(e)=>{
+   
      let div = document.querySelector(`#modal-${props.page.id}`)
-   div.style.display = "none"
+
+     if(e.target === e.currentTarget){
+       console.log("!")
+       e.target.style.display="none"
+
+     }
+  //  div.style.display = "none"
    }
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -101,15 +107,17 @@ export default function Page(props){
                 // onChange={newContent => {handleOnClick(newContent)}}
             />
             <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
-            <div id={`modal-${page.id}`}onBlur={handleModalClose} class="modal">
- <div class="modal-content">
-    <span class="close">&times;</span>
+            <div id={`modal-${page.id}`} onClick={(e)=>handleModalClose(e)} style={{width: "100%"}} class="modal">
+ <div   class="modal-content">
+    <span  class="close">&times;</span>
     <JoditEditor
             	ref={editor}
                 value={content}
                 config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
             />
+            <PageCommentInput page={page}/>
+        <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
   </div>
             </div>
             </div>
