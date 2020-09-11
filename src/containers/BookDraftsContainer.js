@@ -11,17 +11,23 @@ class BookDraftsContainer extends React.Component{
     componentDidMount(){
        let id = window.location.pathname.split("/")[2]
        this.props.getBook(id)
+       this.props.getDrafts(id)
     }
 
 
     render(){
+        if(this.props.bookInView){
         return(<div>
            
             <NavbarContainer/>
-        {this.bookInView.title} Draft's
+        {this.props.bookInView.title} Draft's
        DraftBookContainer
         <EditPages/>
-        </div>)
+        </div>)}else{return(
+            <div>
+            <NavbarContainer/>
+            </div>)
+        }
     }
 }
 const mapState=(state)=>{

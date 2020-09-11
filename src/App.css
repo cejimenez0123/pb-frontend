@@ -69,8 +69,19 @@
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
-  /* Modal Content/Box */
+  .bookPages{text-align: center;;}
+  .modalInfo{text-align: left}
+  .PageCommentBox{
+	  text-align: left;
+  }
+  .ed{background-color: red;
+	margin-left: 21.7%;
+justify-content: space-between;
+max-width: 840px}
+/* .editor{
+	margin-left: 30%;
+background-color: red;}
+  Modal Content/Box */
   .modal-content {
 	background-color: #fefefe;
 	margin: auto; /* 15% from the top and centered */

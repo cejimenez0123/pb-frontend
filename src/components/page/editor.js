@@ -3,11 +3,12 @@ import {useDispatch,connect,useStore} from 'react-redux'
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
-import {savePage} from '../../actions/PageActions'
+import {savePage,publishPage} from '../../actions/PageActions'
 let page
 const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
+    let [show,setShow]= useState("none")
 	let [content, setContent] = useState(localStorage.getItem("workingPage"))
 	
     let dispatch = useDispatch()
@@ -61,6 +62,7 @@ const Editor = (props) => {
     function handleSave(){
         debugger
         dispatch(savePage(page))
+        props.handleTruthyClose(page.data)
     }
     console.log(content)
     function doSetContent(e){
@@ -69,7 +71,7 @@ const Editor = (props) => {
     }
    
     const config = {
-        width: 900,
+        width: 815,
         height: "auto",
 		readonly: false,
         iframe: true
@@ -81,9 +83,21 @@ const Editor = (props) => {
     //     setContent(localStorage.getItem("workingPage"))
     //     }
     // }
+    function handlePublish(){
+        dispatch(publishPage(page))
+    }
+   function handleTruthy(){
+       
+       props.handleTruthyClose(page.data)
+    }
+    function showModal(){
+        setShow("block")
+    }
+
+    const handleClose=()=>setShow("none")
 	
-	return (<div className="editor">
-    <button onClick={()=>handleSave()}>Save</button>
+	return (<div style={{textAlign: "center",margin: "auto"}}className="editor">
+    <button onClick={()=>handlePublish()}>Publish</button><span  onClick={()=>showModal()} class="close">&times;</span>
  <JoditEditor
             	ref={editor}
                 value={content}
@@ -93,6 +107,14 @@ const Editor = (props) => {
 		// onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
                 onChange={newContent => {handleOnClick(newContent)}}
             />
+            <div id={`modal-${page.id}`} onClick={(e)=>handleClose()} style={{width: "100%",display: show}} class="modal">
+                <div   class="modal-content">
+                  
+                  <div className={"modalInfo"}>
+                  <button onClick={handleSave}>Save</button> <button onClick={()=>props.handleTruthyClose(page.data)}>Don't Save</button><button>Cancel</button>
+</div>
+                  </div>
+              </div>
         </div>
         );
 }

@@ -97,7 +97,7 @@ const getDraftsOfBook=(id)=>{
 // }
 const publishPage=(page)=>{
    let config = {    
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -315,4 +315,4 @@ const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {getDraftsOfBook,getPageCommentComments,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

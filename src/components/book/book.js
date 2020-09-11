@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import "../../App.css"
+import Popup from 'reactjs-popup'
 import PageInput from "../page/PageInput"
 import {connect } from "react-redux"
 import Editor from "../page/editor"
@@ -8,13 +10,14 @@ import PageCards from "../page/PageCards"
 import Pages from "../page/pages"
 import Infinite from "react-infinite"
 let book
-let truthy=true
+
 function Book(props){
     book = props.books.find(book=>{return book.id==props.book.id } )
   
    
     const [show, setShow] = useState(false);
     const [title,setTitle]=useState("")
+    let [truthy,setTruthy]=useState("none")
 let ifEdit = false
 const handleEditClick = () => {
      let div= document.getElementById(`book-${props.book.id}`)
@@ -66,7 +69,37 @@ const handleEditClick = () => {
     
    
     }
-
+    function editBtnClick(e){
+        if(e.target.nextElementSibling.style.display === "none"){
+            e.target.nextElementSibling.style.display ="block"
+        }else{
+            e.target.nextElementSibling.style.display = "none"
+        }
+        
+    }
+    const handleTruthyShow =()=>setTruthy("block")
+    const handleTruthyClose=(text)=>{
+        
+        setTruthy("none");}
+    function editBtn(){
+      
+        if(props.currentUser && props.currentUser.id===props.book.user.id){
+            return(<div>
+            <Popup trigger={ <button className={".editBookBtnDropdown"}>Edit Book</button>} position="right center">
+   <div >
+        <button onClick={handleTruthyShow}>Add Page</button>
+        <button>Delete Page</button>
+         </div>
+  </Popup>
+           
+                     
+       
+        </div>)
+            
+        }else{
+            return ("")
+        }
+    }
     let html
     let pages
         if(props.book ){
@@ -82,21 +115,24 @@ const handleEditClick = () => {
             
            
               return (<div>
-               <div>
+              
+             
+               <div style={{textAlign: "center"}}>
                
      
+     {editBtn()} <a href={`/books/${props.book.id}/drafts`}>Drafts</a>
+       
       
-       <button>Edit Book</button><a href={`/books/${props.book.id}/drafts`}>Drafts</a>
       <h3 >{props.book.title} </h3>
         {
                
                ifEditable()}
-               <button onClick={(e)=>changeTruthy(e)}>Add Page</button>
-               <div style={{display: "none"}}>
-               <Editor book={props.book}/>
-               </div>
                 {/* <PageInput book={props.book}/> */}
-               <div className={"scroll"}>
+               <div className={"scroll bookPages"}>
+               <div style={{display: truthy,justifySelf:"center"}} className={"ed"}>
+                
+               <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
+               </div>
                 <Pages pages={pages}/>
                 </div>
 
@@ -113,6 +149,7 @@ function mapDispatch(dispatch){
 }
 function mapState(state){
     return{
+        currentUser: state.users.currentUser,
         bookInView: state.books.bookInView,
         pages: state.pages.pages,
         books: state.books.books,

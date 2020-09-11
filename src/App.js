@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter,HashRouter, Route, Switch, Redirect,withRouter} from 'react-router-dom';
 import './App.css';
+
 import EditBookContainer from "./containers/EditBookContainer"
 import { connect} from "react-redux"
 import BookDraftsContainer from "./containers/BookDraftsContainer"
@@ -12,7 +13,7 @@ import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser} from "./actions/UserActions"
 import {getLibrary,getBooksOfLibrary} from "./actions/LibraryAction"
-import {savePage,getAllPages, getInbox} from "./actions/PageActions"
+import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
 import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
@@ -25,7 +26,7 @@ import LibraryContainer from "./containers/LibraryContainer"
 let bot
 class App extends React.Component{
   componentDidMount(){
-  
+    this.props.setCurrentUser()
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
@@ -36,7 +37,7 @@ class App extends React.Component{
   render(){
   return (
  
-    <div className="">
+    <div className="app">
       <head>
      
      <script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
@@ -74,7 +75,7 @@ class App extends React.Component{
             <BookContainer allBooks={this.props.books} getBook={this.props.getBook} getAllPages={this.props.getAllPages}/>
           </Route>
           <Route exact path="/books/:id/drafts">
-            <BookDraftsContainer getBook={this.props.getBook} bookInView={this.props.bookInView}/>
+            <BookDraftsContainer getDrafts={this.props.getDrafts} getBook={this.props.getBook} bookInView={this.props.bookInView}/>
           </Route>
           <Route exact path="/street">
               <StreetContainer books={this.props.books}/>
@@ -107,7 +108,8 @@ function mapDispatchToProps(dispatch){
     getUser:(id)=>dispatch(getUser(id)),
     getBooksOfUser:(id)=>dispatch(getBooksOfUser(id)),
     getLibrary:(id)=>dispatch(getLibrary(id)),
-    getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id))
+    getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id)),
+    getDrafts:(id)=>dispatch(getDraftsOfBook(id))
   }
 }
 function mapStateToProps(state){
