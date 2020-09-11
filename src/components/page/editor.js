@@ -84,7 +84,7 @@ const Editor = (props) => {
     //     }
     // }
     function handlePublish(){
-        dispatch(publishPage(page))
+        dispatch()
     }
    function handleTruthy(){
        
@@ -111,7 +111,7 @@ const Editor = (props) => {
                 <div   class="modal-content">
                   
                   <div className={"modalInfo"}>
-                  <button onClick={handleSave}>Save</button> <button onClick={()=>props.handleTruthyClose(page.data)}>Don't Save</button><button>Cancel</button>
+                  <button onClick={()=>handleSave()}>Save</button> <button onClick={()=>props.handleTruthyClose(page.data)}>Don't Save</button><button>Cancel</button>
 </div>
                   </div>
               </div>

@@ -71,6 +71,7 @@ const getPagesOfBook=(id)=>{
 const getDraftsOfBook=(id)=>{
   return(dispatch)=>{fetch(bookPath+"/"+id+"/drafts").then(res=>res.json()).then(obj=>{
   let pages=obj.data
+  debugger
   dispatch(pagesInView(pages))
   })}
 }

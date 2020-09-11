@@ -1,7 +1,7 @@
 import React from 'react'
 import NavbarContainer from './NavbarContainer'
 import EditPages from '../components/page/EditPages'
-
+import Pages from "../components/page/pages"
 import {connect } from 'react-redux'
 class BookDraftsContainer extends React.Component{
     constructor(){
@@ -21,7 +21,9 @@ class BookDraftsContainer extends React.Component{
            
             <NavbarContainer/>
         {this.props.bookInView.title} Draft's
+        <Pages pages={this.props.pagesInView}/>
        DraftBookContainer
+       
         <EditPages/>
         </div>)}else{return(
             <div>
@@ -35,4 +37,4 @@ const mapState=(state)=>{
         pagesInView: state.pages.pagesInView
     }
 }
-export default BookDraftsContainer
+export default connect(mapState)(BookDraftsContainer)
