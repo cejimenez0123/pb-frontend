@@ -1,10 +1,13 @@
 import React,{useState,useRef} from 'react'
 import {useDispatch,useStore} from "react-redux"
 import JoditEditor from "jodit-react"
+import {publishPage,deletePage,updatePage} from "../../actions/PageActions"
 // let config ={readonly: true,width: 900,iframe: true}
+let page
 function DraftPage(props){
 const dispatch = useDispatch()
   const store = useStore()
+ 
   const [show, setShow] = useState("none")
   let [config,setConfig]=useState({readonly: true,width: 900,iframe: true})
   let [classNom,setClass]=useState("page")
@@ -29,20 +32,37 @@ const dispatch = useDispatch()
 
      }
    }
+   function handleSave(){
+     page = {...page,data: content}
+     
+     dispatch(updatePage(page))
+   }
   function changeReadOnly(e){
       debugger
       setConfig({readonly: false,width: 900,iframe: true})
     setClass("draftPage")
       
   }
+  function deletePage(){
+    dispatch(deletePage(page))
+  }
+  function pubPage(){
+    page = {...page,status: "published"}
+    dispatch(publishPage(page))
+  }
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
- 
+ function handleOnClick(data){
+   content = data
+ }
   let editBtn = null
-    
+  if(props.book){
+         
+            page={id: props.page.id,data:content,bookId: props.book.id}
+        } 
   if(props.page){
-    let page = props.page
-    content = page.data
+    let page = {...props.page}
+    content = props.page.data
     console.log(config)
       let html =(
         <div >
@@ -52,9 +72,13 @@ const dispatch = useDispatch()
             	ref={editor}
               value={content}
               config={config}
-                // onChange={newContent => {handleOnClick(newContent)}}
+                onChange={newContent => {handleOnClick(newContent)}}
             />
-           <button onClick={(e)=>changeReadOnly(e)}>Edit Book</button> <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
+           <button onClick={(e)=>changeReadOnly(e)}>Edit Page</button> 
+           <button onClick={()=>handleSave()}>Save</button>
+           <button onClick={(e)=>pubPage()}>Publish</button>
+           <button onClick={()=>deletePage()}>Delete</button>
+           <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
               {/* <div id={`modal-${page.id}`} onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
                 <div   class="modal-content">
                   <span  class="close">&times;</span>

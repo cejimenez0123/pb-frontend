@@ -8,7 +8,7 @@ function renderIf(){
         
             return ( props.pages.map(page=>{
               page = page.attributes
-                return (<DraftPage page={page} key={page.id}/>)
+                return (<DraftPage page={page} key={page.id} book={props.book}/>)
             }))
             // this.props.pages.map(page=>{
             //   return  <Page page={page}/>

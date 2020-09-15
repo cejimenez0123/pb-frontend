@@ -21,7 +21,7 @@ class BookDraftsContainer extends React.Component{
            
             <NavbarContainer/>
         {this.props.bookInView.title} Draft's
-        <DraftPages pages={this.props.pagesInView}/>
+        <DraftPages pages={this.props.pagesInView} book={this.props.bookInView}/>
         {/* <Pages pages={this.props.pagesInView}/> */}
        DraftBookContainer
        

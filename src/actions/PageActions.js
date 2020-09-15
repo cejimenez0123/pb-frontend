@@ -16,25 +16,7 @@ savePage:(data)=>savePage(data),
 getPagesOfBook: (id)=>getPagesOfBook(id)
   }
 }
-const updatePage = ({id,data}) => {
- 
-    
-    const config = {    
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-              id: id,
-            data: data
-          })}
-     fetch(pageUrl+"/"+id,config).then(res => res.json()).then(obj=>{
-       debugger
-         return((dispatch)=>{dispatch({type: "UPDATE_PAGE",obj})})
-         
-     })
-}
+
 const startPage =(title)=>{
   
   // let config = {    
@@ -112,6 +94,31 @@ const publishPage=(page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
         obj=>{
+          debugger
+          let page=obj.data.attributes
+          
+         dispatch(getAllPages())
+        }
+      )}
+}
+const updatePage=(page)=>{
+  debugger
+  let config = {    
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        id: page.id,
+        userId: localStorage.getItem("currentUser"),
+        data: page.data,
+        bookId: page.bookId,
+        status: page.status
+      })}
+      return(dispatch)=>{fetch(pageUrl+`/${page.id}/update`,config).then(res=>res.json()).then(
+        obj=>{
+debugger
           let page=obj.data.attributes
           
          dispatch(getAllPages())
@@ -127,11 +134,10 @@ const savePage = (page)=>{
       'Accept': 'application/json'
       },
       body: JSON.stringify({
-        id: page.id,
         userId: localStorage.getItem("currentUser"),
         data: page.data,
         bookId: page.bookId,
-        status: "draft"
+        status: page.status
       })}
       return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
         obj=>{

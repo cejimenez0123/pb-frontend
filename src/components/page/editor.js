@@ -9,7 +9,7 @@ const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
     let [show,setShow]= useState("none")
-	let [content, setContent] = useState(localStorage.getItem("workingPage"))
+	let [content, setContent] = useState("")
 	
     let dispatch = useDispatch()
     
@@ -48,10 +48,11 @@ const Editor = (props) => {
     
     }
     function handleOnClick(e){
- 
+ debugger
+ setContent(e)
         if(props.currentPage){
         
-         page = {id: props.currentPage.id,data: e,bookId: props.book.id}
+         page = {id: props.currentPage.id,data: e,bookId: props.book.id,status: "draft"}
         }else if(props.book){
             page={id: null,data:e,bookId: props.book.id}
         }
@@ -61,6 +62,7 @@ const Editor = (props) => {
     
     function handleSave(){
         debugger
+        page= {...page,status: "draft"}
         dispatch(savePage(page))
         props.handleTruthyClose(page.data)
     }
@@ -84,7 +86,8 @@ const Editor = (props) => {
     //     }
     // }
     function handlePublish(){
-        dispatch()
+        page = {...page,status:"published"}
+        dispatch(publishPage(page))
     }
    function handleTruthy(){
        
