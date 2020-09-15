@@ -118,6 +118,11 @@ flex-direction: column;}
 	margin: auto;
 	text-align: center;
 }
+.draftPage{
+		display: inline-block;
+		margin: auto;
+		text-align: center;
+}
 
 .index{
 	margin-left: 50%;
