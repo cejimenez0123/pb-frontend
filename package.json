@@ -5,6 +5,7 @@
   "dependencies": {
     "blueimp-file-upload": "^10.31.0",
     "bootstrap": "^4.5.0",
+    "bulma": "^0.9.0",
     "draft-js": "^0.11.5",
     "history": "^4.10.1",
     "jodit": "^3.4.20",

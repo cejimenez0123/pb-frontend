@@ -4,8 +4,8 @@ class FollowerCard extends React.Component{
     
     ifProps=()=>{
     
-        let user = this.props.user
-       
+        let user = this.props.follow.attributes.follower
+    
         return(
             
         <li>

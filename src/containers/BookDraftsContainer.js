@@ -20,8 +20,11 @@ class BookDraftsContainer extends React.Component{
         return(<div>
            
             <NavbarContainer/>
-        {this.props.bookInView.title} Draft's
+        <a href={`/books/${this.props.bookInView.id}`}>{this.props.bookInView.title} </a>Draft's
+        
+        <main>
         <DraftPages pages={this.props.pagesInView} book={this.props.bookInView}/>
+        </main>
         {/* <Pages pages={this.props.pagesInView}/> */}
        DraftBookContainer
        

@@ -40,6 +40,7 @@ export default function Page(props){
   if(props.page){
     let page = props.page
     content = page.data
+    
       return(
         <div >
           <div className="page" style={{height: "0px"}}>

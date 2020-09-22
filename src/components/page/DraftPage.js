@@ -32,6 +32,7 @@ const dispatch = useDispatch()
 
      }
    }
+   console.log("PGGEE",props.page)
    function handleSave(){
      page = {...page,data: content}
      
@@ -43,7 +44,7 @@ const dispatch = useDispatch()
     setClass("draftPage")
       
   }
-  function deletePage(){
+  function handleDeletePage(){
     dispatch(deletePage(page))
   }
   function pubPage(){
@@ -77,7 +78,7 @@ const dispatch = useDispatch()
            <button onClick={(e)=>changeReadOnly(e)}>Edit Page</button> 
            <button onClick={()=>handleSave()}>Save</button>
            <button onClick={(e)=>pubPage()}>Publish</button>
-           <button onClick={()=>deletePage()}>Delete</button>
+           <button onClick={()=>handleDeletePage()}>Delete</button>
            <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
               {/* <div id={`modal-${page.id}`} onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
                 <div   class="modal-content">

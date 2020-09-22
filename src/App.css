@@ -75,9 +75,9 @@
 	  text-align: left;
   }
   .ed{background-color: red;
-	margin-left: 21.7%;
-justify-content: space-between;
-max-width: 840px}
+margin: auto;
+display: inline-block;
+max-width: 78%;}
 /* .editor{
 	margin-left: 30%;
 background-color: red;}
@@ -97,18 +97,52 @@ background-color: red;}
 	font-size: 28px;
 	font-weight: bold;
   }
-  
   .close:hover,
   .close:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
   }
+  .profileContainer{
+	  box-sizing: border-box;
+  }
 /* .pages{display: inline-block;
 	align-items: center;} */
 .page .jodit-toolbar__box{
 	display: none;
 }
+
+.followBtn{
+	background-color: #243dca;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+  }
+.followedBtn{ 
+		border: none;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		background-color: white; 
+		color: black; 
+		border: 2px solid #008CBA
+}
+
+.left{width:20%;
+float: left;}
+.profile{width: 60%
+;float: center;}
+.right{width: 20%}
 .pages{justify-content: center;
 align-items:center;
 display: flex;

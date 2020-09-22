@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
 import {startLibrary,getUserLibraries,getAllLibraries,getBookLibraries} from "../actions/LibraryAction"
 import {startPage,myPages,savePage} from "../actions/PageActions"
-import {SET_CURRENT_USER,getUsers, END_CURRENT_USER} from '../actions/UserActions'
+import {SET_CURRENT_USER,getUsers, END_CURRENT_USER,userPageStream} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
 import Pages from "../components/page/pages"
@@ -37,6 +37,7 @@ class ProfileContainer extends React.Component{
         this.props.setCurrentUser()
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
+        this.props.userPageStream()
        this.props.getMyPages()
        this.props.getBookLibraries()
         this.props.getAllLibraries()
@@ -84,24 +85,36 @@ class ProfileContainer extends React.Component{
          console.log(this.props)
         return(
     <div className="aContainer">
+
         <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+        <div className="profileContainer">
+        <div className="left">
+        </div>
+        <aside> 
+        <div classname="profile">
             <a href={`/user/${this.props.currentUser.id}/settings`} >
               <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
             </a>
-            
+           
         < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
             <button onClick={()=>this.handleStartLib()}>Start Library</button>
             <button onClick={()=>this.handleOnClick()}>Start Book</button>
         <FollowersBtn/>
         <FollowingBtn/> 
+       
         
-            <div className="bContainer">
-                </div>
+        </div>
                 {/* <EditBook book={book} /> */}
                 <h3>Books</h3>
                 <BookIndex books={this.props.booksInView}/>
                 <h3>Libraries</h3>
                 <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+            </aside>
+            </div>
+           
+              <main>
+        <Pages pages={this.props.pagesInView}/>
+        </main>
         </div>
         )
     }
@@ -126,7 +139,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     startLibrary:(name)=>dispatch(startLibrary(name)),
     getUserLibraries: (id)=>dispatch(getUserLibraries(id)),
     getAllLibraries: ()=>dispatch(getAllLibraries()),
-    getBookLibraries: ()=>dispatch(getBookLibraries())}
+    getBookLibraries: ()=>dispatch(getBookLibraries()),
+    userPageStream: ()=>dispatch(userPageStream())}
 }
 function mapStateToProps(state){
     return{
@@ -140,6 +154,7 @@ function mapStateToProps(state){
         userBooks: state.books.booksOfUser,
         followedUsers: state.users.followedUsers,
         followedBooks: state.books.followedBooks,
+        pagesInView: state.pages.pagesInView,
         pages: state.pages.pages,
         libraries: state.libraries.librariesInView,
         bookLibraries: state.libraries.bookLibraries

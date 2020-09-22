@@ -1,8 +1,9 @@
 import store from "../index"
 import React from 'react'
+import {connect} from 'react-redux'
 import {ListGroup,Dropdown} from 'react-bootstrap'
 import "../App.css"
-export default class SearchBar extends React.Component{
+class SearchBar extends React.Component{
     constructor(){
         super()
         this.state={filtered:[]}
@@ -11,6 +12,7 @@ export default class SearchBar extends React.Component{
     filterFunction(e){
 
   let input = e.target.value
+
   let filtered = this.props.users.filter(x=>{
    
   let  user = x.attributes
@@ -21,7 +23,7 @@ export default class SearchBar extends React.Component{
  let list = filtered.map((x,i)=>{
      let user = x.attributes
   return(
-  <ListGroup.Item>  <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a></ListGroup.Item>)
+    <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>)
 
  })
  this.setState({filtered: list}) 
@@ -44,3 +46,7 @@ export default class SearchBar extends React.Component{
         </div>)
     }
 }
+function mapState(state){
+    return{ users: state.users.users}
+}
+export default connect(mapState)(SearchBar)

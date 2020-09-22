@@ -117,10 +117,17 @@ const SET_CURRENT_USER=()=>{
         
     })
 }
+const userPageStream=()=>{
+     return(dispatch)=>{fetch(userPath+`/${localStorage.getItem("currentUser")}/page_stream`).then(res=>res.json().then(obj=>{
+         debugger
+         let pages = obj.data
+         dispatch(pagesInView(pages))
+     }))}
+}
 const getUser = (id)=>{
  
     return(dispatch)=>{fetch(userPath+"/"+id).then(res=>res.json()).then(obj=>{
- 
+       
         let user = obj.data.attributes
         console.log(obj)
         dispatch(userInView(user))
@@ -176,6 +183,6 @@ function updateUser(user){
 
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
-
-export {LOG_IN,signUp,newUser, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
+const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
+export {userPageStream,LOG_IN,signUp,newUser, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
 

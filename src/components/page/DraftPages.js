@@ -4,25 +4,25 @@ import DraftPage from "./DraftPage"
 const DraftPages=(props)=>{
 
 function renderIf(){
-        if(props.pages){
-        
+        if(props.pages.length>0){
             return ( props.pages.map(page=>{
               page = page.attributes
-                return (<DraftPage page={page} key={page.id} book={props.book}/>)
+                return (
+                <DraftPage page={page} key={page.id} book={props.book}/>)
             }))
             // this.props.pages.map(page=>{
             //   return  <Page page={page}/>
             // })
         }else{
-            return(<p>Write Anything</p>)
+            return(<p>No Drafts</p>)
         }
     }
 
 
-        return(<div style={{margin: "auto"}}className={"pages"}>
-       
+        return(<div style={{margin: "auto"}} className={"pages"}>
+<div class="tile">
             {renderIf()}
-          
+          </div>
         </div>)
     
 

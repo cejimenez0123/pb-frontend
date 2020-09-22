@@ -2,7 +2,7 @@ const followUserPath="http://localhost:3000/follow_users"
 const followBookPath="http://localhost:3000/follow_books"
 const userPath = "http://127.0.0.1:3000/users"
 function followUser(id){
-    debugger
+
     console.log("FIJDOOF")
     let config = {
         method: 'POST',
@@ -17,11 +17,12 @@ function followUser(id){
   return(dispatch)=>{  fetch(followUserPath,config).then(res=>res.json()).then(obj=>{
        
         window.alert("user followed")
-        dispatch(getFollowedUsersOfUser(localStorage.getItem("currentUser")))
+        dispatch(getFollowersOfUser(id))
     })}
 
 }
 function getFollowersOfUser(id){
+
     return(dispatch)=>{fetch(userPath+"/"+id+"/followers").then(obj=>obj.json()).then(obj=>{
 
         let follows = obj.data
@@ -65,10 +66,29 @@ function getFollowedBooksOfUser(id){
     })}
 
 }
+function deleteFollow(follow){
+    
+let config = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              followerId: follow.attributes.follower.id,
+              followedUser: follow.attributes.followed_user.id
+          })}
+    return (dispatch)=>{fetch(followUserPath+`/${follow.id}/destroy`,config).then(res=>res.json()).then(obj=>{
+ 
+        dispatch(getFollowersOfUser(follow.attributes.followed_user.id))
+    }).catch(err=>{ console.log(err)
+    dispatch(getFollowersOfUser(follow.attributes.followed_user.id))})}
+
+}
 
 
 const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
               
 const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
-export {followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}
+export {deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}

@@ -9,11 +9,11 @@ const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
     let [show,setShow]= useState("none")
-	let [content, setContent] = useState("")
+	
 	
     let dispatch = useDispatch()
     
-	
+	let content = ""
     function debounce(func, wait, immediate) {
         var timeout;
 
@@ -48,13 +48,15 @@ const Editor = (props) => {
     
     }
     function handleOnClick(e){
- debugger
- setContent(e)
+ 
+ 
         if(props.currentPage){
         
          page = {id: props.currentPage.id,data: e,bookId: props.book.id,status: "draft"}
         }else if(props.book){
             page={id: null,data:e,bookId: props.book.id}
+        }else{
+            page={id: null,data:e,bookId: null}
         }
         
     }
@@ -67,10 +69,10 @@ const Editor = (props) => {
         props.handleTruthyClose(page.data)
     }
     console.log(content)
-    function doSetContent(e){
+    // function doSetContent(e){
        
-    setContent(e)
-    }
+    // setContent(e)
+    // }
    
     const config = {
         width: 815,
@@ -88,6 +90,7 @@ const Editor = (props) => {
     function handlePublish(){
         page = {...page,status:"published"}
         dispatch(publishPage(page))
+        props.handleTruthyClose(page.data)
     }
    function handleTruthy(){
        

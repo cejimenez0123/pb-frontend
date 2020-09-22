@@ -53,7 +53,7 @@ const getPagesOfBook=(id)=>{
 const getDraftsOfBook=(id)=>{
   return(dispatch)=>{fetch(bookPath+"/"+id+"/drafts").then(res=>res.json()).then(obj=>{
   let pages=obj.data
-  debugger
+
   dispatch(pagesInView(pages))
   })}
 }
@@ -195,7 +195,7 @@ const getInbox =()=>{
     )
   }
 }
-const deletePage=(id)=>{
+const deletePage=(page)=>{
 
   const config = {    
       method: 'DELETE',
@@ -204,13 +204,13 @@ const deletePage=(id)=>{
         'Accept': 'application/json'
         },
         body: JSON.stringify({
-            id: id
+            id: page.id
         })}
-  fetch(pageUrl+"/"+id,config).then(res => {
+  return(dispatch)=>fetch(pageUrl+"/"+page.id,config).then(res => {
       console.log(res)
       res.json()}).then(obj=>{
-    
-       history.push(`/users/${localStorage.getItem("currentUser")}`)
+        dispatch(getDraftsOfBook(page.bookId))
+      
   }).catch(err=>
       {debugger
           window.location = (`/users/${localStorage.getItem("currentUser")}`)

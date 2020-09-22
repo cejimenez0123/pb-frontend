@@ -12,8 +12,9 @@ import Infinite from "react-infinite"
 let book
 
 function Book(props){
+    if (props.books){
     book = props.books.find(book=>{return book.id==props.book.id } )
-  
+    }
    
     const [show, setShow] = useState(false);
     const [title,setTitle]=useState("")
@@ -129,11 +130,13 @@ const handleEditClick = () => {
                ifEditable()}
                 {/* <PageInput book={props.book}/> */}
                <div className={"scroll bookPages"}>
-               <div style={{display: truthy,justifySelf:"center"}} className={"ed"}>
+               <section>
+               <div style={{display: truthy}} className={"ed"}>
                 
                <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
                </div>
                 <Pages pages={pages}/>
+                </section>
                 </div>
 
        
