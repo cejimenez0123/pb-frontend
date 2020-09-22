@@ -2,8 +2,9 @@ const followUserPath="http://localhost:3000/follow_users"
 const followBookPath="http://localhost:3000/follow_books"
 const userPath = "http://127.0.0.1:3000/users"
 const bookPath="http://localhost:3000/books"
-function bookFollowers(book){
-    return(dispatch)=>{fetch(bookPath+`${book.id}/book_followers`).then(res=>res.json()).then(obj=>{
+function bookFollowers(id){
+    return(dispatch)=>{fetch(bookPath+`/${id}/book_followers`).then(res=>res.json()).then(obj=>{
+       debugger
         let follows = obj.data
     dispatch(booksFollows(follows))
     })}
@@ -98,4 +99,4 @@ const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
 const booksFollows=(follows)=>{return{type:"BOOK_FOLLOWERS",follows}}             
 const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
-export {deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}
+export {bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}

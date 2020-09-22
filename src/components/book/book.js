@@ -9,6 +9,7 @@ import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 import Pages from "../page/pages"
 import Infinite from "react-infinite"
+import FollowerCards from "../user/FollowerCards"
 let book
 
 function Book(props){
@@ -106,7 +107,14 @@ const handleEditClick = () => {
 //     }
     let html
     let pages
-   
+  function followerCards(){
+      if (props.bookFollowers){
+
+          return(<FollowerCards users={props.bookFollowers}/>)
+      }else{
+          return("x")
+      }
+  }
         if(props.book ){
   
             if(props.pages.length > 0){
@@ -118,11 +126,11 @@ const handleEditClick = () => {
            })
                 
               
-            
+            console.log("ZFf",props.bookFollowers)
            
               return (<div>
               
-             
+             <button onClick={handleShow}>Followers</button>
                <div style={{textAlign: "center"}}>
                
      
@@ -131,7 +139,7 @@ const handleEditClick = () => {
       <div onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
                 <div   class="modal-content">
                   <span  class="close">&times;</span>
-                  
+                  {followerCards()}
             </div>
             </div>
       <h3 >{props.book.title} </h3>
@@ -160,6 +168,7 @@ function mapDispatch(dispatch){
     return{getPagesOfBook:(id)=>dispatch()}
 }
 function mapState(state){
+    console.log(state.books.bookFollowers)
     return{
         currentUser: state.users.currentUser,
         bookInView: state.books.bookInView,

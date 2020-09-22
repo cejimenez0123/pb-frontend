@@ -4,7 +4,7 @@ import Book from "../components/book/book"
 import Editor from "../components/page/editor"
 import NavbarContainer from "./NavbarContainer"
 import { connect} from 'react-redux'
-import {followBook} from "../actions/FollowActions"
+import {followBook,bookFollowers} from "../actions/FollowActions"
 import {savePage,getPagesOfBook} from '../actions/PageActions'
 import PageInput from "../components/page/PageInput"
 let truthy = false
@@ -21,7 +21,7 @@ componentDidMount(){
     let id = window.location.pathname.split("/")[2]
     this.props.getBook(id)
     this.props.getPagesOfBook(id)
-    
+    this.props.bookFollowers(id)
     
 }
 componentDidUpdate(){
@@ -48,7 +48,7 @@ ifBook(){
         <NavbarContainer/>
         {this.state.title}
         BookContainer
-        Followers
+    
         <button onClick={()=>this.handleOnClick()}>Follow</button>
         <main>
         <div style={{alignItems: "center" }}>
@@ -69,7 +69,8 @@ const mapDispatchToProps=(dispatch)=>{
     return{
         savePage: (data)=>dispatch(savePage(data)),
         followBook:(id)=>dispatch(followBook(id)),
-        getPagesOfBook:(id)=>dispatch(getPagesOfBook(id))
+        getPagesOfBook:(id)=>dispatch(getPagesOfBook(id)),
+        bookFollowers: (id)=>dispatch(bookFollowers(id))
     }
 }
 export default  connect(mapStateToProps,mapDispatchToProps)(BookContainer)
