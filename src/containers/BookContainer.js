@@ -28,6 +28,15 @@ componentDidUpdate(){
     
 
 }
+ifBook(){
+
+    if(this.props.book){
+
+        return ( <Book book={this.props.book} pages={this.props.pagesInView}/>)
+    }else{
+        return("no book")
+    }
+}
 
 
 
@@ -39,17 +48,18 @@ componentDidUpdate(){
         <NavbarContainer/>
         {this.state.title}
         BookContainer
-
+        Followers
         <button onClick={()=>this.handleOnClick()}>Follow</button>
         <main>
         <div style={{alignItems: "center" }}>
-        <Book book={this.props.book} pages={this.props.pagesInView}/>
+       {this.ifBook()}
            </div>
         </main>  
         </div>)
     }
 }
 const mapStateToProps=(state)=>{
+    console.log(state.books.book)
     return{ book: state.books.bookInView,
     users: state.users.users,
     pagesInView: state.pages.pagesInView,

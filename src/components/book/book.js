@@ -12,11 +12,14 @@ import Infinite from "react-infinite"
 let book
 
 function Book(props){
+    let [show,setShow]=useState("none")
+    const handleShow=()=>setShow("block")
+    const handleClose=()=>setShow("none")
     if (props.books){
     book = props.books.find(book=>{return book.id==props.book.id } )
     }
    
-    const [show, setShow] = useState(false);
+    
     const [title,setTitle]=useState("")
     let [truthy,setTruthy]=useState("none")
 let ifEdit = false
@@ -58,18 +61,7 @@ const handleEditClick = () => {
             truthy=true
        }
    }
-   function ifEditable(){
 
-    //    if(truthy){
-        
-    //        return(<div></div>)
-    //    }else{
-    //        debugger
-    //        return(<div><Editor book={props.book}/></div>)
-    //    }
-    
-   
-    }
     function editBtnClick(e){
         if(e.target.nextElementSibling.style.display === "none"){
             e.target.nextElementSibling.style.display ="block"
@@ -101,9 +93,22 @@ const handleEditClick = () => {
             return ("")
         }
     }
+//     followBtn(){
+// let follow=  this.props.followers.find(follow=>{
+//            return follow.attributes.follower.id === localStorage.getItem("currentUser")
+//         })
+   
+//         if(follow){
+//             return (<button className="followedBtn" onClick={()=>this.handleFollow()}>Follow</button>)
+//         }else{
+//             return (<button className="followBtn" onClick={()=>this.handleFollow()}>Follow</button>)
+//         }
+//     }
     let html
     let pages
+   
         if(props.book ){
+  
             if(props.pages.length > 0){
                
                 pages= props.pages
@@ -123,11 +128,15 @@ const handleEditClick = () => {
      
      {editBtn()} <a href={`/books/${props.book.id}/drafts`}>Drafts</a>
        
-      
+      <div onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
+                <div   class="modal-content">
+                  <span  class="close">&times;</span>
+                  
+            </div>
+            </div>
       <h3 >{props.book.title} </h3>
-        {
-               
-               ifEditable()}
+      
+
                 {/* <PageInput book={props.book}/> */}
                <div className={"scroll bookPages"}>
                <section>
@@ -139,9 +148,9 @@ const handleEditClick = () => {
                 </section>
                 </div>
 
-       
+        </div>
               </div>  
-            </div>)}else{
+            )}else{
                 return(<div></div>)
             }
         };
@@ -156,7 +165,8 @@ function mapState(state){
         bookInView: state.books.bookInView,
         pages: state.pages.pages,
         books: state.books.books,
-        users: state.users.users
+        users: state.users.users,
+        bookFollowers: state.books.bookFollowers
             }
 }
 export default connect(mapState,mapDispatch)(Book)

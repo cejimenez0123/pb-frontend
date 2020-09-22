@@ -54,7 +54,7 @@ function getBook(id){
  
    return(dispatch)=>{ fetch(bookPath+"/"
     +id).then(res=>res.json()).then(obj=>{
-  
+  debugger
         let book = obj.data.attributes
         dispatch(bookInView(book))
     })}

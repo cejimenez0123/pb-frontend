@@ -2,8 +2,9 @@ import React from 'react'
 import Page from "./page"
 class Pages extends React.Component{
     renderIf(){
-        if(this.props.pages){
-        
+    
+        if(this.props.pages.length>0){
+    
             return ( this.props.pages.map(page=>{
               page = page.attributes
                 return (<Page page={page} key={page.id}/>)
