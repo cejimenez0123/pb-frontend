@@ -28,8 +28,8 @@ import FollowersBtn from "../components/user/FollowersBtn"
 import Editor from "../components/page/editor"
 let book
 class ProfileContainer extends React.Component{
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state={showBooks: "none",showLibraries: "none"}
     }
     componentDidMount(){
@@ -73,6 +73,28 @@ class ProfileContainer extends React.Component{
     componentDidUpdate(){
         console.log(this.props.followedUsers)
     }
+    handleShowBooks(){
+        debugger
+        if(this.state.showBooks==="none"){
+            this.setState({showBooks: "block"})
+        }else{
+            this.setState({showBooks: "none"})
+        }
+    }
+    handleShowLibraries(){
+        if(this.state.showLibraries==="none"){
+            this.setState({showLibraries: "block"})
+        }else{
+            this.setState({showLibraries: "none"})
+        }
+    }
+    handleModalClose(e){
+
+      if(e.target === e.currentTarget){
+       this.setState({showBooks: "none"})
+       this.setState({showLibraries: "none"})
+     }
+  }
     render(){
         
       
@@ -95,20 +117,31 @@ class ProfileContainer extends React.Component{
                         <a href={`/user/${this.props.currentUser.id}/settings`} >
                          <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
                         </a>
-            < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
-            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
-        <FollowersBtn/>
-        <FollowingBtn/> 
-       
-        </div>
-        </div>
+                    < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+                         <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
+                        <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
+                    <FollowersBtn/>
+                    <FollowingBtn/> 
+                </div>
+            </div>
         </div>
                 {/* <EditBook book={book} /> */}
-                <h3>Books</h3>
-                <BookIndex books={this.props.booksInView}/>
-                <h3>Libraries</h3>
-                <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+        <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
+                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showBooks}} class="modal">
+                <div   class="modal-content">
+                  <span  class="close">&times;</span>
+                  <BookIndex books={this.props.booksInView}/>
+            </div>
+          </div>
+                
+                <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3>
+                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
+                <div   class="modal-content">
+                  <span  class="close">&times;</span>
+                  <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+            </div>
+          </div>
+                
             </section>
             </div>
            
