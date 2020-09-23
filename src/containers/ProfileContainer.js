@@ -30,6 +30,7 @@ let book
 class ProfileContainer extends React.Component{
     constructor(props){
         super(props)
+        this.state={showBooks: "none",showLibraries: "none"}
     }
     componentDidMount(){
        const id=  localStorage.getItem("currentUser")
@@ -84,37 +85,39 @@ class ProfileContainer extends React.Component{
   
          console.log(this.props)
         return(
-    <div className="aContainer">
-
-        <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
-        <div className="profileContainer">
-        <div className="left">
-        </div>
-        <aside> 
-        <div classname="profile">
-            <a href={`/user/${this.props.currentUser.id}/settings`} >
-              <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
-            </a>
-           
-        < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-            <button onClick={()=>this.handleStartLib()}>Start Library</button>
-            <button onClick={()=>this.handleOnClick()}>Start Book</button>
+<div className="aContainer">
+    <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+        <div className=" row profileContainer">
+            <section class="col"> 
+                <div classname="profile" id="my-info">
+                    <div class="row">
+                    <div class="col">
+                        <a href={`/user/${this.props.currentUser.id}/settings`} >
+                         <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
+                        </a>
+            < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
+            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
         <FollowersBtn/>
         <FollowingBtn/> 
        
-        
+        </div>
+        </div>
         </div>
                 {/* <EditBook book={book} /> */}
                 <h3>Books</h3>
                 <BookIndex books={this.props.booksInView}/>
                 <h3>Libraries</h3>
                 <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
-            </aside>
+            </section>
             </div>
            
               <main>
+              <div class="col">
         <Pages pages={this.props.pagesInView}/>
+        </div>
         </main>
+        
         </div>
         )
     }

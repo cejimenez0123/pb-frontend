@@ -32,7 +32,7 @@ ifBook(){
 
     if(this.props.book){
 
-        return ( <Book book={this.props.book} pages={this.props.pagesInView}/>)
+        return ( <Book book={this.props.book} pages={this.props.pagesInView} followBook={this.props.followBook}/>)
     }else{
         return("no book")
     }
@@ -49,7 +49,7 @@ ifBook(){
         {this.state.title}
         BookContainer
     
-        <button onClick={()=>this.handleOnClick()}>Follow</button>
+        
         <main>
         <div style={{alignItems: "center" }}>
        {this.ifBook()}

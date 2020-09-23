@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import "../../App.css"
+
 import Popup from 'reactjs-popup'
 import PageInput from "../page/PageInput"
-import {connect } from "react-redux"
+import {connect,useDispatch } from "react-redux"
 import Editor from "../page/editor"
+import {deleteBookFollow} from "../../actions/FollowActions"
 import { getPagesOfBook } from "../../actions/PageActions"
 import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
@@ -13,6 +15,7 @@ import FollowerCards from "../user/FollowerCards"
 let book
 
 function Book(props){
+    const dispatch = useDispatch()
     let [show,setShow]=useState("none")
     const handleShow=()=>setShow("block")
     const handleClose=()=>setShow("none")
@@ -66,6 +69,7 @@ const handleEditClick = () => {
     function editBtnClick(e){
         if(e.target.nextElementSibling.style.display === "none"){
             e.target.nextElementSibling.style.display ="block"
+            
         }else{
             e.target.nextElementSibling.style.display = "none"
         }
@@ -94,26 +98,49 @@ const handleEditClick = () => {
             return ("")
         }
     }
-//     followBtn(){
-// let follow=  this.props.followers.find(follow=>{
-//            return follow.attributes.follower.id === localStorage.getItem("currentUser")
-//         })
-   
-//         if(follow){
-//             return (<button className="followedBtn" onClick={()=>this.handleFollow()}>Follow</button>)
-//         }else{
-//             return (<button className="followBtn" onClick={()=>this.handleFollow()}>Follow</button>)
-//         }
-//     }
+
     let html
     let pages
+    function followBtn(){
+         let follow=  props.followers.find(follow=>{
+           return follow.attributes.follower.id === localStorage.getItem("currentUser")
+        })
+        if(follow){
+            return (<button class={"followedBtn"} onClick={()=>handleFollow()}>Following</button>)
+        }else{
+            return( <button class={"followBtn"} onClick={()=>props.followBook(props.book.id)}>Follow</button>)
+        }
+        
+    }
   function followerCards(){
-      if (props.bookFollowers){
+      if (props.followers){
 
-          return(<FollowerCards users={props.bookFollowers}/>)
+          return(<FollowerCards users={props.followers}/>)
       }else{
           return("x")
       }
+  }
+  function handleFollow(){
+  
+        let follow=  props.followers.find(follow=>{
+           return follow.attributes.follower.id === localStorage.getItem("currentUser")
+        })
+      
+        if(follow){
+            dispatch(deleteBookFollow(follow))
+        }else{
+            props.followBook(props.book.id)
+        }
+        
+    }
+  function handleModalClose(e){
+
+      if(e.target === e.currentTarget){
+       console.log("!")
+       
+        // setShow("none")
+        setShow("none")
+     }
   }
         if(props.book ){
   
@@ -126,17 +153,17 @@ const handleEditClick = () => {
            })
                 
               
-            console.log("ZFf",props.bookFollowers)
+            
            
               return (<div>
               
-             <button onClick={handleShow}>Followers</button>
+             <button class="button is-dark" onClick={()=>handleShow()}>Followers</button>
                <div style={{textAlign: "center"}}>
                
-     
+    
      {editBtn()} <a href={`/books/${props.book.id}/drafts`}>Drafts</a>
-       
-      <div onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
+      {followBtn()}
+      <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
                 <div   class="modal-content">
                   <span  class="close">&times;</span>
                   {followerCards()}
@@ -146,7 +173,7 @@ const handleEditClick = () => {
       
 
                 {/* <PageInput book={props.book}/> */}
-               <div className={"scroll bookPages"}>
+               <div className={"scroll bookPages button is-dark"}>
                <section>
                <div style={{display: truthy}} className={"ed"}>
                 
@@ -175,7 +202,7 @@ function mapState(state){
         pages: state.pages.pages,
         books: state.books.books,
         users: state.users.users,
-        bookFollowers: state.books.bookFollowers
+        followers: state.books.bookFollowers
             }
 }
 export default connect(mapState,mapDispatch)(Book)

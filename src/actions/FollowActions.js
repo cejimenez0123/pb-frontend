@@ -29,6 +29,23 @@ function followUser(id){
     })}
 
 }
+function deleteBookFollow(follow){
+let config={   
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          id: follow.id
+    })}
+    return(dispatch)=>{fetch(followBookPath+`/${follow.id}/destroy`,config).then(res=>res.json()).then(obj=>{debugger}).catch(err=>{
+        debugger
+       dispatch(bookFollowers(follow.attributes.book.id))
+        console.log(err)
+    })}
+
+}
 function getFollowersOfUser(id){
 
     return(dispatch)=>{fetch(userPath+"/"+id+"/followers").then(obj=>obj.json()).then(obj=>{
@@ -63,6 +80,7 @@ let config = {
           })}
     return(dispatch)=>{fetch(followBookPath,config).then(res=>res.json()).then(obj=>{
 window.alert("follow sent")
+    dispatch(bookFollowers(id))
     dispatch(getFollowedBooksOfUser(localStorage.getItem("currentUser")))
      
     })}
@@ -99,4 +117,4 @@ const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
 const booksFollows=(follows)=>{return{type:"BOOK_FOLLOWERS",follows}}             
 const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
-export {bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}
+export {deleteBookFollow,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}
