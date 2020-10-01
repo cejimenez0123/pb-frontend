@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rails/activestorage": "^6.0.3-3",
+    "activestorage": "^5.2.4-4",
     "blueimp-file-upload": "^10.31.0",
     "bootstrap": "^4.5.0",
     "bulma": "^0.9.0",
@@ -20,6 +22,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-redux": "^4.0.8",
+    "react-s3-uploader": "^4.9.3",
     "react-scripts": "^3.4.3",
     "reactjs-popup": "^1.5.0",
     "redux": "^4.0.5",

@@ -1,8 +1,11 @@
 import React from "react"
-import {signUp,newUser} from "../../actions/UserActions"
+import {signUp,newUser,uploadProfilePic} from "../../actions/UserActions"
 import { connect} from "react-redux"
+import {DirectUpload} from "@rails/activestorage"
 import NavbarContainer from '../../containers/NavbarContainer'
+require("@rails/activestorage").start()
 let user = {photo: null}
+let formData = new FormData();
 class SignUpForm extends React.Component{
     constructor(){
         super()
@@ -10,25 +13,38 @@ class SignUpForm extends React.Component{
                 name: "",
                 username:"",
                 password:"",
-                file: ""    
+                file: "",
+                type: ""    
             }
     }
-    componentDidMount(){
-       user = new Promise((resolve, reject) => {
-
- return newUser()
-}) 
+   
        
-    }
+    
     handleOnChange = e =>{ 
-        debugger
-        if(e.target["name"]="file"){
-    const formData = new FormData();
+      
+//     const formData = new FormData();
+//     formData.append("file", e.target.files[0]);
+    
+//     // configure your fetch url appropriately
+//     fetch(`http://localhost:3000/${localStorage.getItem("currentUser")}/upload`, {
+//       method: "POST",
+//       body: formData
+//     })
+//       .then(res => res.json())
+//       .then(data => {
+//           debugger
+
+//        // do something with the returned data
+//       });
+//   };
+        let reader = new FileReader()
+        if(e.target["name"]==="file"){
+    
     formData.append("file", e.target.files[0]);
     
- debugger
+    debugger
     this.setState({file: formData})
-
+this.setState({type: e.target.files[0].type})
        ;
         }else{ 
         this.setState({[e.target["name"]]: e.target.value})
@@ -36,25 +52,31 @@ class SignUpForm extends React.Component{
     
     }
     handleOnSubmit = e =>{
+        
         e.preventDefault()
-        this.props.signUp(this.state)    
+        
+        //  formData.append("file", e.target.files[0]);
+      let x = this.props.signUp(this.state,formData)  
+       debugger
     }
     render(){
       
         return(<div>
             <NavbarContainer/>
                 <form className="SignUpForm" onSubmit={this.handleOnSubmit}> 
-
+                    {/* <DirectUpload/> */}
+                    <label for="file">Profile Photo:</label>
+                    <input  inl minlength="2" attachments="true" webkitdirectory onChange={this.handleOnChange} name="file" type="file"/>
                     <br/>
                     <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" 
+                    <input required minlength="2" type="text" name="name" 
                     onChange={this.handleOnChange} />
                     <br/>
                     <label htmlFor="username">Username:</label>
-                    <input type="text" name="username"  onChange={this.handleOnChange} />
+                    <input required type="text" minlength="2" name="username"  onChange={this.handleOnChange} />
                     <br />
                     <label htmlFor="password">Password:</label>
-                    <input type="password" name="password"  onChange={this.handleOnChange} />
+                    <input required type="password" minlength="2" name="password"  onChange={this.handleOnChange} />
                     <br />
                     < input type="submit" value="Sign Up"/>
                 </form>
@@ -65,7 +87,8 @@ class SignUpForm extends React.Component{
 }
 function mapDispatchToProps(dispatch){
     return{
-        signUp: (user)=>dispatch(signUp(user))
+        signUp: (user,formData)=>dispatch(signUp(user,formData)),
+        uploadProfilePic:(formData)=>dispatch(uploadProfilePic(formData))
     }
 }
 export default connect(null,mapDispatchToProps)(SignUpForm)

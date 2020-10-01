@@ -67,12 +67,13 @@ class PublicProfileContainer extends React.Component{
      
         return(
          
-            <div>
-            <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+    <div>
+        <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
              UserContainer
+        <section>
              < ProfileCard user={this.props.user}/>
             {this.followBtn()}
-                <button onClick={()=>this.handleShow()} >Followers</button>
+            <button onClick={()=>this.handleShow()} >Followers</button>
                 <div  style={{width: "100%",display: this.state.show}} class="modal">
                 <div   class="modal-content">
                   <span  onClick={()=>this.handleShow()}class="close">&times;</span>
@@ -80,10 +81,10 @@ class PublicProfileContainer extends React.Component{
 
                     <FollowerCards users={this.props.followers}/>
                   </div>
-
-              X
-              </div>
+                  </div>
             </div>
+            </section>
+              
             <BookIndex books={this.props.booksInView} user={this.props.user}/>
 
             </div>

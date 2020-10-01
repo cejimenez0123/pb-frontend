@@ -42,7 +42,7 @@ renderif(){
         if (this.props.loggedIn ){
             return(
               <div >
-
+<header>
          <nav class="navbar navbar-expand-lg navbar-light bg-success">
      <a class="navbar-brand" href="/">Pb</a>
     
@@ -71,19 +71,16 @@ renderif(){
           </ul>
 </div>
 
-         </div>  
-      
- 
-        
+         </div>          
       </nav>
-         
+     </header>    
     </div>
 
 )
         }else{
             return(
         <div >
-
+<header>
          <nav class="navbar navbar-expand-lg navbar-light bg-success">
       <a class="navbar-brand" href="/">Pb</a>
     
@@ -116,7 +113,7 @@ renderif(){
  
         
       </nav>
-         
+       </header>  
     </div>
   )
   

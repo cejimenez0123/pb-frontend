@@ -117,11 +117,13 @@ class ProfileContainer extends React.Component{
                         <a href={`/user/${this.props.currentUser.id}/settings`} >
                          <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
                         </a>
+                        <section>
                     < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                          <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
                         <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
                     <FollowersBtn/>
                     <FollowingBtn/> 
+                    </section>
                 </div>
             </div>
         </div>

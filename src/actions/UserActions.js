@@ -27,31 +27,41 @@ let user
 
 return user }
 
-function signUp(user) { 
-   
+function signUp(user,formData) { 
+   debugger
     let config = {
         method: 'POST',
-        headers: {
+        headers: { 
             'Content-Type': 'application/json',
         'Accept': 'application/json'
           },
           body: JSON.stringify({
+              file: user.file.get("file"),
               name: user.name,
               username: user.username,
-              password: user.password,
-              file: user.file  
+              password: user.password
+              
           })}
-         
+
+        //  axios({method: "POST",url: userPath,data: {name: user.name,
+        //       username: user.username,
+        //       password: user.password,
+        //       file: user.file[0] }}).then(res=>res.json()).then(user=>{
+        //           debugger
+        //       })
         return(dispatch)=>{
             dispatch(SIGN_UP_START())
             fetch(userPath,config).then(res => res.json())
             .then(user =>{
+                
                 user = user.data.attributes
+                debugger
                 localStorage.setItem("currentUser",user.id)
                 localStorage.setItem("loggedIn",true)
                 history.push(`/user/${user.id}`)
+                dispatch(uploadProfilePic(formData))
                 dispatch(startBook("My Book"))
-                dispatch({ type: 'SIGN_UP', user})
+               
                 
                 ;     
             }
@@ -164,25 +174,43 @@ function getUsers(){
 function updateUser(user){
     debugger
     let config = {  
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
             },
             body: JSON.stringify({
                 id: localStorage.getItem("currentUser"),
-                profile_picture: user.profile_picture,
-
+                file: user.profile_picture,
+                username: user.username,
+                name: user.name
             })}
     
-   fetch("http://elasticbeanstalk-us-east-2-516284340122.s3-website.us-east-2.amazonaws.com",config).then(res=>res.json()).then(obj=>{
+   fetch(userPath+`/${localStorage.getItem("currentUser")}`,config).then(res=>res.json()).then(obj=>{
         debugger
     })
     
 }
+function uploadProfilePic(formData){
+return(dispatch)=>{fetch(`http://localhost:3000/${localStorage.getItem("currentUser")}/upload`, {
+      headers:{"Content-Disposition": "inline"},
+      method: "POST",
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+          debugger
+          let user = data.data.attributes
+ dispatch({ type: 'LOG_IN', user})
+       // do something with the returned data
+      });
+  };
+  }
+
+
 
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
-export {userPageStream,LOG_IN,signUp,newUser, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
+export {uploadProfilePic,userPageStream,LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
 

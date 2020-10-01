@@ -10,9 +10,14 @@ function FollowingBtn(props){
   
   let followedUsers = store.getState().users.followedUsers
   console.log(followedUsers)
-  let users = followedUsers.map(x=>{
+
+  let users
+  if(followedUsers.length > 0){
+  users = followedUsers.map(x=>{
       return(<FollowerCard user={x.attributes.followed_user}/>)
-  })
+  })}else{
+    users="Follow some people"
+  }
     return(<div>
     <Button variant="primary" onClick={handleShow}>
         Following

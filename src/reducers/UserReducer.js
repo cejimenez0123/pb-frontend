@@ -13,10 +13,10 @@ requesting: false },
             case "SIGN_UP_START":
                 
                 return {...state,requesting: true,loggedIn: false}
-            case "SIGN_UP":    
-                let user = action.user
+            // case "SIGN_UP":    
+            //     let user = action.user
             
-                return {...state,currentUser: user, loggedIn: true }
+            //     return {...state,currentUser: user, loggedIn: true }
             case "USER_IN_VIEW":
             console.log(action.user)
             return {...state,userInView: action.user}

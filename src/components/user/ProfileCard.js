@@ -7,8 +7,9 @@ const ProfileCard =(props)=>{
         if(!!props.user){
       
         user = props.user
+        console.log(user.photo)
         return(<div><h3>{user.name}</h3>
-             < img src={user.photo} alt=""  width="50px" height="auto"/>
+             < img inline src={user.photo} alt=""  width="50px" height="auto"/>
              <h4>@{user.username}</h4>
             </div>)
     
