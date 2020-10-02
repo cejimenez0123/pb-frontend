@@ -27,8 +27,8 @@ if(props.book.attributes){
     book = props.book
 }
 
-return(<div>
-  <a onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}`}>{book.title}</a> <Popup trigger={<button>Add to Libray</button> } position="right center">
+return(<div className="list-group-item">
+  <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}`}>{book.title}</a> <Popup trigger={<button>Add to Libray</button> } position="right center">
                  <LibrariesList book={book} libraries={props.allLibraries}/>      
                </Popup>
 </div>)

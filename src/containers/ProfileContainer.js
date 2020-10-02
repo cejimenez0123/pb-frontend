@@ -130,14 +130,18 @@ class ProfileContainer extends React.Component{
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showBooks}} class="modal">
                     <div   class="modal-content">
                         <span  class="close">&times;</span>
+                        <div className="modalIndex">
                         <BookIndex books={this.props.booksInView}/>
+                        </div>
                     </div>
                 </div>
                 <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
                     <div   class="modal-content">
                       <span  class="close">&times;</span>
+                      <div className="modalIndex">
                      <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+                    </div>
                     </div>
                 </div>
             </div>

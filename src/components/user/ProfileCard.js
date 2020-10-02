@@ -8,8 +8,10 @@ const ProfileCard =(props)=>{
       
         user = props.user
         console.log(user.photo)
-        return(<div><h3>{user.name}</h3>
+        return(<div ><h3>{user.name}</h3>
+        <div className="profilePic">
              < img inline src={user.photo} alt=""  width="50px" height="auto"/>
+             </div>
              <h4>@{user.username}</h4>
             </div>)
     

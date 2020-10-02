@@ -12,7 +12,7 @@ function LibraryIndexBox(props){
     if(props.library.attributes){
         
         let lib = props.library.attributes
-        jsx=(<div><li onClick={handleShow} >{lib.name}</li>
+        jsx=(<div className="list-group-item"><a href={`/libraries/${lib.id}`}>{lib.name}</a>
         
        <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

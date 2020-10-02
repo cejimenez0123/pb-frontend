@@ -11,23 +11,27 @@ export default function BookIndex(props){
         
         
         function  renderIf(){   
-  
+  let html
             if(props.books){
        
-    return props.books.map((book,i)=>{
+   html=  props.books.map((book,i)=>{
             book = book.attributes
          
            return(<BookIndexBox key={i} book={book}/>
            
            )
-})}}
+})}
+return(<div className="list-group">
+    {html}
+</div>)
+}
         let name
         if(props.user){
             name= `${props.user.name}'s Books`
             }
                 console.log("BOOKINDDEX")
         return(
-            <div>
+            <div className="index">
            
                 {name}
                 {renderIf()}

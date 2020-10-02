@@ -16,10 +16,10 @@ function LibraryIndex(props){
    
       return(<LibraryIndexBox  allBooks={props.allBooks} booksOfLib={books} library={t}/>)})
    }
-        return(<div>
-        <ul>
+        return(<div className="list-group index">
+        
         {t}
-        </ul>
+        
         </div>)
     
 }
