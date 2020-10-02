@@ -12,9 +12,14 @@ class StreetContainer extends React.Component{
 
     render(){
       console.log(this.props.libraries)
-        return(<div>
-            <NavbarContainer/>
-            <LibraryIndex allBooks={this.props.books} bookLibraries={this.props.bookLibraries} libraries={this.props.libraries}/>
+        return(
+        <div>
+          <NavbarContainer/>
+            <div className="street">
+              <div className="StreetLib">
+               <LibraryIndex allBooks={this.props.books} bookLibraries={this.props.bookLibraries} libraries={this.props.libraries}/>
+              </div>
+            </div>
         </div>
         )
     }

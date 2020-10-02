@@ -145,6 +145,10 @@ background-color: red;}
 		color: black; 
 		border: 2px solid #008CBA
 }
+.street .list-group-item{
+	width: 200px;
+	height: 75px;
+}
 .profilePic{background-color: white;
 	width: 80px;
 height: 80px;}
@@ -159,6 +163,10 @@ margin-top: 20px;}
 padding-top: 40px}
 .modalIndex{
 	margin-right: 400px;
+}
+.StreetLib{
+	width: 400px;
+	margin: 20px auto;
 }
 .profile{
 	background-color: #c7cced;

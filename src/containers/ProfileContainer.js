@@ -139,7 +139,7 @@ class ProfileContainer extends React.Component{
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
                     <div   class="modal-content">
                       <span  class="close">&times;</span>
-                      <div className="modalIndex">
+                      <div className="modalIndex index">
                      <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
                     </div>
                     </div>
