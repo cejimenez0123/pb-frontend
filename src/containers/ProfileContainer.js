@@ -107,53 +107,53 @@ class ProfileContainer extends React.Component{
   
          console.log(this.props)
         return(
-<div className="aContainer">
+<div>
     <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
-        <div className=" row profileContainer">
-            <section class="col"> 
-                <div classname="profile" id="my-info">
-                    <div class="row">
+    <div className="profileContainer">
+        <div className="profile">
+            <div classname="" id="my-info">
+                <div class="row">
                     <div class="col">
-                        <a href={`/user/${this.props.currentUser.id}/settings`} >
-                         <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
-                        </a>
+                        
                         <section>
-                    < ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-                         <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
-                        <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
-                    <FollowersBtn/>
-                    <FollowingBtn/> 
-                    </section>
+                            <ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+                            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
+                            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
+                            <FollowersBtn/>
+                            <FollowingBtn/> 
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
                 {/* <EditBook book={book} /> */}
-        <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
+                <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showBooks}} class="modal">
-                <div   class="modal-content">
-                  <span  class="close">&times;</span>
-                  <BookIndex books={this.props.booksInView}/>
-            </div>
-          </div>
-                
+                    <div   class="modal-content">
+                        <span  class="close">&times;</span>
+                        <BookIndex books={this.props.booksInView}/>
+                    </div>
+                </div>
                 <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
-                <div   class="modal-content">
-                  <span  class="close">&times;</span>
-                  <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+                    <div   class="modal-content">
+                      <span  class="close">&times;</span>
+                     <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+                    </div>
+                </div>
             </div>
-          </div>
-                
-            </section>
-            </div>
-           
-              <main>
+             
+              <main className=" PageMain">
               <div class="col">
+              
         <Pages pages={this.props.pagesInView}/>
         </div>
         </main>
-        
-        </div>
+        <a href={`/user/${this.props.currentUser.id}/settings`} >
+                            <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
+                        </a>
+    </div>
+    
+</div>
         )
     }
 

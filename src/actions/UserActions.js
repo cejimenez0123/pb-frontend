@@ -193,7 +193,6 @@ function updateUser(user){
 }
 function uploadProfilePic(formData){
 return(dispatch)=>{fetch(`http://localhost:3000/${localStorage.getItem("currentUser")}/upload`, {
-      headers:{"Content-Disposition": "inline"},
       method: "POST",
       body: formData
     })
