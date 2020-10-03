@@ -30,7 +30,7 @@ let book
 class ProfileContainer extends React.Component{
     constructor(){
         super()
-        this.state={showBooks: "none",showLibraries: "none"}
+        this.state={showBooks: "none",showLibraries: "none",showStartLibraries: "none"}
     }
     componentDidMount(){
        const id=  localStorage.getItem("currentUser")
@@ -64,10 +64,11 @@ class ProfileContainer extends React.Component{
         
     }
     handleStartLib(){
-        let name = prompt("Name your Library","unititled")
-        if(name!==null){
-            this.props.startLibrary(name)
-        }
+        this.setState({showStartLibraries: "block"})
+        // let name = prompt("Name your Library","unititled")
+        // if(name!==null){
+        //     this.props.startLibrary(name)
+        // }
         
     }
     componentDidUpdate(){
@@ -93,6 +94,7 @@ class ProfileContainer extends React.Component{
       if(e.target === e.currentTarget){
        this.setState({showBooks: "none"})
        this.setState({showLibraries: "none"})
+       this.setState({showStartLibraries: "none"})
      }
   }
     render(){
@@ -118,6 +120,20 @@ class ProfileContainer extends React.Component{
                         <section>
                             <ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                             <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
+                             <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartLibraries}} class="modal">
+                    <div   class="modal-content">
+                      <span  class="close">&times;</span>
+                      <div className="modalIndex">
+                        <form>
+                    <label>Name of Library</label>
+                    <input type="text" placeholder="untitled"/>
+                    <br/>
+                    <label> Privacy:</label>
+
+                        </form>
+                    </div>
+                    </div>
+                </div>
                             <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
                             <FollowersBtn/>
                             <FollowingBtn/> 

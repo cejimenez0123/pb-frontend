@@ -16,7 +16,7 @@ class StreetContainer extends React.Component{
         <div>
           <NavbarContainer/>
             <div className="street">
-              <div className="StreetLib">
+              <div className="streetLib">
                <LibraryIndex allBooks={this.props.books} bookLibraries={this.props.bookLibraries} libraries={this.props.libraries}/>
               </div>
             </div>

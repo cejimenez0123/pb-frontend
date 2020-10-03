@@ -10,39 +10,43 @@ class SearchBar extends React.Component{
     }
 
     filterFunction(e){
-
+let filtered
   let input = e.target.value
-
-  let filtered = this.props.users.filter(x=>{
+if(input.length>0){
+  filtered = this.props.users.filter(x=>{
    
   let  user = x.attributes
   return  user.name.includes(input) || user.username.includes(input)
 
   })
-
+}
+if(filtered){
  let list = filtered.map((x,i)=>{
      let user = x.attributes
   return(
-    <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>)
+      <div className="list-group-item search-item">
+    <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>
+    </div>)
 
  })
- this.setState({filtered: list}) 
+ this.setState({filtered: list}) }
+ else{
+     this.setState({filtered: ""})
+ }
     }
     render(){
         
         let state = store
         
         return(<div className="Navbar-search">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="search..." onKeyUp={(e)=>this.filterFunction(e)}/>
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search </button>
-          </form>
-        <form>
+        <form class="form-inline my-2 my-lg-0 search">
+        <button class="btn btn-outline-light my-2 my-sm-0 search-btn" type="submit">Search </button>
+            <input class="form-control mr-sm-2 search-bar" type="search" placeholder="search..." onKeyUp={(e)=>this.filterFunction(e)}/>
             
-            </form>
-            <ListGroup >
+          </form>
+            <div className="list-group search-index" >
             {this.state.filtered}
-            </ListGroup>
+            </div>
         </div>)
     }
 }
