@@ -129,17 +129,35 @@ background-color: red;}
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	margin: 4px 2px;
+	margin: 20px 30px;
 	cursor: pointer;
   }
+  
+  .test{
+	  margin: 10px; 
+	  width: 40px;
+    height: 60px;
+    background-image: radial-gradient(circle, black 5px, transparent 6px);
+    background-size: 100% 33.33%;
+	}
+  .localLibMain .index{
+	  margin: 20px auto 20px 10%;
+  }
+.localLibMain{
+	background-color: blue;
+	width: 800px;
+	margin: auto;
+	;
+}
 .followedBtn{ 
 		border: none;
+
 		padding: 15px 32px;
 		text-align: center;
 		text-decoration: none;
 		display: inline-block;
 		font-size: 16px;
-		margin: 4px 2px;
+		margin: 20px 30px;
 		cursor: pointer;
 		background-color: white; 
 		color: black; 
@@ -164,10 +182,25 @@ padding-top: 40px}
 .modalIndex{
 	margin-right: 400px;
 }
+.idBox{
+	border: 2px solid blue;
+	margin: 20px;
+	width: 370px;
+	height: 600px;
+}
 .StreetLib{
 	width: 400px;
-	margin: 20px auto;
+	margin: 20px;
 }
+.libContainer{
+	display: flex;
+	
+}
+.libName{
+	margin: 30px 50px;
+	/* margin: 20px auto 20px 35%; */
+}
+
 .profile{
 	background-color: #c7cced;
 	margin-left: 20px;

@@ -28,9 +28,11 @@ if(props.book.attributes){
 }
 
 return(<div className="list-group-item">
-  <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}`}>{book.title}</a> <Popup trigger={<button>Add to Libray</button> } position="right center">
+  <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}
+  `}>{book.title}</a>
+  <Popup trigger={<button>Add to Libray</button> } position="right center">
                  <LibrariesList book={book} libraries={props.allLibraries}/>      
-               </Popup>
+               </Popup><div className="test"></div> 
 </div>)
 //     return(<div>
 //     <div onClick={handleShow}>

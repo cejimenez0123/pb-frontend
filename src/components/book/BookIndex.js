@@ -25,15 +25,11 @@ return(<div className="list-group">
     {html}
 </div>)
 }
-        let name
-        if(props.user){
-            name= `${props.user.name}'s Books`
-            }
-                console.log("BOOKINDDEX")
+          console.log("BOOKINDDEX")
         return(
             <div className="index">
            
-                {name}
+               
                 {renderIf()}
                 
              
