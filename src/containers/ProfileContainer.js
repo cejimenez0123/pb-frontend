@@ -30,7 +30,7 @@ let book
 class ProfileContainer extends React.Component{
     constructor(){
         super()
-        this.state={showBooks: "none",showLibraries: "none",showStartLibraries: "none"}
+        this.state={showBooks: "none",showLibraries: "none",showStartLibraries: "none",showStartBook: "none"}
     }
     componentDidMount(){
        const id=  localStorage.getItem("currentUser")
@@ -48,10 +48,11 @@ class ProfileContainer extends React.Component{
          
         
     }
-    handleOnClick(){
-        let title = prompt("Enter a title","untitled")
-      
-       this.props.startBook(title)
+    handleStartBookModal(){
+    //     let title = prompt("Enter a title","untitled")
+      this.setState({showBookLibraries: "block"})
+    //    this.props.startBook(title)
+
        
     }
     handleClickFollowers(){
@@ -70,6 +71,20 @@ class ProfileContainer extends React.Component{
         //     this.props.startLibrary(name)
         // }
         
+    }
+    startLib(e){
+e.preventDefault()
+debugger
+let name=e.target.querySelector(`input[name="name"]`).value
+let privacy = e.target.querySelector(`select[name="privacy"]`).value
+    this.props.startLibrary({name,privacy})
+    }
+    startBook(e){
+        e.preventDefault()
+        debugger
+      let name=e.target.querySelector(`input[name="name"]`).value
+      let privacy = e.target.querySelector(`select[name="privacy"]`).value
+this.props.startBook({name,privacy})
     }
     componentDidUpdate(){
         console.log(this.props.followedUsers)
@@ -95,6 +110,7 @@ class ProfileContainer extends React.Component{
        this.setState({showBooks: "none"})
        this.setState({showLibraries: "none"})
        this.setState({showStartLibraries: "none"})
+       this.setState({showStartBook: "none"})
      }
   }
     render(){
@@ -120,24 +136,51 @@ class ProfileContainer extends React.Component{
                         <section>
                             <ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                             <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
-                             <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartLibraries}} class="modal">
+                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartLibraries}} class="modal">
                     <div   class="modal-content">
                       <span  class="close">&times;</span>
                       <div className="modalIndex">
-                        <form>
-                    <label>Name of Library</label>
-                    <input type="text" placeholder="untitled"/>
-                    <br/>
-                    <label> Privacy:</label>
-
+                        <form onSubmit={(e)=>this.startLib(e)}>
+                            <label>Name of Library</label>
+                            <input type="text" name="name" placeholder="untitled"/>
+                            <br/>
+                            <label> Privacy:</label>
+                            <select name="privacy">
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                            </select>
+                            <br/>
+                                <input type="submit" value="Create"/>
                         </form>
                     </div>
+                </div>
+                </div>
+                            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
+                                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartBook}} class="modal">
+                    <div   class="modal-content">
+                      <span  class="close">&times;</span>
+                      <div className="modalIndex">
+                        <form onSubmit={(e)=>this.startBook(e)}>
+                            <label>Name of Book</label>
+                            <input type="text" name="name" placeholder="untitled"/>
+                            <br/>
+                            <label> Privacy:</label>
+                            <select name="privacy">
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                            </select>
+                            <br/>
+                                <input type="submit" value="Create"/>
+                        </form>
                     </div>
                 </div>
-                            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleOnClick()}>Start Book</button>
+</div>
                             <FollowersBtn/>
+                         
                             <FollowingBtn/> 
+                            
                         </section>
+                        
                     </div>
                 </div>
             </div>

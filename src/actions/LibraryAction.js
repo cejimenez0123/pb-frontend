@@ -2,7 +2,7 @@
 const libraryPath = "http://localhost:3000/libraries"
 const userPath = "http://localhost:3000/users"
 const bookLibPath = "http://localhost:3000/book_libraries"
-function startLibrary(name){
+function startLibrary(lib){
  let config = {
         method: 'POST',
         headers: {
@@ -10,7 +10,8 @@ function startLibrary(name){
         'Accept': 'application/json'
           },
           body: JSON.stringify({
-              name: name,
+              name: lib.name,
+              privacy: lib.privacy,
               userId: localStorage.getItem("currentUser")
           })}
       return(dispatch)=>{fetch(libraryPath,config).then(res=>res.json()).then(obj=>{  

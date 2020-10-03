@@ -6,7 +6,7 @@ const userPath = "http://localhost:3000/users"
 function useBookActions(){
     return{getBooksOfUser: id=>{getBooksOfUser(id)}}
 }
-function startBook(title,is_Home_Book="false"){
+function startBook(book,is_Home_Book="false"){
     let config={   
     method: 'POST',
     headers: {
@@ -15,7 +15,8 @@ function startBook(title,is_Home_Book="false"){
       },
       body: JSON.stringify({
           userId: localStorage.getItem("currentUser"),
-          title: title,
+          title: book.name,
+          privacy: book.privacy,
           isHomeBook: is_Home_Book
     })}
     return(dispatch)=>{fetch(bookPath,config).then(res=>res.json()).then(obj=>{
