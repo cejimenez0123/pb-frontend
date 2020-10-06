@@ -34,7 +34,7 @@ export default function Page(props){
    }
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
-  const config={readonly: true,width: 900,iframe: true}
+  const config={readonly: true,width: 700,iframe: true}
   let editBtn = null
     
   if(props.page){
@@ -42,8 +42,8 @@ export default function Page(props){
     content = page.data
     
       return(
-        <div >
-          <div className="page" style={{height: "0px"}}>
+        <div className="pageContainer">
+          <div className="page" >
             <div>
               <JoditEditor
             	ref={editor}

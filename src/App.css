@@ -6,6 +6,8 @@
 	width: 172px;
 	height: 40px;
 }
+
+
 .list-group{
 	position: relative;
 	overflow:hidden; 
@@ -13,6 +15,9 @@
 }
 #Navbar{
 	position: relative
+}
+.pages{
+	margin: 5px;
 }
 
 /* .scroll{
@@ -77,11 +82,38 @@
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
+  .pageContainer{
+	  margin: 5px 0px;
+	  text-align: center
+  }
+  .main{
+	  
+  }
   .bookPages{text-align: center;;}
   .modalInfo{text-align: left}
   .PageCommentBox{
 	  text-align: left;
+  }
+  .settingsForm{
+	  padding: 5%;
+	  margin: 30px auto;
+	  width: 700px;
+	  height: 500px;
+	  background-color: #f0f0f0;
+	  flex-direction: column;
+	  
+  }
+  .container{
+	  background-color:#bfbfbf;
+	  width: 100%;
+	  
+  }
+  .app{
+	background-color:#bfbfbf;
+	height: 100%;
+  }
+  html{
+	background-color:#bfbfbf
   }
   .start-btn{
 	padding: 10px;
@@ -91,6 +123,11 @@
 margin: auto;
 display: inline-block;
 max-width: 78%;}
+.profilePic{
+	width: 500px;
+	height: auto;
+	border: 2px solid
+}
 /* .editor{
 	margin-left: 30%;
 background-color: red;}
@@ -119,19 +156,14 @@ background-color: red;}
 .page .jodit-toolbar__box{
 	display: none;
 }
+.pageMain{
+	background-color: green;
+	overflow: scroll;
+	margin-left: 10px;
+	padding: 5px;
+}
 
-.followBtn{
-	background-color: #243dca;
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 20px 30px;
-	cursor: pointer;
-  }
+
   .streetLib{
 	  height: 8000px;
 	  overflow: scroll;
@@ -165,20 +197,7 @@ background-color: red;}
 	margin: auto;
 	;
 }
-.followedBtn{ 
-		border: none;
 
-		padding: 15px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 20px 30px;
-		cursor: pointer;
-		background-color: white; 
-		color: black; 
-		border: 2px solid #008CBA
-}
 .street .list-group-item{
 	width: 200px;
 	height: 75px;
@@ -209,11 +228,90 @@ padding-top: 40px}
 	display: flex;
 	
 }
+.followBtn{
+	background-color: #243dca;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 10px;
+	margin: 20px 30px;
+	cursor: pointer;
+  }
+.followedBtn{ 
+	border: none;
+
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 20px 30px;
+	cursor: pointer;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #008CBA
+}
+.followersBtn{
+	background-color: #243dca;
+	color: white;
+	text-align: center;
+	margin: 10px 10px;
+	padding: 10px 15px;
+	border-radius: 10px;
+}
+.bookTitle{
+	margin: 10px 20px;
+}
+
+.editBookBtn{
+	margin: 10px;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+.bookIdCard .btnBox{
+	margin: 10px;
+}
+.bookIdCard{
+	margin: 20px 10px;
+	 width: 300px;
+	height: auto;
+	max-height: 500px;
+	overflow: scroll;
+background-color: #b7edc5;}
+.bookIdCard .fBtn{
+	margin: 10px;
+	padding: 10px 20px;
+}
 .libName{
 	margin: 30px 50px;
 	/* margin: 20px auto 20px 35%; */
 }
-
+.bookContainer{display: flex;}
+.pcmainBook{
+	margin: 10px;
+}
+/* .pagesOfBook{
+	width: 800px;
+	margin: auto;
+	margin-top: 20px;
+	background-color: pink;
+} */
+.pages .emptyMessage{
+	background-color:white;
+	height: 600px;
+	width: 500px;
+	padding: 220px;
+	
+}
+.pages{
+	background-color:#d7dbd7;
+	width: 700px;
+	height: 700px;
+}
 .profile{
 	background-color: #c7cced;
 	margin-left: 20px;
@@ -223,15 +321,15 @@ padding-top: 40px}
 	border-radius: 10%;
 	}
 .right{width: 20%}
-.pages{justify-content: center;
+/* .pages{justify-content: center;
 align-items:center;
 display: flex;
 flex-direction: column;}
 .page{
-	display: inline-block;
+ 
 	margin: auto;
 	text-align: center;
-}
+}  */
 .draftPage{
 		display: inline-block;
 		margin: auto;
@@ -328,12 +426,6 @@ border: 1px solid #888}
 	width: 200px;
 }
 
-.page{
-	height: 864px;
-	width: 816px;
-	margin: auto;
-	box-shadow: 10px;
-}
 .navbar-light{
 	color: white;
 }

@@ -129,7 +129,7 @@ const SET_CURRENT_USER=()=>{
 }
 const userPageStream=()=>{
      return(dispatch)=>{fetch(userPath+`/${localStorage.getItem("currentUser")}/page_stream`).then(res=>res.json().then(obj=>{
-         debugger
+   
          let pages = obj.data
          dispatch(pagesInView(pages))
      }))}
@@ -172,7 +172,7 @@ function getUsers(){
     })}
 }
 function updateUser(user){
-    debugger
+   
     let config = {  
         method: 'PUT',
         headers: {
@@ -181,19 +181,21 @@ function updateUser(user){
             },
             body: JSON.stringify({
                 id: localStorage.getItem("currentUser"),
-                file: user.profile_picture,
                 username: user.username,
                 name: user.name
             })}
     
-   fetch(userPath+`/${localStorage.getItem("currentUser")}`,config).then(res=>res.json()).then(obj=>{
-        debugger
-    })
+   return(dispatch)=>{fetch(userPath+`/${localStorage.getItem("currentUser")}`,config).then(res=>res.json()).then(obj=>{
+     
+        dispatch(uploadProfilePic(user.formData))
+    })}
     
 }
 function uploadProfilePic(formData){
+
+    debugger
 return(dispatch)=>{fetch(`http://localhost:3000/${localStorage.getItem("currentUser")}/upload`, {
-      method: "POST",
+      method: "PATCH",
       body: formData
     })
       .then(res => res.json())

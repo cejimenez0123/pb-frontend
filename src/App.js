@@ -11,7 +11,7 @@ import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
-import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser} from "./actions/UserActions"
+import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
 import {getLibrary,getBooksOfLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
@@ -60,7 +60,7 @@ class App extends React.Component{
    <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
   </Route>
   <Route exact path="/user/:id/settings">
-    <ProfileSettingsContainer currentUser={this.props.currentUser}/>
+    <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
   </Route>
         <Route path="/libraries/:id">
             <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib}/>
@@ -113,7 +113,8 @@ function mapDispatchToProps(dispatch){
     getBooksOfUser:(id)=>dispatch(getBooksOfUser(id)),
     getLibrary:(id)=>dispatch(getLibrary(id)),
     getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id)),
-    getDrafts:(id)=>dispatch(getDraftsOfBook(id))
+    getDrafts:(id)=>dispatch(getDraftsOfBook(id)),
+    updateUser: (user)=>dispatch(updateUser(user))
   }
 }
 function mapStateToProps(state){

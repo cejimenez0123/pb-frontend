@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bit/ans.base-ui.button": "^0.1.4",
     "@rails/activestorage": "^6.0.3-3",
     "activestorage": "^5.2.4-4",
     "blueimp-file-upload": "^10.31.0",
@@ -12,6 +13,7 @@
     "history": "^4.10.1",
     "jodit": "^3.4.20",
     "jodit-react": "^1.0.59",
+    "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^3.1.0",
     "react": "^16.13.1",

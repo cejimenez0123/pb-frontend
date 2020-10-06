@@ -205,12 +205,12 @@ this.props.startBook({name,privacy})
                 </div>
             </div>
              
-              <main className=" PageMain">
-              <div class="col">
+              <div >
+              <div class="pageMain">
               
         <Pages pages={this.props.pagesInView}/>
         </div>
-        </main>
+        </div>
         <a href={`/user/${this.props.currentUser.id}/settings`} >
                             <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
                         </a>

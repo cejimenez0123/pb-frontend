@@ -16,7 +16,7 @@ const Books =(props)=>{
 
     
   
-    return(<div>
+    return(<div className="mainBook">
     {books}
     </div>)
 }

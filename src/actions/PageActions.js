@@ -235,7 +235,7 @@ function getPageById(id){
       'Content-Type': 'application/json',
       'Accept': 'application/json'
      }}).then(res=>res.json()).then(obj=>{
-       debugger
+  
      let page = obj.data
       dispatch({type: "GET_PAGE",page})
     })
@@ -248,7 +248,7 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
 
-       debugger
+     
               let pages = obj.data
               
           pages = pages.sort((a,b)=>{

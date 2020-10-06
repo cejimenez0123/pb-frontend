@@ -13,7 +13,7 @@ class Pages extends React.Component{
             //   return  <Page page={page}/>
             // })
         }else{
-            return(<p>Write Anything</p>)
+            return(<div className="emptyMessage"><p>Write Anything</p></div>)
         }
     }
     editor(e){
@@ -21,7 +21,7 @@ class Pages extends React.Component{
     }
 
     render(){
-        return(<div style={{margin: "auto"}}className={"pages"}>
+        return(<div className={"pages"}>
        
             {this.renderIf()}
           

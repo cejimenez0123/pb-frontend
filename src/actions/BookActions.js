@@ -1,4 +1,5 @@
 import {history} from "../history"
+import {followBook } from "./FollowActions"
 const bookPath = "http://localhost:3000/books"
 const userPath = "http://localhost:3000/users"
 
@@ -24,12 +25,14 @@ function startBook(book,is_Home_Book="false"){
         let book
         if(obj.data.attributes){
         book = obj.data.attributes
-        if(book.is_home_book !== "true"){
+        followBook(book.id)
+        history.push(`/books/${book.id}`)
         dispatch(bookInView(book)) 
-        }}
+       
     
     
-    })}
+    }})
+}
 }
 function getAllBooks(){
     console.log("HITTT!!!")
