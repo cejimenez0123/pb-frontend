@@ -11,7 +11,7 @@ const userPath = "http://localhost:3000/users"
 const sharePath = "http://localhost:3000/shares"
 function usePageActions(){
   return{myPages: ()=>myPages(),
-getPageById:(id)=>getPageById(id),
+getPagesById:(id)=>getPagesById(id),
 savePage:(data)=>savePage(data),
 getPagesOfBook: (id)=>getPagesOfBook(id)
   }
@@ -229,15 +229,15 @@ function getPage(){
  )}
 }
 
-function getPageById(id){
-  return(dispatch)=>{ fetch(`/pages/${id}`,{
+function getPagesById(id){
+  return(dispatch)=>{ fetch(`/users/${id}/pages`,{
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
      }}).then(res=>res.json()).then(obj=>{
   
      let page = obj.data
-      dispatch({type: "GET_PAGE",page})
+      dispatch(pagesInView(page))
     })
   }
 }
@@ -322,4 +322,4 @@ const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPageById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

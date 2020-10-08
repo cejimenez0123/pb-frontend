@@ -130,16 +130,15 @@ this.props.startBook({name,privacy})
     <div className="profileContainer">
         <div className="profile">
             <div classname="" id="my-info">
-                <div class="row">
-                    <div class="col">
+               
                         
                         <section>
                             <ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
-                            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.handleStartLib()}>Start Library</button>
+                            
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartLibraries}} class="modal">
                     <div   class="modal-content">
                       <span  class="close">&times;</span>
-                      <div className="modalIndex">
+                        <div className="modalIndex">
                         <form onSubmit={(e)=>this.startLib(e)}>
                             <label>Name of Library</label>
                             <input type="text" name="name" placeholder="untitled"/>
@@ -152,18 +151,23 @@ this.props.startBook({name,privacy})
                             <br/>
                                 <input type="submit" value="Create"/>
                         </form>
+                        </div>
                     </div>
                 </div>
-                </div>
-                            <button type="button" class="start-btn btn btn-secondary btn-dark btn-sm" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
-                                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartBook}} class="modal">
+                            
+                                <div onClick={(e)=>this.handleModalClose(e)} style={{display: this.state.showStartBook}} class="modal">
                     <div   class="modal-content">
                       <span  class="close">&times;</span>
-                      <div className="modalIndex">
+                      <div  className="modalIndex">
+                     
                         <form onSubmit={(e)=>this.startBook(e)}>
-                            <label>Name of Book</label>
+                         <div className="startForm">
+                            <label htmlFor="name">Name of Book  </label>
                             <input type="text" name="name" placeholder="untitled"/>
                             <br/>
+                            <label> Introduction to Book</label>
+                            <br/>
+                            <textarea className=" textarea bio-textarea" placeholder="What's the why" rows="3"/>
                             <label> Privacy:</label>
                             <select name="privacy">
                                 <option value="private">Private</option>
@@ -171,36 +175,44 @@ this.props.startBook({name,privacy})
                             </select>
                             <br/>
                                 <input type="submit" value="Create"/>
+                                </div>
                         </form>
-                    </div>
-                </div>
-</div>
-                            <FollowersBtn/>
-                         
-                            <FollowingBtn/> 
-                            
-                        </section>
                         
                     </div>
                 </div>
+            </div>
+            {/* "start-btn btn btn-secondary btn-dark btn-sm */}
+            <div className="profile-buttons">
+            <button type="button" class=" green button" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
+              <button type="button" class=" blue button" onClick={()=>this.handleStartLib()}>Start Library</button>
+               <br/>
+                            <FollowersBtn/>
+                         
+                            <FollowingBtn followedUsers={this.props.followedUsers}/> 
+
+                     </div>       
+                        </section>
+                        
+                  
             </div>
                 {/* <EditBook book={book} /> */}
                 <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showBooks}} class="modal">
                     <div   class="modal-content">
                         <span  class="close">&times;</span>
-                        <div className="modalIndex">
+
+                        <div className="">
                         <BookIndex books={this.props.booksInView}/>
                         </div>
                     </div>
                 </div>
                 <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
-                    <div   class="modal-content">
+                    <div   class="modal-content ">
                       <span  class="close">&times;</span>
-                      <div className="modalIndex index">
+                      
                      <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
-                    </div>
+                  
                     </div>
                 </div>
             </div>

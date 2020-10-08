@@ -16,9 +16,9 @@ function FollowersBtn(props){
   })
     
     return(<div>
-    <Button variant="primary" onClick={handleShow}>
+    <button className="yellow button followersBtn" onClick={handleShow}>
        Followers
-      </Button>
+      </button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

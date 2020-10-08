@@ -3,7 +3,7 @@
 .list-group-item{
 	position: absolute;
 	padding: 30px;
-	width: 172px;
+	width: 150px;
 	height: 40px;
 }
 
@@ -47,10 +47,7 @@
 	margin-top: 100px;
 	text-align: center;
 }
-.Navbar-search{
-	position: fixed;
-	margin-left: 80%;
-}
+
 
 #SHomeContainer{
 	height: 200px;
@@ -65,8 +62,7 @@
 	background-color: #fefefe;
 	margin: auto; /* 15% from the top and centered */
 	padding: 20px;
-	border: 1px solid #888;
-	width: 40%; /* Could be more or less, depending on screen size */
+	border: 1px solid #888; /* Could be more or less, depending on screen size */
 	
   }
 .modal {
@@ -75,8 +71,8 @@
 	z-index: 1; /* Sit on top */
 	margin: auto;
 	top: 0;
-	padding: 100px;
-	width: 65%; /* Full width */
+	padding: 100px 200px 200px 200px;
+	width: 64%; /* Full width */
 	height: 0%; /* Full height */
 	 overflow: auto; /*Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
@@ -103,17 +99,18 @@
 	  flex-direction: column;
 	  
   }
+  
   .container{
 	  background-color:#bfbfbf;
 	  width: 100%;
 	  
   }
   .app{
-	background-color:#bfbfbf;
+	background-color:#ededed;
 	height: 100%;
   }
   html{
-	background-color:#bfbfbf
+	background-color:#ededed
   }
   .start-btn{
 	padding: 10px;
@@ -124,6 +121,7 @@ margin: auto;
 display: inline-block;
 max-width: 78%;}
 .profilePic{
+
 	width: 500px;
 	height: auto;
 	border: 2px solid
@@ -214,9 +212,7 @@ height: 80px;}
 margin-top: 20px;}
 .pageMain{margin-top: 30px;
 padding-top: 40px}
-.modalIndex{
-	margin-right: 400px;
-}
+
 .idBox{
 	border: 2px solid blue;
 	margin: 20px;
@@ -232,16 +228,52 @@ padding-top: 40px}
 	background-color: #243dca;
 	border: none;
 	color: white;
-	padding: 15px 32px;
+	padding: 10px 20px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
+	font-size: 14px;
 	border-radius: 10px;
 	margin: 20px 30px;
 	cursor: pointer;
   }
-.followedBtn{ 
+  .red{
+	  background-color: rgb(177, 6, 6);
+	  color: white;
+  }
+  .blue{background-color: #243dca;
+color: white}
+.green{
+	background-color: #46b535;
+	color: white;
+}
+.yellow{
+	background-color: yellow;
+	color: green;
+}
+.profile-buttons{
+	width: 300px;
+	display: flex;
+	flex-wrap: wrap;
+	
+}
+
+.pink{background-color: rgb(202, 97, 97);
+color: white;}
+
+  .button{
+	  
+	  text-align: center;
+	box-sizing: border-box;
+	padding: 7px 8px;
+	font-size: 18px;
+	margin: 5px 7px;
+	border-radius: 5px;
+  }
+  .followingBtn{
+	  margin-left: 18px;
+  }
+  .followedBtn{ 
 	border: none;
 
 	padding: 15px 32px;
@@ -255,14 +287,7 @@ padding-top: 40px}
 	color: black; 
 	border: 2px solid #008CBA
 }
-.followersBtn{
-	background-color: #243dca;
-	color: white;
-	text-align: center;
-	margin: 10px 10px;
-	padding: 10px 15px;
-	border-radius: 10px;
-}
+
 .bookTitle{
 	margin: 10px 20px;
 }
@@ -313,12 +338,13 @@ background-color: #b7edc5;}
 	height: 700px;
 }
 .profile{
-	background-color: #c7cced;
+	background-color: #1a1818;
+	color: white;
 	margin-left: 20px;
 	padding: 20px;
 	width: 300px;
-	height: 400px;
-	border-radius: 10%;
+	height: 500px;
+	border-radius: 1%;
 	}
 .right{width: 20%}
 /* .pages{justify-content: center;
@@ -335,9 +361,30 @@ flex-direction: column;}
 		margin: auto;
 		text-align: center;
 }
+*{
+	font-family:  Helvetica, sans-serif;
+	box-sizing: border-box;
+}
+.bio-textarea{
+	width: 300px;
+}
+.LibraryIndex{
+	width: 600px;
+	padding: auto;
+	margin: auto;
+}
+.bookIndex{
+	width:600px;
+	padding: auto;
+	margin: auto;
+}
+.bookIndexBox{
+	width: 400px;
+	height: 100px;
+}
 
-.index{
-	margin-left: 50%;
+.list-group-item{ 
+	text-align: center;
 }
 
 
@@ -346,14 +393,37 @@ flex-direction: column;}
 			background:#f4f4f4;
 			padding: 5px;
 			border-radius:3px;
-        }
+		}
+		.Navbar-search{
+			position: fixed;
+			margin-left: 70%;
+		
+		}
 .searchForm{
 	position: fixed;
 }
-.search-index{position: absolute;}
-.search{
-	justify-content: space-around;
+
+.startForm{
+	text-align: center;
+	color: black;
 }
+
+.bio{
+	width: 100px;
+}
+.search-index{position: absolute;
+
+}
+.search-index .search-item{
+	margin-right: 40px;
+	width: 192px;
+}
+.search-form{
+display:  inline-flex;
+}	
+/* .search-btn{
+	float: right;
+} */
 .search-bar{
 	position: fixed;
 }

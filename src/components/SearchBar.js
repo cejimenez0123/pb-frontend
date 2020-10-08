@@ -39,11 +39,14 @@ if(filtered){
         let state = store
         
         return(<div className="Navbar-search">
-        <form class="form-inline my-2 my-lg-0 search">
-        <button class="btn btn-outline-light my-2 my-sm-0 search-btn" type="submit">Search </button>
-            <input class="form-control mr-sm-2 search-bar" type="search" placeholder="search..." onKeyUp={(e)=>this.filterFunction(e)}/>
-            
+        <div >
+        <form class="form-inline my-2 my-lg-0 search-from">
+        
+            <input className="form-control mr-sm-2 " type="search" placeholder="search..." onKeyUp={(e)=>this.filterFunction(e)}/>
+            <button  className="search-btn" type="submit">Search </button>
           </form>
+          
+          </div>
             <div className="list-group search-index" >
             {this.state.filtered}
             </div>

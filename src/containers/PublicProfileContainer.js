@@ -3,6 +3,7 @@ import NavbarContainer from "./NavbarContainer"
 import ProfileCard from "../components/user/ProfileCard"
 import BookIndex from "../components/book/BookIndex"
 import {followUser,getFollowersOfUser,deleteFollow} from '../actions/FollowActions'
+import {getPagesById} from "../actions/PageActions"
 import {connect} from "react-redux"
 import FollowerCards from "../components/user/FollowerCards"
 import "../App.css"
@@ -12,7 +13,7 @@ let id= window.location.pathname.split("/")[2]
 class PublicProfileContainer extends React.Component{
     constructor(){
         super()
-        this.state={show: "block"}
+        this.state={show: "none"}
     }
     componentDidMount(){
         
@@ -22,8 +23,10 @@ class PublicProfileContainer extends React.Component{
         }else{
             
         this.props.getUser(id)
+        this.props.getPagesById(id)
         this.props.getFollowers(id)
         this.props.getBooksOfUser(id)
+    
     }    
     }
     componentDidUpdate(){
@@ -61,7 +64,11 @@ class PublicProfileContainer extends React.Component{
             return (<button className="followBtn" onClick={()=>this.handleFollow()}>Follow</button>)
         }
     }
-
+    handleModalClose(e){
+         if(e.target === e.currentTarget){
+       this.setState({show: "none"})
+     }
+    }
     render(){
     
      
@@ -69,12 +76,12 @@ class PublicProfileContainer extends React.Component{
          
     <div>
         <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
-             UserContainer
-        <section>
+             <div className=" profileContainer">
+        <section className="profile">
              < ProfileCard user={this.props.user}/>
             {this.followBtn()}
             <button onClick={()=>this.handleShow()} >Followers</button>
-                <div  style={{width: "100%",display: this.state.show}} class="modal">
+                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.show}} class="modal">
                 <div   class="modal-content">
                   <span  onClick={()=>this.handleShow()}class="close">&times;</span>
                   <div className={"modalInfo"}>
@@ -84,22 +91,24 @@ class PublicProfileContainer extends React.Component{
                   </div>
             </div>
             </section>
-              
+            
             <BookIndex books={this.props.booksInView} user={this.props.user}/>
-
+    </div>
             </div>
         )
     }
 }
 const mapState = (state)=>{
     return{
-        followers: state.users.userFollowers
+        followers: state.users.userFollowers,
+        pages: state.pages.pagesInView
     }
 }
 const mapDispatch = (dispatch)=>{
     return{followUser: (id)=>dispatch(followUser(id)),
     getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
-    deleteFollow:(follow)=>dispatch(deleteFollow(follow))
+    deleteFollow:(follow)=>dispatch(deleteFollow(follow)),
+    getPagesById: (id)=>dispatch(getPagesById(id))
     }
 }
 export default connect(mapState,mapDispatch)(PublicProfileContainer)

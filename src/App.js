@@ -38,10 +38,9 @@ class App extends React.Component{
   return (
  
     <div className="app">
-      <head><script>
-      $(document).foundation();
-    </script>
-    
+      <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
       <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
      <script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>

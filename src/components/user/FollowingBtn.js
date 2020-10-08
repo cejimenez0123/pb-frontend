@@ -3,41 +3,45 @@ import {Button,Modal} from 'react-bootstrap'
 import {useStore} from 'react-redux'
 import FollowerCard from "./FollowerCard"
 function FollowingBtn(props){
-    const [show, setShow] = useState(false);
+    let [show, setShow] = useState("none");
     const store = useStore()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  let followedUsers = store.getState().users.followedUsers
-  console.log(followedUsers)
+  function handleModalClose(e){
+
+      if(e.target === e.currentTarget){
+       setShow("none")
+     }
+  }
+  
 
   let users
-  if(followedUsers.length > 0){
-  users = followedUsers.map(x=>{
+  if(props.followedUsers.length > 0){
+  users = props.followedUsers.map(x=>{
       return(<FollowerCard user={x.attributes.followed_user}/>)
   })}else{
     users="Follow some people"
   }
     return(<div>
-    <Button variant="primary" onClick={handleShow}>
+    <button onClick={()=>setShow("block")}className="button pink followingBtn" >
         Following
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        
-        <Modal.Body>x
-            {users}
-        
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      </button>
+      
+      <div>
+  
+         <div onClick={(e)=>handleModalClose(e)} style={{display: show}} class="modal">
+                    <div   class="modal-content">
+                      <span  class="close">&times;</span>
+                      <div  className="modalIndex">
+                     
+                         {users}
+                        
+                    </div>
+                </div>
+          </div>
+          </div>
+          
     </div>
     )
 }

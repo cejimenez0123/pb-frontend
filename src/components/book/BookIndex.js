@@ -27,7 +27,7 @@ return(<div className="list-group">
 }
           console.log("BOOKINDDEX")
         return(
-            <div className="index">
+            <div className="bookIndex">
            
                
                 {renderIf()}

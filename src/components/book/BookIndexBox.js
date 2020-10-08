@@ -27,7 +27,7 @@ if(props.book.attributes){
     book = props.book
 }
 
-return(<div className="list-group-item">
+return(<div className=" bookIndexBox list-group-item">
   <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}
   `}>{book.title}</a>
   <Popup trigger={<button>Add to Libray</button> } position="right center">

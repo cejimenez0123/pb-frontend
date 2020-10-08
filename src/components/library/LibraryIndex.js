@@ -16,7 +16,7 @@ function LibraryIndex(props){
    
       return(<LibraryIndexBox  allBooks={props.allBooks} booksOfLib={books} library={t}/>)})
    }
-        return(<div className="list-group ">
+        return(<div className="LibraryIndex list-group ">
         
         {t}
         
