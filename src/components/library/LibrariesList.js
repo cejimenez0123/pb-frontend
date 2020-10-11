@@ -4,15 +4,17 @@ function LibrariesList(props){
 
    let t = []
    if(props.libraries){
+   
   t = props.libraries.map(t=>{return(
       <AddToLibraryList book={props.book} library={t}/>
+   
       )})
    }
   
-        return(<div>
-        <ul>
+        return(<div className="lib-list list-group">
+        
         {t}
-        </ul>
+      
         </div>)
     
 }

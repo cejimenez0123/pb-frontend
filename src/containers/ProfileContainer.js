@@ -26,6 +26,7 @@ import FollowingFeed from '../components/feed/FollowingFeed'
 import FollowingBtn from "../components/user/FollowingBtn"
 import FollowersBtn from "../components/user/FollowersBtn"
 import Editor from "../components/page/editor"
+import BookIndexModal from "../components/book/BookIndexModal"
 let book
 class ProfileContainer extends React.Component{
     constructor(){
@@ -87,7 +88,7 @@ let privacy = e.target.querySelector(`select[name="privacy"]`).value
 this.props.startBook({name,privacy})
     }
     componentDidUpdate(){
-        console.log(this.props.followedUsers)
+    
     }
     handleShowBooks(){
         debugger
@@ -116,14 +117,14 @@ this.props.startBook({name,privacy})
     render(){
         
       
-       if(this.props.userBooks.length >0 && this.props.currentUser.home_book){
-         console.log(this.props.currentUser)
+       if(this.props.userBooks && (this.props.userBooks.length >0 && this.props.currentUser.home_book)){
+
         book  = this.props.userBooks.find(x=>{return x.id == this.props.currentUser.home_book.id})
            if(book.attributes){book=book.attributes}
            
        }
   
-         console.log(this.props)
+        
         return(
 <div>
     <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
@@ -140,10 +141,10 @@ this.props.startBook({name,privacy})
                       <span  class="close">&times;</span>
                         <div className="modalIndex">
                         <form onSubmit={(e)=>this.startLib(e)}>
-                            <label>Name of Library</label>
+                            <h4>Name of Library:</h4>
                             <input type="text" name="name" placeholder="untitled"/>
                             <br/>
-                            <label> Privacy:</label>
+                            <h4> Privacy:</h4>
                             <select name="privacy">
                                 <option value="private">Private</option>
                                 <option value="public">Public</option>
@@ -162,12 +163,13 @@ this.props.startBook({name,privacy})
                      
                         <form onSubmit={(e)=>this.startBook(e)}>
                          <div className="startForm">
-                            <label htmlFor="name">Name of Book  </label>
+                            <label htmlFor="name">Name of Book:  </label>
                             <input type="text" name="name" placeholder="untitled"/>
                             <br/>
                             <label> Introduction to Book</label>
                             <br/>
                             <textarea className=" textarea bio-textarea" placeholder="What's the why" rows="3"/>
+                            <br/>
                             <label> Privacy:</label>
                             <select name="privacy">
                                 <option value="private">Private</option>
@@ -195,8 +197,9 @@ this.props.startBook({name,privacy})
                         
                   
             </div>
-                {/* <EditBook book={book} /> */}
-                <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
+            <BookIndexModal books={this.props.booksInView}/> 
+                {/* <EditBook book={book} />
+                {/* <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showBooks}} class="modal">
                     <div   class="modal-content">
                         <span  class="close">&times;</span>
@@ -205,7 +208,7 @@ this.props.startBook({name,privacy})
                         <BookIndex books={this.props.booksInView}/>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
                     <div   class="modal-content ">
@@ -270,7 +273,8 @@ function mapStateToProps(state){
         pagesInView: state.pages.pagesInView,
         pages: state.pages.pages,
         libraries: state.libraries.librariesInView,
-        bookLibraries: state.libraries.bookLibraries
+        bookLibraries: state.libraries.bookLibraries,
+        booksInView: state.books.booksInView
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)

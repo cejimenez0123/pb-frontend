@@ -11,7 +11,7 @@ function PageCommentInput(props){
         dispatch(commentOnPage({page_id: props.page.id,text: text}))
 
     }
-console.log(props.page)
+
     return(<div>
     <form onSubmit={(e)=>handleOnSubmit(e)}>
     <textarea></textarea>

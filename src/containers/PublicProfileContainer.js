@@ -4,6 +4,8 @@ import ProfileCard from "../components/user/ProfileCard"
 import BookIndex from "../components/book/BookIndex"
 import {followUser,getFollowersOfUser,deleteFollow} from '../actions/FollowActions'
 import {getPagesById} from "../actions/PageActions"
+import BookIndexModal from "../components/book/BookIndexModal"
+import Pages from "../components/page/pages"
 import {connect} from "react-redux"
 import FollowerCards from "../components/user/FollowerCards"
 import "../App.css"
@@ -90,8 +92,9 @@ class PublicProfileContainer extends React.Component{
                   </div>
                   </div>
             </div>
+            <BookIndexModal books={this.props.booksInView}/>
             </section>
-            
+            <Pages pages={this.props.pages}/>
             <BookIndex books={this.props.booksInView} user={this.props.user}/>
     </div>
             </div>

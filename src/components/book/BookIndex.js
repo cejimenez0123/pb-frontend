@@ -10,9 +10,9 @@ export default function BookIndex(props){
   
         
         
-        function  renderIf(){   
-  let html
-            if(props.books){
+         
+  let html=""
+    if(props.books){
        
    html=  props.books.map((book,i)=>{
             book = book.attributes
@@ -20,21 +20,19 @@ export default function BookIndex(props){
            return(<BookIndexBox key={i} book={book}/>
            
            )
-})}
-return(<div className="list-group">
+        })
+        return(<div className="list-group book-index">
+             {html}
+            </div>)
+        }else{
+            return(
+            <div>
     {html}
-</div>)
+    </div>)
 }
-          console.log("BOOKINDDEX")
-        return(
-            <div className="bookIndex">
-           
-               
-                {renderIf()}
-                
-             
-            </div>
-        )
+
+
+      
 
             
 }

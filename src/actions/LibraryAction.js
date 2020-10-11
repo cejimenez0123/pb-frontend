@@ -44,10 +44,15 @@ function getUserLibraries(id){
     }
 
 }
+function deleteBookLibrary(bookLib){
+    debugger
+
+}
 
 function getBookLibraries(){
 
     return(dispatch)=>{fetch(bookLibPath).then(res=>res.json()).then(obj=>{
+  
         let books = obj.data
         dispatch(allBookLibraries(books))
         return books
@@ -85,4 +90,4 @@ function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
 function libraryInView(library){return{type:"LIBRARY_IN_VIEW",library}}
 function allBookLibraries(books){return{type:"ALL_BOOK_LIBRARIES",books}}
-export {startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary,getBookLibraries}
+export {deleteBookLibrary,startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary,getBookLibraries}

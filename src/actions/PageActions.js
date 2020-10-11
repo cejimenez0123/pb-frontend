@@ -230,12 +230,13 @@ function getPage(){
 }
 
 function getPagesById(id){
-  return(dispatch)=>{ fetch(`/users/${id}/pages`,{
+  debugger
+  return(dispatch)=>{ fetch(userPath+`/${id}/pages`,{
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
      }}).then(res=>res.json()).then(obj=>{
-  
+  debugger
      let page = obj.data
       dispatch(pagesInView(page))
     })

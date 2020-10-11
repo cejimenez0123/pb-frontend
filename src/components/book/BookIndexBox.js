@@ -4,8 +4,10 @@ import LibrariesList from "../library/LibrariesList"
 import {connect,useStore,useDispatch} from 'react-redux'
 import {getAllLibraries} from "../../actions/LibraryAction"
 import Book from "./book"
-import {Modal,Button} from 'react-bootstrap'
+import SearchBar from "../SearchBar"
+
 import Popup from "reactjs-popup"
+import Modal from "../modal"
 function mapState(state){
 
     return{allLibraries: state.libraries.libraries}
@@ -14,12 +16,36 @@ export default connect(mapState,null)(BookIndexBox)
 function BookIndexBox(props){
     const store = useStore()
 
- const [show, setShow] = useState(false);
+let [show, setShow] = useState("none");
+let [addBook,setAddBook]=useState("none")
+    function handleAddBook(){
+
+        if(addBook==="none"){
+            setAddBook("block")
+        }
+    }
+   
+   function handleModalClose(e){
+
+      if(e.target === e.currentTarget){
+    setAddBook("none")
+     }
+  }
 const dispatch = useDispatch()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+    if(props.allLibraries.length > 0){
+
+    }
+ function handleToggle(){
+   
+   if(show==="none"){
     
- 
+     setShow("block")
+   }else{
+     setShow("none")
+   }
+ }
 let book
 if(props.book.attributes){
     book = props.book.attributes
@@ -30,10 +56,30 @@ if(props.book.attributes){
 return(<div className=" bookIndexBox list-group-item">
   <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}
   `}>{book.title}</a>
-  <Popup trigger={<button>Add to Libray</button> } position="right center">
-                 <LibrariesList book={book} libraries={props.allLibraries}/>      
-               </Popup><div className="test"></div> 
-</div>)
+  <div onClick={handleToggle} className="test"></div> 
+    <div className=" popUp-box" style={{display: show}}>
+    <h3>xxx</h3>
+    <div>
+    <button onClick={()=>handleAddBook()}className="button">Add book to library</button>
+       
+    </div>
+
+ <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: addBook}} class="modal">
+            <div   class="modal-content">
+                <span  class="close ">&times;</span>
+
+                    <div className="add-book">
+                
+                    <h3> Add {book.title} to library</h3>
+                    <br/>
+                        <LibrariesList book={book} libraries={props.allLibraries}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+)
+}
 //     return(<div>
 //     <div onClick={handleShow}>
 //  -         
@@ -56,4 +102,4 @@ return(<div className=" bookIndexBox list-group-item">
 //        </Modal> 
 //         </div>)
 // }
-}
+

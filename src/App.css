@@ -3,11 +3,13 @@
 .list-group-item{
 	position: absolute;
 	padding: 30px;
-	width: 150px;
+	width: 350px;
 	height: 40px;
 }
 
-
+.book-index .list-group-item{
+	margin: auto;
+}
 .list-group{
 	position: relative;
 	overflow:hidden; 
@@ -58,21 +60,28 @@
 	text-align: center;
 	margin: auto;
 }
+
 .modal-content {
 	background-color: #fefefe;
 	margin: auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888; /* Could be more or less, depending on screen size */
-	
-  }
+	height: 500px;
+	width: 450px!important;
+}
+ .add-book{
+	 text-align: center;
+ } 
+.bookIndex{
+	margin: auto;
+}
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Sit on top */
 	margin: auto;
 	top: 0;
-	padding: 100px 200px 200px 200px;
-	width: 64%; /* Full width */
+	padding: 100px 300px 200px 300px; /* Full width */
 	height: 0%; /* Full height */
 	 overflow: auto; /*Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
@@ -178,6 +187,7 @@ background-color: red;}
   }
 
   .test{
+	  position: relative;
 	  float: right;
 	  margin: 10px; 
 	  width: 40px;
@@ -185,8 +195,99 @@ background-color: red;}
     background-image: radial-gradient(circle, black 5px, transparent 6px);
     background-size: 100% 33.33%;
 	}
+	.z4{
+		z-index:5 ;
+		color:black;
+	}
+	.popUp-box{
+		z-index: 3;
+		position: relative;
+float: right;
+color: black;
+border: 1px solid gray;
+border-radius: 5%;
+background-color: white;
+width: 300px;
+height: 200px;
+
+	}
   .localLibMain .index{
 	  margin: 20px auto 20px 10%;
+  }
+  .lib-list-item{
+	
+	  color: black;
+  }
+  .switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
+  /* .overLayer{
+	  position: absolute
+  } */
+  .lib-list .list-group-item{
+	  height: 80px;
+	  overflow: scroll;
+	  width: 350px;
+	  
+
   }
 .localLibMain{
 	height: 1000px;
@@ -196,17 +297,15 @@ background-color: red;}
 	;
 }
 
+
 .street .list-group-item{
-	width: 200px;
+	width: 300px;
 	height: 75px;
 }
 .profilePic{background-color: white;
 	width: 80px;
 height: 80px;}
-.index .list-group-item{
-	width: 600px !important;
-	height: 100px;
-}
+
 .profileContainer{display: flex;
 	
 margin-top: 20px;}
@@ -373,19 +472,13 @@ flex-direction: column;}
 	padding: auto;
 	margin: auto;
 }
-.bookIndex{
-	width:600px;
-	padding: auto;
-	margin: auto;
-}
+
 .bookIndexBox{
 	width: 400px;
 	height: 100px;
 }
 
-.list-group-item{ 
-	text-align: center;
-}
+
 
 
 .toolbar {
@@ -402,8 +495,12 @@ flex-direction: column;}
 .searchForm{
 	position: fixed;
 }
+*{
+	font-family: Verdana, Geneva, Tahoma, sans-serif
+}
 
 .startForm{
+	font-size: 20px;
 	text-align: center;
 	color: black;
 }

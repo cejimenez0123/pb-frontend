@@ -54,6 +54,19 @@ function getBooksOfUser(id){
 
     })}
 }
+function getPublicBooksOfUser(id){
+ 
+    console.log("hitt")
+    return(dispatch)=>{fetch(userPath+"/"+id+"/books/public").then(res=>res.json()).then(obj=>{
+      
+       let book = obj.data
+   
+        dispatch(booksInView(book))
+        
+
+    })}
+}
+
 
 function getBook(id){
  

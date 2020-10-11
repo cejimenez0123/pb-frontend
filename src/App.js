@@ -12,7 +12,7 @@ import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
-import {getLibrary,getBooksOfLibrary} from "./actions/LibraryAction"
+import {getLibrary,getBooksOfLibrary,getBookLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
@@ -30,7 +30,7 @@ class App extends React.Component{
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
-    
+    this.props.getBookLibraries()
   }
   bot = useUserActions()
 
@@ -113,7 +113,8 @@ function mapDispatchToProps(dispatch){
     getLibrary:(id)=>dispatch(getLibrary(id)),
     getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id)),
     getDrafts:(id)=>dispatch(getDraftsOfBook(id)),
-    updateUser: (user)=>dispatch(updateUser(user))
+    updateUser: (user)=>dispatch(updateUser(user)),
+    getBookLibraries:()=>dispatch(getBookLibraries())
   }
 }
 function mapStateToProps(state){
