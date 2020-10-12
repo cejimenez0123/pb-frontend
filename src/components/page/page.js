@@ -2,7 +2,7 @@ import React, {useState,useRef} from 'react'
 import { render } from 'react-dom'
 import JoditEditor from 'jodit-react'
 import {useStore,useDispatch } from 'react-redux'
-import {ListGroup,Modal,Button} from 'react-bootstrap'
+import Modal from "../modal"
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
@@ -51,15 +51,15 @@ export default function Page(props){
               config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
             />
-            <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
-              <div id={`modal-${page.id}`} onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
-                <div   class="modal-content">
-                  <span  class="close">&times;</span>
+           <Modal 
+           // onClick={(e)=>handleCommentClick(e)}
+           button ={ <button variant="primary"   >Comment</button>} content={
+              <div>
                   <div className={"modalInfo"}>{page.book.title} by 
                    <a by href={`/users/${page.user.id}`}> 
                     {page.user.username}
                    </a>
-                  </div>{editBtn}
+                  </div>
 
                  <JoditEditor
                  	ref={editor}
@@ -70,9 +70,8 @@ export default function Page(props){
                 <PageCommentInput page={page}/>
               <div className={"PageCommentBox"}>
                  <   PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
-              </div>
-            </div>
           </div>
+          </div>}/>
         </div>
       </div>
      </div>)

@@ -82,6 +82,7 @@ const handleEditClick = () => {
     function editBtn(){
       
         if(props.currentUser && props.currentUser.id === props.book.user.id){
+
             return(<div className="editBtn">
 <div >
  <button onClick={()=>setShowPop("block")}className="button light-green">Edit Book</button>
@@ -93,10 +94,10 @@ const handleEditClick = () => {
    <br/>
    <input type="text" placeholder={props.book.title}/>
    <br/>
-   <label>Intro to book</label> 
+   <label>Introduction to book</label> 
    <textarea placeholder={props.book.bio}/>
    <br/>
-   {props.book.privacy}
+   
    <select id='privacy'>
         <option value="public">Public</option>
         <option value="private">Private</option>
@@ -170,7 +171,7 @@ const handleEditClick = () => {
 
 
     if(props.book){
-   
+   debugger
         return(<section className="bookIdCard">
          
     <div>
