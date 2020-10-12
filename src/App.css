@@ -60,14 +60,26 @@
 	text-align: center;
 	margin: auto;
 }
+.comment{
+	color: black;
+	background-color: white;
+	width: 90%;
+	border: 1px solid grey;
+	margin: auto;
+	height: 100px;
+}
 
 .modalContent {
 	background-color: #fefefe;
 	margin: auto; /* 15% from the top and centered */
 	padding: 75px;
 	color: black;
-	border: 1px solid #888; /* Could be more or less, depending on screen size */
-	width: 450px;
+	border: 1px solid #888; 
+	border-radius: 10%;/* Could be more or less, depending on screen size */
+}
+.commentSection{
+	margin-top: 5px;
+	background-color: rgb(243, 243, 243);
 }
  .add-book{
 	 text-align: center;
@@ -98,7 +110,7 @@
 	  
   }
   .bookPages{text-align: center;;}
-  .modalInfo{text-align: left}
+  
   .PageCommentBox{
 	  text-align: left;
   }

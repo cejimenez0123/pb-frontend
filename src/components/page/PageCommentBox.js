@@ -1,14 +1,15 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Popup from 'reactjs-popup'
 
 import {useDispatch,useStore} from 'react-redux'
 import {commentOnPageComment} from '../../actions/PageActions'
 function PageCommentBox(props){
     const store = useStore()
+    let [showComBox,setShowComBox]=useState("none")
     let users = store.getState().users.users
     const dispatch =useDispatch()
     let comment
-     let user 
+     let user ={id: null}
     if(props.comment.self){
     
     comment = props.comment.self
@@ -20,12 +21,7 @@ function PageCommentBox(props){
   
     }
     
- user = users.find(t=>{
 
-   return t.id ==  comment.user_id
-   })
-
-   if(user){user=user.attributes}
 
     
    
@@ -33,7 +29,7 @@ function PageCommentBox(props){
   if(props.comment.children && props.comment.children.length>0){
     renderChildren=  props.comment.children.map((x,i)=>{
 
-         return (<li><PageCommentBox key={i} comment={x} page={props.page}/></li>)
+         return (<PageCommentBox key={i} comment={x} page={props.page}/>)
       })
 
   }
@@ -45,16 +41,32 @@ function PageCommentBox(props){
         let obj ={page_id: props.page.id,parent_id: comment.id,text: value}
         dispatch(commentOnPageComment(obj))
     }
-  
+   user = users.find(t=>{
+
+ return t.id ==  comment.user_id
+   })
+
+   if(user){user=user.attributes}
+   if(user){
     return(<div>
-     <div ><li><p>{comment.text}</p>from <a href={`/users/${user.id}`}>@{user.username}</a>
-    <Popup trigger={<button >reply</button>} position="bottom center">
+     <div >
+     <div className="comment">
+     <p>{comment.text}</p>
+     from <a href={`/users/${user.id}`}>@{user.username}</a>
+     </div>
+     <br/>
+     
+    <button onClick={()=>setShowComBox("block")}>reply</button>
+    <div style={{display: showComBox }}> 
     <div><form onSubmit={(e)=>handleOnSubmit(e)}><textarea></textarea><button type="submit">Submit</button></form></div>
-  </Popup></li>
+      </div>
     <ul>
     {renderChildren}
     </ul>
     </div>
-    </div>)
+    </div>)}
+    else{
+      return("")
+    }
 }
 export default PageCommentBox

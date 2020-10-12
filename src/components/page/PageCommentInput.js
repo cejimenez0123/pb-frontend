@@ -14,7 +14,8 @@ function PageCommentInput(props){
 
     return(<div>
     <form onSubmit={(e)=>handleOnSubmit(e)}>
-    <textarea></textarea>
+    <textarea rows="4" cols="70" style={{marginTop: "3px"}}></textarea>
+    <br/>
     <button type="submit">Comment</button>
     </form>
     </div>)

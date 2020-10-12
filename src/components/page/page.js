@@ -34,7 +34,7 @@ export default function Page(props){
    }
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
-  const config={readonly: true,width: 700,iframe: true}
+  const config={readonly: true,width: 800,iframe: true}
   let editBtn = null
     
   if(props.page){
@@ -67,9 +67,11 @@ export default function Page(props){
                   config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
                 />
+                <div className="commentSection">
                 <PageCommentInput page={page}/>
               <div className={"PageCommentBox"}>
                  <   PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
+          </div>
           </div>
           </div>}/>
         </div>

@@ -21,13 +21,16 @@ return this.props.comments.map((comment,i)=>{
 
     })
      }else{
-        return "no comments"
+        return(
+        <div> 
+        <h3>"no comments"</h3>
+        </div>)
     }}
     
    render(){
-    return(<div><ul>
+    return(<div>
     {this.renderIndex()}
-    </ul></div>
+    </div>
     
     )}
 }
