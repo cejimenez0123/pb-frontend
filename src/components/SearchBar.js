@@ -13,12 +13,17 @@ class SearchBar extends React.Component{
 let filtered
   let input = e.target.value
 if(input.length>0){
-  filtered = this.props.users.filter(x=>{
+  let users = this.props.users.filter(x=>{
    
   let  user = x.attributes
   return  user.name.includes(input) || user.username.includes(input)
 
   })
+  let books= this.props.books.filter(book=>{
+      book = book.attributes
+      return book.name.includes(input)
+  })
+  filtered= users.concat(books)
 }
 if(filtered){
  let list = filtered.map((x,i)=>{
@@ -54,6 +59,8 @@ if(filtered){
     }
 }
 function mapState(state){
-    return{ users: state.users.users}
+    return{ users: state.users.users,
+    books: state.books.books,
+    libraries: state.libraries.libraries}
 }
 export default connect(mapState)(SearchBar)

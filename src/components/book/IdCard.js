@@ -3,6 +3,7 @@ import Popup from 'reactjs-popup'
 import {useDispatch} from "react-redux"
 import {deleteBookFollow} from '../../actions/FollowActions'
 import FollowerCards from "../user/FollowerCards"
+import Modal from "../modal"
 import "../../App.css"
 function IdCard(props){
     const [title,setTitle]=useState("")
@@ -68,6 +69,7 @@ const handleEditClick = () => {
         }
         
     }
+    let [showPop,setShowPop]=useState("none")
     const handleTruthyShow =()=>{
         let show = "block"
         dispatch({type: "SHOW_EDITOR",show})
@@ -80,13 +82,38 @@ const handleEditClick = () => {
     function editBtn(){
       
         if(props.currentUser && props.currentUser.id === props.book.user.id){
-            return(<div>
-            <Popup trigger={ <button className="editBookBtn">Edit Book</button>} position="right center">
-   <div >
+            return(<div className="editBtn">
+<div >
+ <button onClick={()=>setShowPop("block")}className="button light-green">Edit Book</button>
+   <div className="popUp editBookBtn"style={{display: showPop}}>
+   <Modal button={<button>Edit Book</button>} content={<div
+   >
+   <form className="editForm">
+   <label>Name of Book:</label>
+   <br/>
+   <input type="text" placeholder={props.book.title}/>
+   <br/>
+   <label>Intro to book</label> 
+   <textarea placeholder={props.book.bio}/>
+   <br/>
+   {props.book.privacy}
+   <select id='privacy'>
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+   </select>
+   </form>
+   </div>}/>
         <button onClick={handleTruthyShow}>Add Page</button>
         <button>Delete Page</button>
          </div>
-  </Popup>
+  </div>
+            {/* <Popup trigger={ <button className="button light-green">Edit Book</button>} position="right center">
+   <div >
+   <Modal button={<button>Edit Book</button>} content={<div></div>}/>
+        <button onClick={handleTruthyShow}>Add Page</button>
+        <button>Delete Page</button>
+         </div>
+  </Popup> */}
            
                      
        
@@ -104,9 +131,9 @@ const handleEditClick = () => {
            return follow.attributes.follower.id === localStorage.getItem("currentUser")
         })
         if(follow){
-            return (<button class={"followedBtn fBtn"} onClick={()=>handleFollow()}>Following</button>)
+            return (<button class={" button pink "} onClick={()=>handleFollow()}>Following</button>)
         }else{
-            return( <button class={"followBtn fBtn"} onClick={()=>props.followBook(props.book.id)}>Follow</button>)
+            return( <button class={" button red "} onClick={()=>props.followBook(props.book.id)}>Follow</button>)
         }
         
     }
@@ -143,16 +170,17 @@ const handleEditClick = () => {
 
 
     if(props.book){
-       
+   
         return(<section className="bookIdCard">
          
     <div>
     <div className="bookTitle">
-         <h4>{props.book.title}</h4>   
+         <h4>{props.book.title}</h4>  
+         <p>{props.book.bio}</p> 
          </div> 
          <div className="btnBox">  
-    {editBtn()} <a href={`/books/${props.book.id}/drafts`}>Drafts</a>
-      <button class="button is-dark followersBtn" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
+    {editBtn()} <a className={"aBtn button grey"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
+      <button class="button is-dark blue" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
         <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
             <div   class="modal-content">
                 <span  class="close">&times;</span>

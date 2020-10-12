@@ -4,7 +4,7 @@ const userPath = "http://127.0.0.1:3000/users"
 const bookPath="http://localhost:3000/books"
 function bookFollowers(id){
     return(dispatch)=>{fetch(bookPath+`/${id}/book_followers`).then(res=>res.json()).then(obj=>{
-       debugger
+      
         let follows = obj.data
     dispatch(booksFollows(follows))
     })}

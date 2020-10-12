@@ -208,7 +208,7 @@ this.props.startBook({name,privacy})
             </div>
              
               <div >
-              <div class="pageMain">
+              <div className="pageMain">
               
         <Pages pages={this.props.pagesInView}/>
         </div>
