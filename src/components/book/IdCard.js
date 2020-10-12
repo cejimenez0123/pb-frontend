@@ -68,10 +68,15 @@ const handleEditClick = () => {
         }
         
     }
-    const handleTruthyShow =()=>setTruthy("block")
+    const handleTruthyShow =()=>{
+        let show = "block"
+        dispatch({type: "SHOW_EDITOR",show})
+       // setTruthy("block")
+        }
     const handleTruthyClose=(text)=>{
         
-        setTruthy("none");}
+        setTruthy("none");
+        }
     function editBtn(){
       
         if(props.currentUser && props.currentUser.id === props.book.user.id){

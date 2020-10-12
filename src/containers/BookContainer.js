@@ -10,8 +10,7 @@ import PageInput from "../components/page/PageInput"
 import FollowerCards from '../components/user/FollowerCards'
 import Popup from 'reactjs-popup'
 import IdCard from '../components/book/IdCard'
-
-let truthy = false
+ let truthy = "none"
 class BookContainer extends React.Component{
 constructor(){
     super()
@@ -99,7 +98,7 @@ ifBook(){
 
         return (
         <div>
-           <Book editor={this.state.editor} book={this.props.book} pages={this.props.pagesInView} followBook={this.props.followBook}/>
+           <Book editor={this.state.editor} truthy={truthy} book={this.props.book} pages={this.props.pagesInView} followBook={this.props.followBook}/>
         </div>
         )
     }else{
@@ -181,7 +180,7 @@ ifBook(){
   }
     render(){
        
-
+       
        
         return(<div>
         <NavbarContainer/>
@@ -192,7 +191,7 @@ ifBook(){
      
         BookContainer
     <div className="bookContainer">
-       <IdCard book={this.props.book} currentUser={this.props.currentUser} followers={this.props.followers}/>
+       <IdCard book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
      
         <div className="book">
        {this.ifBook()}

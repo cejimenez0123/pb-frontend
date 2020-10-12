@@ -61,13 +61,13 @@
 	margin: auto;
 }
 
-.modal-content {
+.modalContent {
 	background-color: #fefefe;
 	margin: auto; /* 15% from the top and centered */
-	padding: 20px;
+	padding: 75px;
+	color: black;
 	border: 1px solid #888; /* Could be more or less, depending on screen size */
-	height: 500px;
-	width: 450px!important;
+	width: 450px;
 }
  .add-book{
 	 text-align: center;
@@ -126,9 +126,8 @@
 	padding-top: 5px ;
   }
   .ed{background-color: red;
-margin: auto;
-display: inline-block;
-max-width: 78%;}
+
+display: inline-block}
 .profilePic{
 
 	width: 500px;
@@ -501,8 +500,9 @@ flex-direction: column;}
 
 .startForm{
 	font-size: 20px;
-	text-align: center;
+	text-align: left;
 	color: black;
+	padding:10px
 }
 
 .bio{

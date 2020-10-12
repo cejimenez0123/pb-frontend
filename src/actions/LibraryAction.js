@@ -46,6 +46,18 @@ function getUserLibraries(id){
 }
 function deleteBookLibrary(bookLib){
     debugger
+    const config = {    
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            id: bookLib.id
+        })}
+    return (dispatch)=>{fetch(bookLibPath+`/${bookLib.id}`,config).then(res=>res.json()).then(obj=>{
+        dispatch(getBookLibraries())
+    }).catch(err=>console.log(err))}
 
 }
 

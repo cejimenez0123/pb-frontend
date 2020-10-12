@@ -107,7 +107,7 @@ function Book(props){
                 {/* <PageInput book={props.book}/> */}
                <div className={"scroll bookPages button is-dark"}>
                <section>
-               <div style={{display: truthy}} className={"ed"}>
+               <div style={{display: props.show}} className={"ed"}>
                 
                <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
                </div>
@@ -136,7 +136,8 @@ function mapState(state){
         pages: state.pages.pages,
         books: state.books.books,
         users: state.users.users,
-        followers: state.books.bookFollowers
+        followers: state.books.bookFollowers,
+        show: state.books.showEditor
             }
 }
 export default connect(mapState,mapDispatch)(Book)

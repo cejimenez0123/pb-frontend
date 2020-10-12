@@ -14,7 +14,7 @@ import Book from "../components/book/book"
 import PageBoxes from '../components/page/PageBoxes'
 import LibraryIndex from "../components/library/LibraryIndex"
 import SearchCardIndex from "../components/user/SearchCardIndex"
-import {Button,Modal } from 'react-bootstrap'
+import Modal from "../components/modal"
 import BookContainer from './BookContainer'
 import {getFollowersOfUser,getFollowedUsersOfUser,getFollowedBooksOfUser} from "../actions/FollowActions"
 import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
@@ -137,13 +137,17 @@ this.props.startBook({name,privacy})
                             <ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
                             
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartLibraries}} class="modal">
-                    <div   class="modal-content">
+                    <div   class="modalContent">
                       <span  class="close">&times;</span>
-                        <div className="modalIndex">
-                        <form onSubmit={(e)=>this.startLib(e)}>
+                       
+                        <form  className="startForm" onSubmit={(e)=>this.startLib(e)}>
                             <h4>Name of Library:</h4>
+                            <br/>
                             <input type="text" name="name" placeholder="untitled"/>
                             <br/>
+                            <label> Intro to Library: </label>
+                            <br/>
+                            <textarea/>
                             <h4> Privacy:</h4>
                             <select name="privacy">
                                 <option value="private">Private</option>
@@ -152,18 +156,19 @@ this.props.startBook({name,privacy})
                             <br/>
                                 <input type="submit" value="Create"/>
                         </form>
-                        </div>
+                      
                     </div>
                 </div>
                             
                                 <div onClick={(e)=>this.handleModalClose(e)} style={{display: this.state.showStartBook}} class="modal">
-                    <div   class="modal-content">
+                    <div   class="modalContent">
                       <span  class="close">&times;</span>
                       <div  className="modalIndex">
                      
                         <form onSubmit={(e)=>this.startBook(e)}>
                          <div className="startForm">
                             <label htmlFor="name">Name of Book:  </label>
+                            <br/>
                             <input type="text" name="name" placeholder="untitled"/>
                             <br/>
                             <label> Introduction to Book</label>
@@ -198,26 +203,8 @@ this.props.startBook({name,privacy})
                   
             </div>
             <BookIndexModal books={this.props.booksInView}/> 
-                {/* <EditBook book={book} />
-                {/* <h3 onClick={()=>this.handleShowBooks()}>Books</h3>
-                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showBooks}} class="modal">
-                    <div   class="modal-content">
-                        <span  class="close">&times;</span>
-
-                        <div className="">
-                        <BookIndex books={this.props.booksInView}/>
-                        </div>
-                    </div>
-                </div> */}
-                <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3>
-                <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showLibraries}} class="modal">
-                    <div   class="modal-content ">
-                      <span  class="close">&times;</span>
-                      
-                     <LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
-                  
-                    </div>
-                </div>
+                  <Modal button={ <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3> } content={<LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+              }/>
             </div>
              
               <div >
