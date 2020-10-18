@@ -63,29 +63,43 @@
 .comment{
 	color: black;
 	background-color: white;
-	width: 90%;
+	width: 96%;
 	border: 1px solid grey;
 	margin: auto;
 	height: 100px;
 }
-
+.noComment{
+	background-color: white;
+}
 .modalContent {
 	background-color: #fefefe;
 	margin: auto; /* 15% from the top and centered */
-	padding: 75px;
+	padding: 3px;
 	color: black;
 	border: 1px solid #888; 
-	border-radius: 10%;/* Could be more or less, depending on screen size */
+	/* Could be more or less, depending on screen size */
 }
 .commentSection{
+	text-align: center;
 	margin-top: 5px;
 	background-color: rgb(243, 243, 243);
 }
  .add-book{
 	 text-align: center;
  } 
+ .pageCommentIndex{
+	 background-color:grey;
+	 width: 98%;
+	margin: auto;
+ }
 .bookIndex{
 	margin: auto;
+}
+.commentBox{
+
+}
+.comTextarea{
+	width: 80%;
 }
 .modal {
 	display: none; /* Hidden by default */
@@ -112,7 +126,11 @@
   .bookPages{text-align: center;;}
   
   .PageCommentBox{
-	  text-align: left;
+	  padding:  3%;
+	 margin: auto;
+	  background-color: green;
+	  width:800px;
+	  height: 30px;
   }
   .settingsForm{
 	  padding: 5%;

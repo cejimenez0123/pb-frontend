@@ -4,7 +4,7 @@ import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
 import {startLibrary,getUserLibraries,getAllLibraries,getBookLibraries} from "../actions/LibraryAction"
-import {startPage,myPages,savePage} from "../actions/PageActions"
+import {startPage,myPages,savePage,getPagesComments} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER,userPageStream} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
@@ -41,7 +41,7 @@ class ProfileContainer extends React.Component{
         this.props.getBooksOfUser(id)
         this.props.userPageStream()
        this.props.getMyPages()
-       this.props.getBookLibraries()
+    //    this.props.getBookLibraries()
         this.props.getAllLibraries()
         this.props.getUserLibraries(id)
         this.props.getFollowedBooks(id)
@@ -210,7 +210,7 @@ this.props.startBook({name,privacy})
               <div >
               <div className="pageMain">
               
-        <Pages pages={this.props.pagesInView}/>
+        <Pages pages={this.props.pagesInView} getPagesComments={this.props.getPagesComments}/>
         </div>
         </div>
         <a href={`/user/${this.props.currentUser.id}/settings`} >
@@ -243,7 +243,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getUserLibraries: (id)=>dispatch(getUserLibraries(id)),
     getAllLibraries: ()=>dispatch(getAllLibraries()),
     getBookLibraries: ()=>dispatch(getBookLibraries()),
-    userPageStream: ()=>dispatch(userPageStream())}
+    userPageStream: ()=>dispatch(userPageStream()),
+    getPagesComments: (pages)=>dispatch(getPagesComments(pages))}
 }
 function mapStateToProps(state){
     return{

@@ -43,19 +43,21 @@ function PageCommentBox(props){
     }
    user = users.find(t=>{
 
- return t.id ==  comment.user_id
+ return t.id ===  comment.user.id
    })
 
    if(user){user=user.attributes}
    if(user){
     return(<div>
      <div >
+     <div className="commentBox">
      <div className="comment">
      <p>{comment.text}</p>
-     from <a href={`/users/${user.id}`}>@{user.username}</a>
+    
      </div>
+     <div> from <a href={`/users/${user.id}`}>@{user.username}</a></div>
      <br/>
-     
+     </div>
     <button onClick={()=>setShowComBox("block")}>reply</button>
     <div style={{display: showComBox }}> 
     <div><form onSubmit={(e)=>handleOnSubmit(e)}><textarea></textarea><button type="submit">Submit</button></form></div>

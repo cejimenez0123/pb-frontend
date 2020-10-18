@@ -38,7 +38,7 @@ function AddToLibraryList(props){
     })
     
     }else{
-        dispatch(getBookLibraries())
+        
     }
      let slider =""
     if(bookLibOfBook){

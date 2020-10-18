@@ -40,7 +40,7 @@ export default function Page(props){
   if(props.page){
     let page = props.page
     content = page.data
-    
+    // dispatch(getPageComments(page))
       return(
         <div className="pageContainer">
           <div className="page" >
@@ -67,10 +67,12 @@ export default function Page(props){
                   config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
                 />
+              <div >
                 <div className="commentSection">
                 <PageCommentInput page={page}/>
               <div className={"PageCommentBox"}>
-                 <   PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
+                 <   PageCommentIndex getPageComments={""} comments={props.comments} page={page} />
+          </div>
           </div>
           </div>
           </div>}/>

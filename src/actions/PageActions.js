@@ -275,7 +275,7 @@ const config = {
             text: page.text
         })}
       return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment`,config).then(res=>res.json()).then(obj=>{
-debugger
+
 
       dispatch(getPageComments(obj.data.attributes.page_id))
         
@@ -283,11 +283,30 @@ debugger
 
 
 }
+function getPagesComments(pages){
+
+let query = ""
+pages.forEach(page=>{
+  query+=`${page}+`
+})
+
+  return(dispatch)=>{
+    fetch(pageUrl+`/${query}/pages/comments`).then(res=>res.json()).then(obj=>{
+
+      let comments= obj
+      dispatch(pageComments(comments))
+    })
+    
+}
+}
 function getPageComments(id){
 
+  if (id.id){
+    id=id.id
+  }
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
- 
-    const comments = obj
+    debugger
+    const comments = obj.data
     dispatch(pageComments(comments))
 
   })}
@@ -319,8 +338,8 @@ let config ={
   })}}
 
 
-const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments}}
+const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

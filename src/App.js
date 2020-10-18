@@ -30,7 +30,7 @@ class App extends React.Component{
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
-    this.props.getBookLibraries()
+    // this.props.getBookLibraries()
   }
   bot = useUserActions()
 
