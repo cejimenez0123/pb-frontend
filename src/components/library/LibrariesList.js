@@ -5,8 +5,8 @@ function LibrariesList(props){
    let t = []
    if(props.libraries){
    
-  t = props.libraries.map(t=>{return(
-      <AddToLibraryList book={props.book} library={t}/>
+  t = props.libraries.map((t,i)=>{return(
+      <AddToLibraryList book={props.book} key={i} library={t}/>
    
       )})
    }

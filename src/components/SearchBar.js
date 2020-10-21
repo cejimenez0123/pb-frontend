@@ -45,7 +45,7 @@ if(filtered){
         
         return(<div className="Navbar-search">
         <div >
-        <form class="form-inline my-2 my-lg-0 search-from">
+        <form className="form-inline my-2 my-lg-0 search-from">
         
             <input className="form-control mr-sm-2 " type="search" placeholder="search..." onKeyUp={(e)=>this.filterFunction(e)}/>
             <button  className="search-btn" type="submit">Search </button>

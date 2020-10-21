@@ -38,15 +38,15 @@ class App extends React.Component{
   return (
  
     <div className="app">
-      <head>
+      <header>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
       <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
      <script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
 
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
-      </head>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
+      </header>
   
   <Route exact path="/" >
     <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>

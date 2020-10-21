@@ -49,23 +49,31 @@ function PageCommentBox(props){
    if(user){user=user.attributes}
    if(user){
     return(<div>
-     <div >
-     <div className="commentBox">
-     <div className="comment">
-     <p>{comment.text}</p>
+    <div >
     
-     </div>
-     <div> from <a href={`/users/${user.id}`}>@{user.username}</a></div>
-     <br/>
-     </div>
-    <button onClick={()=>setShowComBox("block")}>reply</button>
+     <div className="commentBox">
+     <div>
+         <div className="comment">
+          <p>{comment.text}</p>
+        </div>
+      <div style={{display:"flex"}}>
+        <div style={{width: "100px",margin: "0px 10px 0px 10px"}}><p> from <a href={`/users/${user.id}`}>@{user.username}</a></p></div>
+        <a  style={{width: "100px",margin: "0px 10px 0px 10px"}} onClick={()=>setShowComBox("block")}>Reply</a>
+   
+  </div>
+   </div>
+   </div>
+     
+      
+   
     <div style={{display: showComBox }}> 
     <div><form onSubmit={(e)=>handleOnSubmit(e)}><textarea></textarea><button type="submit">Submit</button></form></div>
       </div>
     <ul>
     {renderChildren}
     </ul>
-    </div>
+  
+    </div> 
     </div>)}
     else{
       return("")

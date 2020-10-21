@@ -61,26 +61,31 @@
 	margin: auto;
 }
 .comment{
+	padding-left: 13px;
+	padding-bottom: 6px;
+	padding-top: 7px;
 	color: black;
-	background-color: white;
 	width: 96%;
-	border: 1px solid grey;
 	margin: auto;
-	height: 100px;
+	text-align: left;
+	border-left: 1px solid black;
+	
 }
 .noComment{
 	background-color: white;
 }
 .modalContent {
 	background-color: #fefefe;
-	margin: auto; /* 15% from the top and centered */
+	margin: auto auto; /* 15% from the top and centered */
 	padding: 3px;
 	color: black;
+	min-width:87%;
+	max-width: 800px;
 	border: 1px solid #888; 
 	/* Could be more or less, depending on screen size */
 }
 .commentSection{
-	text-align: center;
+
 	margin-top: 5px;
 	background-color: rgb(243, 243, 243);
 }
@@ -88,16 +93,13 @@
 	 text-align: center;
  } 
  .pageCommentIndex{
-	 background-color:grey;
+	 background-color:pink;
 	 width: 98%;
-	margin: auto;
  }
 .bookIndex{
 	margin: auto;
 }
-.commentBox{
 
-}
 .comTextarea{
 	width: 80%;
 }
@@ -107,7 +109,7 @@
 	z-index: 1; /* Sit on top */
 	margin: auto;
 	top: 0;
-	padding: 100px 300px 200px 300px; /* Full width */
+	 /* Full width */
 	height: 0%; /* Full height */
 	 overflow: auto; /*Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
@@ -124,13 +126,16 @@
 	  
   }
   .bookPages{text-align: center;;}
-  
+  .commentBox{
+	  border-left: 1px solid grey;
+	  text-align: left;
+  }
   .PageCommentBox{
-	  padding:  3%;
-	 margin: auto;
+	  padding:  1%;
 	  background-color: green;
-	  width:800px;
-	  height: 30px;
+	  width:100%;
+	  height: auto;
+	  min-height: 30px;
   }
   .settingsForm{
 	  padding: 5%;
@@ -205,8 +210,8 @@ background-color: red;}
 	  height: 8000px;
 	  overflow: scroll;
 	  background-color: pink;
-	  width: 600px;
-	  margin: 20px auto;
+	  width: 100%;
+	  margin: auto;
   }
   
   .streetLib .list-group{
