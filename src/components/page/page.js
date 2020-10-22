@@ -56,7 +56,7 @@ export default function Page(props){
            button ={ <button variant="primary"   >Comment</button>} content={
               <div>
                   <div className={"modalInfo"}>{page.book.title} by 
-                   <a by href={`/users/${page.user.id}`}> 
+                   <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
                    </a>
                   </div>

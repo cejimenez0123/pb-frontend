@@ -1,9 +1,8 @@
 import React from "react"
 import {signUp,newUser,uploadProfilePic} from "../../actions/UserActions"
 import { connect} from "react-redux"
-import {DirectUpload} from "@rails/activestorage"
 import NavbarContainer from '../../containers/NavbarContainer'
-require("@rails/activestorage").start()
+
 let user = {photo: null}
 let formData = new FormData();
 class SignUpForm extends React.Component{

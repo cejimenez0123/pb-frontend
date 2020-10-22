@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {useDispatch,connect,useStore} from 'react-redux'
-import 'jodit';
-import 'jodit/build/jodit.min.css';
+// import 'jodit';
+// import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
 import {savePage,publishPage} from '../../actions/PageActions'
 let page

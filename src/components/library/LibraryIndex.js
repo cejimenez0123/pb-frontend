@@ -8,13 +8,14 @@ function LibraryIndex(props){
 
      
 
-  t = props.libraries.map(t=>{
+  t = props.libraries.map((t,index)=>{
     
      let books =props.bookLibraries.filter(x=>{
-         return x.attributes.library.id == t.id
+         return x.attributes.library.id === t.id
       })
    
-      return(<LibraryIndexBox  allBooks={props.allBooks} booksOfLib={books} library={t}/>)})
+      return(<LibraryIndexBox  key={index} allBooks={props.allBooks} booksOfLib={books} library={t}/>)
+      })
    }
         return(<div className="LibraryIndex list-group ">
         

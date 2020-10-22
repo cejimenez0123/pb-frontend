@@ -10,7 +10,7 @@ const ProfileCard =(props)=>{
       
         return(<div ><h3>{user.name}</h3>
         <div className="profilePic">
-             < img inline src={user.photo} alt=""  width="50px" height="auto"/>
+             < img inline="true" src={user.photo} alt=""  width="50px" height="auto"/>
              </div>
              <h4>@{user.username}</h4>
             </div>)
