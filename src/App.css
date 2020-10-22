@@ -61,14 +61,14 @@
 	margin: auto;
 }
 .comment{
-	padding-left: 13px;
-	padding-bottom: 6px;
+
+	padding-left: 8px;
+	padding-bottom: 1px;
 	padding-top: 7px;
 	color: black;
 	width: 96%;
-	margin: auto;
+	border-bottom: 1px solid grey;
 	text-align: left;
-	border-left: 1px solid black;
 	
 }
 .noComment{
@@ -127,8 +127,9 @@
   }
   .bookPages{text-align: center;;}
   .commentBox{
-	  border-left: 1px solid grey;
+	border-left: 1px solid grey;
 	  text-align: left;
+	  
   }
   .PageCommentBox{
 	  padding:  1%;
@@ -425,7 +426,7 @@ color: white}
 color: white;}
 
   .button{
-	  
+	  border: 1px solid black;
 	  text-align: center;
 	box-sizing: border-box;
 	padding: 7px 8px;

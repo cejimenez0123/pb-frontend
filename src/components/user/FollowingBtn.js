@@ -24,7 +24,7 @@ function FollowingBtn(props){
     users="Follow some people"
   }
     return(<div>
-    <button onClick={()=>setShow("block")}className="button pink followingBtn" >
+    <button style={{padding: "auto 10px auto 10px"}}onClick={()=>setShow("block")}className="button pink followingBtn" >
         Following
       </button>
       

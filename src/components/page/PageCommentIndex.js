@@ -10,7 +10,7 @@ class PageCommentIndex extends React.Component{
    
      
     renderIndex(){
-   
+        
         if (this.props.comments && this.props.comments.length > 0){
 
     

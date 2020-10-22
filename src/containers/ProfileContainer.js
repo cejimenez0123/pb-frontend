@@ -210,7 +210,7 @@ this.props.startBook({name,privacy})
               <div >
               <div className="pageMain">
               
-        <Pages pages={this.props.pagesInView} getPagesComments={this.props.getPagesComments}/>
+        <Pages pages={this.props.pagesInView} />
         </div>
         </div>
         <a href={`/user/${this.props.currentUser.id}/settings`} >

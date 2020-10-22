@@ -305,8 +305,8 @@ function getPageComments(id){
     id=id.id
   }
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
-    debugger
-    const comments = obj.data
+   
+    const comments = obj
     dispatch(pageComments(comments))
 
   })}

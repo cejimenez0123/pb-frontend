@@ -7,7 +7,6 @@
     "blueimp-file-upload": "^10.31.0",
     "bootstrap": "^4.5.3",
     "bulma": "^0.9.1",
-    "draft-js": "^0.11.7",
     "history": "^4.10.1",
     "jodit-react": "^1.0.66",
     "node-sass": "^4.14.1",
@@ -51,8 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@ckeditor/ckeditor5-real-time-collaboration": "^19.0.1",
-    "@ckeditor/ckeditor5-watchdog": "^19.0.0"
-  }
+  "devDependencies": {}
 }

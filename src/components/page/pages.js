@@ -1,5 +1,6 @@
 import React from 'react'
 import Page from "./page"
+import {getPagesComments} from "../../actions/PageActions"
 import {connect } from 'react-redux'
 class Pages extends React.Component{
     componentDidMount(){
@@ -10,6 +11,7 @@ class Pages extends React.Component{
         
         if(!(this.props.comments.length > 0)){
              let arr= this.props.pages.map(page=>{return page.id})
+        
             this.props.getPagesComments(arr)
         }
         }
@@ -65,4 +67,9 @@ const mapState=(state)=>{
         comments: state.pages.pageCommentsInView
     }
 }
-export default connect(mapState)(Pages)
+const mapDispatch=(dispatch)=>{
+    return{
+        getPagesComments: (arr)=>dispatch(getPagesComments(arr))
+    }
+}
+export default connect(mapState,mapDispatch)(Pages)

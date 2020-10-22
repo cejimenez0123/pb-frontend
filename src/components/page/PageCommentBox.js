@@ -8,26 +8,17 @@ function PageCommentBox(props){
     let [showComBox,setShowComBox]=useState("none")
     let users = store.getState().users.users
     const dispatch =useDispatch()
-    let comment
+    let {comment}= props
      let user ={id: null}
-    if(props.comment.self){
-    
-    comment = props.comment.self
-
    
-    }else{
-        comment=props.comment
-       
-  
-    }
     
 
 
     
    
  let  renderChildren = null
-  if(props.comment.children && props.comment.children.length>0){
-    renderChildren=  props.comment.children.map((x,i)=>{
+  if(props.comment.comments && props.comment.comments.length>0){
+    renderChildren=  props.comment.comments.map((x,i)=>{
 
          return (<PageCommentBox key={i} comment={x} page={props.page}/>)
       })
@@ -37,7 +28,7 @@ function PageCommentBox(props){
         
         e.preventDefault()
         let value = e.target.getElementsByTagName("textarea")[0].value
-  debugger
+
         let obj ={page_id: props.page.id,parent_id: comment.id,text: value}
         dispatch(commentOnPageComment(obj))
     }
@@ -48,21 +39,20 @@ function PageCommentBox(props){
 
    if(user){user=user.attributes}
    if(user){
-    return(<div>
-    <div >
-    
-     <div className="commentBox">
-     <div>
-         <div className="comment">
-          <p>{comment.text}</p>
+    return(
+<div>
+  <div>
+    <div className="commentBox">
+      <div>
+        <div className="comment">
+          <p>{props.comment.text}</p>
         </div>
-      <div style={{display:"flex"}}>
+      <div style={{display:"flex",fontSize: "12px"}}>
         <div style={{width: "100px",margin: "0px 10px 0px 10px"}}><p> from <a href={`/users/${user.id}`}>@{user.username}</a></p></div>
         <a  style={{width: "100px",margin: "0px 10px 0px 10px"}} onClick={()=>setShowComBox("block")}>Reply</a>
-   
+      </div>
+    </div>
   </div>
-   </div>
-   </div>
      
       
    
