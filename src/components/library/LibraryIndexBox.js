@@ -12,7 +12,7 @@ function LibraryIndexBox(props){
     if(props.library.attributes){
         
         let lib = props.library.attributes
-        jsx=(<div className="list-group-item"><a href={`/libraries/${lib.id}`}>{lib.name}</a>
+        return (<div className=" libraryIndexBox list-group-item"><a href={`/libraries/${lib.id}`}>{lib.name}</a>
         
        <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -31,7 +31,7 @@ function LibraryIndexBox(props){
       </div>)
     }else if(props.library){
         let lib = props.library
-        jsx=(<div><li onClick={handleShow}>{lib.name}</li>
+        return (<div><li onClick={handleShow}>{lib.name}</li>
         
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -50,8 +50,6 @@ function LibraryIndexBox(props){
         </div>)
     }
    
-    return(<div>
-        {jsx}
-    </div>)
+    
 }
 export default LibraryIndexBox

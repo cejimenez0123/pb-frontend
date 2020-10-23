@@ -1,7 +1,7 @@
 import {history} from "../history"
 import {followBook } from "./FollowActions"
-const bookPath = "http://localhost:3000/books"
-const userPath = "http://localhost:3000/users"
+const bookPath = "/books"
+const userPath = "/users"
 
 
 function useBookActions(){

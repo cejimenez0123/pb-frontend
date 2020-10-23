@@ -249,7 +249,7 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
 
-     
+     debugger
               let pages = obj.data
               
           pages = pages.sort((a,b)=>{

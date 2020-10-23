@@ -202,8 +202,9 @@ this.props.startBook({name,privacy})
                         
                   
             </div>
-            <BookIndexModal books={this.props.booksInView}/> 
-                  <Modal button={ <h3 onClick={()=>this.handleShowLibraries()}>Libraries</h3> } content={<LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
+            <Modal button={<h3>Books</h3>} className={"book-index"} content={<BookIndex books={this.props.booksInView}/>}/>
+          
+                  <Modal button={ <h3 >Libraries</h3> } className={"lib-index"} content={<LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
               }/>
             </div>
              

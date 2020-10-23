@@ -26,7 +26,8 @@ import LibraryContainer from "./containers/LibraryContainer"
 let bot
 class App extends React.Component{
   componentDidMount(){
-    this.props.setCurrentUser()
+    if(localStorage.getItem("currentUser").length>0){
+    this.props.setCurrentUser()}
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()

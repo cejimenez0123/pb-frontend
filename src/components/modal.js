@@ -22,7 +22,7 @@ let [show,setShow]=useState("none")
     <div>
     <p onClick={()=>handleShow()}>{props.button}</p>
         <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
-            <div   class="modalContent">
+            <div   className={`modalContent ${props.className}`}>
                 <span  class="close">&times;</span>
 
                     <div>

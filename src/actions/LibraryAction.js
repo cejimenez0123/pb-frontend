@@ -1,7 +1,10 @@
 
+import {history} from "../history"
 const libraryPath = "http://localhost:3000/libraries"
 const userPath = "http://localhost:3000/users"
 const bookLibPath = "http://localhost:3000/book_libraries"
+
+
 function startLibrary(lib){
  let config = {
         method: 'POST',
@@ -12,10 +15,14 @@ function startLibrary(lib){
           body: JSON.stringify({
               name: lib.name,
               privacy: lib.privacy,
-              userId: localStorage.getItem("currentUser")
+              userId: localStorage.getItem("currentUser"),
+              intro: lib.intro
           })}
       return(dispatch)=>{fetch(libraryPath,config).then(res=>res.json()).then(obj=>{  
-      
+          debugger
+        let lib= obj.data
+        //   history.push("/libraries")
+        history.push(`/libraries/${lib.id}`)
           dispatch(getUserLibraries(localStorage.getItem("currentUser")))  
           
       }).catch(err=>alert(err))}

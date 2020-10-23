@@ -1,7 +1,7 @@
 {
   "name": "pb-frontend",
   "version": "0.1.0",
-  "homepage": "www.plumbumm.com",
+  "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@bit/ans.base-ui.button": "^0.1.4",

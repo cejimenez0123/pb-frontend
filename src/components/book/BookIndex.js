@@ -21,7 +21,7 @@ export default function BookIndex(props){
            
            )
         })
-        return(<div className="list-group book-index">
+        return(<div className="list-group BookIndex">
              {html}
             </div>)
         }else{

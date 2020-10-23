@@ -55,7 +55,7 @@ export default function Page(props){
            // onClick={(e)=>handleCommentClick(e)}
            button ={ <button variant="primary"   >Comment</button>} content={
               <div>
-                  <div className={"modalInfo"}>{page.book.title} by 
+                  <div >{page.book.title} by 
                    <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
                    </a>

@@ -74,12 +74,17 @@
 .noComment{
 	background-color: white;
 }
+.book-index{
+	padding: 30px;
+	width: 550px;
+	
+}
 .modalContent {
 	background-color: #fefefe;
-	margin: auto auto; /* 15% from the top and centered */
-	padding: 3px;
+	margin: 5% auto;
+	 /* 15% from the top and centered */
+	 min-height: 500px;
 	color: black;
-	min-width:87%;
 	max-width: 800px;
 	border: 1px solid #888; 
 	/* Could be more or less, depending on screen size */
@@ -219,7 +224,7 @@ background-color: red;}
 	  margin: 50px;
   } 
   .libIndexBox{
-	  width: 500px !important;
+	  width: 300px;
   }
 
   .test{
@@ -534,13 +539,20 @@ flex-direction: column;}
 .bio-textarea{
 	width: 300px;
 }
-.LibraryIndex{
+.libraryIndexBox{
+	height: 100px;
+}
+.lib-index{
 	width: 600px;
-	padding: auto;
+	padding: 30px;
+}
+.LibraryIndex{
+	width: 400px;
 	margin: auto;
 }
 
 .bookIndexBox{
+	margin: auto;
 	width: 400px;
 	height: 100px;
 }
