@@ -3,7 +3,6 @@
 .list-group-item{
 	position: absolute;
 	padding: 30px;
-	width: 350px;
 	height: 40px;
 }
 
@@ -213,15 +212,16 @@ background-color: red;}
 
 
   .streetLib{
-	  height: 8000px;
+	  height: 575px;
 	  overflow: scroll;
 	  background-color: pink;
-	  width: 100%;
+	  width: 600px;
 	  margin: auto;
   }
   
   .streetLib .list-group{
-	  margin: 50px;
+	  margin: 10px;
+	  height: 550px;
   } 
   .libIndexBox{
 	  width: 300px;
@@ -546,9 +546,25 @@ flex-direction: column;}
 	width: 600px;
 	padding: 30px;
 }
+.streetLib .list-group-item{
+	width: 98%;
+}
+.streetLib .list-group{
+	margin-top: 20px;
+	padding: 2px;
+}
+.streetLib{
+	margin-top: 4%;
+}
 .LibraryIndex{
-	width: 400px;
-	margin: auto;
+	width: 99%;
+	height: 97%;
+	background-color: rgb(214, 214, 214);
+	margin: 5px auto ;
+}
+.LibraryIndex .emptyMessage{
+	padding: 20px;
+
 }
 
 .bookIndexBox{
@@ -681,8 +697,10 @@ border: 1px solid #888}
 }
 
 .SignUpForm{
-	margin: auto;
+	margin: 20% auto;
+	width: 300px;
 }
 .LogInForm{
-	margin: auto;
+	margin: 25% auto;
+	width: 300px;
 }

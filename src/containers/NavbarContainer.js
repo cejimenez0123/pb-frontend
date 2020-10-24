@@ -82,7 +82,7 @@ renderif(){
             return(
         <div >
 <header>
-         <nav className="navbar navbar-expand-lg navbar-light bg-success">
+         <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <a className="navbar-brand" href="/">Pb</a>
     
         <div>  
@@ -93,9 +93,9 @@ renderif(){
         </button>
       
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+          <ul className="nav navbar-nav ">
             <li className="nav-item active">
-              <a className="nav-link" href="#">Log In <span className="sr-only">(current)</span></a>
+              <a className="nav-link" href="/login">Log In <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/street">Street</a>
@@ -104,8 +104,7 @@ renderif(){
             <li className="nav-item">
               <a className="nav-link" href="/library/1">Local Library</a>
             </li>
-        
-              
+       
          
           </ul>
             <SearchBar/> 

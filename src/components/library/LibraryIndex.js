@@ -4,7 +4,7 @@ import LibraryIndexBox from "./LibraryIndexBox"
 function LibraryIndex(props){
 
    let t = []
-   if(props.libraries){
+   if(!props.libraries){
 
      
 
@@ -16,12 +16,23 @@ function LibraryIndex(props){
    
       return(<LibraryIndexBox  key={index} allBooks={props.allBooks} booksOfLib={books} library={t}/>)
       })
-   }
-        return(<div className="LibraryIndex list-group ">
-        
+
+        return(<div className="LibraryIndex  ">
+        <div className="list-group">
         {t}
-        
+        </div>
         </div>)
+        
+        }else{
+           return(
+              <div className="LibraryIndex">
+              <div className="emptyMessage"> 
+                  <h2>No libraries:(</h2>
+              </div>
+              </div>
+           )
+
+        }
     
 }
 export default LibraryIndex
