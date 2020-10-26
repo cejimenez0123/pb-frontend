@@ -230,13 +230,11 @@ function getPage(){
 }
 
 function getPagesById(id){
-  debugger
   return(dispatch)=>{ fetch(userPath+`/${id}/pages`,{
     headers : { 
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-     }}).then(res=>res.json()).then(obj=>{
-  debugger
+     }}).then(res=>res.json()).then(obj=>{ 
      let page = obj.data
       dispatch(pagesInView(page))
     })
@@ -249,7 +247,7 @@ function myPages(){
       fetch(userPath+"/"+id+"/pages").then(res => res.json()).then(
           obj => {
 
-     debugger
+ 
               let pages = obj.data
               
           pages = pages.sort((a,b)=>{

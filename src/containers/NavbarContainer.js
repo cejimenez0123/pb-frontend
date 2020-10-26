@@ -2,8 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import '../App.css'
 import { useStore } from 'react-redux'
-
-import {Navbar,Nav,Form,FormControl,Button,ListGroup,OverlayTrigger,Popover} from 'react-bootstrap'
+// import "../node_modules/jquery/dist/jquery.min.js";
+// import "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+import {Navbar,Nav,NavDropdown,Form,FormControl,Button,ListGroup,OverlayTrigger,Popover} from 'react-bootstrap'
 import {SET_CURRENT_USER} from "../actions/UserActions"
 import SearchBar from "../components/SearchBar"
 class NavbarContainer extends React.Component{
@@ -41,41 +42,47 @@ renderif(){
  
         if (this.props.loggedIn ){
             return(
-              <div >
-<header>
-         <nav className="navbar navbar-expand-lg navbar-light bg-success">
-     <a className="navbar-brand" href="/">Pb</a>
-    
-        
-        
-         <div>  
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+              <Navbar bg="dark" variant="dark" expand="lg">
+  <Navbar.Brand href="/">Pb</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href={`/user/${this.props.currentUser.id}`}>Profile</Nav.Link>
+      <Nav.Link href={`/street`}>Street</Nav.Link>
+      <Nav.Link href={'/library/1'}>Local library</Nav.Link>
+      <Nav.Link onClick={()=>this.handleOnClick()}href="/">Log Out</Nav.Link>
+       <SearchBar/>
+    </Nav>
+    <Form inline>
+   
+      
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
+        // mt-2 mt-lg-0
+        //       <div className="collapse navbar-collapse" id="navbarSupportedContent" >
        
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-       
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href={`/user/${this.props.currentUser.id}`}>Profile <span className="sr-only">(current)</span></a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href={`/street`}>Street</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/library/1">Local Library</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link"  onClick={()=>this.handleOnClick()}href="/">Log Out</a>
-            </li>
-          </ul>
-          <SearchBar/>
-</div>
+        //   <ul  className="navbar-nav mr-auto">
+        //     <li className="nav-item active">
+        //       <a className="nav-link" href={`/user/${this.props.currentUser.id}`}>Profile <span className="sr-only">(current)</span></a>
+        //     </li>
+        //     <li className="nav-item ">
+        //       <a className="nav-link" href={`/street`}>Street</a>
+        //     </li>
+        //     <li className="nav-item">
+        //       <a className="nav-link" href="/library/1">Local Library</a>
+        //     </li>
+        //     <li className="nav-item">
+        //       <a className="nav-link"  onClick={()=>this.handleOnClick()}href="/">Log Out</a>
+        //     </li>
+        //   </ul> *
+          
+// </div>
 
-         </div>          
-      </nav>
-     </header>    
-    </div>
+//          </div>          
+//       </nav>
+//     </header>    
+//    </div>
 
 )
         }else{

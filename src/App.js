@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter,HashRouter, Route, Switch, Redirect,withRouter} from 'react-router-dom';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.css'
 import EditBookContainer from "./containers/EditBookContainer"
 import { connect} from "react-redux"
 import BookDraftsContainer from "./containers/BookDraftsContainer"
@@ -46,7 +46,7 @@ class App extends React.Component{
      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
      <script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
 
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
       </header>
   
   <Route exact path="/" >
