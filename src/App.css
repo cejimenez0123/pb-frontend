@@ -583,12 +583,11 @@ flex-direction: column;}
 			border-radius:3px;
 		}
 		.Navbar-search{
-			position: fixed;
-			margin-left: 70%;
-		
+			position: relative;
+
 		}
 .searchForm{
-	position: fixed;
+	position: relative;
 }
 *{
 	font-family: Verdana, Geneva, Tahoma, sans-serif

@@ -51,10 +51,10 @@ renderif(){
       <Nav.Link href={`/street`}>Street</Nav.Link>
       <Nav.Link href={'/library/1'}>Local library</Nav.Link>
       <Nav.Link onClick={()=>this.handleOnClick()}href="/">Log Out</Nav.Link>
-       <SearchBar/>
+       
     </Nav>
     <Form inline>
-   
+   <SearchBar/>
       
     </Form>
   </Navbar.Collapse>
@@ -87,43 +87,59 @@ renderif(){
 )
         }else{
             return(
-        <div >
-<header>
-         <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
-      <a className="navbar-brand" href="/">Pb</a>
+              <Navbar bg="dark" variant="dark" expand="lg">
+  <Navbar.Brand href="/">Pb</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="/login">Log In </Nav.Link>
+      <Nav.Link href={`/street`}>Street</Nav.Link>
+      <Nav.Link href={'/library/1'}>Local library</Nav.Link>
+      <Nav.Link onClick={()=>this.handleOnClick()}href="/">Log Out</Nav.Link>
+    </Nav>
+    <Form inline>
+   
+                  <SearchBar/>
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
+//         <div >
+// <header>
+//          <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+//       <a className="navbar-brand" href="/">Pb</a>
     
-        <div>  
+//         <div>  
             
        
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+//         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+//           <span className="navbar-toggler-icon"></span>
+//         </button>
       
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="nav navbar-nav ">
-            <li className="nav-item active">
-              <a className="nav-link" href="/login">Log In <span className="sr-only">(current)</span></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/street">Street</a>
-            </li>
+//         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+//           <ul className="nav navbar-nav ">
+//             <li className="nav-item active">
+//               <a className="nav-link" href="/login">Log In <span className="sr-only">(current)</span></a>
+//             </li>
+//             <li className="nav-item">
+//               <a className="nav-link" href="/street">Street</a>
+//             </li>
             
-            <li className="nav-item">
-              <a className="nav-link" href="/library/1">Local Library</a>
-            </li>
+//             <li className="nav-item">
+//               <a className="nav-link" href="/library/1">Local Library</a>
+//             </li>
        
          
-          </ul>
-            <SearchBar/> 
-</div>
+//           </ul>
+ 
+// </div>
 
-         </div>  
+//          </div>  
       
  
         
-      </nav>
-       </header>  
-    </div>
+//       </nav>
+//        </header>  
+//     </div>
   )
   
   }
