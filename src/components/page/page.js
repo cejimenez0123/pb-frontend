@@ -3,11 +3,12 @@ import { render } from 'react-dom'
 import JoditEditor from 'jodit-react'
 import {useStore,useDispatch } from 'react-redux'
 import Modal from "../modal"
+import {connect} from "react-redux"
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
 //.jodit-toolbar__box
-export default function Page(props){
+ function Page(props){
   const dispatch = useDispatch()
   const store = useStore()
   const [show, setShow] = useState("none")
@@ -71,7 +72,7 @@ export default function Page(props){
                 <div className="commentSection">
                 <PageCommentInput page={page}/>
               <div className={"PageCommentBox"}>
-                 <   PageCommentIndex getPageComments={""} comments={props.comments} page={page} />
+                 <   PageCommentIndex getPageComments={""} getPageComments={(id)=>dispatch(getPageComments(id))}comments={props.comments} page={page} />
           </div>
           </div>
           </div>
@@ -86,57 +87,10 @@ export default function Page(props){
     
     }
 
-     //  if(props.page.attributes){
-     
-    //      let page= props.page.attributes
-    //     content = page.data
-    //     if (page.user.id === localStorage.getItem("currentUser")){
-    //         editBtn = (<button onClick={()=>editPage(props.page)}>Edit Page</button>)
-    //     }
-       
-    //     return(
-    //          <div  >
-           
-    //          {/* <JoditEditor
-    //         	ref={editor}
-    //             value={content}
-    //             config={config}
-    //             // onChange={newContent => {handleOnClick(newContent)}}
-    //         /> */}
-    //        {/* <ListGroup.Item>
-           
-    //        </ListGroup.Item> */}
-    //        <div variant="primary" onClick={handleShow}>
-    //         <div dangerouslySetInnerHTML={{__html: page.data}}/>
-    //        </div>
+function mapState(state){
 
-    //   {/* <Modal show={show} onHide={handleClose}>
-    //     <Modal.Header closeButton>
-    //   <h5> from {page.book.title} by  <a by href={`/users/${page.user.id}`}> {page.user.username}</a>{editBtn}
-    //     </h5></Modal.Header>
-    //     <div className="body">
-    //     <Modal.Body>
-    //     <div className="ModalBody">
-    //     <div dangerouslySetInnerHTML={{__html: page.data}}/>
-       
-    //     </div>
-    //     <PageCommentInput page={page}/>
-    //     <PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
-    //     </Modal.Body>
-    //     </div>
-    //     <Modal.Footer>
-        
-    //       <Button variant="secondary" onClick={handleClose}>
-    //         Close
-    //       </Button>
-    //       <Button variant="primary" onClick={handleClose}>
-    //         Save Changes
-    //       </Button>
-    //     </Modal.Footer>
-    //   </Modal> */}
-    
-    //     </div>
-      
-    // )
-    // }else
-
+  return{
+    // comments: state.pages.pageCommentsInView
+  }
+}
+export default connect(mapState)(Page)

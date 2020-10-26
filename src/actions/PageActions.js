@@ -292,6 +292,7 @@ pages.forEach(page=>{
     fetch(pageUrl+`/${query}/pages/comments`).then(res=>res.json()).then(obj=>{
 
       let comments= obj
+      
       dispatch(pageComments(comments))
     })
     
@@ -303,7 +304,7 @@ function getPageComments(id){
     id=id.id
   }
   return(dispatch)=>{fetch(pageUrl+`/${id}/comments`).then(res=>res.json()).then(obj=>{
-   
+   debugger
     const comments = obj
     dispatch(pageComments(comments))
 

@@ -70,9 +70,7 @@
 	text-align: left;
 	
 }
-.noComment{
-	background-color: white;
-}
+
 .book-index{
 	padding: 30px;
 	width: 550px;
@@ -96,10 +94,7 @@
  .add-book{
 	 text-align: center;
  } 
- .pageCommentIndex{
-	 background-color:pink;
-	 width: 98%;
- }
+
 .bookIndex{
 	margin: auto;
 }
@@ -135,12 +130,20 @@
 	  text-align: left;
 	  
   }
+  .pageCommentIndex{
+	background-color:#e3e5e8;
+	width: 99%;
+	height: 100%;
+	min-height: 93px;
+	border: 2px dotted grey;
+	margin: auto;
+}
   .PageCommentBox{
-	  padding:  1%;
-	  background-color: green;
+	  padding-top: 4px;
+	  background-color: rgb(190, 183, 183);
 	  width:100%;
 	  height: 100%;
-	  min-height: 30px;
+	  min-height: 100px;
   }
   .settingsForm{
 	  padding: 5%;
