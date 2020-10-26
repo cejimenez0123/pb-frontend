@@ -48,7 +48,9 @@ function countComments(comments){
 }
 function mapStateToProps(state){
 
-    return{}
+    return{
+        comments: ()=>state.pages.pageCommentsInView
+    }
 }
 
 

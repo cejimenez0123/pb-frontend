@@ -77,10 +77,11 @@
 	
 }
 .modalContent {
+	overflow: scroll;
 	background-color: #fefefe;
 	margin: 5% auto;
 	 /* 15% from the top and centered */
-	 min-height: 500px;
+	height: 450px;
 	color: black;
 	max-width: 800px;
 	border: 1px solid #888; 

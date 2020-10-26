@@ -38,6 +38,7 @@ import PageCommentIndex from "./PageCommentIndex"
   const config={readonly: true,width: 800,iframe: true}
   let editBtn = null
     
+
   if(props.page){
     let page = props.page
     content = page.data
@@ -54,7 +55,7 @@ import PageCommentIndex from "./PageCommentIndex"
             />
            <Modal 
            // onClick={(e)=>handleCommentClick(e)}
-           button ={ <button variant="primary"   >Comment</button>} content={
+           button ={ <button variant="primary" onFocus={()=>dispatch(getPageComments(page.id))}  >Comment</button>} content={
               <div>
                   <div >{page.book.title} by 
                    <a href={`/users/${page.user.id}`}> 
@@ -90,7 +91,7 @@ import PageCommentIndex from "./PageCommentIndex"
 function mapState(state){
 
   return{
-    // comments: state.pages.pageCommentsInView
+    comments: state.pages.pageCommentsInView
   }
 }
 export default connect(mapState)(Page)
