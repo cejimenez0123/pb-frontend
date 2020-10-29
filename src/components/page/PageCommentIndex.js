@@ -7,7 +7,9 @@ let html = null
 class PageCommentIndex extends React.Component{
    
    
-   
+   componentDidMount(){
+
+   }
      
     renderIndex(){
         let num = 0
@@ -45,6 +47,11 @@ function countComments(comments){
        }
     })
     return num
+}
+function mapDispatch(dispatch){
+    return{
+        
+    }
 }
 function mapStateToProps(state){
 

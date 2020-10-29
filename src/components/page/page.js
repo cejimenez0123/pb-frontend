@@ -7,14 +7,51 @@ import {connect} from "react-redux"
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
+// import useWindowSize from "../useWindowSize"
 //.jodit-toolbar__box
  function Page(props){
   const dispatch = useDispatch()
   const store = useStore()
   const [show, setShow] = useState("none")
+
+  let [size,setSize]=useState({width: 0,height: 0})
+  // const [width,height]=useWindowSize()
   let content
   const editor = useRef(null)
-  
+  //
+   
+      function debounce(fn, ms) {
+  let timer
+  return _ => {
+    clearTimeout(timer)
+    timer = setTimeout(_ => {
+      timer = null
+      fn.apply(this, arguments)
+    }, ms)
+  };
+}
+
+
+  let [dimensions, setDimensions] = useState({ 
+    height: window.innerHeight,
+    width: window.innerWidth
+  })
+  React.useEffect(() => {
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      })
+    }, 500)
+
+    window.addEventListener('resize', debouncedHandleResize)
+
+    return _ => {
+      window.removeEventListener('resize', debouncedHandleResize)
+    
+}
+  })
+  //
   function editPage(page){
     let div = document.getElementsByClassName("ModalBody")[0]
   }
@@ -35,10 +72,17 @@ import PageCommentIndex from "./PageCommentIndex"
    }
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
-  const config={readonly: true,width: 800,iframe: true}
+  let config
+  if(dimensions.width>850){
+  
+  config={readonly: true,width: 700,iframe: true}
+  }else {
+   console.log("size:",dimensions)
+  config={readonly: true,iframe: true}}
   let editBtn = null
     
-
+  
+  
   if(props.page){
     let page = props.page
     content = page.data
@@ -55,7 +99,7 @@ import PageCommentIndex from "./PageCommentIndex"
             />
            <Modal 
            // onClick={(e)=>handleCommentClick(e)}
-           button ={ <button variant="primary" onFocus={()=>dispatch(getPageComments(page.id))}  >Comment</button>} content={
+           button ={ <button variant="primary" onFocus={()=>getPageComments(props.page.id)}  >Comment</button>} content={
               <div>
                   <div >{page.book.title} by 
                    <a href={`/users/${page.user.id}`}> 

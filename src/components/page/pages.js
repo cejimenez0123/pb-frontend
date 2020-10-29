@@ -2,42 +2,49 @@ import React from 'react'
 import Page from "./page"
 import {getPagesComments} from "../../actions/PageActions"
 import {connect } from 'react-redux'
-class Pages extends React.Component{
-    componentDidMount(){
-        
-    }
-    componentDidUpdate(){
-    if(this.props.pages.length>0){
-        
-        if(!(this.props.comments.length > 0)){
-             let arr= this.props.pages.map(page=>{return page.id})
-        
-            this.props.getPagesComments(arr)
-        }
-        }
+  let size= {width: window.innerWidth,height: window.innerHeight}
 
-    }
-    renderPages(){
-        if(this.props.pages.length>0){
+function Pages (props){
+  
+    React.useEffect(() => {
+    function handleResize() {
+       size = {width: window.innerWidth,height: window.innerHeight} 
+    //   console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+    
+}
+ window.addEventListener('resize', handleResize)
+  })
+
+    function renderPages(){
+        
+    
+      // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+        
+
+        if(props.pages.length>0){
            
       
        
-            return ( this.props.pages.map(page=>{
+            return ( props.pages.map(page=>{
                 let comments = []
                 page = page.attributes
                 
-                    return (<Page page={page} key={page.id}  pageComments={this.props.pageComments}/>)
-                        }))
-                }}
+                    return (<Page page={page} key={page.id}  pageComments={props.pageComments} size={size}/>)
+                        })
+                        
+                        
+                )
+                }
+            }
 
-    render(){
-    console.log(this.renderPages())
+    
+    
         
     return(<div>
-    {this.renderPages()}
+    {renderPages()}
     </div>)
 
-    }
+    
 
 }
 
