@@ -452,14 +452,14 @@ color: white;}
 }
 
 
-.bookIdCard .btnBox{
+.idCard .btnBox{
 	margin: 10px;
 }
 .btnBox {
 	display: flex;
 	flex-wrap: wrap;
 }
-.bookIdCard{
+.idCard{
 	padding: 10px;
 	margin: 20px 10px;
 	 width: 300px;

@@ -172,7 +172,7 @@ const handleEditClick = () => {
 
     if(props.book){
  
-        return(<section className="bookIdCard">
+        return(<section className="idCard">
          
     <div>
     <div className="bookTitle">

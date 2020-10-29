@@ -12,7 +12,7 @@ import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
-import {getFollowersOfLibrary,followLibrary} from "./actions/FollowActions"
+import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary} from "./actions/FollowActions"
 import {getLibrary,getBooksOfLibrary,getBookLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
@@ -64,7 +64,7 @@ class App extends React.Component{
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
   </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers}/>
+            <LibraryContainer getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">
@@ -118,7 +118,8 @@ function mapDispatchToProps(dispatch){
     updateUser: (user)=>dispatch(updateUser(user)),
     getBookLibraries:()=>dispatch(getBookLibraries()),
     getFollowersOfLibrary: (id)=>dispatch(getFollowersOfLibrary(id)),
-    followLibrary: (id)=>dispatch(followLibrary(id))
+    followLibrary: (id)=>dispatch(followLibrary(id)),
+    deleteFollowLibrary: (id)=> dispatch(deleteFollowLibrary(id))
   }
 }
 function mapStateToProps(state){

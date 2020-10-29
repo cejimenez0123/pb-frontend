@@ -22,24 +22,37 @@ if(this.props.library && this.props.library.user === localStorage.getItem("curre
    }
     handleFollow(){
         debugger
-        let follow=  this.props.followers.find(follow=>{
-           return follow.follower.id === localStorage.getItem("currentUser")
-        })
-      
-        if(follow){
-            this.props.deleteFollow(follow)
+        if(this.props.followers.length >0 && this.followExist()){
+        let follow=  this.followExist()
+           
+       
+           
+            this.props.deleteFollowLibrary(follow)
+        
         }else{
             this.props.followLibrary(this.props.library.id)
         }
         
     }
-    followBtn(){
-      let follow=  this.props.followers.find(follow=>{
-          debugger
-           return follow.follower.id === localStorage.getItem("currentUser")
-        })
+    followExist(){
+       if(this.props.followers.length>0){
+         let follow=  this.props.followers.find(follow=>{
    
-        if(follow){
+           return follow.follower.id === localStorage.getItem("currentUser")})
+            if(follow){
+                return follow
+            }else{
+                return follow
+            }
+        }else{
+       
+            return false
+        }
+    }
+    
+    followBtn(){
+        if(this.props.followers && this.followExist()){
+
             return (<button className="followedBtn button pink" onClick={()=>this.handleFollow()}>Following</button>)
         }else{
             return (<button className="followBtn button red" onClick={()=>this.handleFollow()}>Follow</button>)
@@ -52,13 +65,16 @@ if(this.props.library && this.props.library.user === localStorage.getItem("curre
         if(this.props.library){
            
             lib = this.props.library
+       
         }
        
         return(<div>
         <NavbarContainer/>
         <div className="libContainer">
-        <div className="idBox">
+        <div className="idCard">
         <h2 className={"libName"}>{lib.name}</h2>
+        <br/>
+        <p>{lib.intro}</p>
         {this.ifEdit()}
         {this.followBtn()}
         </div>

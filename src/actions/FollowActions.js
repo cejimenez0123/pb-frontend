@@ -46,11 +46,11 @@ debugger
   return(dispatch)=>{  fetch(followLibraryPath,config).then(res=>res.json()).then(obj=>{
        debugger
        
-       dispatch(getFollowersOfLibrary(obj.id))
+       dispatch(getFollowersOfLibrary(id))
     })}
 
 }
-function deleteFollowLibrary(id){
+function deleteFollowLibrary(follow){
 
     console.log("FIJDOOF")
     let config = {
@@ -61,11 +61,11 @@ function deleteFollowLibrary(id){
           },
           body: JSON.stringify({
               
-              id: id
+              id: follow.id
           })}
-  return(dispatch)=>{  fetch(followLibraryPath,config).then(res=>res.json()).then(obj=>{
+  return(dispatch)=>{  fetch(followLibraryPath+"/delete",config).then(res=>res.json()).then(obj=>{
        
-       dispatch(getFollowersOfLibrary(obj.id))
+       dispatch(getFollowersOfLibrary(follow.library.id))
     })}
 
 }
@@ -165,4 +165,4 @@ const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
 const booksFollows=(follows)=>{return{type:"BOOK_FOLLOWERS",follows}}             
 const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
-export {deleteBookFollow,followLibrary,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser,getFollowersOfLibrary}
+export {deleteBookFollow,followLibrary,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser,getFollowersOfLibrary,deleteFollowLibrary}
