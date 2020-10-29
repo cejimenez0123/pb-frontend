@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
+import {getFollowersOfLibrary,followLibrary} from "./actions/FollowActions"
 import {getLibrary,getBooksOfLibrary,getBookLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
@@ -63,7 +64,7 @@ class App extends React.Component{
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
   </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer books={this.props.booksInView} library={this.props.libraryInView} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib}/>
+            <LibraryContainer getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">
@@ -115,7 +116,9 @@ function mapDispatchToProps(dispatch){
     getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id)),
     getDrafts:(id)=>dispatch(getDraftsOfBook(id)),
     updateUser: (user)=>dispatch(updateUser(user)),
-    getBookLibraries:()=>dispatch(getBookLibraries())
+    getBookLibraries:()=>dispatch(getBookLibraries()),
+    getFollowersOfLibrary: (id)=>dispatch(getFollowersOfLibrary(id)),
+    followLibrary: (id)=>dispatch(followLibrary(id))
   }
 }
 function mapStateToProps(state){
@@ -132,7 +135,8 @@ function mapStateToProps(state){
     userInView: state.users.userInView,
     booksInView: state.books.booksInView,
     libraryInView: state.libraries.libraryInView,
-    librariesInView: state.libraries.librariesInView
+    librariesInView: state.libraries.librariesInView,
+    libraryFollowers: state.libraries.libraryFollowers
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

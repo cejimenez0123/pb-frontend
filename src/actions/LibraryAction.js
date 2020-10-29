@@ -1,5 +1,6 @@
 
 import {history} from "../history"
+import {followLibrary} from "./FollowActions"
 const libraryPath = "http://localhost:3000/libraries"
 const userPath = "http://localhost:3000/users"
 const bookLibPath = "http://localhost:3000/book_libraries"
@@ -21,6 +22,7 @@ function startLibrary(lib){
       return(dispatch)=>{fetch(libraryPath,config).then(res=>res.json()).then(obj=>{  
           debugger
         let lib= obj.data
+        dispatch(followLibrary(lib.id))
         //   history.push("/libraries")
         history.push(`/libraries/${lib.id}`)
           dispatch(getUserLibraries(localStorage.getItem("currentUser")))  
@@ -106,6 +108,7 @@ function getBooksOfLibrary(id){
     })}
 
 }
+
 function booksInView(books){return{type:"BOOKS_IN_VIEW",books}}
 function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}

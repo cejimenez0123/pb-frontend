@@ -1,7 +1,7 @@
 
 
 export default function LibraryReducers(
-    state={libraries:[],librariesInView:[],bookLibraries:[],libraryInView:null},
+    state={libraries:[],librariesInView:[],bookLibraries:[],libraryInView:null,libraryFollowers: []},
     action){
 
         switch(action.type){
@@ -11,6 +11,9 @@ export default function LibraryReducers(
         case "LIBRARIES_IN_VIEW":
        
         return{...state,librariesInView: action.libraries}
+        case "LIBRARY_FOLLOWERS":
+        debugger
+        return{...state,libraryFollowers: action.follows}
         case "ALL_BOOK_LIBRARIES":
   
             return{...state,bookLibraries: action.books}

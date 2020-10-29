@@ -1,6 +1,6 @@
 const followUserPath="http://localhost:3000/follow_users"
 const followBookPath="http://localhost:3000/follow_books"
-
+const followLibraryPath="http://localhost:3000/follow_libraries"
 const userPath = "http://127.0.0.1:3000/users"
 const bookPath="http://localhost:3000/books"
 function bookFollowers(id){
@@ -31,7 +31,7 @@ function followUser(id){
 
 }
 function followLibrary(id){
-
+debugger
     console.log("FIJDOOF")
     let config = {
         method: 'POST',
@@ -41,14 +41,41 @@ function followLibrary(id){
           },
           body: JSON.stringify({
               followerId: localStorage.getItem("currentUser"),
-              library_id: id
+              libraryId: id
           })}
-  return(dispatch)=>{  fetch(,config).then(res=>res.json()).then(obj=>{
-        byebug
-        window.alert("user followed")
-        dispatch(getFollowersOfUser(id))
+  return(dispatch)=>{  fetch(followLibraryPath,config).then(res=>res.json()).then(obj=>{
+       debugger
+       
+       dispatch(getFollowersOfLibrary(obj.id))
     })}
 
+}
+function deleteFollowLibrary(id){
+
+    console.log("FIJDOOF")
+    let config = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              
+              id: id
+          })}
+  return(dispatch)=>{  fetch(followLibraryPath,config).then(res=>res.json()).then(obj=>{
+       
+       dispatch(getFollowersOfLibrary(obj.id))
+    })}
+
+}
+function getFollowersOfLibrary(id){
+  
+    return(dispatch)=>{fetch(followLibraryPath+`/${id}`).then(res=>res.json()).then(follows=>{
+       
+       
+    dispatch(libraryFollowers(follows))
+    })}
 }
 function deleteBookFollow(follow){
 let config={   
@@ -133,9 +160,9 @@ let config = {
 
 }
 
-
+function libraryFollowers(follows){return{type:"LIBRARY_FOLLOWERS",follows}}
 const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
 const booksFollows=(follows)=>{return{type:"BOOK_FOLLOWERS",follows}}             
 const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
-export {deleteBookFollow,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser}
+export {deleteBookFollow,followLibrary,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser,getFollowersOfLibrary}
