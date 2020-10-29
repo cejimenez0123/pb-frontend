@@ -43,7 +43,8 @@ class ProfileContainer extends React.Component{
        this.props.getMyPages()
     //    this.props.getBookLibraries()
         this.props.getAllLibraries()
-        this.props.getUserLibraries(id)
+
+        this.props.getUserLibraries({id,privacy:"private"})
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
          

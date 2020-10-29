@@ -1,5 +1,6 @@
 const followUserPath="http://localhost:3000/follow_users"
 const followBookPath="http://localhost:3000/follow_books"
+
 const userPath = "http://127.0.0.1:3000/users"
 const bookPath="http://localhost:3000/books"
 function bookFollowers(id){
@@ -24,6 +25,26 @@ function followUser(id){
           })}
   return(dispatch)=>{  fetch(followUserPath,config).then(res=>res.json()).then(obj=>{
        
+        window.alert("user followed")
+        dispatch(getFollowersOfUser(id))
+    })}
+
+}
+function followLibrary(id){
+
+    console.log("FIJDOOF")
+    let config = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              followerId: localStorage.getItem("currentUser"),
+              library_id: id
+          })}
+  return(dispatch)=>{  fetch(,config).then(res=>res.json()).then(obj=>{
+        byebug
         window.alert("user followed")
         dispatch(getFollowersOfUser(id))
     })}

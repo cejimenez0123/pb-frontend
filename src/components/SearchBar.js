@@ -20,6 +20,7 @@ if(input.length>0){
 
   })
   let books= this.props.books.filter(book=>{
+      debugger
       book = book.attributes
       return book.name.includes(input)
   })

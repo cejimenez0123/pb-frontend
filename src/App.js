@@ -72,7 +72,7 @@ class App extends React.Component{
           <Switch>
            <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>
           <Route path ={'/users/:id'}>
-            <PublicProfileContainer getUser={this.props.getUdrt} users={this.props.users} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser} followUser={this.props.followUser}/>
+            <PublicProfileContainer getUser={this.props.getUdrt} users={this.props.users} librariesInView={this.props.librariesInView} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser} followUser={this.props.followUser}/>
           </Route>
           </Switch>
           <Route exact path="/books/:id">
@@ -131,7 +131,8 @@ function mapStateToProps(state){
     books: state.books.books,
     userInView: state.users.userInView,
     booksInView: state.books.booksInView,
-    libraryInView: state.libraries.libraryInView
+    libraryInView: state.libraries.libraryInView,
+    librariesInView: state.libraries.librariesInView
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

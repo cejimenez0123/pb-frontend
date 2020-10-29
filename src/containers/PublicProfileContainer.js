@@ -4,11 +4,14 @@ import ProfileCard from "../components/user/ProfileCard"
 import BookIndex from "../components/book/BookIndex"
 import {followUser,getFollowersOfUser,deleteFollow} from '../actions/FollowActions'
 import {getPagesById} from "../actions/PageActions"
+import {getUserLibraries} from "../actions/LibraryAction"
 import BookIndexModal from "../components/book/BookIndexModal"
 import Pages from "../components/page/pages"
 import {connect} from "react-redux"
 import FollowerCards from "../components/user/FollowerCards"
+import LibraryIndex from "../components/library/LibraryIndex"
 import "../App.css"
+import Modal from "../components/modal"
 let id= window.location.pathname.split("/")[2]
  let user
  
@@ -28,6 +31,7 @@ class PublicProfileContainer extends React.Component{
         this.props.getPagesById(id)
         this.props.getFollowers(id)
         this.props.getBooksOfUser(id)
+        this.props.getUserLibraries({id,privacy: "public"})
     
     }    
     }
@@ -61,9 +65,9 @@ class PublicProfileContainer extends React.Component{
         })
    
         if(follow){
-            return (<button className="followedBtn" onClick={()=>this.handleFollow()}>Follow</button>)
+            return (<button className="followedBtn button pink" onClick={()=>this.handleFollow()}>Following</button>)
         }else{
-            return (<button className="followBtn" onClick={()=>this.handleFollow()}>Follow</button>)
+            return (<button className="followBtn button red" onClick={()=>this.handleFollow()}>Follow</button>)
         }
     }
     handleModalClose(e){
@@ -82,7 +86,7 @@ class PublicProfileContainer extends React.Component{
         <section className="profile">
              < ProfileCard user={this.props.user}/>
             {this.followBtn()}
-            <button onClick={()=>this.handleShow()} >Followers</button>
+            <button className="button green" onClick={()=>this.handleShow()} >Followers</button>
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.show}} class="modal">
                 <div   class="modal-content">
                   <span  onClick={()=>this.handleShow()}class="close">&times;</span>
@@ -92,7 +96,9 @@ class PublicProfileContainer extends React.Component{
                   </div>
                   </div>
             </div>
-            <BookIndexModal books={this.props.booksInView}/>
+            <Modal button={<h3>Books</h3>} content={<BookIndex books={this.props.booksInView}/>}/>
+            <Modal button={<h3>Libraries</h3>} content={<LibraryIndex libraires={this.props.librariesInView}/>}/>
+            {/* <BookIndexModal books={this.props.booksInView}/> */}
             </section>
             <Pages pages={this.props.pages}/>
             <BookIndex books={this.props.booksInView} user={this.props.user}/>

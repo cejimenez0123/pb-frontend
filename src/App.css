@@ -2,8 +2,7 @@
 
 .list-group-item{
 	position: absolute;
-	padding: 30px;
-	height: 40px;
+	height: 80px;
 }
 
 .book-index .list-group-item{
@@ -445,18 +444,7 @@ color: white;}
 	  margin-left: 18px;
   }
   .followedBtn{ 
-	border: none;
-
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 20px 30px;
-	cursor: pointer;
-	background-color: white; 
-	color: black; 
-	border: 2px solid #008CBA
+	/*   */
 }
 
 .bookTitle{
@@ -559,9 +547,7 @@ flex-direction: column;}
 .bio-textarea{
 	width: 300px;
 }
-.libraryIndexBox{
-	height: 100px;
-}
+
 .lib-index{
 	width: 600px;
 	padding: 30px;
@@ -579,8 +565,16 @@ flex-direction: column;}
 .LibraryIndex{
 	width: 99%;
 	height: 97%;
-	background-color: rgb(214, 214, 214);
+	min-height: 300px;
+	background-color: rgb(185, 185, 212);
+	border: 1px solid grey;
 	margin: 5px auto ;
+	border-radius:5%;
+}
+.LibraryIndex .list-group-item{
+	margin: auto;
+	width:100%;
+	border-radius: 10%;
 }
 .LibraryIndex .emptyMessage{
 	padding: 20px;

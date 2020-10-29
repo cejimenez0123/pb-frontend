@@ -4,9 +4,10 @@ import LibraryIndexBox from "./LibraryIndexBox"
 function LibraryIndex(props){
 
    let t = []
-   if(!props.libraries){
 
-     
+   if(props.libraries.length> 0){
+
+
 
   t = props.libraries.map((t,index)=>{
     

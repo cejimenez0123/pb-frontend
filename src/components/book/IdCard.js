@@ -171,7 +171,7 @@ const handleEditClick = () => {
 
 
     if(props.book){
-   debugger
+ 
         return(<section className="bookIdCard">
          
     <div>

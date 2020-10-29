@@ -101,7 +101,7 @@ import PageCommentIndex from "./PageCommentIndex"
            // onClick={(e)=>handleCommentClick(e)}
            button ={ <button variant="primary" onFocus={()=>getPageComments(props.page.id)}  >Comment</button>} content={
               <div>
-                  <div >{page.book.title} by 
+                  <div ><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
                    <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
                    </a>
