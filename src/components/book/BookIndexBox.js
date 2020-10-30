@@ -58,7 +58,6 @@ return(<div className=" bookIndexBox list-group-item">
   `}>{book.title}</a>
   <div onClick={handleToggle} className="test"></div> 
     <div className=" popUp-box" style={{display: show}}>
-    <h3>xxx</h3>
     <div>
     <button onClick={()=>handleAddBook()}className="button">Add book to library</button>
        

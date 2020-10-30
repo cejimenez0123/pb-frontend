@@ -20,7 +20,7 @@ import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
 import {history} from "./history"
 import StreetContainer from "./containers/StreetContainer"
-import InboxContainer from './containers/InboxContainer';
+
 import PublicProfileContainer from "./containers/PublicProfileContainer"
 import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 import LibraryContainer from "./containers/LibraryContainer"
@@ -53,9 +53,7 @@ class App extends React.Component{
   <Route exact path="/" >
     <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>
   </Route>
-  <Route exact path="/users/:id/inbox" >
-    <InboxContainer getInbox={this.props.getInbox} users={this.props.users} inbox={this.props.inbox} setCurrentUser={this.props.setCurrentUser} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
-  </Route>
+  
 <Switch>
   <Route exact path="/library/1">
    <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
@@ -63,8 +61,11 @@ class App extends React.Component{
   <Route exact path="/user/:id/settings">
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
   </Route>
+    <Route exact path="/libraries/:id/edit" >
+  
+  </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
+            <LibraryContainer allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">

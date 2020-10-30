@@ -2,6 +2,10 @@ import React from 'react'
 import Books from "../components/book/books"
 import NavbarContainer from "./NavbarContainer"
 import Popup from "reactjs-popup"
+import Modal from "../components/modal"
+import BookIndex from "../components/book/BookIndex"
+import LibBookAddIndex from "../components/book/LibBookAddIndex"
+import SearchBookAdd from '../components/book/SearchBookAdd'
 class LibraryContainer extends React.Component{
     constructor(){
         super()
@@ -13,13 +17,14 @@ class LibraryContainer extends React.Component{
         this.props.getLibrary(id)
         this.props.getBooksOfLib(id)
         this.props.getFollowersOfLibrary(id)
+        this.props.getBooksOfUser(localStorage.getItem("currentUser"))
     }
    ifEdit(){
 
 if(this.props.library && this.props.library.user.id === localStorage.getItem("currentUser"))
     return ( <Popup trigger={ <button className={"button"}>Edit</button>} position="right center">
    <div >
-        <button>Add</button>
+       
         <button>Delete</button>
          </div>
   </Popup>)
@@ -81,11 +86,12 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
         <br/>
         <p>{lib.intro}</p>
         {this.ifEdit()}
+        <Modal button={ <button>Add</button>} content={<SearchBookAdd books={this.props.allBooks}/>}/>
         {this.followBtn()}
         </div>
         <div className="lib">
         
-    <Books books={this.props.books}/>
+        <Books books={this.props.books}/>
     </div>
     </div>
         </div>)

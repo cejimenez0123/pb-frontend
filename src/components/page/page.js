@@ -77,7 +77,7 @@ import PageCommentIndex from "./PageCommentIndex"
   
   config={readonly: true,width: 700,iframe: true}
   }else {
-   console.log("size:",dimensions)
+ 
   config={readonly: true,iframe: true}}
   let editBtn = null
     
