@@ -1,7 +1,7 @@
 import React from 'react'
 import Books from "../components/book/books"
 import NavbarContainer from "./NavbarContainer"
-
+import Popup from "reactjs-popup"
 class LibraryContainer extends React.Component{
     constructor(){
         super()
@@ -16,12 +16,17 @@ class LibraryContainer extends React.Component{
     }
    ifEdit(){
 
-if(this.props.library && this.props.library.user === localStorage.getItem("currentUser"))
-    return (<a>Edit</a>)
+if(this.props.library && this.props.library.user.id === localStorage.getItem("currentUser"))
+    return ( <Popup trigger={ <button className={"button"}>Edit</button>} position="right center">
+   <div >
+        <button>Add</button>
+        <button>Delete</button>
+         </div>
+  </Popup>)
 
    }
     handleFollow(){
-        debugger
+    
         if(this.props.followers.length >0 && this.followExist()){
         let follow=  this.followExist()
            

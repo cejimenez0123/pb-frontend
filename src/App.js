@@ -64,7 +64,7 @@ class App extends React.Component{
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
   </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary}/>
+            <LibraryContainer getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">
@@ -130,6 +130,7 @@ function mapStateToProps(state){
     currentUser: state.users.currentUser,
     currentPage: state.pages.currentPage,
     bookInView: state.books.bookInView,
+    booksOfUserr: state.books.booksOfUser,
     pages: state.pages.pages,
     inbox: state.pages.inbox,
     books: state.books.books,
@@ -137,7 +138,8 @@ function mapStateToProps(state){
     booksInView: state.books.booksInView,
     libraryInView: state.libraries.libraryInView,
     librariesInView: state.libraries.librariesInView,
-    libraryFollowers: state.libraries.libraryFollowers
+    libraryFollowers: state.libraries.libraryFollowers,
+    followedBooks: state.books.followedBooks
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)
