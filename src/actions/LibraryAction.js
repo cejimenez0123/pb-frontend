@@ -99,6 +99,24 @@ function addBookToLibrary({bookId,libraryId}){
             
           }).catch(err=>alert(err))}
 }
+function updateLibrary({id,intro,name}){
+
+     let config = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              intro: intro,
+              name: name
+            
+          })}   
+    return(dispatch)=>{fetch(libraryPath+`/${id}/update`,config).then(res=>res.json()).then(obj=>{
+
+        dispatch(getLibrary(id))
+    })}
+}
 function getBooksOfLibrary(id){
 
 
@@ -114,4 +132,4 @@ function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
 function libraryInView(library){return{type:"LIBRARY_IN_VIEW",library}}
 function allBookLibraries(books){return{type:"ALL_BOOK_LIBRARIES",books}}
-export {deleteBookLibrary,startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary,getBookLibraries}
+export {updateLibrary,deleteBookLibrary,startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary,getBookLibraries}

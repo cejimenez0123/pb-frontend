@@ -9,7 +9,8 @@ import SearchBookAdd from '../components/book/SearchBookAdd'
 class LibraryContainer extends React.Component{
     constructor(){
         super()
-        this.state={books: []}
+        this.state={books: [],
+        name: "",intro:""}
     }
     componentDidMount(){
 
@@ -20,14 +21,33 @@ class LibraryContainer extends React.Component{
         this.props.getAllPages()
         this.props.getBooksOfUser(localStorage.getItem("currentUser"))
     }
+    handleOnChange(e){
+
+        debugger
+    }
    ifEdit(){
 
 if(this.props.library && this.props.library.user.id === localStorage.getItem("currentUser"))
-    return ( 
-   <div >
-       
-        <button className="button">Delete</button>
-         </div>)
+    return ( <Modal button={<button className="button">Edit</button>} content={
+    <div> 
+        <form onSubmit={(e)=>this.handleUpdate(e)}>
+            <input  className="form-control" type="text"  name="name" defaultValue={`${this.props.library.name}`}/>
+            <br/>
+            <textarea className="form-control" name="intro"  defaultValue={`${this.props.library.intro}`}/>
+            <br/>
+            <input type="submit" value="Update" />
+        </form>
+    </div>}/>
+
+)
+
+   }
+   handleUpdate(e){
+       debugger
+      let name = e.target.querySelector('input[name="name"]')
+      let intro=  e.target.querySelector('input[name="intro"]')
+      let hash = {id: this.props.library.id, name, intro}
+      
 
    }
     handleFollow(){

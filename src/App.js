@@ -13,7 +13,7 @@ import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary} from "./actions/FollowActions"
-import {getLibrary,getBooksOfLibrary,getBookLibraries} from "./actions/LibraryAction"
+import {getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
@@ -65,7 +65,7 @@ class App extends React.Component{
   
   </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView} getAllPages={this.props.getAllPages} followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
+            <LibraryContainer updateLibrary={this.props.updateLibrary}allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView} getAllPages={this.props.getAllPages} followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">
@@ -120,7 +120,8 @@ function mapDispatchToProps(dispatch){
     getBookLibraries:()=>dispatch(getBookLibraries()),
     getFollowersOfLibrary: (id)=>dispatch(getFollowersOfLibrary(id)),
     followLibrary: (id)=>dispatch(followLibrary(id)),
-    deleteFollowLibrary: (id)=> dispatch(deleteFollowLibrary(id))
+    deleteFollowLibrary: (id)=> dispatch(deleteFollowLibrary(id)),
+    updateLibrary: (hash)=>dispatch(updateLibrary(hash))
   }
 }
 function mapStateToProps(state){
