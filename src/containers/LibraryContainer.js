@@ -17,17 +17,17 @@ class LibraryContainer extends React.Component{
         this.props.getLibrary(id)
         this.props.getBooksOfLib(id)
         this.props.getFollowersOfLibrary(id)
+        this.props.getAllPages()
         this.props.getBooksOfUser(localStorage.getItem("currentUser"))
     }
    ifEdit(){
 
 if(this.props.library && this.props.library.user.id === localStorage.getItem("currentUser"))
-    return ( <Popup trigger={ <button className={"button"}>Edit</button>} position="right center">
+    return ( 
    <div >
        
-        <button>Delete</button>
-         </div>
-  </Popup>)
+        <button className="button">Delete</button>
+         </div>)
 
    }
     handleFollow(){
@@ -77,7 +77,7 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
             lib = this.props.library
        
         }
-       
+       console.log("books",this.props.books)
         return(<div>
         <NavbarContainer/>
         <div className="libContainer">
@@ -86,7 +86,7 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
         <br/>
         <p>{lib.intro}</p>
         {this.ifEdit()}
-        <Modal button={ <button>Add</button>} content={<SearchBookAdd books={this.props.allBooks}/>}/>
+        <Modal button={ <button className="button">Add</button>} content={<SearchBookAdd library={lib} books={this.props.allBooks} booksOfLibrary={this.props.books}/>}/>
         {this.followBtn()}
         </div>
         <div className="lib">

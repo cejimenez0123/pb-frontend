@@ -93,11 +93,11 @@ function addBookToLibrary({bookId,libraryId}){
               bookId: bookId,
               libraryId: libraryId
           })}
-          fetch(bookLibPath,config).then(res=>res.json()).then(obj=>{
-              debugger
-              window.alert("success")
-
-          }).catch(err=>alert(err))
+         return(dispatch)=>{ fetch(bookLibPath,config).then(res=>res.json()).then(obj=>{
+              
+              dispatch(getBooksOfLibrary(libraryId))
+            
+          }).catch(err=>alert(err))}
 }
 function getBooksOfLibrary(id){
 

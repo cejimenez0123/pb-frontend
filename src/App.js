@@ -65,7 +65,7 @@ class App extends React.Component{
   
   </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView}followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
+            <LibraryContainer allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView} getAllPages={this.props.getAllPages} followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">

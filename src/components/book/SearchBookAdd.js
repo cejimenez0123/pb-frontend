@@ -1,18 +1,35 @@
 import React, {useState} from 'react'
-import {useStore } from 'react-redux'
-export default function SearchBookAdd(props){
+import {useStore,useDispatch } from 'react-redux'
+import {addBookToLibrary} from "../../actions/LibraryAction"
+ function SearchBookAdd(props){
     let filtered = bookToHTML(props.books)
+    const dispatch = useDispatch()
+    function handleAddBook(book){
+        let hash = {bookId: book.id,libraryId: props.library.id}
+        dispatch(addBookToLibrary(hash))
 
-    
+    }
    
     function bookToHTML(books){
+        console.log("BOOKsOFLIB",props.booksOfLibrary)
+           books= books.filter(book=>{ 
+              
+           let  x = props.booksOfLibrary.find(x=>{ 
+           
+                return x.attributes.id===book.id})
+              
+               return !x
+                
+            })
+
         let html = books.map(book=>{
             book = book.attributes
             return(<div className="list-group-item">
             
-           {book.title} by {book.user.username} <i class="far fa-plus-square"></i>
+           {book.title} by {book.user.username} <img onClick={()=>handleAddBook(book)}style={{width:"30xp",height:"30px"}}src="https://image.flaticon.com/icons/png/512/32/32339.png"/>
             </div>)
         })
+
         console.log("html",html)
    return html
     }
@@ -22,7 +39,8 @@ let val = e.target.value
 
                return book.name.includes(val)||book.user.username.includes(val)
             })
-debugger
+            
+        filtered= bookToHTML(books)
     }
 
     console.log("Filtered",filtered)
@@ -38,3 +56,4 @@ debugger
         </div>
     )
 }
+export default SearchBookAdd

@@ -163,6 +163,7 @@
   .app{
 	background-color:#ededed;
 	height: 100%;
+	overflow:scroll;
   }
   html{
 	background-color:#ededed
@@ -447,7 +448,6 @@ color: white;}
 .bookTitle{
 	margin: 10px 20px;
 }
-
 
 .idCard .btnBox{
 	margin: 10px;
