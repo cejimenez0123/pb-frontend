@@ -113,7 +113,7 @@ function updateLibrary({id,intro,name}){
             
           })}   
     return(dispatch)=>{fetch(libraryPath+`/${id}/update`,config).then(res=>res.json()).then(obj=>{
-
+debugger
         dispatch(getLibrary(id))
     })}
 }

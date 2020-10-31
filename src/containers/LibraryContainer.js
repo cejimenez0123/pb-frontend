@@ -43,11 +43,11 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
 
    }
    handleUpdate(e){
-       debugger
-      let name = e.target.querySelector('input[name="name"]')
-      let intro=  e.target.querySelector('input[name="intro"]')
+       e.preventDefault()
+      let name = e.target.querySelector('input[name="name"]').value
+      let intro=  e.target.querySelector('textarea[name="intro"]').value
       let hash = {id: this.props.library.id, name, intro}
-      
+      this.props.updateLibrary(hash)
 
    }
     handleFollow(){
