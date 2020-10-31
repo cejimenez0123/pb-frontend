@@ -1,10 +1,19 @@
-
-import {history} from "../history"
 import {followLibrary} from "./FollowActions"
+import {history} from "../history"
+export {getLibrary,updateLibrary,startLibrary,addBookToLibrary,getAllLibraries,deleteBookLibrary,getBooksOfLibrary,getBookLibraries,getUserLibraries}
+
 const libraryPath = "http://localhost:3000/libraries"
 const userPath = "http://localhost:3000/users"
 const bookLibPath = "http://localhost:3000/book_libraries"
+const getBookLibraries=()=>{
 
+    return(dispatch)=>{fetch(bookLibPath).then(res=>res.json()).then(obj=>{
+  
+        let books = obj.data
+        dispatch(allBookLibraries(books))
+        return books
+    })}
+}
 
 function startLibrary(lib){
  let config = {
@@ -52,35 +61,9 @@ function getUserLibraries(hash){
             let libraries =obj.data
             dispatch(librariesInView(libraries))
         })
-    }
+    }}
 
-}
-function deleteBookLibrary(bookLib){
-    debugger
-    const config = {    
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            id: bookLib.id
-        })}
-    return (dispatch)=>{fetch(bookLibPath+`/${bookLib.id}`,config).then(res=>res.json()).then(obj=>{
-        dispatch(getBookLibraries())
-    }).catch(err=>console.log(err))}
 
-}
-
-function getBookLibraries(){
-
-    return(dispatch)=>{fetch(bookLibPath).then(res=>res.json()).then(obj=>{
-  
-        let books = obj.data
-        dispatch(allBookLibraries(books))
-        return books
-    })}
-}
 function addBookToLibrary({bookId,libraryId}){
 
         let config = {
@@ -117,6 +100,25 @@ debugger
         dispatch(getLibrary(id))
     })}
 }
+function deleteBookLibrary({bookId,libraryId}){
+ let config = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              bookId,
+              libraryId
+            
+          })}   
+    return(dispatch)=>{
+        fetch(bookLibPath+"/delete",config).then(res=>res.json()).then(obj=>{
+            debugger
+            dispatch(getBooksOfLibrary(libraryId))
+        }).catch(err=>alert(err))
+    }
+}
 function getBooksOfLibrary(id){
 
 
@@ -132,4 +134,3 @@ function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}
 function libraryInView(library){return{type:"LIBRARY_IN_VIEW",library}}
 function allBookLibraries(books){return{type:"ALL_BOOK_LIBRARIES",books}}
-export {updateLibrary,deleteBookLibrary,startLibrary,getUserLibraries,getAllLibraries,addBookToLibrary,getLibrary,getBooksOfLibrary,getBookLibraries}

@@ -2,6 +2,7 @@ import React from 'react'
 import Books from "../components/book/books"
 import NavbarContainer from "./NavbarContainer"
 import Popup from "reactjs-popup"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from "../components/modal"
 import BookIndex from "../components/book/BookIndex"
 import LibBookAddIndex from "../components/book/LibBookAddIndex"
@@ -21,15 +22,22 @@ class LibraryContainer extends React.Component{
         this.props.getAllPages()
         this.props.getBooksOfUser(localStorage.getItem("currentUser"))
     }
-    handleOnChange(e){
-
-        debugger
+    deleteBookLibrary(book){
+       let  hash= {bookId: book.id,libraryId: this.props.library.id}
+        this.props.deleteBookLibrary(hash)
     }
+    
    ifEdit(){
-
+       let bookIndex = this.props.books.map(book=>{
+     
+           book = book.attributes 
+           return (<div className="list-group-item">
+            {book.title} <img onClick={()=>this.deleteBookLibrary(book)} style={{width: "30px",height:"30px",float:"right" }}src="https://image.flaticon.com/icons/png/512/61/61848.png"/>
+           </div>)
+       })
 if(this.props.library && this.props.library.user.id === localStorage.getItem("currentUser"))
     return ( <Modal button={<button className="button">Edit</button>} content={
-    <div> 
+    <div className="updateLibrary"> 
         <form onSubmit={(e)=>this.handleUpdate(e)}>
             <input  className="form-control" type="text"  name="name" defaultValue={`${this.props.library.name}`}/>
             <br/>
@@ -37,6 +45,9 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
             <br/>
             <input type="submit" value="Update" />
         </form>
+    <div className="list-group">
+    {bookIndex}
+    </div>
     </div>}/>
 
 )

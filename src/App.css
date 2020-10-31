@@ -3,6 +3,7 @@
 .list-group-item{
 	position: absolute;
 	height: 80px;
+
 }
 
 .book-index .list-group-item{
@@ -75,12 +76,16 @@
 	width: 550px;
 	
 }
+.violet{
+	background-color: #dfa1dd
+}
 .modalContent {
-	overflow: scroll;
+	overflow: auto;
 	background-color: #fefefe;
 	margin: 5% auto;
+	
 	 /* 15% from the top and centered */
-	height: 450px;
+	height: 500px;
 	color: black;
 	max-width: 800px;
 	border: 1px solid #888; 
@@ -160,10 +165,28 @@
 	  width: 100%;
 	  
   }
+  .updateLibrary form{
+	  margin: 7px;
+  }
+  .updateLibrary .list-group{
+	  width: 400px;
+	  margin: auto;
+	  
+  }
+  .updateLibrary textarea{
+	  width: 90%;
+	  
+  }
+  /* .updateLibrary .lib-group-item{
+	  
+  } */
+  .updateLibrary input{
+	width: 200px;
+  }
   .app{
 	background-color:#ededed;
 	height: 100%;
-	overflow:scroll;
+	
   }
   html{
 	background-color:#ededed
