@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef,useEffect} from 'react';
 import {useDispatch,connect,useStore} from 'react-redux'
 // import 'jodit';
 // import 'jodit/build/jodit.min.css';
@@ -9,36 +9,36 @@ const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
     let [show,setShow]= useState("none")
-	
-	
-    let dispatch = useDispatch()
+	let [config,setConfig]=useState({
+        width: 700,
+        height: "auto",
+		readonly: false,
+        iframe: true
+
+	})
     
-	let content = ""
-//     function debounce(func, wait, immediate) {
-//         var timeout;
+    
+	function debounce(fn, ms) {
+  let timer
+  return _ => {
+    clearTimeout(timer)
+    timer = setTimeout(_ => {
+      timer = null
+      fn.apply(this, arguments)
+    }, ms)
+  };
+}
+    let dispatch = useDispatch()
 
-//             return function executedFunction() {
-//                  var context = this;
-//                 var args = arguments;
-	    
-//                 var later = function() {
-//              timeout = null;
-//         if (!immediate) func.apply(context, args);
-//     };
+    // let [content,setContent]=useState(this.props.currentPage)
+	let content =""
 
-//     var callNow = immediate && !timeout;
-	
-//     clearTimeout(timeout);
 
-//     timeout = setTimeout(later, wait);
-	
-//     if (callNow) func.apply(context, args);
-//   };
-// };
-   
 
     if(props.currentPage){
-         
+        debugger
+        console.log("SFFS",props.currentPage)
+         content=props.currentPage.data
          page = {id: props.currentPage.id,data: props.currentPage.data,bookId: props.book.id}
         }else if(props.book){
          
@@ -68,19 +68,15 @@ const Editor = (props) => {
         dispatch(savePage(page))
         props.handleTruthyClose(page.data)
     }
-    console.log(content)
+   
     // function doSetContent(e){
        
     // setContent(e)
     // }
-   
-    const config = {
-        width: 815,
-        height: "auto",
-		readonly: false,
-        iframe: true
-
-	}
+   function handleOnClick(data){
+   content = data
+ }
+    
     // function handleLoad(){
     //     debugger
     //     if(localStorage.getItem("workingPage").length !==0){
@@ -96,6 +92,8 @@ const Editor = (props) => {
        
        props.handleTruthyClose(page.data)
     }
+    
+
     function showModal(){
         setShow("block")
     }

@@ -102,7 +102,7 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
     render(){
         let lib= {}
     
-         console.log(this.props.library)
+   
         if(this.props.library){
            
             lib = this.props.library

@@ -85,11 +85,19 @@
 	margin: 5% auto;
 	
 	 /* 15% from the top and centered */
-	height: 500px;
+	height: 550px;
 	color: black;
 	max-width: 800px;
 	border: 1px solid #888; 
 	/* Could be more or less, depending on screen size */
+}
+.pageHeader{
+
+	display: flex;
+	justify-content: space-between;
+}
+.pageHeader div{
+	margin: 0px 10px
 }
 .commentSection{
 
@@ -231,6 +239,9 @@ background-color: red;}
 	align-items: center;} */
 .page .jodit-toolbar__box{
 	display: none;
+}
+.editor .jodit-toolbar__box{
+	display: block;
 }
 .pageMain{
 	overflow: scroll;
@@ -510,7 +521,9 @@ color: white;}
 	height: 700px;
 } */
 
-@media only screen and (max-width: 600px){
+
+@media only screen and (max-width: 768px)
+and (min-device-width : 375px) {
 	.libContainer{
 		display: flex;
 		flex-direction: column;
@@ -540,7 +553,7 @@ flex-direction: column;
 	
 	
 	margin-top: 20px;}
-	@media only screen and (min-width: 600px){
+	@media only screen and (min-width: 768px){
 		.libContainer{
 			display: flex;
 			
@@ -574,11 +587,7 @@ flex-direction: column;}
 	margin: auto;
 	text-align: center;
 }  */
-.draftPage{
-		display: inline-block;
-		margin: auto;
-		text-align: center;
-}
+
 *{
 	font-family:  Helvetica, sans-serif;
 	box-sizing: border-box;

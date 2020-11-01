@@ -129,7 +129,7 @@ function mapDispatch(dispatch){
     return{getPagesOfBook:(id)=>dispatch()}
 }
 function mapState(state){
-    console.log(state.books.bookFollowers)
+   
     return{
         currentUser: state.users.currentUser,
         bookInView: state.books.bookInView,

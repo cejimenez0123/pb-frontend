@@ -15,9 +15,9 @@ import {addBookToLibrary} from "../../actions/LibraryAction"
            books= books.filter(book=>{ 
               
            let  x = props.booksOfLibrary.find(x=>{ 
-                debugger
+           
                 return x.attributes.id===book.id})
-                 debugger
+              
                return !x
                 
             })

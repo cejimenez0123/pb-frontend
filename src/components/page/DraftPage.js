@@ -34,14 +34,17 @@ const dispatch = useDispatch()
    }
    console.log("PGGEE",props.page)
    function handleSave(){
-     page = {...page,data: content}
+     debugger
+  page=   {id: props.page.id,data:content,bookId: props.book.id}
+     
      
      dispatch(updatePage(page))
    }
   function changeReadOnly(e){
       debugger
+      setClass("editor")
       setConfig({readonly: false,width: 900,iframe: true})
-    setClass("draftPage")
+    
       
   }
   function handleDeletePage(){

@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import JoditEditor from 'jodit-react'
 import {useStore,useDispatch } from 'react-redux'
 import Modal from "../modal"
+import Editor from "./editor"
+import DraftPage from "./DraftPage"
 import {connect} from "react-redux"
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentInput from "./PageCommentInput"
@@ -55,7 +57,20 @@ import PageCommentIndex from "./PageCommentIndex"
   function editPage(page){
     let div = document.getElementsByClassName("ModalBody")[0]
   }
+  
+  function handleEdit(){
     
+  }
+  function editBtn(){
+
+    if(props.page.user.id === localStorage.getItem("currentUser")){
+
+      return (<Modal button={<div>Edit</div>}
+      content={<DraftPage page={props.page}/>}/>)
+    }else{
+      return("")
+    }
+  }  
   let comments = store.getState().pages.pageCommentsInView
 
   const handleCommentClick=(e)=>{ 
@@ -73,15 +88,15 @@ import PageCommentIndex from "./PageCommentIndex"
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
   let config
-  if(dimensions.width>850){
+  if(dimensions.width>700){
   
   config={readonly: true,width: 700,iframe: true}
   }else {
  
   config={readonly: true,iframe: true}}
-  let editBtn = null
-    
   
+    
+  let modalContent
   
   if(props.page){
     let page = props.page
@@ -89,8 +104,8 @@ import PageCommentIndex from "./PageCommentIndex"
     // dispatch(getPageComments(page))
       return(
         <div className="pageContainer">
-          <div className="page" >
-            <div>
+          <div  >
+            <div className="page">
               <JoditEditor
             	ref={editor}
               value={content}
@@ -101,10 +116,10 @@ import PageCommentIndex from "./PageCommentIndex"
            // onClick={(e)=>handleCommentClick(e)}
            button ={ <button variant="primary" onFocus={()=>getPageComments(props.page.id)}  >Comment</button>} content={
               <div>
-                  <div ><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
+                  <div className="pageHeader" > <div><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
                    <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
-                   </a>
+                   </a></div>{editBtn()}
                   </div>
 
                  <JoditEditor

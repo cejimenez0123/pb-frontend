@@ -49,7 +49,6 @@ function getBooksOfUser(id){
       
        let book = obj.data
     dispatch(booksOfUser(book))
-        dispatch(booksInView(book))
         
 
     })}
