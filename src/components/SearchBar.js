@@ -11,18 +11,19 @@ class SearchBar extends React.Component{
 
     filterFunction(e){
 let filtered
-  let input = e.target.value
+  let input = e.target.value.toUpperCase()
+  
 if(input.length>0){
   let users = this.props.users.filter(x=>{
    
   let  user = x.attributes
-  return  user.name.includes(input) || user.username.includes(input)
+  return  user.name.toUpperCase().includes(input) || user.username.toUpperCase().includes(input)
 
   })
   let books= this.props.books.filter(book=>{
       debugger
       book = book.attributes
-      return book.title.includes(input)
+      return book.title.toUpperCase().includes(input)
   })
   filtered= users.concat(books)
 }
