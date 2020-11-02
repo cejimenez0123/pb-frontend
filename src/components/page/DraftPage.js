@@ -9,7 +9,7 @@ const dispatch = useDispatch()
   const store = useStore()
  
   const [show, setShow] = useState("none")
-  let [config,setConfig]=useState({readonly: true,width: 900,iframe: true})
+  let [config,setConfig]=useState({readonly: true,width: 900,minHeight: 400,iframe: true})
   let [classNom,setClass]=useState("page")
   let content
   const editor = useRef(null)
@@ -34,8 +34,10 @@ const dispatch = useDispatch()
    }
    console.log("PGGEE",props.page)
    function handleSave(){
+     
+    let status= document.querySelector("#status")
      debugger
-  page=   {id: props.page.id,data:content,bookId: props.book.id}
+  page=   {id: props.page.id,data:content,bookId: props.page.book.id,status: status.value }
      
      
      dispatch(updatePage(page))
@@ -62,14 +64,15 @@ const dispatch = useDispatch()
   let editBtn = null
   if(props.book){
          
-            page={id: props.page.id,data:content,bookId: props.book.id}
+            page={id: props.page.id,data:content,bookId: props.book.id,status: props.page.status}
         } 
   if(props.page){
     let page = {...props.page}
     content = props.page.data
+  
     console.log(config)
       let html =(
-        <div >
+        <div className="draftPage">
           <div >
             <div  className={classNom} style={{height: "0px"}}>
               <JoditEditor
@@ -78,32 +81,16 @@ const dispatch = useDispatch()
               config={config}
                 onChange={newContent => {handleOnClick(newContent)}}
             />
-           <button onClick={(e)=>changeReadOnly(e)}>Edit Page</button> 
-           <button onClick={()=>handleSave()}>Save</button>
-           <button onClick={(e)=>pubPage()}>Publish</button>
-           <button onClick={()=>handleDeletePage()}>Delete</button>
-           <button variant="primary"  onClick={(e)=>handleCommentClick(e)} >Comment</button>
-              {/* <div id={`modal-${page.id}`} onClick={()=>handleShow()} style={{width: "100%",display: show}} class="modal">
-                <div   class="modal-content">
-                  <span  class="close">&times;</span>
-                  <div className={"modalInfo"}>{page.book.title} by 
-                   <a by href={`/users/${page.user.id}`}> 
-                    {page.user.username}
-                   </a>
-                  </div>{editBtn}
-
-                 <JoditEditor
-                 	ref={editor}
-                  value={content}
-                  config={config}
-                // onChange={newContent => {handleOnClick(newContent)}}
-                />
-                <PageCommentInput page={page}/>
-              <div className={"PageCommentBox"}>
-                 <   PageCommentIndex getPageComments={(page)=>dispatch(getPageComments(page))} page={page} />
-              </div>
-            </div>
-          </div> */}
+          <div className="draftPageBtns">
+           <button className="rajah"onClick={(e)=>changeReadOnly(e)}>Edit Page</button> 
+           <button classname="green"onClick={()=>handleSave()}>Save</button>
+          <select id="status" defaultValue={props.page.status}>
+            <option value="draft">Draft</option>
+            <option value="published">Publish</option>
+          </select>
+           <button className="blue" onClick={()=>handleDeletePage()}>Delete</button>
+          </div>
+              
         </div>
       </div>
      </div>)

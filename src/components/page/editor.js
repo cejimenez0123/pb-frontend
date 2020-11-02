@@ -33,7 +33,9 @@ const Editor = (props) => {
     // let [content,setContent]=useState(this.props.currentPage)
 	let content =""
 
-
+function removeEditor(){
+    props.removeEditor()
+}
 
     if(props.currentPage){
         debugger
@@ -65,8 +67,12 @@ const Editor = (props) => {
     function handleSave(){
         debugger
         page= {...page,status: "draft"}
+        content=""
         dispatch(savePage(page))
         props.handleTruthyClose(page.data)
+        dispatch({type:"SHOW_EDITOR",action: "none"})
+        
+        
     }
    
     // function doSetContent(e){
@@ -75,6 +81,7 @@ const Editor = (props) => {
     // }
    function handleOnClick(data){
    content = data
+   page= {...page,data: data}
  }
     
     // function handleLoad(){
@@ -85,8 +92,10 @@ const Editor = (props) => {
     // }
     function handlePublish(){
         page = {...page,status:"published"}
+        debugger
         dispatch(publishPage(page))
         props.handleTruthyClose(page.data)
+        
     }
    function handleTruthy(){
        

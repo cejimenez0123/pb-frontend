@@ -22,18 +22,27 @@ if(input.length>0){
   let books= this.props.books.filter(book=>{
       debugger
       book = book.attributes
-      return book.name.includes(input)
+      return book.title.includes(input)
   })
   filtered= users.concat(books)
 }
 if(filtered){
  let list = filtered.map((x,i)=>{
-     let user = x.attributes
-  return(
-      <div className="list-group-item search-item">
-    <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>
-    </div>)
-
+     
+    switch(x.type){
+        case "user":
+            let user = x.attributes
+                return(
+                 <div className="list-group-item search-item">
+                     <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>
+                </div>)
+        case "book":
+            let book = x.attributes
+                return(
+            <div className="list-group-item search-item">
+                <a href={`http://localhost:3001/books/${book.id}`} key={i}> {book.title}</a>
+            </div>)
+     }
  })
  this.setState({filtered: list}) }
  else{

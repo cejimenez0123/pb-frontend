@@ -43,6 +43,9 @@ function Book(props){
 //     }
 
 //     let html
+ function removeEditor(){
+     props.removeEditor()
+ }
     let pages
 //     function followBtn(){
 //          let follow=  props.followers.find(follow=>{

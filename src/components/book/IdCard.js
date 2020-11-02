@@ -79,33 +79,16 @@ const handleEditClick = () => {
         
         setTruthy("none");
         }
-    function editBtn(){
+    function addPageBtn(){
       
         if(props.currentUser && props.currentUser.id === props.book.user.id){
 
             return(<div className="editBtn">
 <div >
- <button onClick={()=>setShowPop("block")}className="button light-green">Edit Book</button>
-   <div className="popUp editBookBtn"style={{display: showPop}}>
-   <Modal button={<button>Edit Book</button>} content={<div
-   >
-   <form className="editForm">
-   <label>Name of Book:</label>
-   <br/>
-   <input type="text" placeholder={props.book.title}/>
-   <br/>
-   <label>Introduction to book</label> 
-   <textarea placeholder={props.book.bio}/>
-   <br/>
+ {/* <button onClick={()=>setShowPop("block")}className="button light-green">Edit Book</button> */}
+   <div >
    
-   <select id='privacy'>
-        <option value="public">Public</option>
-        <option value="private">Private</option>
-   </select>
-   </form>
-   </div>}/>
-        <button onClick={handleTruthyShow}>Add Page</button>
-        <button>Delete Page</button>
+        <button classNAme="button green" onClick={handleTruthyShow}>Add Page</button>
          </div>
   </div>
             {/* <Popup trigger={ <button className="button light-green">Edit Book</button>} position="right center">
@@ -179,8 +162,25 @@ const handleEditClick = () => {
          <h4>{props.book.title}</h4>  
          <p>{props.book.bio}</p> 
          </div> 
-         <div className="btnBox">  
-    {editBtn()} <a className={"aBtn button grey"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
+         <div className="btnBox"> 
+         <Modal button={<button className="button violet">Edit Book</button>} content={<div
+   >
+   <form className="editForm">
+   <label>Name of Book:</label>
+   <br/>
+   <input type="text" placeholder={props.book.title}/>
+   <br/>
+   <label>Introduction to book</label> 
+   <textarea placeholder={props.book.bio}/>
+   <br/>
+   
+   <select id='privacy'>
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+   </select>
+   </form>
+   </div>}/> 
+    {addPageBtn()} <a className={"aBtn button yellow"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
       <button class="button is-dark blue" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
         <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
             <div   class="modal-content">

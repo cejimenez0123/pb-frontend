@@ -10,6 +10,7 @@ import PageInput from "../components/page/PageInput"
 import FollowerCards from '../components/user/FollowerCards'
 import Popup from 'reactjs-popup'
 import IdCard from '../components/book/IdCard'
+import Modal from "../components/modal"
  let truthy = "none"
 class BookContainer extends React.Component{
 constructor(){
@@ -120,13 +121,13 @@ ifBook(){
       
         if(this.props.currentUser && this.props.currentUser.id===this.props.book.user.id){
             return(<div>
-            <Popup trigger={ <button className={".editBookBtnDropdown"}>Edit Book</button>} position="right center">
-   <div >
+        
+    <Modal button={<button className="button">Edit Book</button>} content={<div>
+        {this.props.book.title}
+    </div>}/>
         <button onClick={()=>this.setState({editor:true})}>Add Page</button>
-        <button>Delete Page</button>
-         </div>
-  </Popup>
-           
+        
+
                      
        
         </div>)

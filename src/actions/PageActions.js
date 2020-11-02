@@ -92,14 +92,14 @@ const publishPage=(page)=>{
         bookId: page.bookId,
         status: "published"
       })}
-      return(dispatch)=>{fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
+      return(dispatch)=>{dispatch({type: "SHOW_EDITOR",action:"none"}).then(fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
         obj=>{
           debugger
           let page=obj.data.attributes
           
          dispatch(getAllPages())
         }
-      )}
+      ))}
 }
 const updatePage=(page)=>{
   debugger
@@ -120,10 +120,10 @@ const updatePage=(page)=>{
         obj=>{
 debugger
           let page=obj.data.attributes
-          
+          window.alert("saved!!")
          dispatch(getAllPages())
         }
-      )}
+      ).catch(err=>window.alert(err))}
 }
 const savePage = (page)=>{
  debugger

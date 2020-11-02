@@ -77,7 +77,8 @@
 	
 }
 .violet{
-	background-color: #dfa1dd
+	background-color: #dfa1dd;
+	color: white;
 }
 .modalContent {
 	overflow: auto;
@@ -85,7 +86,7 @@
 	margin: 5% auto;
 	
 	 /* 15% from the top and centered */
-	height: 550px;
+	min-height: 550px;
 	color: black;
 	max-width: 800px;
 	border: 1px solid #888; 
@@ -587,7 +588,37 @@ flex-direction: column;}
 	margin: auto;
 	text-align: center;
 }  */
-
+.modalContent .draftPage{
+	margin: 20px 10px;
+}
+.tara{
+	background-color: #D1F0DD;
+}
+.draftPageBtns{
+	display: flex;
+	justify-content: space-evenly;
+}
+.linkWater{
+	background-color: #D1D5F0;
+}
+.draftPageBtns button{
+	border-color: white;
+	padding: 4px 20px;
+	border-radius: 9%;
+	font-size: 16;
+}
+.green{
+	background-color: #baeda8;
+}
+.illusion{
+	background-color: #F7ABE5;
+}
+.rajah{
+	background-color: #f5b669;
+}
+.portage{
+	background-color:#7B91EA;
+}
 *{
 	font-family:  Helvetica, sans-serif;
 	box-sizing: border-box;
