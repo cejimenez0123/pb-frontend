@@ -15,10 +15,12 @@ import Modal from "../components/modal"
 let id= window.location.pathname.split("/")[2]
  let user
  
+ let html = ""
 class PublicProfileContainer extends React.Component{
     constructor(){
         super()
-        this.state={show: "none"}
+        this.state={show: "none",
+        toggle: "pages", books:[]}
     }
     componentDidMount(){
         
@@ -31,12 +33,12 @@ class PublicProfileContainer extends React.Component{
         this.props.getPagesById(id)
         this.props.getFollowers(id)
         this.props.getBooksOfUser(id)
-        this.props.getUserLibraries({id,privacy: "public"})
+        this.props.getUserLibraries({id})
     
     }    
     }
     componentDidUpdate(){
-        
+       
     }
     handleFollow(){
         console.log("CLICKEd")
@@ -50,6 +52,19 @@ class PublicProfileContainer extends React.Component{
             this.props.followUser(this.props.user.id)
         }
         
+    }
+    books(){
+        if(this.props.booksOfUser && this.props.booksOfUser.length>0){
+         
+           return this.props.booksOfUser.filter(book=>{return book.attributes.privacy==="public"})
+           
+       } 
+    }
+    pages(){
+        if(this.props.pages && this.props.pages.length>0){
+            return this.props.pages.filter(page=>{return page.attributes.book.privacy==="public"})
+            
+        }
     }
     handleShow(){
         if(this.state.show==="block"){
@@ -75,9 +90,26 @@ class PublicProfileContainer extends React.Component{
        this.setState({show: "none"})
      }
     }
+    handleToggle(e){
+let books =this.books()
+let pages = this.pages()
+    this.setState({toggle: e.target.value})
+        if(e.target.value==="pages"){
+            html = <Pages pages={pages}/>
+        }else if(e.target.value==="books"){
+            
+            html =<BookIndex books={books} user={this.props.user}/>
+        }
+    }
     render(){
-    
-     
+        let pages = this.pages()
+         let books = this.books()
+        if(this.state.toggle==="pages"){
+            html=<Pages pages={pages}/>
+        }else if(this.state.toggle==="books"){
+           
+            html =<BookIndex books={books} user={this.props.user}/>
+        }
         return(
          
     <div>
@@ -96,12 +128,17 @@ class PublicProfileContainer extends React.Component{
                   </div>
                   </div>
             </div>
-            <Modal button={<h3>Books</h3>} content={<BookIndex books={this.props.booksInView}/>}/>
+            <Modal button={<h3>Books</h3>} content={<BookIndex books={this.state.books}/>}/>
             <Modal button={<h3>Libraries</h3>} content={<LibraryIndex libraires={this.props.librariesInView}/>}/>
-            {/* <BookIndexModal books={this.props.booksInView}/> */}
             </section>
-            <Pages pages={this.props.pages}/>
-            <BookIndex books={this.props.booksInView} user={this.props.user}/>
+            <div id="main">
+            <select onChange={(e)=>this.handleToggle(e)}name="toggle">
+                <option name="pages">pages</option>
+                <option name="books">books</option>
+
+            </select>
+            {html}
+        </div>
     </div>
             </div>
         )
@@ -110,14 +147,16 @@ class PublicProfileContainer extends React.Component{
 const mapState = (state)=>{
     return{
         followers: state.users.userFollowers,
-        pages: state.pages.pagesInView
+        pages: state.pages.pagesInView,
+        booksOfUser: state.books.booksOfUser
     }
 }
 const mapDispatch = (dispatch)=>{
     return{followUser: (id)=>dispatch(followUser(id)),
     getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     deleteFollow:(follow)=>dispatch(deleteFollow(follow)),
-    getPagesById: (id)=>dispatch(getPagesById(id))
+    getPagesById: (id)=>dispatch(getPagesById(id)),
+    getUserLibraries:(hash)=>dispatch(getUserLibraries(hash))
     }
 }
 export default connect(mapState,mapDispatch)(PublicProfileContainer)

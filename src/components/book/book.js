@@ -108,7 +108,7 @@ function Book(props){
       
 
                 {/* <PageInput book={props.book}/> */}
-               <div className={"scroll bookPages button is-dark"}>
+               <div className={"scroll bookPages is-dark"}>
                <section>
                <div style={{display: props.show}} className={"ed"}>
                 

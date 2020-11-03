@@ -337,7 +337,7 @@ let config ={
     dispatch(getPageComments(page.page_id))
   })}}
 
-
+const pagesOfUser=(pages)=>{return{type: "PAGES_OF_USER",pages}}
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}

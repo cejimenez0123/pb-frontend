@@ -103,7 +103,7 @@ import PageCommentIndex from "./PageCommentIndex"
     content = page.data
     // dispatch(getPageComments(page))
       return(
-        <div className="pageContainer">
+        <div className="">
           <div  >
             <div className="page">
               <JoditEditor

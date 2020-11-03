@@ -31,7 +31,7 @@ function Pages (props){
                 }else{
 
                 return(<div className="noPages"> 
-                
+                    <h3>0 pages</h3>
                 </div>)
             }
     }

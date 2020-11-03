@@ -13,6 +13,8 @@ export default function PageReducer(
                 let newState= { ...state ,currentPage: page }
                 
                 return newState
+            case "PAGES_OF_USER":
+                return{...state,pagesOfUser: action.pages}
             case "PAGE_COMMENTS":
            
                 return {...state, pageCommentsInView: action.comments}

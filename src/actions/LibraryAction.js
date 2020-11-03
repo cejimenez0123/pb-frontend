@@ -56,7 +56,7 @@ function getAllLibraries(){
 function getUserLibraries(hash){
 
     return(dispatch)=>{
-        fetch(userPath+`/${hash.id}/${hash.privacy}/libraries`).then(res=>res.json()).then(obj=>{
+        fetch(userPath+`/${hash.id}/libraries`).then(res=>res.json()).then(obj=>{
            
             let libraries =obj.data
             dispatch(librariesInView(libraries))

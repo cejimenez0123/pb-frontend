@@ -5,7 +5,7 @@ function LibraryIndex(props){
 
    let t = []
 
-   if(props.libraries.length> 0){
+   if(props.libraries && props.libraries.length> 0){
 
 
 

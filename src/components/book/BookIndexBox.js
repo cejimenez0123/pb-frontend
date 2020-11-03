@@ -50,7 +50,7 @@ const dispatch = useDispatch()
 
    let book = props.book
 
-debugger
+
 return(<div className=" bookIndexBox list-group-item">
   <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}
   `}>{book.title}</a>
