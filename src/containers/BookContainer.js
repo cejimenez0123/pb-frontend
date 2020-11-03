@@ -192,7 +192,7 @@ ifBook(){
      
         BookContainer
     <div className="bookContainer">
-       <IdCard book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
+       <IdCard users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
      
         <div className="book">
        {this.ifBook()}

@@ -2,9 +2,10 @@ import React,{useState} from 'react'
 import Popup from 'reactjs-popup'
 import {useDispatch} from "react-redux"
 import {updateBook} from "../../actions/BookActions"
-import {deleteBookFollow} from '../../actions/FollowActions'
+import {deleteBookFollow,followBook} from '../../actions/FollowActions'
 import FollowerCards from "../user/FollowerCards"
 import Modal from "../modal"
+import SearchUsersShare from "../user/SearchUsersShare"
 import "../../App.css"
 function IdCard(props){
     const [title,setTitle]=useState("")
@@ -118,7 +119,7 @@ const handleEditClick = () => {
         if(follow){
             return (<button class={" button pink "} onClick={()=>handleFollow()}>Following</button>)
         }else{
-            return( <button class={" button red "} onClick={()=>props.followBook(props.book.id)}>Follow</button>)
+            return( <button class={" button red "} onClick={()=>handleFollow()}>Follow</button>)
         }
         
     }
@@ -139,41 +140,28 @@ const handleEditClick = () => {
         if(follow){
             dispatch(deleteBookFollow(follow))
         }else{
-            props.followBook(props.book.id)
+            dispatch(followBook(props.book.id))
         }
         
     }
-  function handleModalClose(e){
 
-      if(e.target === e.currentTarget){
-       console.log("!")
-       
-        // setShow("none")
-        setShow("none")
-     }
-  }
+    function shareBtn(){
+        if(props.book.user.id === localStorage.getItem("currentUser")){
 
-    function handleBookUpdate(e){
-        debugger
-e.preventDefault()
-        let title = e.target.querySelector(".bookName").value
-        let intro = e.target.querySelector(".introBook").value
-        let privacy = e.target.querySelector("select").value
-        let hash = {bookId: props.book.id,title, intro,privacy}
-        dispatch(updateBook(hash))
-    }
-    if(props.book){
-
-        return(<section className="idCard">
-         
-    <div>
-    <div className="bookTitle">
-         <h4>{props.book.title}</h4>  
-     </div>
-         <p>{props.book.intro}</p> 
-         
-         <div className="btnBox"> 
-         <Modal button={
+            return(<Modal button={<button className="button">Share</button> }  content={<div>
+                <p>Others <select name="shareLevel">
+                <option name="view">can view only</option>
+                <option name="add">can add only</option>
+                <option name="edit">can edit</option>
+                </select></p>
+                <SearchUsersShare users={props.users}/>
+        </div>}/>)
+        }}
+    
+    
+    function editBtn(){
+        if(props.book.user.id === localStorage.getItem("currentUser")){
+return( <Modal button={
         
         <a className="">Edit</a>
        } content={<div className="editForm"
@@ -194,8 +182,47 @@ e.preventDefault()
    </select>
    <button type="submit" >Update</button>
    </form>
-   </div>}/> 
-    {addPageBtn()} <a className={"aBtn button yellow"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
+   </div>}/>)
+        }
+    }
+  function handleModalClose(e){
+
+      if(e.target === e.currentTarget){
+       console.log("!")
+       
+        // setShow("none")
+        setShow("none")
+     }
+  }
+function draftsBtn(){
+    if(props.book.user.id === localStorage.getItem("currentUser")){
+    return( <a className={"aBtn button yellow"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
+    )}}
+    function handleBookUpdate(e){
+        debugger
+e.preventDefault()
+        let title = e.target.querySelector(".bookName").value
+        let intro = e.target.querySelector(".introBook").value
+        let privacy = e.target.querySelector("select").value
+        let hash = {bookId: props.book.id,title, intro,privacy}
+        dispatch(updateBook(hash))
+    }
+    if(props.book){
+
+        return(<section className="idCard">
+         
+    <div>
+    <div id="idCardHeader">
+     {editBtn()}
+    </div>
+    <div className="bookTitle">
+         <h4>{props.book.title}</h4>  
+     </div>
+         <p>{props.book.intro}</p> 
+         
+         <div className="btnBox"> 
+        
+    {addPageBtn()} {draftsBtn()} {shareBtn()}
       <button class="button is-dark blue" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
         <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
             <div   class="modal-content">

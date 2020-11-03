@@ -19,7 +19,7 @@ function Pages (props){
         
     
       // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-        if(props.pages.length>0){
+        if(props.pages && props.pages.length>0){
             return ( props.pages.map(page=>{
                 let comments = []
                 page = page.attributes
