@@ -24,16 +24,19 @@ import StreetContainer from "./containers/StreetContainer"
 import PublicProfileContainer from "./containers/PublicProfileContainer"
 import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 import LibraryContainer from "./containers/LibraryContainer"
+
 let bot
 class App extends React.Component{
   componentDidMount(){
-    if(localStorage.getItem("currentUser").length>0){
-    this.props.setCurrentUser()}
+    if(localStorage.getItem("currentUser") && localStorage.getItem("currentUser").length>0){
+      this.props.setCurrentUser()
+    }
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
     // this.props.getBookLibraries()
   }
+  
   bot = useUserActions()
 
   render(){

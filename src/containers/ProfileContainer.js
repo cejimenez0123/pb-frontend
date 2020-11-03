@@ -83,16 +83,15 @@ let privacy = e.target.querySelector(`select[name="privacy"]`).value
     }
     startBook(e){
         e.preventDefault()
-        debugger
+        
       let name=e.target.querySelector(`input[name="name"]`).value
+      let intro = e.target.querySelector("textarea").value
       let privacy = e.target.querySelector(`select[name="privacy"]`).value
-this.props.startBook({name,privacy})
+this.props.startBook({name,intro,privacy})
     }
-    componentDidUpdate(){
-    
+    componentDidUpdate(){  
     }
     handleShowBooks(){
-        debugger
         if(this.state.showBooks==="none"){
             this.setState({showBooks: "block"})
         }else{
@@ -170,14 +169,14 @@ this.props.startBook({name,privacy})
                          <div className="startForm">
                             <label htmlFor="name">Name of Book:  </label>
                             <br/>
-                            <input type="text" name="name" placeholder="untitled"/>
+                            <input type="text"  className="form-control" name="name" placeholder="untitled"/>
                             <br/>
                             <label> Introduction to Book</label>
                             <br/>
-                            <textarea className=" textarea bio-textarea" placeholder="What's the why" rows="3"/>
+                            <textarea className=" form-control" placeholder="What's the why" rows="3"/>
                             <br/>
                             <label> Privacy:</label>
-                            <select name="privacy">
+                            <select className="form-control" name="privacy">
                                 <option value="private">Private</option>
                                 <option value="public">Public</option>
                             </select>
@@ -203,7 +202,7 @@ this.props.startBook({name,privacy})
                         
                   
             </div>
-            <Modal button={<h3>Books</h3>} className={"book-index"} content={<BookIndex books={this.props.booksInView}/>}/>
+            <Modal button={<h3>Books</h3>} className={"book-index"} content={<BookIndex books={this.props.followedBooks}/>}/>
           
                   <Modal button={ <h3 >Libraries</h3> } className={"lib-index"} content={<LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries}/>
               }/>

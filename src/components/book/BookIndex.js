@@ -12,14 +12,19 @@ export default function BookIndex(props){
         
          
   let html=""
-    if(props.books){
-       
-   html=  props.books.map((book,i)=>{
-            book = book.attributes
-         
+    if(props.books.length>0){
+   html=  props.books.map((data,i)=>{
+            let book
+         switch(data.type){
+             case"book":
+             book = data.attributes
            return(<BookIndexBox key={i} book={book}/>
            
            )
+           case "follow_book":
+                book = data.attributes.book
+            return(<BookIndexBox key={i} book={book}/>)
+           }
         })
         return(<div className="list-group BookIndex">
              {html}

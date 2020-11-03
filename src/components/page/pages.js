@@ -19,28 +19,28 @@ function Pages (props){
         
     
       // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-        
-
         if(props.pages.length>0){
-           
-      
-       
             return ( props.pages.map(page=>{
                 let comments = []
                 page = page.attributes
-                
-                    return (<Page page={page} key={page.id}  pageComments={props.pageComments} size={size}/>)
+                return (
+                        <Page page={page} key={page.id}  pageComments={props.pageComments} size={size}/>
+                        )
                         })
-                        
-                        
-                )
-                }
+                    )
+                }else{
+
+                return(<div className="noPages"> 
+                
+                </div>)
             }
+    }
+            
 
     
     
         
-    return(<div>
+    return(<div className="pages">
     {renderPages()}
     </div>)
 

@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Popup from 'reactjs-popup'
 import {useDispatch} from "react-redux"
+import {updateBook} from "../../actions/BookActions"
 import {deleteBookFollow} from '../../actions/FollowActions'
 import FollowerCards from "../user/FollowerCards"
 import Modal from "../modal"
@@ -152,32 +153,46 @@ const handleEditClick = () => {
      }
   }
 
-
+    function handleBookUpdate(e){
+        debugger
+e.preventDefault()
+        let title = e.target.querySelector(".bookName").value
+        let intro = e.target.querySelector(".introBook").value
+        let privacy = e.target.querySelector("select").value
+        let hash = {bookId: props.book.id,title, intro,privacy}
+        dispatch(updateBook(hash))
+    }
     if(props.book){
- 
+
         return(<section className="idCard">
          
     <div>
     <div className="bookTitle">
          <h4>{props.book.title}</h4>  
-         <p>{props.book.bio}</p> 
-         </div> 
+     </div>
+         <p>{props.book.intro}</p> 
+         
          <div className="btnBox"> 
-         <Modal button={<button className="button violet">Edit Book</button>} content={<div
+         <Modal button={
+        
+        <a className="">Edit</a>
+       } content={<div className="editForm"
    >
-   <form className="editForm">
+   <form  onSubmit={(e)=>handleBookUpdate(e)}>
    <label>Name of Book:</label>
    <br/>
-   <input type="text" placeholder={props.book.title}/>
+   <input style={{width: "200px"}} className="form-control bookName " type="text" defaultValue={props.book.title}/>
    <br/>
    <label>Introduction to book</label> 
-   <textarea placeholder={props.book.bio}/>
+   <textarea style={{width: "350px",height: "200px"}} className="form-control introBook " defaultValue={props.book.intro}/>
    <br/>
    
-   <select id='privacy'>
-        <option value="public">Public</option>
+   <select style={{width: "100px"}}className="form-control " defaultValue={props.book.privacy}id='privacy'>
         <option value="private">Private</option>
+        <option value="public">Public</option>
+        
    </select>
+   <button type="submit" >Update</button>
    </form>
    </div>}/> 
     {addPageBtn()} <a className={"aBtn button yellow"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>

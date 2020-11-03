@@ -88,7 +88,7 @@ import PageCommentIndex from "./PageCommentIndex"
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
   let config
-  if(dimensions.width>700){
+  if(dimensions.width>740){
   
   config={readonly: true,width: 700,iframe: true}
   }else {

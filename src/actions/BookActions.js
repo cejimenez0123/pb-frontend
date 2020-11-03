@@ -17,6 +17,7 @@ function startBook(book,is_Home_Book="false"){
       body: JSON.stringify({
           userId: localStorage.getItem("currentUser"),
           title: book.name,
+          book: book.intro,
           privacy: book.privacy,
           isHomeBook: is_Home_Book
     })}
@@ -65,7 +66,26 @@ function getPublicBooksOfUser(id){
 
     })}
 }
-
+function updateBook({bookId,title,intro,privacy}){
+    let config={   
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          bookId: bookId,
+          title: title,
+          intro: intro,
+          privacy: privacy
+    })}
+    return(dispatch)=>{fetch(bookPath+`/${bookId}/update`,config).then(res=>res.json()).then(obj=>{
+        debugger
+    alert("UPDATED!!")
+    let book = obj.data.attributes
+    dispatch(bookInView(book))
+    }).catch(err=>window.alert(err))}
+}
 
 function getBook(id){
  
@@ -83,4 +103,4 @@ const setCurrentBook=(book)=>{
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
  const bookInView = (book)=>{return{type:"BOOK_IN_VIEW",book}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
-export { startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}
+export { updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

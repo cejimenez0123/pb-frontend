@@ -1,7 +1,7 @@
 
 
 export default function LibraryReducers(
-    state={libraries:[],librariesInView:[],bookLibraries:[],libraryInView:null,libraryFollowers: []},
+    state={libraries:[],librariesInView:[],bookLibraries:[],libraryInView:null,libraryFollowers: [],followedLibraries:[]},
     action){
 
         switch(action.type){
@@ -20,6 +20,8 @@ export default function LibraryReducers(
         case "LIBRARY_IN_VIEW":
      
             return{...state,libraryInView: action.library}
+        case "USER_FOLLOWED_LIBRARIES":
+        return{...state,followedLibraries: action.follows}
             default:
                 return state
         }

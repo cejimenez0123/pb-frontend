@@ -80,6 +80,7 @@
 	background-color: #dfa1dd;
 	color: white;
 }
+
 .modalContent {
 	overflow: auto;
 	background-color: #fefefe;
@@ -204,6 +205,7 @@
 	padding: 10px;
 	padding-top: 5px ;
   }
+
   .ed{background-color: red;
 
 display: inline-block}
@@ -212,6 +214,16 @@ display: inline-block}
 	width: 500px;
 	height: auto;
 	border: 2px solid
+}
+.editForm{
+	margin: auto;
+	max-width: 300px;
+	display: inline;
+	padding: 30px;
+}
+.editForm form{
+	max-width: 400px;
+	margin: auto;
 }
 /* .editor{
 	margin-left: 30%;
@@ -499,7 +511,7 @@ color: white;}
 	margin: 30px 50px;
 	/* margin: 20px auto 20px 35%; */
 }
-.bookContainer{display: flex;}
+
 .pcmainBook{
 	margin: 10px;
 }
@@ -532,6 +544,8 @@ and (min-device-width : 375px) {
 	.profileContainer{display: flex;
 flex-direction: column;
 	}
+	.bookContainer{display: flex;
+	flex-direction: column;}
 	.profile{
 		background-color: #1a1818;
 	color: white;
@@ -559,6 +573,7 @@ flex-direction: column;
 			display: flex;
 			
 		}
+		.bookContainer{display: flex;}
 		.idCard{
 			padding: 10px;
 			margin: 20px 10px;

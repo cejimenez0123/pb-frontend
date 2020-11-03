@@ -14,9 +14,9 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import {history} from "./history"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import multi from 'redux-multi'
 const rootReducer = combineReducers({users: UserReducer,pages: PageReducer,books: BookReducer,libraries: LibraryReducer})
-const store = createStore(rootReducer,composeWithDevTools( applyMiddleware(thunk)))
+const store = createStore(rootReducer,composeWithDevTools( applyMiddleware(thunk,multi)))
 ReactDOM.render(
   
   <Provider store={store}>   

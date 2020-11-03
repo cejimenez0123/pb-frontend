@@ -46,13 +46,11 @@ const dispatch = useDispatch()
      setShow("none")
    }
  }
-let book
-if(props.book.attributes){
-    book = props.book.attributes
-}else{
-    book = props.book
-}
 
+
+   let book = props.book
+
+debugger
 return(<div className=" bookIndexBox list-group-item">
   <a  onClick={()=>dispatch({type: "BOOK_IN_VIEW",book})} href={`/books/${book.id}
   `}>{book.title}</a>

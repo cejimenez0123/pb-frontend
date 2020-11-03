@@ -92,14 +92,15 @@ const publishPage=(page)=>{
         bookId: page.bookId,
         status: "published"
       })}
-      return(dispatch)=>{dispatch({type: "SHOW_EDITOR",action:"none"}).then(fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
+      return(dispatch)=>{(fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
         obj=>{
           debugger
           let page=obj.data.attributes
           
          dispatch(getAllPages())
         }
-      ))}
+      ))
+      }
 }
 const updatePage=(page)=>{
   debugger
