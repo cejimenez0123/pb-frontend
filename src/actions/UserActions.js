@@ -167,7 +167,7 @@ const shareWith=(user,content)=>{
     }
 function getUsers(){
   return(dispatch)=>{  fetch(userPath).then(res=>res.json()).then(users=>{
- 
+
       users=users.data
     dispatch({type: "GET_USERS",users})
     })}

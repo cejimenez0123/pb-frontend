@@ -12,7 +12,7 @@ import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
-import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary} from "./actions/FollowActions"
+import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
 import {getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
@@ -77,7 +77,7 @@ class App extends React.Component{
           <Switch>
            <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>
           <Route path ={'/users/:id'}>
-            <PublicProfileContainer getUser={this.props.getUdrt} users={this.props.users} librariesInView={this.props.librariesInView} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser} followUser={this.props.followUser}/>
+            <PublicProfileContainer getFollowedBooksOfUser={this.props.getFollowedBooksOfUser}getUser={this.props.getUdrt} users={this.props.users} librariesInView={this.props.librariesInView} user={this.props.userInView} getUser={this.props.getUser} booksInView={this.props.booksInView} getBooksOfUser={this.props.getBooksOfUser} followUser={this.props.followUser}/>
           </Route>
           </Switch>
           <Route exact path="/books/:id">
@@ -125,7 +125,8 @@ function mapDispatchToProps(dispatch){
     followLibrary: (id)=>dispatch(followLibrary(id)),
     deleteFollowLibrary: (id)=> dispatch(deleteFollowLibrary(id)),
     updateLibrary: (hash)=>dispatch(updateLibrary(hash)),
-    deleteBookLibrary:(hash)=>dispatch(deleteBookLibrary(hash))
+    deleteBookLibrary:(hash)=>dispatch(deleteBookLibrary(hash)),
+    getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id))
   }
 }
 function mapStateToProps(state){

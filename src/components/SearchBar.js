@@ -14,6 +14,7 @@ let filtered
   let input = e.target.value.toUpperCase()
   
 if(input.length>0){
+
   let users = this.props.users.filter(x=>{
    
   let  user = x.attributes
@@ -21,7 +22,7 @@ if(input.length>0){
 
   })
   let books= this.props.books.filter(book=>{
-      debugger
+      
       book = book.attributes
       return book.title.toUpperCase().includes(input)
   })

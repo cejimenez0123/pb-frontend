@@ -34,6 +34,7 @@ class PublicProfileContainer extends React.Component{
         this.props.getFollowers(id)
         this.props.getBooksOfUser(id)
         this.props.getUserLibraries({id})
+        this.props.getFollowedBooksOfUser(id)
     
     }    
     }
@@ -55,10 +56,21 @@ class PublicProfileContainer extends React.Component{
     }
     books(){
         if(this.props.booksOfUser && this.props.booksOfUser.length>0){
-         
            return this.props.booksOfUser.filter(book=>{return book.attributes.privacy==="public"})
            
        } 
+    }
+    ifSome(arr){
+        if(arr && arr.length>0){
+            return true
+        }else{
+            return false
+        }
+    }
+    followedBooks(){
+if(this.ifSome(this.props.followedBooks)){
+    debugger
+}
     }
     pages(){
         if(this.props.pages && this.props.pages.length>0){
@@ -102,6 +114,7 @@ let pages = this.pages()
         }
     }
     render(){
+        let followedBooks = this.followedBooks()
         let pages = this.pages()
          let books = this.books()
         if(this.state.toggle==="pages"){
@@ -128,7 +141,7 @@ let pages = this.pages()
                   </div>
                   </div>
             </div>
-            <Modal button={<h3>Books</h3>} content={<BookIndex books={this.state.books}/>}/>
+            <Modal button={<h3>Books</h3>} content={<BookIndex books={followedBooks}/>}/>
             <Modal button={<h3>Libraries</h3>} content={<LibraryIndex libraires={this.props.librariesInView}/>}/>
             </section>
             <div id="main">
@@ -148,7 +161,8 @@ const mapState = (state)=>{
     return{
         followers: state.users.userFollowers,
         pages: state.pages.pagesInView,
-        booksOfUser: state.books.booksOfUser
+        booksOfUser: state.books.booksOfUser,
+        followedBooks: state.books.followedBooksOfUser
     }
 }
 const mapDispatch = (dispatch)=>{
