@@ -1,11 +1,16 @@
 import React from 'react'
 import {option} from 'react-bootstrap'
-class FollowerCard extends React.Component{
+function FollowerCard(props){
     
-    ifProps=()=>{
+
+    let user
     
-        let user = this.props.follow.attributes.follower
-    
+if(props.user){
+    user = props.user
+}else if(props.follow.attributes){
+    user = props.follow.attributes.follower
+    }
+    if(user){
         return(
             
         <li>
@@ -13,11 +18,11 @@ class FollowerCard extends React.Component{
            <a href={`/users/${user.id}`}> {user.name}- @{user.username}</a></li>
         
         
-        )
-    }
-    render(){
-return(<div>
-    {this.ifProps()}
-</div>)}
+        )}else{
+            return("")
+        }
+    
+
+
 }
 export default FollowerCard

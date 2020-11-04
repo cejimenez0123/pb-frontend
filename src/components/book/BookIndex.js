@@ -12,9 +12,11 @@ export default function BookIndex(props){
         
          
   let html=""
-    if(props.books.length>0){
+    if(props.books && props.books.length>0){
+        debugger
    html=  props.books.map((data,i)=>{
             let book
+    
          switch(data.type){
              case"book":
              book = data.attributes

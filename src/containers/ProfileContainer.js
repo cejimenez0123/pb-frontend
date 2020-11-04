@@ -258,7 +258,7 @@ function mapStateToProps(state){
         homeBook: state.users.currentUser.home_book,
         userBooks: state.books.booksOfUser,
         followedUsers: state.users.followedUsers,
-        followedBooks: state.books.followedBooks,
+        followedBooks: state.books.followedBooksOfUser,
         pagesInView: state.pages.pagesInView,
         pages: state.pages.pages,
         libraries: state.libraries.librariesInView,

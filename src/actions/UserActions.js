@@ -109,7 +109,9 @@ const LOG_IN = (user)=>{
         dispatch({type: "LOG_IN",user})
         
         }
-        ).catch(error=>window.alert("Username or Password Incorrect"))
+        ).catch(error=>{
+            window.history.back()
+            window.alert("Username or Password Incorrect")})
     })
 }
 const SET_CURRENT_USER=()=>{

@@ -69,7 +69,12 @@ class PublicProfileContainer extends React.Component{
     }
     followedBooks(){
 if(this.ifSome(this.props.followedBooks)){
-    debugger
+
+  return this.props.followedBooks.filter(follow=>{
+        return follow.attributes.book.privacy === "public"
+ })
+   
+
 }
     }
     pages(){

@@ -3,7 +3,7 @@ import FollowerCard from './FollowerCard'
 function FollowerCards(props){
     let html
    
-    if(props.users.length>0){
+    if(props.users && props.users.length>0){
       html=  props.users.map(follow=>{
             return <FollowerCard follow={follow}/>
         })
