@@ -127,7 +127,7 @@ let config = {
               bookId: id
           })}
     return(dispatch)=>{fetch(followBookPath,config).then(res=>res.json()).then(obj=>{
-window.alert("follow sent")
+debugger
     dispatch(bookFollowers(id))
     dispatch(getFollowedBooksOfUser(localStorage.getItem("currentUser")))
      

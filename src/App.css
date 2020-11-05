@@ -85,12 +85,13 @@
 }
 
 .modalContent {
-	overflow: auto;
+	/* overflow: scroll; */
 	background-color: #fefefe;
 	margin: 5% auto;
-	
+overflow-y: scroll;
+	border-radius: 5px;
 	 /* 15% from the top and centered */
-	min-height: 550px;
+	height: 550px;
 	color: black;
 	max-width: 800px;
 	border: 1px solid #888; 
@@ -121,14 +122,14 @@
 	width: 80%;
 }
 .modal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
+	
+	display: none; /* Hidden by default *//* Stay in place */
 	z-index: 1; /* Sit on top */
 	margin: auto;
 	top: 0;
+
 	 /* Full width */
-	height: 0%; /* Full height */
-	 overflow: auto; /*Enable scroll if needed */
+	min-height: 700px; /* Full height */ /*Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
@@ -254,10 +255,6 @@ background-color: red;}
 }
 .editor .jodit-toolbar__box{
 	display: block;
-}
-.pageMain{
-	overflow: scroll;
-	margin-left: 10px;
 }
 
 
@@ -494,10 +491,15 @@ color: white;}
 .bookTitle{
 	margin: 10px 20px;
 }
-
+#idCardHeader{display: flex;
+justify-content: flex-end;}
 .idCard .btnBox{
 	margin: 10px;
 }
+.sharing{width: 400px;
+margin: 15px auto;
+align-content: center;}
+.searchUsersShare{width: 350px;}
 .btnBox {
 	display: flex;
 	flex-wrap: wrap;

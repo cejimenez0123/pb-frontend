@@ -4,12 +4,12 @@ import ShareBox from "./ShareBox"
 function SearchUsersShare({users}){
 
     if (users && users.length>0){
-debugger
+
  let html = users.map(user=>{
-    return(<ShareBox user={user}/>)
+    return(<ShareBox user={user.attributes}/>)
 })
     
-    return(<div >
+    return(<div className="searchUsersShare">
     <div className="list-group">
     {html}
     </div></div>)}else{

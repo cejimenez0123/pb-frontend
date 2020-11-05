@@ -8,6 +8,7 @@ function useBookActions(){
     return{getBooksOfUser: id=>{getBooksOfUser(id)}}
 }
 function startBook(book,is_Home_Book="false"){
+    debugger
     let config={   
     method: 'POST',
     headers: {
@@ -22,13 +23,13 @@ function startBook(book,is_Home_Book="false"){
           isHomeBook: is_Home_Book
     })}
     return(dispatch)=>{fetch(bookPath,config).then(res=>res.json()).then(obj=>{
-        debugger
+   
         let book
         if(obj.data.attributes){
         book = obj.data.attributes
-        followBook(book.id)
+        dispatch(followBook(book.id))
         history.push(`/books/${book.id}`)
-        dispatch(bookInView(book)) 
+        
        
     
     

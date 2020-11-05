@@ -148,14 +148,20 @@ const handleEditClick = () => {
     function shareBtn(){
         if(props.book.user.id === localStorage.getItem("currentUser")){
 
-            return(<Modal button={<button className="button">Share</button> }  content={<div>
-                <p>Others <select name="shareLevel">
-                <option name="view">can view only</option>
-                <option name="add">can add only</option>
-                <option name="edit">can edit</option>
-                </select></p>
-                <SearchUsersShare users={props.users}/>
-        </div>}/>)
+            return(<Modal button={<button className="button">Share</button> }  content={<section className="sharing">
+                <div>
+                    <label>People who can view:</label>
+                    <SearchUsersShare users={props.users}/>
+                </div>
+                <div>
+                    <label>People who can add:</label>
+                    <SearchUsersShare users={props.users}/>
+                </div>
+                <div>       
+                  <label>People who can edit:</label>
+                    <SearchUsersShare users={props.users}/>
+                 </div>
+        </section>}/>)
         }}
     
     
@@ -217,6 +223,8 @@ e.preventDefault()
     </div>
     <div className="bookTitle">
          <h4>{props.book.title}</h4>  
+         <br/>
+         <h6> from {props.book.user.name}</h6>
      </div>
          <p>{props.book.intro}</p> 
          

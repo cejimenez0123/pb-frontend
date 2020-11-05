@@ -146,7 +146,7 @@ function mapStateToProps(state){
     libraryInView: state.libraries.libraryInView,
     librariesInView: state.libraries.librariesInView,
     libraryFollowers: state.libraries.libraryFollowers,
-    followedBooks: state.books.followedBooks
+    followedBooks: state.books.followedBooksOfUser
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

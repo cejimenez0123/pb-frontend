@@ -83,7 +83,7 @@ let privacy = e.target.querySelector(`select[name="privacy"]`).value
     }
     startBook(e){
         e.preventDefault()
-        
+        debugger
       let name=e.target.querySelector(`input[name="name"]`).value
       let intro = e.target.querySelector("textarea").value
       let privacy = e.target.querySelector(`select[name="privacy"]`).value

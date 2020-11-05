@@ -28,6 +28,9 @@ class LibraryContainer extends React.Component{
     }
     
    ifEdit(){
+       if(this.props.books && this.props.books.length>0){
+           debugger
+       }
        let bookIndex = this.props.books.map(book=>{
      
            book = book.attributes 
