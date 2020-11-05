@@ -2,7 +2,7 @@ import {history} from "../history"
 import {followBook } from "./FollowActions"
 const bookPath = "/books"
 const userPath = "/users"
-
+const accessBookPath="/access_books"
 
 function useBookActions(){
     return{getBooksOfUser: id=>{getBooksOfUser(id)}}
@@ -97,6 +97,22 @@ function getBook(id){
         dispatch(bookInView(book))
     })}
 }
+function accessBook({bookId,access}){
+    let config={   
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          bookId: bookId,
+          access:access
+    })}
+    return(dispatch)=>{fetch(accessBook,config).then(res=>res.json()).then(obj=>{
+        debugger
+        dispatch({type:"DSdsdsds"})
+    })}
+}
 const setCurrentBook=(book)=>{
     return{type: "SET_CURRENT_BOOK",  book}
 }
@@ -104,4 +120,4 @@ const setCurrentBook=(book)=>{
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
  const bookInView = (book)=>{return{type:"BOOK_IN_VIEW",book}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
-export { updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}
+export { accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

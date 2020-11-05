@@ -151,15 +151,15 @@ const handleEditClick = () => {
             return(<Modal button={<button className="button">Share</button> }  content={<section className="sharing">
                 <div>
                     <label>People who can view:</label>
-                    <SearchUsersShare users={props.users}/>
+                    <SearchUsersShare users={props.users} access="view"/>
                 </div>
                 <div>
                     <label>People who can add:</label>
-                    <SearchUsersShare users={props.users}/>
+                    <SearchUsersShare users={props.users} access="add"/>
                 </div>
                 <div>       
                   <label>People who can edit:</label>
-                    <SearchUsersShare users={props.users}/>
+                    <SearchUsersShare users={props.users} access="edit"/>
                  </div>
         </section>}/>)
         }}

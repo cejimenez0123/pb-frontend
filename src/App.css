@@ -91,7 +91,7 @@
 overflow-y: scroll;
 	border-radius: 5px;
 	 /* 15% from the top and centered */
-	height: 550px;
+	height: 600px;
 	color: black;
 	max-width: 800px;
 	border: 1px solid #888; 
@@ -499,6 +499,10 @@ justify-content: flex-end;}
 .sharing{width: 400px;
 margin: 15px auto;
 align-content: center;}
+.searchUsersShare .list-group-item{
+	display: flex;
+	justify-content: space-between;
+}
 .searchUsersShare{width: 350px;}
 .btnBox {
 	display: flex;

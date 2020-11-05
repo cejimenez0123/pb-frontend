@@ -3,7 +3,9 @@ import React from 'react'
 
 function ShareBox({user}){
 
-
+    function handleOnChange(e){
+        debugger
+    }
     return(<div className="list-group-item">
     <div>
         {user.name} - {user.username}
@@ -11,7 +13,11 @@ function ShareBox({user}){
         {user.email}
     </div>
         <div>
-            <h6>Yes </h6>|<h5> Nah</h5>
+            <select onChange={(e)=>handleOnChange(e)} name="privacy" defaultValue="Nah">
+                <option name="yes">Yes</option>
+                <option name="nah">Nah</option>
+
+            </select>
         </div>
             </div>)
 }
