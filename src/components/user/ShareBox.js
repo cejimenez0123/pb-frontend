@@ -2,13 +2,13 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import {accessBook} from '../../actions/BookActions'
 
-function ShareBox({user,access,bookId}){
+function ShareBox({user,bookId}){
     const dispatch = useDispatch()
     function handleOnChange(e){
         debugger
-        let val = e.target.value
+        let access = e.target.name
         let hash ={bookId,access,userId: user.id}
-    if(val==="Yes")
+    if(access!=="can't")
         dispatch(accessBook(hash))
     }
     return(<div className="list-group-item">
@@ -18,10 +18,11 @@ function ShareBox({user,access,bookId}){
         {user.email}
     </div>
         <div>
-            <select onChange={(e)=>handleOnChange(e)} name="privacy" defaultValue="Nah">
-                <option name="yes">Yes</option>
-                <option name="nah">Nah</option>
-
+            <select onChange={(e)=>handleOnChange(e)} name="privacy" defaultValue="can't view">
+                <option name="view">can view</option>
+                <option name="add">can add</option>
+                <option name="edit">can edit</option>
+                <option name="can't">can't view</option>
             </select>
         </div>
             </div>)

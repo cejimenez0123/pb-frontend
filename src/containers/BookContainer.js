@@ -4,6 +4,7 @@ import Book from "../components/book/book"
 import Editor from "../components/page/editor"
 import NavbarContainer from "./NavbarContainer"
 import { connect} from 'react-redux'
+import {getBookAccessors} from "../actions/BookActions"
 import {followBook,bookFollowers,deleteBookFollow} from "../actions/FollowActions"
 import {savePage,getPagesOfBook} from '../actions/PageActions'
 import PageInput from "../components/page/PageInput"
@@ -28,6 +29,7 @@ constructor(){
    this.props.getBook(id)
      this.props.getPagesOfBook(id)
      this.props.bookFollowers(id)
+     this.props.getBookAccessors(id)
     
  }
  componentDidUpdate(){
@@ -218,7 +220,8 @@ const mapDispatchTothis=(dispatch)=>{
         followBook:(id)=>dispatch(followBook(id)),
         getPagesOfBook:(id)=>dispatch(getPagesOfBook(id)),
         bookFollowers: (id)=>dispatch(bookFollowers(id)),
-        deleteBookFollow:(follow)=>dispatch(deleteBookFollow(follow))
+        deleteBookFollow:(follow)=>dispatch(deleteBookFollow(follow)),
+        getBookAccessors: (id)=>dispatch(getBookAccessors(ids))
     }
 }
 export default  connect(mapStateTothis,mapDispatchTothis)(BookContainer)
