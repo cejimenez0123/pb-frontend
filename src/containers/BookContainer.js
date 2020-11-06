@@ -36,65 +36,7 @@ constructor(){
     
 
  }
-//   editBtn(){
-      
-//         if(this.props.currentUser && this.props.currentUser.id===this.props.book.user.id){
-//             return(<div>
-//             <Popup trigger={ <button className={".editBookBtnDropdown"}>Edit Book</button>} position="right center">
-//    <div >
-//         <button onClick={()=>this.setState({truthy:"block"})}>Add Page</button>
-//         <button>Delete Page</button>
-//          </div>
-//   </Popup>
-           
-                     
-       
-//         </div>)
-            
-//         }else{
-//             return ("")
-//         }
-//     }
-// followBtn(){
-//          let follow= this.props.followers.find(follow=>{
-//            return follow.attributes.follower.id === localStorage.getItem("currentUser")
-//         })
-//         if(follow){
-//             return (<button class={"followedBtn"} onClick={()=>handleFollow()}>Following</button>)
-//         }else{
-//             return( <button class={"followBtn"} onClick={()=>props.followBook(props.book.id)}>Follow</button>)
-//         }
-        
-//     }
-// idCard(){
 
-//     if(this.props.book){
-       
-//         return(<div>
-//          <button class="button is-dark" onClick={()=>this.setState({show: "block"})}>Followers</button>
-//     <div style={{textAlign: "center"}}>
-               
-//     {this.editBtn()} <a href={`/books/${this.props.book.id}/drafts`}>Drafts</a>
-//       {followBtn()}
-//         <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
-//             <div   class="modal-content">
-//                 <span  class="close">&times;</span>
-//                   {followerCards()}
-//             </div>
-//         </div></div>
-//          xxxxxx{this.editBtn()} <a href={`/books/${this.props.book.id}/drafts`}>Drafts</a>
-//    {this.followBtn()}
-//          <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.show}} class="modal">
-//                    <div   class="modal-content">
-//                      <span  class="close">&times;</span>
-//                      {this.followerCards()}
-//                     </div>
-//                     <button class="button is-dark" onClick={()=>this.setState({show:"block"})}>Followers</button>
-//                </div></div>)
-//     }else{
-//         return("no Book")
-//     }
-// }
 ifBook(){
 
     if(this.props.book){
@@ -194,7 +136,7 @@ ifBook(){
      
         BookContainer
     <div className="bookContainer">
-       <IdCard users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
+       <IdCard bookAccessors={this.props.bookAccessors} users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
      
         <div className="book">
        {this.ifBook()}
@@ -211,7 +153,8 @@ const mapStateTothis=(state)=>{
     users: state.users.users,
     pagesInView: state.pages.pagesInView,
     currentPage: state.pages.currentPage,
-    followers: state.books.bookFollowers
+    followers: state.books.bookFollowers,
+    bookAccessors: state.books.bookAccessors
     }
 }
 const mapDispatchTothis=(dispatch)=>{
@@ -221,7 +164,7 @@ const mapDispatchTothis=(dispatch)=>{
         getPagesOfBook:(id)=>dispatch(getPagesOfBook(id)),
         bookFollowers: (id)=>dispatch(bookFollowers(id)),
         deleteBookFollow:(follow)=>dispatch(deleteBookFollow(follow)),
-        getBookAccessors: (id)=>dispatch(getBookAccessors(ids))
+        getBookAccessors: (id)=>dispatch(getBookAccessors(id))
     }
 }
 export default  connect(mapStateTothis,mapDispatchTothis)(BookContainer)

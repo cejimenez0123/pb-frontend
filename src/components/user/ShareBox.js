@@ -2,13 +2,38 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import {accessBook} from '../../actions/BookActions'
 
-function ShareBox({user,bookId}){
+function ShareBox(props){
     const dispatch = useDispatch()
+    let user = props.user
+    let access
+    if(props.bookAccess){
+        debugger
+    if(props.bookAccess.access === ("view"||"edit"||"add")){
+       
+        debugger
+        access=`can ${props.bookAccess.access}`
+        }else{
+        debugger
+        access = "can't view"
+
+    }
+        
+    }
+    function selection(){
+
+       
+        return(<select onChange={(e)=>handleOnChange(e)} name="privacy" defaultValue={access}>
+                <option name="view">can view</option>
+                <option name="add">can add</option>
+                <option name="edit">can edit</option>
+                <option name="can't">can't view</option>
+            </select>)
+    }
     function handleOnChange(e){
         debugger
-        let access = e.target.name
-        let hash ={bookId,access,userId: user.id}
-    if(access!=="can't")
+        let access = e.target.value.split(" ")[1]
+        let hash ={bookId: props.bookId,access,userId: props.user.id}
+    if(e.target.value!=="can't view")
         dispatch(accessBook(hash))
     }
     return(<div className="list-group-item">
@@ -18,12 +43,7 @@ function ShareBox({user,bookId}){
         {user.email}
     </div>
         <div>
-            <select onChange={(e)=>handleOnChange(e)} name="privacy" defaultValue="can't view">
-                <option name="view">can view</option>
-                <option name="add">can add</option>
-                <option name="edit">can edit</option>
-                <option name="can't">can't view</option>
-            </select>
+            {selection()}
         </div>
             </div>)
 }

@@ -1,5 +1,5 @@
 export default function BookReducer(
-    state={booksInView:[],bookInView: null,showEditor:"none", books: [],booksOfUser: [],bookFollowers: [], followedBooksOfUser:[],bookAccesors:[]},
+    state={booksInView:[],bookInView: null,showEditor:"none", books: [],booksOfUser: [],bookFollowers: [], followedBooksOfUser:[],bookAccessors:[]},
     action){
 
         switch(action.type){
@@ -22,7 +22,7 @@ export default function BookReducer(
             case "USERS_FOLLOWED_BOOKS":
             return{...state,followedBooksOfUser: action.follows}
             case "BOOK_ACCESSORS":
-            return {...state,bookAccesors: action.accessors}
+            return {...state,bookAccessors: action.accessors}
             default: 
             return state
         }

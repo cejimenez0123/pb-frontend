@@ -117,8 +117,9 @@ function accessBook({bookId,access,userId}){
 function getBookAccessors(id){
 
     return(dispatch)=>{fetch(bookPath+`/${id}/accessors`).then(res=>res.json()).then(obj=>{
-debugger
+
 let accessors = obj
+
 dispatch(bookAccessors(accessors))
 
     })}
@@ -131,4 +132,4 @@ const bookAccessors=(accessors)=>{return{type: "BOOK_ACCESSORS", accessors}}
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
  const bookInView = (book)=>{return{type:"BOOK_IN_VIEW",book}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
-export { accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}
+export { getBookAccessors,accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}
