@@ -84,7 +84,7 @@ function LOG_IN_START(){
 }
 const LOG_IN = (user)=>{
 
-    let config = {
+    const con = {
         method: 'POST',
         headers: {
             // 'ACCESS-CONTROL-ALLOW-ORIGIN': 'http://localhost:3000',
@@ -98,15 +98,16 @@ const LOG_IN = (user)=>{
     return ((dispatch)=>{
         dispatch(LOG_IN_START);
        
-        fetch("/login",config).then(res=>res.json()).then(user =>{
+        fetch("/login",con).then(res=>res.json()).then(user =>{
           debugger
             user = user.data.attributes
+        if(user!==null){
         localStorage.setItem("currentUser",user.id)
         localStorage.setItem("loggedIn",true)
         history.push(`/user/${user.id}`)
     
         // dispatch(setCurrentBook(user.home_book))
-        dispatch({type: "LOG_IN",user})
+        dispatch({type: "LOG_IN",user})}
         
         }
         ).catch(error=>{

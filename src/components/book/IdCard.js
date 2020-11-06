@@ -146,20 +146,22 @@ const handleEditClick = () => {
     }
 
     function shareBtn(){
+       
         if(props.book.user.id === localStorage.getItem("currentUser")){
-
+ let users =props.users.filter(user=>{return user.id!==localStorage.getItem("currentUser")})
+         
             return(<Modal button={<button className="button">Share</button> }  content={<section className="sharing">
                 <div>
                     <label>People who can view:</label>
-                    <SearchUsersShare users={props.users} access="view"/>
+                    <SearchUsersShare users={users} book={props.book} access="view"/>
                 </div>
                 <div>
                     <label>People who can add:</label>
-                    <SearchUsersShare users={props.users} access="add"/>
+                    <SearchUsersShare users={users} book={props.book} access="add"/>
                 </div>
                 <div>       
                   <label>People who can edit:</label>
-                    <SearchUsersShare users={props.users} access="edit"/>
+                    <SearchUsersShare users={users} book={props.book} access="edit"/>
                  </div>
         </section>}/>)
         }}

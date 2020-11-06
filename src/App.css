@@ -10,8 +10,7 @@
 	margin: auto;
 }
 .list-group{
-	position: relative;
-	overflow:hidden; 
+	position: relative; 
 	overflow-y:scroll;
 }
 #main{

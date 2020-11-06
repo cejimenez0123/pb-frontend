@@ -97,7 +97,7 @@ function getBook(id){
         dispatch(bookInView(book))
     })}
 }
-function accessBook({bookId,access}){
+function accessBook({bookId,access,userId}){
     let config={   
     method: 'POST',
     headers: {
@@ -106,11 +106,19 @@ function accessBook({bookId,access}){
       },
       body: JSON.stringify({
           bookId: bookId,
-          access:access
+          access:access,
+          userId: userId
     })}
-    return(dispatch)=>{fetch(accessBook,config).then(res=>res.json()).then(obj=>{
+    return(dispatch)=>{fetch(accessBookPath,config).then(res=>res.json()).then(obj=>{
         debugger
         dispatch({type:"DSdsdsds"})
+    })}
+}
+function getBookAccessors(id){
+
+    return(dispatch)=>{fetch(bookPath+`/${id}/accessors`).then(res=>res.json()).then(obj=>{
+debugger
+
     })}
 }
 const setCurrentBook=(book)=>{

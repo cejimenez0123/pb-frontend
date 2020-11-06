@@ -1,12 +1,12 @@
 import React from 'react'
 import ShareBox from "./ShareBox"
 
-function SearchUsersShare({users}){
+function SearchUsersShare({users,book,access}){
 
     if (users && users.length>0){
 
  let html = users.map(user=>{
-    return(<ShareBox user={user.attributes}/>)
+    return(<ShareBox user={user.attributes} bookId={book.id} access={access}/>)
 })
     
     return(<div className="searchUsersShare">
