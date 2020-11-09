@@ -1,24 +1,23 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import {accessBook} from '../../actions/BookActions'
+import {accessBook,deleteBookAccess,updateBookAccess} from '../../actions/BookActions'
 
 function ShareBox(props){
     const dispatch = useDispatch()
     let user = props.user
     let access
     if(props.bookAccess){
-        debugger
+
     if(props.bookAccess.access === ("view"||"edit"||"add")){
        
-        debugger
+    
         access=`can ${props.bookAccess.access}`
-        }else{
-        debugger
-        access = "can't view"
+        }
 
-    }
         
-    }
+    }else{
+     
+        access = "can't view"}
     function selection(){
 
        
@@ -29,13 +28,28 @@ function ShareBox(props){
                 <option name="can't">can't view</option>
             </select>)
     }
+
     function handleOnChange(e){
         debugger
-        let access = e.target.value.split(" ")[1]
-        let hash ={bookId: props.bookId,access,userId: props.user.id}
-    if(e.target.value!=="can't view")
+        let level
+        if(e.target.value!=="can'view"){
+ level= e.target.value.split(" ")[1]
+        }else{
+            access= e.target.value.split(" ")[0]
+        }
+    
+       
+        let hash ={bookId: props.bookId,access:level,userId: props.user.id}
+    debugger
+    if(props.bookAccess){
+        let obj= {access: props.bookAccess,level: level}
+        dispatch(updateBookAccess(obj))
+    }else{
+    if(e.target.value!=="can't view"){
         dispatch(accessBook(hash))
-    }
+    }else{
+        dispatch(deleteBookAccess(props.bookAccess))
+    }}}
     return(<div className="list-group-item">
     <div>
         {user.name} - {user.username}

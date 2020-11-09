@@ -28,8 +28,9 @@ constructor(){
      let id = window.location.pathname.split("/")[2]
    this.props.getBook(id)
      this.props.getPagesOfBook(id)
-     this.props.bookFollowers(id)
      this.props.getBookAccessors(id)
+     this.props.bookFollowers(id)
+     
     
  }
  componentDidUpdate(){
@@ -62,14 +63,18 @@ ifBook(){
         
     }
     editBtn(){
-      
-        if(this.props.currentUser && this.props.currentUser.id===this.props.book.user.id){
+         let   button =""
+        let ba = this.props.bookAccessors.find(access=>{return access.user.id === this.props.currentUser.id})
+if(this.props.currentUser && this.props.currentUser.id===this.props.book.user.id ||(ba.access==="add"||ba.access==="edit")){
+button=( <button onClick={()=>this.setState({editor:true})}>Add Page</button>)
+       } 
+       if(this.props.currentUser && this.props.currentUser.id===this.props.book.user.id){
             return(<div>
         
     <Modal button={<button className="button">Edit Book</button>} content={<div>
         {this.props.book.title}
     </div>}/>
-        <button onClick={()=>this.setState({editor:true})}>Add Page</button>
+       {button}
         
 
                      

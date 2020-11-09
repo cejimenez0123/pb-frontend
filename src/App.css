@@ -16,6 +16,13 @@
 #main{
 	margin: auto 20px;
 }
+.searchedUsers .list-group{
+	position: absolute;
+	z-index: 1;
+}
+.bookAccessors .list-group{
+	width: 400px;
+}
 #Navbar{
 	position: relative
 }
@@ -502,7 +509,8 @@ align-content: center;}
 	display: flex;
 	justify-content: space-between;
 }
-.searchUsersShare{width: 350px;}
+.searchUsersShare{width: 400px;
+align-content: center;}
 .btnBox {
 	display: flex;
 	flex-wrap: wrap;

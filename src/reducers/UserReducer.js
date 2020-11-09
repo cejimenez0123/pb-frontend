@@ -6,7 +6,7 @@ export default function UserReducer(
         userFollowers: [],
         userInView: {},
     loggedIn: false,
-requesting: false },
+requesting: false},
     action){
     
         switch (action.type){

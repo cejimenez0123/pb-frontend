@@ -120,8 +120,48 @@ function getBookAccessors(id){
 
 let accessors = obj
 
-dispatch(bookAccessors(accessors))
+dispatch(bookAccessors(accessors)
+)}
+)}
+}
 
+    
+
+function updateBookAccess({access,level}){
+let config={   
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+         id: access.id,
+         access: level 
+    })}
+    return(dispatch)=>{fetch(accessBookPath+`/${access.id}/update`,config).then(res=>res.json()).then(obj=>{
+        debugger
+        dispatch(getBookAccessors(access.book.id))
+    })}
+
+}
+function deleteBookAccess(access){
+        let config={   
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          id: access.id
+    })}
+    return(dispatch)=>{fetch(accessBookPath+`/${access.id}/delete`).then(res=>res.json()).then(obj=>{
+        
+        dispatch(getBookAccessors(access.book.id))
+    })}
+}
+function getUserBookAccesses(){
+    return(dispatch)=>{fetch(userPath+`${localStorage.getItem("currentUser")}/book_access`).then(res=>res.json()).then(obj=>{
+        debugger
     })}
 }
 const setCurrentBook=(book)=>{
@@ -132,4 +172,4 @@ const bookAccessors=(accessors)=>{return{type: "BOOK_ACCESSORS", accessors}}
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
  const bookInView = (book)=>{return{type:"BOOK_IN_VIEW",book}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
-export { getBookAccessors,accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}
+export { updateBookAccess,deleteBookAccess,getBookAccessors,accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

@@ -146,17 +146,20 @@ const handleEditClick = () => {
     }
 
     function shareBtn(){
-       
+
+        if(props.book.privacy==="private"){
         if(props.book.user.id === localStorage.getItem("currentUser")){
  let users =props.users.filter(user=>{return user.id!==localStorage.getItem("currentUser")})
          console.log("BDDF",props.bookAccessors)
+  
             return(<Modal button={<button className="button">Share</button> }  content={<section className="sharing">
                 <div>
                  
                     <SearchUsersShare bookAccessors={props.bookAccessors} users={users} book={props.book} />
                  </div>
         </section>}/>)
-        }}
+        }
+    }}
     
     
     function editBtn(){
