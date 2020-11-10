@@ -159,17 +159,20 @@ function deleteBookAccess(access){
         dispatch(getBookAccessors(access.book.id))
     })}
 }
-function getUserBookAccesses(){
-    return(dispatch)=>{fetch(userPath+`${localStorage.getItem("currentUser")}/book_access`).then(res=>res.json()).then(obj=>{
-        debugger
+function getUserBookAccess(){
+    return(dispatch)=>{fetch(userPath+`/${localStorage.getItem("currentUser")}/access_books`).then(res=>res.json()).then(obj=>{
+
+        let accessors = obj
+        dispatch(userBookAccessors(accessors))
     })}
 }
 const setCurrentBook=(book)=>{
     return{type: "SET_CURRENT_BOOK",  book}
 }
+const userBookAccessors=(accessors)=>{return{type:"BOOK_ACCESS_OF_USER",accessors}}
 const bookAccessors=(accessors)=>{return{type: "BOOK_ACCESSORS", accessors}}
  const booksOfUser = (books)=>{return{type:"BOOKS_OF_USER",books}}
  const booksInView = (books)=>{return{type:"BOOKS_IN_VIEW",books}}
  const bookInView = (book)=>{return{type:"BOOK_IN_VIEW",book}}
  const getallbooks=(books)=>{return{type: "ALL_BOOKS",books}}
-export { updateBookAccess,deleteBookAccess,getBookAccessors,accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}
+export { getUserBookAccess,updateBookAccess,deleteBookAccess,getBookAccessors,accessBook,updateBook,startBook,getAllBooks,getBooksOfUser,useBookActions,getBook, setCurrentBook}

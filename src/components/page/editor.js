@@ -68,32 +68,27 @@ function removeEditor(){
         debugger
         page= {...page,status: "draft"}
         content=""
+        dispatch({type:"SHOW_EDITOR",show: "none"})
         dispatch(savePage(page))
         props.handleTruthyClose(page.data)
-        dispatch({type:"SHOW_EDITOR",action: "none"})
+        
         
         
     }
    
-    // function doSetContent(e){
-       
-    // setContent(e)
-    // }
+
    function handleOnClick(data){
    content = data
    page= {...page,data: data}
  }
     
-    // function handleLoad(){
-    //     debugger
-    //     if(localStorage.getItem("workingPage").length !==0){
-    //     setContent(localStorage.getItem("workingPage"))
-    //     }
-    // }
+
     function handlePublish(){
         page = {...page,status:"published"}
         debugger
+        dispatch({type:"SHOW_EDITOR",show: "none"})
         dispatch(publishPage(page))
+         
         props.handleTruthyClose(page.data)
         
     }

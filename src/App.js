@@ -15,7 +15,7 @@ import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUs
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
 import {getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
-import {getAllBooks,getBook,getBooksOfUser} from "./actions/BookActions"
+import {getAllBooks,getBook,getBooksOfUser,getUserBookAccess} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
 import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
 import {history} from "./history"
@@ -30,10 +30,12 @@ class App extends React.Component{
   componentDidMount(){
     if(localStorage.getItem("currentUser") && localStorage.getItem("currentUser").length>0){
       this.props.setCurrentUser()
+      this.props.getUserBookAccess()
     }
     this.props.getAllBooks()
     this.props.getAllPages()
     this.props.getUsers()
+  
     // this.props.getBookLibraries()
   }
   
@@ -126,7 +128,8 @@ function mapDispatchToProps(dispatch){
     deleteFollowLibrary: (id)=> dispatch(deleteFollowLibrary(id)),
     updateLibrary: (hash)=>dispatch(updateLibrary(hash)),
     deleteBookLibrary:(hash)=>dispatch(deleteBookLibrary(hash)),
-    getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id))
+    getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id)),
+    getUserBookAccess: ()=>dispatch(getUserBookAccess())
   }
 }
 function mapStateToProps(state){

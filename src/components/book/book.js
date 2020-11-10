@@ -47,47 +47,7 @@ function Book(props){
      props.removeEditor()
  }
     let pages
-//     function followBtn(){
-//          let follow=  props.followers.find(follow=>{
-//            return follow.attributes.follower.id === localStorage.getItem("currentUser")
-//         })
-//         if(follow){
-//             return (<button class={"followedBtn"} onClick={()=>handleFollow()}>Following</button>)
-//         }else{
-//             return( <button class={"followBtn"} onClick={()=>props.followBook(props.book.id)}>Follow</button>)
-//         }
-        
-//     }
-//   function followerCards(){
-//       if (props.followers){
 
-//           return(<FollowerCards users={props.followers}/>)
-//       }else{
-//           return("x")
-//       }
-//   }
-//   function handleFollow(){
-  
-//         let follow=  props.followers.find(follow=>{
-//            return follow.attributes.follower.id === localStorage.getItem("currentUser")
-//         })
-      
-//         if(follow){
-//             dispatch(deleteBookFollow(follow))
-//         }else{
-//             props.followBook(props.book.id)
-//         }
-        
-//     }
-//   function handleModalClose(e){
-
-//       if(e.target === e.currentTarget){
-//        console.log("!")
-       
-//         // setShow("none")
-//         setShow("none")
-//      }
-//   }
         if(props.book ){
   
             if(props.pages.length > 0){
@@ -132,7 +92,7 @@ function mapDispatch(dispatch){
     return{getPagesOfBook:(id)=>dispatch()}
 }
 function mapState(state){
-   
+   console.log("SHOW",state.books.showEditor)
     return{
         currentUser: state.users.currentUser,
         bookInView: state.books.bookInView,
