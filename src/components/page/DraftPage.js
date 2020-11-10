@@ -9,7 +9,7 @@ const dispatch = useDispatch()
   const store = useStore()
  
   const [show, setShow] = useState("none")
-  let [config,setConfig]=useState({readonly: true,width: 900,minHeight: 400,iframe: true})
+  let [config,setConfig]=useState({readonly: true,width: 700,minHeight: 400,iframe: true})
   let [classNom,setClass]=useState("page")
   let content
   const editor = useRef(null)
@@ -74,6 +74,7 @@ const dispatch = useDispatch()
       let html =(
         <div className="draftPage">
           <div >
+          <div>
             <div  className={classNom} style={{height: "0px"}}>
               <JoditEditor
             	ref={editor}
@@ -81,7 +82,7 @@ const dispatch = useDispatch()
               config={config}
                 onChange={newContent => {handleOnClick(newContent)}}
             />
-          <div className="draftPageBtns">
+          <div className="">
            <button className="rajah"onClick={(e)=>changeReadOnly(e)}>Edit Page</button> 
            <button classname="green"onClick={()=>handleSave()}>Save</button>
           <select id="status" defaultValue={props.page.status}>
@@ -91,6 +92,7 @@ const dispatch = useDispatch()
            <button className="blue" onClick={()=>handleDeletePage()}>Delete</button>
           </div>
               
+        </div>
         </div>
       </div>
      </div>)

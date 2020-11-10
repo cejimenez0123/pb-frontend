@@ -87,19 +87,12 @@ const handleEditClick = () => {
 
             return(<div className="editBtn">
 <div >
- {/* <button onClick={()=>setShowPop("block")}className="button light-green">Edit Book</button> */}
    <div >
    
-        <button classNAme="button green" onClick={handleTruthyShow}>Add Page</button>
+        <button className="button green" onClick={handleTruthyShow}>Add Page</button>
          </div>
   </div>
-            {/* <Popup trigger={ <button className="button light-green">Edit Book</button>} position="right center">
-   <div >
-   <Modal button={<button>Edit Book</button>} content={<div></div>}/>
-        <button onClick={handleTruthyShow}>Add Page</button>
-        <button>Delete Page</button>
-         </div>
-  </Popup> */}
+            
            
                      
        
@@ -152,7 +145,7 @@ const handleEditClick = () => {
  let users =props.users.filter(user=>{return user.id!==localStorage.getItem("currentUser")})
          console.log("BDDF",props.bookAccessors)
   
-            return(<Modal button={<button className="button">Share</button> }  content={<section className="sharing">
+            return(<Modal button={<button className="button aqua">Share</button> }  content={<section className="sharing">
                 <div>
                  
                     <SearchUsersShare bookAccessors={props.bookAccessors} users={users} book={props.book} />
@@ -192,8 +185,7 @@ return( <Modal button={
 
       if(e.target === e.currentTarget){
        console.log("!")
-       
-        // setShow("none")
+ 
         setShow("none")
      }
   }

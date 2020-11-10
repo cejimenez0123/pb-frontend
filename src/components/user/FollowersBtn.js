@@ -16,7 +16,7 @@ function FollowersBtn(props){
   })
     
     return(<div>
-    <button className="yellow button followersBtn" onClick={handleShow}>
+    <button className="yellow button " onClick={handleShow}>
        Followers
       </button>
 

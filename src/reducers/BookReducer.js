@@ -15,7 +15,7 @@ export default function BookReducer(
 
                 return{...state, books: action.books}
             case "SHOW_EDITOR":
-            debugger
+    
                 return {...state,showEditor: action.show}
             case "BOOKS_OF_USER":
           

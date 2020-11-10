@@ -44,7 +44,7 @@ ifBook(){
 
         return (
         <div>
-           <Book editor={this.state.editor} truthy={truthy} book={this.props.book} pages={this.props.pagesInView} followBook={this.props.followBook}/>
+           <Book editor={this.state.editor} truthy={truthy} book={this.props.book} pagesInView={this.props.pagesInView} followBook={this.props.followBook}/>
         </div>
         )
     }else{
@@ -139,7 +139,7 @@ button=( <button onClick={()=>this.setState({editor:true})}>Add Page</button>)
                
     
      
-        BookContainer
+    
     <div className="bookContainer">
        <IdCard bookAccessors={this.props.bookAccessors} users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
      

@@ -48,15 +48,15 @@ function Book(props){
  }
     let pages
 
-        if(props.book ){
+        if(props.book){
   
-            if(props.pages.length > 0){
+            if(props.pagesInView.length > 0){
                
-                pages= props.pages
-            }
+                pages= props.pagesInView
+            }else if(!props.pagesInView){
          pages = props.pages.filter(page=>{
                return page.attributes.book.id == props.book.id
-           })
+           })}
                 
               
             
@@ -70,7 +70,7 @@ function Book(props){
                 {/* <PageInput book={props.book}/> */}
                <div className={"scroll bookPages is-dark"}>
                <section>
-               <div style={{display: props.show}} className={"ed"}>
+               <div style={{display: props.show}} className={""}>
                 
                <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
                </div>

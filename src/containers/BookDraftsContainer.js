@@ -17,16 +17,15 @@ class BookDraftsContainer extends React.Component{
 
     render(){
         if(this.props.bookInView){
-        return(<div>
+        return(<div className="">
            
             <NavbarContainer/>
-        <a href={`/books/${this.props.bookInView.id}`}>{this.props.bookInView.title} </a>Draft's
-        
-        <main>
+            <div className="drafts">
+      <h5>  <a href={`/books/${this.props.bookInView.id}`}>{this.props.bookInView.title} </a>Draft's</h5>
+      <div className="draftPages">
         <DraftPages pages={this.props.pagesInView} book={this.props.bookInView}/>
-        </main>
-        {/* <Pages pages={this.props.pagesInView}/> */}
-       DraftBookContainer
+     </div>
+            </div>
        
        
         </div>)}else{return(

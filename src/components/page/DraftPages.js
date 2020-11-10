@@ -5,6 +5,7 @@ const DraftPages=(props)=>{
 
 function renderIf(){
         if(props.pages.length>0){
+       
             return ( props.pages.map(page=>{
               page = page.attributes
                 return (
@@ -19,8 +20,8 @@ function renderIf(){
     }
 
 
-        return(<div style={{margin: "auto"}} className={"pages"}>
-<div class="tile">
+        return(<div style={{margin: "auto"}} className={""}>
+<div className="">
             {renderIf()}
           </div>
         </div>)
