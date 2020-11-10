@@ -54,7 +54,7 @@
 	  100% { top: -360px; }  top is the number of spans (in this case 8) multiplied by span height (45px as described above) */
 .scroll{align-self: center;}
 .signbtns{
-	margin-top: 100px;
+	margin-top: 15%;
 	text-align: center;
 }
 
@@ -859,10 +859,10 @@ border: 1px solid #888}
 }
 
 .SignUpForm{
-	margin: 20% auto;
+	margin: 15% auto;
 	width: 300px;
 }
 .LogInForm{
-	margin: 25% auto;
+	margin: 15% auto;
 	width: 300px;
 }

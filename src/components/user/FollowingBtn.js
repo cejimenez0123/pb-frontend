@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button,Modal} from 'react-bootstrap'
+import Modal from "../modal"
 import {useStore} from 'react-redux'
 import FollowerCard from "./FollowerCard"
 function FollowingBtn(props){
@@ -24,24 +24,16 @@ function FollowingBtn(props){
     users="Follow some people"
   }
     return(<div>
-    <button style={{padding: "auto 10px auto 10px"}}onClick={()=>setShow("block")}className="button pink followingBtn" >
+   <Modal button={ <button style={{padding: "auto 10px auto 10px"}}onClick={()=>setShow("block")}className="button pink followingBtn" >
         Following
-      </button>
-      
-      <div>
-  
-         <div onClick={(e)=>handleModalClose(e)} style={{display: show}} class="modal">
-                    <div   class="modal-content">
-                      <span  class="close">&times;</span>
-                      <div  className="modalIndex">
-                     
+      </button>} content={
+        <div>
+        <div>
                          {users}
                         
                     </div>
-                </div>
-          </div>
-          </div>
-          
+                </div>}
+         />
     </div>
     )
 }
