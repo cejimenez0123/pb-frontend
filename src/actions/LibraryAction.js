@@ -1,6 +1,6 @@
 import {followLibrary} from "./FollowActions"
 import {history} from "../history"
-export {getLibrary,updateLibrary,startLibrary,addBookToLibrary,getAllLibraries,deleteBookLibrary,getBooksOfLibrary,getBookLibraries,getUserLibraries}
+export {getLibraryPages,getLibrary,updateLibrary,startLibrary,addBookToLibrary,getAllLibraries,deleteBookLibrary,getBooksOfLibrary,getBookLibraries,getUserLibraries}
 
 const libraryPath = "http://localhost:3000/libraries"
 const userPath = "http://localhost:3000/users"
@@ -77,7 +77,7 @@ function addBookToLibrary({bookId,libraryId}){
               libraryId: libraryId
           })}
          return(dispatch)=>{ fetch(bookLibPath,config).then(res=>res.json()).then(obj=>{
-              
+              dispatch(getLibraryPages(libraryId))
               dispatch(getBooksOfLibrary(libraryId))
             
           }).catch(err=>alert(err))}
@@ -128,7 +128,17 @@ function getBooksOfLibrary(id){
     })}
 
 }
+function getLibraryPages(id){
 
+
+    return(dispatch)=>{fetch(libraryPath+`/${id}/pages`).then(res=>res.json()).then(obj=>{
+  
+        let pages = obj.data
+        dispatch(pagesInView(pages))
+
+    })}
+}
+function pagesInView(pages){return{type: "PAGES_IN_VIEW",pages}}
 function booksInView(books){return{type:"BOOKS_IN_VIEW",books}}
 function allLibraries(libraries){return{type:"ALL_LIBRARIES",libraries}}
 function librariesInView(libraries){return{type:"LIBRARIES_IN_VIEW",libraries}}

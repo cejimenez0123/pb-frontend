@@ -103,6 +103,9 @@ overflow-y: scroll;
 	border: 1px solid #888; 
 	/* Could be more or less, depending on screen size */
 }
+.modal .modalContent{
+	margin: auto;
+}
 .pageHeader{
 
 	display: flex;
@@ -262,7 +265,7 @@ background-color: red;}
 
 
   .streetLib{
-	  height: 575px;
+	  height: auto;
 	  overflow: scroll;
 	  background-color: pink;
 	  width: 600px;
@@ -628,9 +631,11 @@ flex-direction: column;
 		  
 			}
 		.libContainer{
+			margin-top: 10px;
 			display: flex;
 			
 		}
+		
 		.draftsContainer{
 
 		}
@@ -645,7 +650,7 @@ flex-direction: column;
 		.draftPages{
 			
 		}
-		.bookContainer{display: flex;}
+		.bookContainer{display: flex; margin-top: 30px;}
 		.idCard{
 			padding: 10px;
 			margin: 0px 10px;
@@ -740,9 +745,8 @@ flex-direction: column;}
 	border-radius:5%;
 }
 .LibraryIndex .list-group-item{
-	margin: auto;
-	width:100%;
-	border-radius: 10%;
+	margin-bottom: 5px;
+	width:100%;;
 }
 .LibraryIndex .emptyMessage{
 	padding: 20px;

@@ -1,7 +1,10 @@
 import React,{useState,useRef} from 'react'
 import {useDispatch,useStore} from "react-redux"
+
+import Modal from "../modal"
 import JoditEditor from "jodit-react"
-import {publishPage,deletePage,updatePage} from "../../actions/PageActions"
+import Editor from "../page/editor"
+import {getPagesOfBook,publishPage,deletePage,updatePage,getDraftsOfBook} from "../../actions/PageActions"
 // let config ={readonly: true,width: 900,iframe: true}
 let page
 function DraftPage(props){
@@ -33,19 +36,24 @@ const dispatch = useDispatch()
      }
    }
    console.log("PGGEE",props.page)
-   function handleSave(){
+   function handleSave(e){
      
-    let status= document.querySelector("#status")
-     debugger
-  page=   {id: props.page.id,data:content,bookId: props.page.book.id,status: status.value }
+ let status =e.target.parentElement.querySelector("#status").value
+   
+  page=   {id: props.page.id,data:content,bookId: props.page.book.id,status: status }
      
      
      dispatch(updatePage(page))
+     if(window.location.pathname.includes("drafts")){
+     dispatch(getDraftsOfBook(props.page.book.id))
+     }else if(window.location.pathname.includes("books") && !window.location.pathname.includes("drafts")){
+       dispatch(getPagesOfBook(props.page.book.id))
+     }
    }
   function changeReadOnly(e){
       debugger
       setClass("editor")
-      setConfig({readonly: false,width: 900,iframe: true})
+      setConfig({readonly: false,width: 700,iframe: true,minHeight:400})
     
       
   }
@@ -61,6 +69,11 @@ const dispatch = useDispatch()
  function handleOnClick(data){
    content = data
  }
+
+ function handleOnBlur(){
+   setClass("")
+   setConfig({readonly: true,width: 700,iframe: true,minHeight:400})
+ }
   let editBtn = null
   if(props.book){
          
@@ -75,16 +88,26 @@ const dispatch = useDispatch()
         <div className="draftPage">
           <div >
           <div>
-            <div  className={classNom} style={{height: "0px"}}>
+            <div  className={classNom} >
               <JoditEditor
+              onBlur={handleOnBlur}
             	ref={editor}
               value={content}
               config={config}
                 onChange={newContent => {handleOnClick(newContent)}}
             />
           <div className="">
-           <button className="rajah"onClick={(e)=>changeReadOnly(e)}>Edit Page</button> 
-           <button classname="green"onClick={()=>handleSave()}>Save</button>
+          <button className="rajah"onClick={(e)=>changeReadOnly(e)}>Edit Page</button>
+         { // <Modal button={ } content={ 
+          // <JoditEditor
+            
+          //   	ref={editor}
+          //     value={content}
+          //     config={config}
+          //       onChange={newContent => {handleOnClick(newContent)}}
+          //   />}/> 
+  }
+           <button classname="green" onClick={(e)=>handleSave(e)}>Save</button>
           <select id="status" defaultValue={props.page.status}>
             <option value="draft">Draft</option>
             <option value="published">Publish</option>

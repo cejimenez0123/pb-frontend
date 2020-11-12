@@ -36,13 +36,13 @@ if(filtered){
             let user = x.attributes
                 return(
                  <div className="list-group-item search-item">
-                     <a href={`http://localhost:3001/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>
+                     <a href={`http://localhost:4000/users/${user.id}`} key={i}> {user.name}-@{user.username}</a>
                 </div>)
         case "book":
             let book = x.attributes
                 return(
             <div className="list-group-item search-item">
-                <a href={`http://localhost:3001/books/${book.id}`} key={i}> {book.title}</a>
+                <a href={`http://localhost:4000/books/${book.id}`} key={i}> {book.title}</a>
             </div>)
      }
  })

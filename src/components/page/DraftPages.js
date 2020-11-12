@@ -4,7 +4,7 @@ import DraftPage from "./DraftPage"
 const DraftPages=(props)=>{
 
 function renderIf(){
-        if(props.pages.length>0){
+        if(props.pages && props.pages.length>0){
        
             return ( props.pages.map(page=>{
               page = page.attributes

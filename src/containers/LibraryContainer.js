@@ -2,6 +2,7 @@ import React from 'react'
 import Books from "../components/book/books"
 import NavbarContainer from "./NavbarContainer"
 import Popup from "reactjs-popup"
+import Pages from "../components/page/pages"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Modal from "../components/modal"
 import BookIndex from "../components/book/BookIndex"
@@ -20,6 +21,7 @@ class LibraryContainer extends React.Component{
         this.props.getBooksOfLib(id)
         this.props.getFollowersOfLibrary(id)
         this.props.getAllPages()
+        this.props.getLibraryPages(id)
         this.props.getBooksOfUser(localStorage.getItem("currentUser"))
     }
     deleteBookLibrary(book){
@@ -29,8 +31,7 @@ class LibraryContainer extends React.Component{
     
    ifEdit(){
        if(this.props.books && this.props.books.length>0){
-           debugger
-       }
+           
        let bookIndex = this.props.books.map(book=>{
      
            book = book.attributes 
@@ -55,7 +56,7 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
 
 )
 
-   }
+   }}
    handleUpdate(e){
        e.preventDefault()
       let name = e.target.querySelector('input[name="name"]').value
@@ -104,7 +105,14 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
     }
     render(){
         let lib= {}
-    
+        let pages
+        if(this.props.pagesInView){
+          pages =this.props.pagesInView.sort((a,b)=>{
+              a = a.attributes
+              b = b.attributes
+              return new Date(b.created_at)-new Date(a.created_at)
+          })
+        }
    
         if(this.props.library){
            
@@ -124,8 +132,8 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
         {this.followBtn()}
         </div>
         <div className="lib">
-        
-        <Books books={this.props.books}/>
+        <Pages pages={pages}/>
+        {/* <Books books={this.props.books}/> */}
     </div>
     </div>
         </div>)

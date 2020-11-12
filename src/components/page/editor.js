@@ -16,7 +16,7 @@ const Editor = (props) => {
         iframe: true
 
 	})
-    
+    let [text,setText]=useState("")
     
 	function debounce(fn, ms) {
   let timer
@@ -49,24 +49,29 @@ function removeEditor(){
     if(!props.currentPage){
     
     }
-    function handleOnClick(e){
+//     function handleOnClick(e){
  
+//  debugger
+//         if(props.currentPage){
+        
+//          page = {id: props.currentPage.id,data: e,bookId: props.book.id,status: "draft"}
+//         }else if(props.book){
+//             page={id: null,data:e,bookId: props.book.id}
+//         }else{
+//             page={id: null,data:e,bookId: null}
+//         }
+        
+//     }
+    function handleOnClick(data){
  
-        if(props.currentPage){
-        
-         page = {id: props.currentPage.id,data: e,bookId: props.book.id,status: "draft"}
-        }else if(props.book){
-            page={id: null,data:e,bookId: props.book.id}
-        }else{
-            page={id: null,data:e,bookId: null}
-        }
-        
-    }
-    
+       setText(data)
+   content = data
+   page= {...page,data: data}
+ }
     
     function handleSave(){
         debugger
-        page= {...page,status: "draft"}
+        page= {...page,data:text,status: "draft"}
         content=""
         dispatch({type:"SHOW_EDITOR",show: "none"})
         dispatch(savePage(page))
@@ -77,14 +82,11 @@ function removeEditor(){
     }
    
 
-   function handleOnClick(data){
-   content = data
-   page= {...page,data: data}
- }
+   
     
 
     function handlePublish(){
-        page = {...page,status:"published"}
+        page = {...page,data:text,status:"published"}
         debugger
         dispatch({type:"SHOW_EDITOR",show: "none"})
         dispatch(publishPage(page))
@@ -115,7 +117,7 @@ function removeEditor(){
 		// onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
                 onChange={newContent => {handleOnClick(newContent)}}
             />
-            <div id={`modal-${page.id}`} onClick={(e)=>handleClose()} style={{width: "100%",display: show}} class="modal">
+            <div id={`modal-${page.id}`} onClick={(e)=>handleClose()} style={{marginTop:"15%",width: "100%",display: show}} class="modal">
                 <div   class="modal-content">
                   
                   <div className={"modalInfo"}>

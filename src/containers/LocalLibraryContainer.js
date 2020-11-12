@@ -8,6 +8,7 @@ import {createStore} from 'redux'
 import store from '../index'
 import Pages from "../components/page/pages"
 import BookIndex from "../components/book/BookIndex"
+
 let toggle = "pages"
 class LocalLibraryContainer extends React.Component{
     constructor(){

@@ -13,7 +13,7 @@ import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
-import {getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary} from "./actions/LibraryAction"
+import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser,getUserBookAccess} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
@@ -51,7 +51,7 @@ class App extends React.Component{
       <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
      <script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
-
+<script data-ad-client="ca-pub-3452062624129177" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
       </header>
   
@@ -70,11 +70,12 @@ class App extends React.Component{
   
   </Route>
         <Route path="/libraries/:id">
-            <LibraryContainer deleteBookLibrary={this.props.deleteBookLibrary} updateLibrary={this.props.updateLibrary}allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView} getAllPages={this.props.getAllPages} followLibrary={this.props.followLibrary} pages={this.props.pages} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
+            <LibraryContainer getLibraryPages={this.props.getLibraryPages} deleteBookLibrary={this.props.deleteBookLibrary} updateLibrary={this.props.updateLibrary}allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView} getAllPages={this.props.getAllPages} followLibrary={this.props.followLibrary} pages={this.props.pages}
+            pagesInView={this.props.pagesInView} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
       </Switch>
          < Route exact path="/books/:id/edit">
-            <EditBookContainer book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
+            <EditBookContainer  book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>
           </Route>
           <Switch>
            <PrivateRoute exact path={`/user/:id`} ><ProfileContainer currentUser={this.props.currentUser} getInbox={this.props.getInbox} booksInView={this.props.booksInView}/></PrivateRoute>
@@ -129,7 +130,8 @@ function mapDispatchToProps(dispatch){
     updateLibrary: (hash)=>dispatch(updateLibrary(hash)),
     deleteBookLibrary:(hash)=>dispatch(deleteBookLibrary(hash)),
     getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id)),
-    getUserBookAccess: ()=>dispatch(getUserBookAccess())
+    getUserBookAccess: ()=>dispatch(getUserBookAccess()),
+    getLibraryPages:(id)=>dispatch(getLibraryPages(id))
   }
 }
 function mapStateToProps(state){
@@ -146,6 +148,7 @@ function mapStateToProps(state){
     books: state.books.books,
     userInView: state.users.userInView,
     booksInView: state.books.booksInView,
+    pagesInView: state.pages.pagesInView,
     libraryInView: state.libraries.libraryInView,
     librariesInView: state.libraries.librariesInView,
     libraryFollowers: state.libraries.libraryFollowers,

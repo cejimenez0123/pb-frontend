@@ -41,10 +41,14 @@ constructor(){
 ifBook(){
 
     if(this.props.book){
-
+ let pages = this.props.pagesInView.sort((a,b)=>{
+             
+                   a = a.attributes
+                   b= b.attributes
+                   return    new Date(b.updated_at )- new Date(a.updated_at )})
         return (
         <div>
-           <Book editor={this.state.editor} truthy={truthy} book={this.props.book} pagesInView={this.props.pagesInView} followBook={this.props.followBook}/>
+           <Book editor={this.state.editor} truthy={truthy} book={this.props.book} pagesInView={pages} followBook={this.props.followBook}/>
         </div>
         )
     }else{

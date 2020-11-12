@@ -52,8 +52,9 @@ const getPagesOfBook=(id)=>{
 }
 const getDraftsOfBook=(id)=>{
   return(dispatch)=>{fetch(bookPath+"/"+id+"/drafts").then(res=>res.json()).then(obj=>{
+  
+  debugger
   let pages=obj.data
-
   dispatch(pagesInView(pages))
   })}
 }
@@ -103,7 +104,7 @@ const publishPage=(page)=>{
       }
 }
 const updatePage=(page)=>{
-  debugger
+ 
   let config = {    
     method: 'PATCH',
     headers: {
@@ -119,10 +120,14 @@ const updatePage=(page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+`/${page.id}/update`,config).then(res=>res.json()).then(
         obj=>{
-debugger
+
           let page=obj.data.attributes
           window.alert("saved!!")
-         dispatch(getAllPages())
+       
+          if(window.location.pathname.includes("books") && window.location.pathname.includes("drafts")){
+            dispatch(getDraftsOfBook(page.book.id ))
+          }else{
+         dispatch(getAllPages())}
         }
       ).catch(err=>window.alert(err))}
 }
