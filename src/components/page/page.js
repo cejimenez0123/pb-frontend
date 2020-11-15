@@ -132,7 +132,7 @@ import PageCommentIndex from "./PageCommentIndex"
                 <div className="commentSection">
                 <PageCommentInput page={page}/>
               <div className={"PageCommentBox"}>
-                 <   PageCommentIndex getPageComments={""} getPageComments={(id)=>dispatch(getPageComments(id))}comments={props.comments} page={page} />
+                 <   PageCommentIndex  getPageComments={(id)=>dispatch(getPageComments(id))}comments={props.comments} page={page} />
           </div>
           </div>
           </div>
