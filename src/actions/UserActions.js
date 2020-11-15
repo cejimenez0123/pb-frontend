@@ -5,8 +5,8 @@ import {startBook,setCurrentBook} from "./BookActions"
 const path1= "https://elegant-croissant-40634.herokuapp.com"
 const path2=""
 // http://127.0.0.1:3000
-const userPath = `${path2}/users`
-const followPath = `${path2}/follows`
+const userPath = `${path1}/users`
+const followPath = `${path1}/follows`
 
 
 function useUserActions(){

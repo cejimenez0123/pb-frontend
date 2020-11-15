@@ -1,7 +1,7 @@
 {
   "name": "pb-frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:3000",
+  "proxy": "https://elegant-croissant-40634.herokuapp.com",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

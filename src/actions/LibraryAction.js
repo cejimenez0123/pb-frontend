@@ -1,10 +1,10 @@
 import {followLibrary} from "./FollowActions"
 import {history} from "../history"
 export {getLibraryPages,getLibrary,updateLibrary,startLibrary,addBookToLibrary,getAllLibraries,deleteBookLibrary,getBooksOfLibrary,getBookLibraries,getUserLibraries}
-
-const libraryPath = "http://localhost:3000/libraries"
-const userPath = "http://localhost:3000/users"
-const bookLibPath = "http://localhost:3000/book_libraries"
+const path1= "https://elegant-croissant-40634.herokuapp.com"
+const libraryPath = `${path1}/libraries`
+const userPath = `${path1}http://localhost:3000/users`
+const bookLibPath = `${path1}/book_libraries`
 const getBookLibraries=()=>{
 
     return(dispatch)=>{fetch(bookLibPath).then(res=>res.json()).then(obj=>{

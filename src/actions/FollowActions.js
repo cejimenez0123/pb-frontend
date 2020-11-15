@@ -1,8 +1,9 @@
-const followUserPath="http://localhost:3000/follow_users"
-const followBookPath="http://localhost:3000/follow_books"
-const followLibraryPath="http://localhost:3000/follow_libraries"
-const userPath = "http://127.0.0.1:3000/users"
-const bookPath="http://localhost:3000/books"
+const followUserPath=`${path1}/follow_users`
+const followBookPath=`${path1}/follow_books`
+const followLibraryPath=`${path1}/follow_libraries`
+const path1= "https://elegant-croissant-40634.herokuapp.com"
+const userPath = `${path1}/users`
+const bookPath=`${path1}/books`
 function bookFollowers(id){
     return(dispatch)=>{fetch(bookPath+`/${id}/book_followers`).then(res=>res.json()).then(obj=>{
       
