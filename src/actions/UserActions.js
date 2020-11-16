@@ -37,7 +37,6 @@ function signUp(user,formData) {
         'Accept': 'application/json'
           },
           body: JSON.stringify({
-              file: user.file.get("file"),
               name: user.name,
               username: user.username,
               password: user.password
