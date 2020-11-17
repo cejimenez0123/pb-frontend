@@ -48,8 +48,8 @@ renderif(){
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
       <Nav.Link href={`/user/${this.props.currentUser.id}`}>Profile</Nav.Link>
-      <Nav.Link href={`/street`}>Street</Nav.Link>
-      <Nav.Link href={'/library/1'}>Local library</Nav.Link>
+      <Nav.Link href={`/street`}>Private Library</Nav.Link>
+      <Nav.Link href={'/library/1'}>Public Library</Nav.Link>
       <Nav.Link onClick={()=>this.handleOnClick()}href="/">Log Out</Nav.Link>
        
     </Nav>

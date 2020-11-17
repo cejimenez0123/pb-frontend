@@ -3,10 +3,11 @@ import {push} from 'react-router-redux'
 import store from '../index'
 import {startBook,setCurrentBook} from "./BookActions"
 const path1= "https://elegant-croissant-40634.herokuapp.com"
-const path2=""
-// http://127.0.0.1:3000
-const userPath = `${path1}/users`
-const followPath = `${path1}/follows`
+const path2="http://127.0.0.1:3000"
+// 
+let url = path2
+const userPath = `${url}/users`
+const followPath = `${url}/follows`
 
 
 function useUserActions(){
@@ -97,7 +98,7 @@ const LOG_IN = (user)=>{
     return ((dispatch)=>{
         dispatch(LOG_IN_START);
        
-        fetch("/login",con).then(res=>res.json()).then(user =>{
+        fetch(`${path1}/login`,con).then(res=>res.json()).then(user =>{
           debugger
             user = user.data.attributes
         if(user!==null){

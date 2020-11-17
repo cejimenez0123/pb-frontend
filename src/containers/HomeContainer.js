@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import BookContainer from "./BookContainer"
 import Navbar from './NavbarContainer'
+import Pages from "../components/page/pages"
 import NavbarContainer from './NavbarContainer'
 import { useStore } from 'react-redux'
 import ReactDOM,{ render } from 'react-dom'
@@ -12,6 +13,9 @@ class HomeContainer extends React.Component{
     // let store = useStore()
     // let pages = store.getState().pages.pages
     // debugger
+    componentDidMount(){
+        this.props.getPublicPages()
+    }
   
     
     
@@ -35,6 +39,7 @@ class HomeContainer extends React.Component{
   };
     
  render(){
+     console.log(this.props.pagesInView)
         return(
             <div className="HomeContainer" >
                 <NavbarContainer />
@@ -44,7 +49,7 @@ class HomeContainer extends React.Component{
                 < Link to="/login">Log In</Link>
                 </div>
                 <div id="SHomeConatiner">
-   
+                    <Pages pages={this.props.pagesInView}/>
                 </div>
                 
             </div>

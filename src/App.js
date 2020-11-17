@@ -14,7 +14,7 @@ import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
 import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary} from "./actions/LibraryAction"
-import {savePage,getAllPages, getInbox,getDraftsOfBook} from "./actions/PageActions"
+import {savePage,getAllPages, getInbox,getDraftsOfBook,getPublicPages} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser,getUserBookAccess} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
 import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
@@ -56,7 +56,7 @@ class App extends React.Component{
       </header>
   
   <Route exact path="/" >
-    <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages}/>
+    <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages}/>
   </Route>
   
 <Switch>
@@ -131,7 +131,8 @@ function mapDispatchToProps(dispatch){
     deleteBookLibrary:(hash)=>dispatch(deleteBookLibrary(hash)),
     getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id)),
     getUserBookAccess: ()=>dispatch(getUserBookAccess()),
-    getLibraryPages:(id)=>dispatch(getLibraryPages(id))
+    getLibraryPages:(id)=>dispatch(getLibraryPages(id)),
+    getPublicPages:()=>dispatch(getPublicPages())
   }
 }
 function mapStateToProps(state){

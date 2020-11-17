@@ -4,11 +4,12 @@ import {push } from 'react-router-redux'
 import store from '../index'
 const path1= "https://elegant-croissant-40634.herokuapp.com"
 const path2="http://localhost:3000"
-const pageComPath=`${path2}/page_comments`
-const pageUrl = `${path2}/pages`
-const bookPath = "http://localhost:3000/books"
-const userPath = "http://localhost:3000/users"
-const sharePath = "http://localhost:3000/shares"
+let url = path2
+const pageComPath=`${url}/page_comments`
+const pageUrl = `${url}/pages`
+const bookPath = `${url}/books`
+const userPath = `${url}/users`
+const sharePath = `${url}/shares`
 function usePageActions(){
   return{myPages: ()=>myPages(),
 getPagesById:(id)=>getPagesById(id),
@@ -224,6 +225,16 @@ const deletePage=(page)=>{
       
   })
 }
+function getPublicPages(){
+
+  return(dispatch)=>{
+    fetch(pageUrl).then(res=>res.json()).then(obj=>{
+
+      let pages= obj.data
+      dispatch(pagesInView(pages))
+    })
+  }
+}
 function getPage(){
  
   let id = window.location.pathname.split("/")[2]
@@ -347,4 +358,4 @@ const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

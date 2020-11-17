@@ -1,9 +1,10 @@
 import {history} from "../history"
+import url from "./url"
 import {followBook } from "./FollowActions"
 const path1= "https://elegant-croissant-40634.herokuapp.com"
-const bookPath = "/books"
-const userPath = "/users"
-const accessBookPath="/access_books"
+const bookPath = `${url}/books`
+const userPath = `${url}/users`
+const accessBookPath=`${url}/access_books`
 
 function useBookActions(){
     return{getBooksOfUser: id=>{getBooksOfUser(id)}}
