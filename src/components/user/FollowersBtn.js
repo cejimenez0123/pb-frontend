@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Button,Modal} from 'react-bootstrap'
 import {useStore} from 'react-redux'
+import connnect from 'react-redux'
 import FollowerCard from "./FollowerCard"
 function FollowersBtn(props){
     const store = useStore()
@@ -9,6 +10,7 @@ function FollowersBtn(props){
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   let userFollowers = store.getState().users.userFollowers
+  if(props.userFollowers && props.userFollowers.length>0){
   let users = userFollowers.map(x=>{
 
    return <FollowerCard user={x.attributes.follower}/>
@@ -33,5 +35,15 @@ function FollowersBtn(props){
       </Modal>
     </div>
     )
+}else{
+  return(<div>
+  </div>)
+}
+}
+
+function mapState(state){
+  return{
+    userFollowers: state.users.userFollowers
+  }
 }
 export default FollowersBtn

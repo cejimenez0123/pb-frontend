@@ -98,7 +98,7 @@ const LOG_IN = (user)=>{
     return ((dispatch)=>{
         dispatch(LOG_IN_START);
        
-        fetch(`${path1}/login`,con).then(res=>res.json()).then(user =>{
+        fetch(`${url}/login`,con).then(res=>res.json()).then(user =>{
           debugger
             user = user.data.attributes
         if(user!==null){

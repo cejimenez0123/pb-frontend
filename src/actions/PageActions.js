@@ -229,7 +229,7 @@ function getPublicPages(){
 
   return(dispatch)=>{
     fetch(pageUrl).then(res=>res.json()).then(obj=>{
-
+debugger
       let pages= obj.data
       dispatch(pagesInView(pages))
     })

@@ -17,7 +17,7 @@ function FollowingBtn(props){
   
 
   let users
-  if(props.followedUsers.length > 0){
+  if(props.followedUsers && props.followedUsers.length > 0){
   users = props.followedUsers.map(x=>{
       return(<FollowerCard user={x.attributes.followed_user}/>)
   })}else{
