@@ -24,7 +24,6 @@ class LogInForm extends React.Component{
     render(){
         return(
             <div className="LogI">
-                <NavbarContainer/>
                 <form class="LogInForm" onSubmit={this.handleOnSubmit}> 
                     <label htmlFor="username">Username:</label>
                     <input type="text" name="username" onChange={this.handleOnChange}/>

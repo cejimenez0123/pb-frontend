@@ -61,7 +61,7 @@ this.setState({type: e.target.files[0].type})
     render(){
       
         return(<div>
-            <NavbarContainer/>
+        
                 <form className="SignUpForm" onSubmit={this.handleOnSubmit}> 
                     {/* <DirectUpload/> */}
                     <label for="file">Profile Photo:</label>

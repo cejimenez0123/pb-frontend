@@ -96,9 +96,9 @@ const publishPage=(page)=>{
       })}
       return(dispatch)=>{(fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
         obj=>{
-          debugger
+         
           let page=obj.data.attributes
-          
+          dispatch(getPagesOfBook(page.book.id))
          dispatch(getAllPages())
         }
       ))
@@ -150,7 +150,8 @@ const savePage = (page)=>{
         obj=>{
 debugger
           let page=obj.data.attributes
-          dispatch(currentPage(page))
+          
+          dispatch(getPagesOfBook(page.book.id))
          dispatch(getAllPages())
         }
       )}
@@ -229,7 +230,7 @@ function getPublicPages(){
 
   return(dispatch)=>{
     fetch(pageUrl).then(res=>res.json()).then(obj=>{
-debugger
+
       let pages= obj.data
       dispatch(pagesInView(pages))
     })

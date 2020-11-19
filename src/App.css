@@ -2,7 +2,7 @@
 
 .list-group-item{
 	position: absolute;
-	height: 80px;
+	min-height: 100px;
 
 }
 
@@ -54,8 +54,14 @@
 	  100% { top: -360px; }  top is the number of spans (in this case 8) multiplied by span height (45px as described above) */
 .scroll{align-self: center;}
 .signbtns{
-	margin-top: 15%;
+	background-color: green;
+width: 200px;
+height: 150px;
+padding:10px;
 	text-align: center;
+}
+.signbtns .btn{
+
 }
 
 
@@ -388,13 +394,7 @@ height: 200px;
 	  
 
   }
-.localLibMain{
-	height: 1000px;
-	background-color: blue;
-	width: 800px;
-	margin: auto;
-	;
-}
+
 
 
 .street .list-group-item{
@@ -598,6 +598,14 @@ flex-direction: column;
 	margin-top: 20px;}
 
 	@media only screen and (min-width: 900px){
+		.homeContainer .main{
+			margin:auto;
+		}
+		.homeContainer{
+			display:flex;
+		margin-top:20px;
+		justify-content: center;
+		}
 		.pagesOfBook{
 	  
 			text-align: center;
@@ -607,6 +615,13 @@ flex-direction: column;
 			min-height:300px;
 			min-width:800px;
 	  
+		}
+		.localLibMain{
+			height: 1000px;
+			background-color: blue;
+			width: 800px;
+			margin: auto;
+			;
 		}
 		.pages{
 			box-shadow: 5px 5px grey;
@@ -753,11 +768,7 @@ flex-direction: column;}
 
 }
 
-.bookIndexBox{
-	margin: auto;
-	width: 400px;
-	height: 100px;
-}
+
 
 
 

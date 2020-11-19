@@ -5,9 +5,12 @@ import Navbar from './NavbarContainer'
 import Pages from "../components/page/pages"
 import NavbarContainer from './NavbarContainer'
 import { useStore } from 'react-redux'
+import Modal from "../components/modal"
 import ReactDOM,{ render } from 'react-dom'
 import SearchCardIndex from '../components/user/SearchCardIndex'
 import "../App.css"
+import SignUpForm from "../components/user/SignUpForm"
+import LogInForm from "../components/user/LogInForm"
 class HomeContainer extends React.Component{
     //     props.getAllPages()
     // let store = useStore()
@@ -41,17 +44,19 @@ class HomeContainer extends React.Component{
  render(){
      console.log(this.props.pagesInView)
         return(
-            <div className="HomeContainer" >
+            <div className="" >
                 <NavbarContainer />
-                <div className="signbtns">
-                < Link to="/signup" >Sign Up</Link>
-                <br/>
-                < Link to="/login">Log In</Link>
-                </div>
-                <div id="SHomeConatiner">
+                <div className="homeContainer">
+                
+                <div id="main">
                     <Pages pages={this.props.pagesInView}/>
                 </div>
-                
+                <div className="signbtns">
+                <Modal button={ <p className="btn"><b>Sign Up</b></p>} content={<SignUpForm/>}/>
+        
+                <Modal button={<p className="btn"><b>Log In</b></p>} content={<LogInForm/>}/>
+                </div>
+                </div>
             </div>
         )
         } 
