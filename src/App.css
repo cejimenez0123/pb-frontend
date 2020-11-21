@@ -54,10 +54,11 @@
 	  100% { top: -360px; }  top is the number of spans (in this case 8) multiplied by span height (45px as described above) */
 .scroll{align-self: center;}
 .signbtns{
-	background-color: green;
+	background-color: white;
 width: 200px;
 height: 150px;
 padding:10px;
+border-radius: 10%;
 	text-align: center;
 }
 .signbtns .btn{
@@ -205,16 +206,30 @@ overflow-y: scroll;
   /* .updateLibrary .lib-group-item{
 	  
   } */
+  .modalContent .jodit-container{
+	  margin: 10px auto;
+  }
+  .commentSection .comTextarea{
+	  margin: auto;
+  }
   .updateLibrary input{
 	width: 200px;
   }
   .app{
-	background-color:#ededed;
+	background-color:#c1d3f5;
 	height: 100%;
 	
   }
-  html{
+  .signbtns .modalContent{
+	  margin-top: 10%;
+	  width: 500px;
+	  height: 400px;
+  }
+  /* html{
 	background-color:#ededed
+  } */
+  .book-index .list-group-item{
+	  width: 400px;
   }
   .start-btn{
 	padding: 10px;
@@ -604,7 +619,7 @@ flex-direction: column;
 		.homeContainer{
 			display:flex;
 		margin-top:20px;
-		justify-content: center;
+		justify-content: space-around;
 		}
 		.pagesOfBook{
 	  

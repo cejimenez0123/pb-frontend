@@ -59,30 +59,6 @@ renderif(){
     </Form>
   </Navbar.Collapse>
 </Navbar>
-        // mt-2 mt-lg-0
-        //       <div className="collapse navbar-collapse" id="navbarSupportedContent" >
-       
-        //   <ul  className="navbar-nav mr-auto">
-        //     <li className="nav-item active">
-        //       <a className="nav-link" href={`/user/${this.props.currentUser.id}`}>Profile <span className="sr-only">(current)</span></a>
-        //     </li>
-        //     <li className="nav-item ">
-        //       <a className="nav-link" href={`/street`}>Street</a>
-        //     </li>
-        //     <li className="nav-item">
-        //       <a className="nav-link" href="/library/1">Local Library</a>
-        //     </li>
-        //     <li className="nav-item">
-        //       <a className="nav-link"  onClick={()=>this.handleOnClick()}href="/">Log Out</a>
-        //     </li>
-        //   </ul> *
-          
-// </div>
-
-//          </div>          
-//       </nav>
-//     </header>    
-//    </div>
 
 )
         }else{
@@ -94,7 +70,7 @@ renderif(){
     <Nav className="mr-auto">
       <Nav.Link href="/login">Log In </Nav.Link>
       <Nav.Link href={`/street`}>Street</Nav.Link>
-      <Nav.Link href={'/library/1'}>Local library</Nav.Link>
+      <Nav.Link href={'/library/1'}>Public Library</Nav.Link>
       <Nav.Link onClick={()=>this.handleOnClick()}href="/">Log Out</Nav.Link>
     </Nav>
     <Form inline>

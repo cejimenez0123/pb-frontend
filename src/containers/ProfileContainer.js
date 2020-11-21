@@ -34,6 +34,8 @@ class ProfileContainer extends React.Component{
         this.state={showBooks: "none",showLibraries: "none",showStartLibraries: "none",showStartBook: "none"}
     }
     componentDidMount(){
+   let html=document.querySelector(".app")
+html.style.backgroundColor="#ededed"
        const id=  localStorage.getItem("currentUser")
         // this.props.getInbox()
         this.props.setCurrentUser()

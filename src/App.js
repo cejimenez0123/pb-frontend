@@ -13,7 +13,7 @@ import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
-import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary} from "./actions/LibraryAction"
+import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary,getAllLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook,getPublicPages} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser,getUserBookAccess} from "./actions/BookActions"
 // import BookIndexContainer from "./containers/BookIndexContainer"
@@ -56,12 +56,12 @@ class App extends React.Component{
       </header>
   
   <Route exact path="/" >
-    <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages}/>
+    <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages} loggedIn={this.props.loggedIn}/>
   </Route>
   
 <Switch>
   <Route exact path="/library/1">
-   <LocalLibraryContainer books={this.props.books} users={this.props.users} pages={this.props.pages}/>
+   <LocalLibraryContainer getAllLibraries={this.props.getAllLibraries} libraries={this.props.librariesInView} books={this.props.books} users={this.props.users} pages={this.props.pages}/>
   </Route>
   <Route exact path="/user/:id/settings">
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
@@ -132,7 +132,8 @@ function mapDispatchToProps(dispatch){
     getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id)),
     getUserBookAccess: ()=>dispatch(getUserBookAccess()),
     getLibraryPages:(id)=>dispatch(getLibraryPages(id)),
-    getPublicPages:()=>dispatch(getPublicPages())
+    getPublicPages:()=>dispatch(getPublicPages()),
+    getAllLibraries:()=>dispatch(getAllLibraries())
   }
 }
 function mapStateToProps(state){
@@ -154,6 +155,7 @@ function mapStateToProps(state){
     librariesInView: state.libraries.librariesInView,
     libraryFollowers: state.libraries.libraryFollowers,
     followedBooks: state.books.followedBooksOfUser
+
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

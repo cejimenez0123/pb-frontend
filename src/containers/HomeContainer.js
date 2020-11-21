@@ -40,22 +40,31 @@ class HomeContainer extends React.Component{
        // do something with the returned data
       });
   };
-    
+  signBtns(){
+      if(this.props.loggedIn){
+          return(<div></div>)
+      }else{
+          return(
+                <div className="signbtns">
+                <Modal button={ <p className="btn"><b>Sign Up</b></p>} content={<SignUpForm/>}/>
+        
+                <Modal button={<p className="btn"><b>Log In</b></p>} content={<LogInForm/>}/>
+                </div>
+          )
+      }
+  }  
  render(){
      console.log(this.props.pagesInView)
         return(
             <div className="" >
                 <NavbarContainer />
                 <div className="homeContainer">
-                
+                <div>
+                </div>
                 <div id="main">
                     <Pages pages={this.props.pagesInView}/>
                 </div>
-                <div className="signbtns">
-                <Modal button={ <p className="btn"><b>Sign Up</b></p>} content={<SignUpForm/>}/>
-        
-                <Modal button={<p className="btn"><b>Log In</b></p>} content={<LogInForm/>}/>
-                </div>
+                {this.signBtns()}
                 </div>
             </div>
         )

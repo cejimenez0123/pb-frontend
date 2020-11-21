@@ -5,6 +5,7 @@ import Books from "../components/book/books"
 import Library from "../components/library/Library"
 import {connect,Provider} from 'react-redux'
 import {createStore} from 'redux'
+import LibraryIndex from "../components/library/LibraryIndex"
 import store from '../index'
 import Pages from "../components/page/pages"
 import BookIndex from "../components/book/BookIndex"
@@ -13,10 +14,13 @@ let toggle = "pages"
 class LocalLibraryContainer extends React.Component{
     constructor(){
         super()
-        this.state={inView: null}
+        
     }
 
-    
+    componentDidMount(){
+this.props.getAllLibraries()
+        // this.setState({inView:})
+    }
 
 
 
@@ -33,6 +37,9 @@ class LocalLibraryContainer extends React.Component{
         //    this.setState(inView: ()=>{return(<Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>)})
            
             ReactDOM.render(<Provider store={store}><Pages pages={this.props.pages}/></Provider>,container)
+        }else if(e.target.innerText=="Libraries"){
+
+             ReactDOM.render(<Provider store={store}><LibraryIndex libraries={this.props.libraires} /></Provider>,container)
         }
         
 
@@ -45,12 +52,13 @@ class LocalLibraryContainer extends React.Component{
         console.log("users",this.props.users)
         return(<div>
     <NavbarContainer/>
-    <button style={{margin: "20px"}}onClick={(e)=>this.handleOnClick(e)}>Books</button><button style={{margin: "20px"}}onClick={(e)=>this.handleOnClick(e)}>Pages</button>
+    <button className="button" onClick={(e)=>this.handleOnClick(e)}>Books</button>
+    <button className="button" onClick={(e)=>this.handleOnClick(e)}>Pages</button>
+    <button className="button" onClick={(e)=>this.handleOnClick(e)}>Libraries</button>
     <div className="LibraryContainer">
 
    <div className="localLibMain"> 
-   
-    <BookIndex books={this.props.books}/>
+<BookIndex  books={this.props.books}/>
     </div>
     {/* <Pages pages={this.props.pages}/> */}
     </div>
