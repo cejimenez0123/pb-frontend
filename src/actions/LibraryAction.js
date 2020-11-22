@@ -53,6 +53,8 @@ function getAllLibraries(){
 
     return(dispatch)=>(fetch(libraryPath).then(res=>res.json()).then(obj=>{
         let libraries = obj.data
+        debugger
+        dispatch(librariesInView(libraries))
         dispatch(allLibraries(libraries))
     }))
 }

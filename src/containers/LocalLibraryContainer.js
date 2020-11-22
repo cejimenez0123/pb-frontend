@@ -19,13 +19,14 @@ class LocalLibraryContainer extends React.Component{
 
     componentDidMount(){
 this.props.getAllLibraries()
+this.props.getBookLibraries()
         // this.setState({inView:})
     }
 
 
 
     handleOnClick(e){
-  
+        console.log("LIB",this.props.libraires)
         let container=document.querySelector(".localLibMain")
         if(e.target.innerHTML =="Books"){
         //     // this.setState(inView: ()=>{return (<div><Books books={this.props.books}/></div>)})
@@ -39,7 +40,7 @@ this.props.getAllLibraries()
             ReactDOM.render(<Provider store={store}><Pages pages={this.props.pages}/></Provider>,container)
         }else if(e.target.innerText=="Libraries"){
 
-             ReactDOM.render(<Provider store={store}><LibraryIndex libraries={this.props.libraires} /></Provider>,container)
+             ReactDOM.render(<Provider store={store}><LibraryIndex libraries={this.props.libraries} bookLibraries={this.props.bookLibraries} /></Provider>,container)
         }
         
 
@@ -48,8 +49,6 @@ this.props.getAllLibraries()
 
     render(){
 
-        console.log("pages",this.props.pages)
-        console.log("users",this.props.users)
         return(<div>
     <NavbarContainer/>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Books</button>
@@ -68,6 +67,7 @@ this.props.getAllLibraries()
     }
 }
 const mapState=(state)=>{
-    return{}
+    return{librariesInView: state.libraries.librariesInView,
+    bookLibraries: state.libraries.bookLibraries}
 }
 export default connect(mapState)(LocalLibraryContainer)
