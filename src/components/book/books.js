@@ -1,13 +1,14 @@
 import React from 'react'
 import Book from './book'
+import BookToggle from "./BookToggle"
 import PublishedBook from "./PublishedBook"
 const Books =(props)=>{
     let books="location not available"
-    if(props.books.length>0){
+    if(props.books && props.books.length>0){
 
    
       books=  props.books.map((book,i)=>{
-           return <Book book={book.attributes} key={i}/>
+           return <BookToggle book={book.attributes} key={i}/>
         })
        }  else{
 

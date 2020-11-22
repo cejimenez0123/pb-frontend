@@ -1,7 +1,7 @@
 import React from 'react'
 import NavbarContainer from "./NavbarContainer"
 import ReactDOM from "react-dom"
-import Books from "../components/book/books"
+
 import Library from "../components/library/Library"
 import {connect,Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -9,7 +9,7 @@ import LibraryIndex from "../components/library/LibraryIndex"
 import store from '../index'
 import Pages from "../components/page/pages"
 import BookIndex from "../components/book/BookIndex"
-
+import Books from "../components/book/books"
 let toggle = "pages"
 class LocalLibraryContainer extends React.Component{
     constructor(){
@@ -30,7 +30,7 @@ this.props.getBookLibraries()
         let container=document.querySelector(".localLibMain")
         if(e.target.innerHTML =="Books"){
         //     // this.setState(inView: ()=>{return (<div><Books books={this.props.books}/></div>)})
-           debugger
+       
             ReactDOM.render(
             <Provider store={store}><BookIndex  books={this.props.books}/></Provider>,container)
         }else if(e.target.innerText=="Pages"){
@@ -57,7 +57,7 @@ this.props.getBookLibraries()
     <div className="LibraryContainer">
 
    <div className="localLibMain"> 
-<BookIndex  books={this.props.books}/>
+<Books  books={this.props.books}/>
     </div>
     {/* <Pages pages={this.props.pages}/> */}
     </div>

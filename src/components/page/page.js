@@ -101,6 +101,7 @@ import PageCommentIndex from "./PageCommentIndex"
   if(props.page){
     let page = props.page
     content = page.data
+    debugger
     // dispatch(getPageComments(page))
       return(
         <div className="">
