@@ -514,6 +514,10 @@ color: white;}
   .followedBtn{ 
 	/*   */
 }
+.pageBtns{
+	display: flex;
+	justify-content: center;
+}
 .SearchBookAdd{height: 40px;}
 .bookTitle{
 	margin: 10px 20px;
@@ -631,12 +635,10 @@ flex-direction: column;
 			min-width:800px;
 	  
 		}
-		.localLibMain{
-			height: 1000px;
-			background-color: blue;
-			width: 800px;
+		
+		.localLibMain .books{
 			margin: auto;
-			;
+			width: 700px
 		}
 		.pages{
 			box-shadow: 5px 5px grey;
@@ -648,6 +650,15 @@ flex-direction: column;
 		.pages{background-color: rgb(223, 223, 223);
 			min-height: 296px;
 			box-shadow: 5px 5px grey;
+		
+		}
+		.localLibMain{
+			width: 701px;
+			margin: auto;
+		}
+		.localLibMain .pages{
+			width: 701px;
+			margin: auto;
 		}
 			.pagesOfBook{
 	  

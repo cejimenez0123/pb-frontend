@@ -17,7 +17,7 @@ const Books =(props)=>{
 
     
   
-    return(<div className="mainBook">
+    return(<div className="books list-group">
     {books}
     </div>)
 }

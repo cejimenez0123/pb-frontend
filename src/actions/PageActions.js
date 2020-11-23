@@ -148,7 +148,7 @@ const savePage = (page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl,config).then(res=>res.json()).then(
         obj=>{
-debugger
+
           let page=obj.data.attributes
           
           dispatch(getPagesOfBook(page.book.id))
@@ -159,7 +159,7 @@ debugger
 const getAllPages = ()=>{
   return(dispatch)=>{fetch(pageUrl+"/xklmno/all").then(res=>res.json()).then(
     obj=>{
-      debugger
+    
       let pages = obj.data
       dispatch({type: "GET_ALL_PAGES", pages})
     }

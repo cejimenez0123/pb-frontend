@@ -91,9 +91,13 @@ import PageCommentIndex from "./PageCommentIndex"
   if(dimensions.width>740){
   
   config={readonly: true,width: 700,iframe: true}
-  }else {
+  }else if(dimensions.width <740 && dimensions.width>375){
  
-  config={readonly: true,iframe: true}}
+  config={readonly: true,width:600,iframe: true}}
+  else if(dimensions.width <=375){
+
+config={readonly: true,width:375,iframe: true}
+  }
   
     
   let modalContent
@@ -101,7 +105,7 @@ import PageCommentIndex from "./PageCommentIndex"
   if(props.page){
     let page = props.page
     content = page.data
-    debugger
+
     // dispatch(getPageComments(page))
       return(
         <div className="">
@@ -113,8 +117,8 @@ import PageCommentIndex from "./PageCommentIndex"
               config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
             />
+            <div className="pageBtns">
            <Modal 
-           // onClick={(e)=>handleCommentClick(e)}
            button ={ <button variant="primary" onFocus={()=>getPageComments(props.page.id)}  >Comment</button>} content={
               <div>
                   <div className="pageHeader" > <div><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
@@ -136,8 +140,11 @@ import PageCommentIndex from "./PageCommentIndex"
                  <   PageCommentIndex  getPageComments={(id)=>dispatch(getPageComments(id))}comments={props.comments} page={page} />
           </div>
           </div>
+          
           </div>
           </div>}/>
+
+          </div>
         </div>
       </div>
      </div>)

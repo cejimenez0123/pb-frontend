@@ -28,11 +28,17 @@ this.props.getBookLibraries()
     handleOnClick(e){
         console.log("LIB",this.props.libraires)
         let container=document.querySelector(".localLibMain")
+        let books 
+        if (this.props.books){
+      books = this.props.books.filter(book=>{
+         
+            return book.attributes.published_pages.length > 0
+        })}
         if(e.target.innerHTML =="Books"){
         //     // this.setState(inView: ()=>{return (<div><Books books={this.props.books}/></div>)})
        
             ReactDOM.render(
-            <Provider store={store}><BookIndex  books={this.props.books}/></Provider>,container)
+            <Provider store={store}><Books  books={books}/></Provider>,container)
         }else if(e.target.innerText=="Pages"){
           
         //    this.setState(inView: ()=>{return(<Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>)})
@@ -54,6 +60,7 @@ this.props.getBookLibraries()
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Books</button>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Pages</button>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Libraries</button>
+    
     <div className="LibraryContainer">
 
    <div className="localLibMain"> 

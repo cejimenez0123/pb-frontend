@@ -16,7 +16,7 @@ function BookToggle(props){
                
                return pa.id == page_id
            })
-           debugger
+    
            return (<div>
                 <Page page={p.attributes} key={k}/>
            </div>)
