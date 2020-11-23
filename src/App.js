@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter,HashRouter, Route, Switch, Redirect,withRouter} from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
+import LogInContainer from "./containers/LogInContainer"
 import EditBookContainer from "./containers/EditBookContainer"
 import { connect} from "react-redux"
 import BookDraftsContainer from "./containers/BookDraftsContainer"
@@ -94,7 +95,7 @@ class App extends React.Component{
           </Route>
           
           <Route exact path="/login">
-            <LogInForm logIn={this.props.logIn}/>
+            <LogInContainer logIn={this.props.logIn}/>
           </Route>
           <Route exact path="/signup">
             <SignUpForm/>

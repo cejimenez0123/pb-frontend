@@ -10,6 +10,7 @@ const pageUrl = `${url}/pages`
 const bookPath = `${url}/books`
 const userPath = `${url}/users`
 const sharePath = `${url}/shares`
+const phrasePath = `${url}/phrases`
 function usePageActions(){
   return{myPages: ()=>myPages(),
 getPagesById:(id)=>getPagesById(id),
@@ -353,10 +354,22 @@ let config ={
   return(dispatch)=>{fetch(pageUrl+`/${page.page_id}/comment_on_comment`,config).then(res=>res.json()).then(obj=>{
     dispatch(getPageComments(page.page_id))
   })}}
+  function searchPhrases(query){
+    let str
+   let split = query.split(" ")
+   let join = split.join("%w%")
+   debugger
+    return(dispatch)=>{fetch(phrasePath+`/${join}/search`).then(res=>res.json()).then(obj=>{
 
+    debugger
+      let pages = obj.data
+      dispatch(searchedForPages(pages))
+    }).catch(err=>window.alert(err))}
+  }
+const searchedForPages=(pages)=>{return{type:"SEARCHED_FOR_PAGES",pages}}
 const pagesOfUser=(pages)=>{return{type: "PAGES_OF_USER",pages}}
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

@@ -124,7 +124,7 @@ config={readonly: true,width:375,iframe: true}
                   <div className="pageHeader" > <div><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
                    <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
-                   </a></div>{editBtn()}
+                   </a></div><div>#</div>{editBtn()}
                   </div>
 
                  <JoditEditor

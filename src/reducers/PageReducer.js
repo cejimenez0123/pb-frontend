@@ -1,6 +1,6 @@
 
 export default function PageReducer(
-    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: [],pageCommentsInView:[],currentPage: null},
+    state={pages:[], myPages:[],pagesFrom:[],inbox:[],requesting: false, pagesInView: [],pageCommentsInView:[],currentPage: null,searchedFor:[]},
     
     action){
 
@@ -37,6 +37,8 @@ export default function PageReducer(
             case "GET_MY_PAGES":
          
                 return {...state, myPages: action.pages}
+            case "SEARCHED_FOR_PAGES":
+                return {...state,searchedFor: state.searchedFor.concaet(action.pages)}
             default:
                 return state
         }

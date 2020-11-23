@@ -16,7 +16,7 @@ function FollowersBtn(props){
    return <FollowerCard user={x.attributes.follower}/>
 
   })
-    
+    debugger
     return(<div>
     <button className="yellow button " onClick={handleShow}>
        Followers

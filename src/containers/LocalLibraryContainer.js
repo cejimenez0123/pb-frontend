@@ -1,7 +1,7 @@
 import React from 'react'
 import NavbarContainer from "./NavbarContainer"
 import ReactDOM from "react-dom"
-
+import SearchContent from "../components/page/SearchContent"
 import Library from "../components/library/Library"
 import {connect,Provider} from 'react-redux'
 import {createStore} from 'redux'
@@ -57,16 +57,19 @@ this.props.getBookLibraries()
 
         return(<div>
     <NavbarContainer/>
-    <button className="button" onClick={(e)=>this.handleOnClick(e)}>Books</button>
+   
+    
+   
+ <button className="button" onClick={(e)=>this.handleOnClick(e)}>Books</button>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Pages</button>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Libraries</button>
-    
+   <SearchContent/>
     <div className="LibraryContainer">
-
    <div className="localLibMain"> 
 <Books  books={this.props.books}/>
     </div>
-    {/* <Pages pages={this.props.pages}/> */}
+    
+    
     </div>
     
     
