@@ -22,43 +22,44 @@ function Book(props){
     const handleTruthyClose=(text)=>{
         
         setTruthy("none");}
-//     function editBtn(){
-      
-//         if(props.currentUser && props.currentUser.id===props.book.user.id){
-//             return(<div>
-//             <Popup trigger={ <button className={".editBookBtnDropdown"}>Edit Book</button>} position="right center">
-//    <div >
-//         <button onClick={handleTruthyShow}>Add Page</button>
-//         <button>Delete Page</button>
-//          </div>
-//   </Popup>
-           
-                     
-       
-//         </div>)
-            
-//         }else{
-//             return ("")
-//         }
-//     }
-
-//     let html
+    // let [pages,setPages]= useState([])
  function removeEditor(){
      props.removeEditor()
  }
-    let pages
+ function ifSome(arr){
+     if( arr && arr.length>0){
+         return true
+     }else{
+         return false
+     }
+ }
+    let pages =[]
 
         if(props.book){
-  
-            if(props.pagesInView && props.pagesInView.length > 0){
-               pages = props.pagesInView
+
+            if(ifSome(props.pagesInView)){
+           pages= props.book.published_pages.map(id=>{
+                let page=props.pagesInView.find(page=>{return page.id == id})
+            
+                return (<Page page={page.attributes}/>)
+            })}else if(ifSome(props.pages && !ifSome(props.pagesInView  ))){
+                pages= props.book.published_pages.map(id=>{
+                let page=props.pages.find(page=>{return page.id == id})
+            debugger
+                return (<Page page={page.attributes}/>)
+            })}else{
+
+                pages = <Pages pages={props.pagesInView}/>
+            }
+        //     if(props.pagesInView && props.pagesInView.length > 0){
+        //        pages = props.pagesInView
             
                
                 
-            }else if(!props.pagesInView){
-         pages = props.pages.filter(page=>{
-               return page.attributes.book.id == props.book.id
-           })}
+        //     }else if(!props.pagesInView){
+        //  pages = props.pages.filter(page=>{
+        //        return page.attributes.book.id == props.book.id
+        //    })}
                 
               
             
@@ -76,18 +77,24 @@ function Book(props){
                 
                <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
                </div>
-               <div className="pagesOfBook">
-                <Pages pages={pages}/>
-                </div>
+              
+               <div className="pages">
+               {pages}
+               </div>
+                {/* <Pages pages={pages}/> */}
+        
                 </section>
                 {/* </div> */}
 
         </div>
               </div>  
             )}else{
+                
                 return(<div></div>)
-            }
-        };
+        
+
+    }       
+};
 
 
 function mapDispatch(dispatch){

@@ -103,6 +103,7 @@ config={readonly: true,width:375,iframe: true}
   let modalContent
   
   if(props.page){
+
     let page = props.page
     content = page.data
 
@@ -124,7 +125,7 @@ config={readonly: true,width:375,iframe: true}
                   <div className="pageHeader" > <div><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
                    <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
-                   </a></div><div>#</div>{editBtn()}
+                   </a></div>{editBtn()}
                   </div>
 
                  <JoditEditor

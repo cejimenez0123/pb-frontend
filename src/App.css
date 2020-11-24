@@ -70,11 +70,7 @@ border-radius: 10%;
 	height: 200px;
 }
 
-.BookContainer{
-	margin-top: 400px;
-	text-align: center;
-	margin: auto;
-}
+
 .comment{
 
 	padding-left: 8px;
@@ -632,17 +628,12 @@ flex-direction: column;
 		.LibraryContainer{
 			display: flex;
 		}
-		
-		.pagesOfBook{
-	  
+		.BookContainer{
+			margin-top: 10px;
 			text-align: center;
-			border-radius: 3%;
-			margin-bottom: 7px;
-			padding-bottom: 2px;
-			min-height:300px;
-			min-width:800px;
-	  
+			margin: auto;
 		}
+		.book{width: 800px;}
 		.idCard{
 			padding: 10px;
 			margin: 0px 10px;
@@ -663,6 +654,8 @@ flex-direction: column;
 			background-color: rgb(223, 223, 223);
 			min-height: 296px;
 			box-shadow: 5px 5px grey;
+			width: 702px;
+			margin: auto;
 		}
 		.profile{
 			background-color: #1a1818;
@@ -673,7 +666,10 @@ flex-direction: column;
 			height: 500px;
 			border-radius: 1%;
 	}
-	
+	.bookContainer{
+		display: flex;
+		margin-top: 10px;
+	}
 
 	}
 	@media only screen and (max-width: 900px){
