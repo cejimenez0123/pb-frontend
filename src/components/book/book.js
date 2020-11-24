@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import "../../App.css"
-
+import Page from "../page/page"
 import Popup from 'reactjs-popup'
 import PageInput from "../page/PageInput"
 import {connect,useDispatch } from "react-redux"
@@ -91,7 +91,8 @@ function Book(props){
 
 
 function mapDispatch(dispatch){
-    return{getPagesOfBook:(id)=>dispatch()}
+    return{getPagesOfBook:(id)=>dispatch(),
+     pageComments: (comments)=>dispatch({type: "PAGE_COMMENTS",comments})}
 }
 function mapState(state){
    console.log("SHOW",state.books.showEditor)
