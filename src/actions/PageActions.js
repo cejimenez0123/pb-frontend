@@ -11,6 +11,7 @@ const bookPath = `${url}/books`
 const userPath = `${url}/users`
 const sharePath = `${url}/shares`
 const phrasePath = `${url}/phrases`
+const likePath = `${url}/likes`
 function usePageActions(){
   return{myPages: ()=>myPages(),
 getPagesById:(id)=>getPagesById(id),
@@ -230,8 +231,8 @@ const deletePage=(page)=>{
 function getPublicPages(){
 
   return(dispatch)=>{
-    fetch(pageUrl).then(res=>res.json()).then(obj=>{
-
+    fetch(pageUrl+"/public_pages").then(res=>res.json()).then(obj=>{
+debugger
       let pages= obj.data
       dispatch(pagesInView(pages))
     })
@@ -366,10 +367,30 @@ let config ={
       dispatch(searchedForPages(pages))
     }).catch(err=>window.alert(err))}
   }
+  function likePage({pageId,score}){
+let config ={
+  method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: localStorage.getItem("currentUser"),
+            pageId: pageId,
+            score: score
+        })}
+        return(dispatch)=>{fetch(likePath,config).then(res=>res.json()).then(obj=>{
+debugger
+          dispatch({type: "FFD"})
+        })
+        }
+
+  }
+  
 const searchedForPages=(pages)=>{return{type:"SEARCHED_FOR_PAGES",pages}}
 const pagesOfUser=(pages)=>{return{type: "PAGES_OF_USER",pages}}
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {likePage,searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

@@ -1,5 +1,4 @@
 import React, {useState,useRef} from 'react'
-import { render } from 'react-dom'
 import JoditEditor from 'jodit-react'
 import {useStore,useDispatch } from 'react-redux'
 import Modal from "../modal"

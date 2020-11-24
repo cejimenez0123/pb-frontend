@@ -66,7 +66,7 @@ this.props.getBookLibraries()
    <SearchContent/>
     <div className="LibraryContainer">
    <div className="localLibMain"> 
-<Books  books={this.props.books}/>
+<Pages pages={this.props.pages}/>
     </div>
     
     

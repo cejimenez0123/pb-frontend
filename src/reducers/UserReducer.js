@@ -6,7 +6,8 @@ export default function UserReducer(
         userFollowers: [],
         userInView: {},
     loggedIn: false,
-requesting: false},
+requesting: false,
+userLikes: []},
     action){
     
         switch (action.type){
@@ -51,6 +52,8 @@ requesting: false},
                 
             case "GET_USERS_START":
                 return{...state}
+            case "USER_LIKES":
+            return {...state,userLikes: action.userLikes}
             default:
                 return state
         }

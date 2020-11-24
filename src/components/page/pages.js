@@ -1,31 +1,32 @@
 import React from 'react'
 import Page from "./page"
+import {getLikesOfUser} from "../../actions/UserActions"
 import {getPagesComments} from "../../actions/PageActions"
-import {connect } from 'react-redux'
+import PageCard from "../page/PageCards"
+import {connect ,useDispatch} from 'react-redux'
   let size= {width: window.innerWidth,height: window.innerHeight}
 
-function Pages (props){
+class Pages extends React.Component{
   
-    React.useEffect(() => {
-    function handleResize() {
-       size = {width: window.innerWidth,height: window.innerHeight} 
-    //   console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-    
-}
- window.addEventListener('resize', handleResize)
-  })
+  componentDidMount(){
+// if(this.props.pages && this.props.pages.length>0){
+//     debugger
+//       this.props.getLikesOfPages(this.props.pages)
+//       }
+      this.props.getLikesOfUser()
+  }
 
-    function renderPages(){
+ renderPages(){
         
     
       // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-        if(props.pages && props.pages.length>0){
-    
-            return ( props.pages.map(page=>{
+        if(this.props.pages && this.props.pages.length>0){
+            
+            return ( this.props.pages.map(page=>{
                 let comments = []
                 page = page.attributes
                 return (
-                        <Page page={page} key={page.id}  pageComments={props.pageComments} size={size}/>
+                        <PageCard page={page} key={page.id}  pageComments={this.props.pageComments} size={size}/>
                         )
                         })
                     )
@@ -40,11 +41,11 @@ function Pages (props){
 
     
     
-        
+   render(){     
     return(<div className="pages">
-    {renderPages()}
+    {this.renderPages()}
     </div>)
-
+   }
     
 
 }
@@ -58,8 +59,8 @@ const mapState=(state)=>{
 const mapDispatch=(dispatch)=>{
     return{
         getPagesComments: (arr)=>dispatch(getPagesComments(arr)),
-        pageComments: (comments)=>dispatch({type: "PAGE_COMMENTS",comments})
-
+        pageComments: (comments)=>dispatch({type: "PAGE_COMMENTS",comments}),
+     getLikesOfUser: ()=>dispatch(getLikesOfUser())
     }
 }
 export default connect(mapState,mapDispatch)(Pages)

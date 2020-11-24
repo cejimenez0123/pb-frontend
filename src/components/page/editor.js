@@ -125,6 +125,7 @@ function removeEditor(){
 </div>
                   </div>
               </div>
+             Hashtags to add <input type="text" className="form-control"/><button>Add</button>
         </div>
         );
 }
