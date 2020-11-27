@@ -367,25 +367,7 @@ let config ={
       dispatch(searchedForPages(pages))
     }).catch(err=>window.alert(err))}
   }
-  function likePage({pageId,score}){
-let config ={
-  method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          userId: localStorage.getItem("currentUser"),
-            pageId: pageId,
-            score: score
-        })}
-        return(dispatch)=>{fetch(likePath,config).then(res=>res.json()).then(obj=>{
-debugger
-          dispatch({type: "FFD"})
-        })
-        }
-
-  }
+  
   
 const searchedForPages=(pages)=>{return{type:"SEARCHED_FOR_PAGES",pages}}
 const pagesOfUser=(pages)=>{return{type: "PAGES_OF_USER",pages}}
@@ -393,4 +375,4 @@ const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 
-export {likePage,searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

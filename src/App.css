@@ -534,6 +534,9 @@ align-content: center;}
 	display: flex;
 	justify-content: space-between;
 }
+.invert{
+filter: invert(70%)
+}
 .searchUsersShare{width: 400px;
 align-content: center;}
 .btnBox {
@@ -671,6 +674,7 @@ flex-direction: column;
 		margin-top: 10px;
 	}
 
+
 	}
 	@media only screen and (max-width: 900px){
 		.pages{background-color: rgb(223, 223, 223);
@@ -678,7 +682,9 @@ flex-direction: column;
 			box-shadow: 5px 5px grey;
 		
 		}
-		
+		.profileContainer{display: flex;
+			flex-direction: column;
+				}
 		.localLibMain{
 			width: 701px;
 			margin: auto;

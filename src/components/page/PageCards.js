@@ -5,7 +5,8 @@ import Modal from "../modal"
 import Editor from "./editor"
 import DraftPage from "./DraftPage"
 import {connect} from "react-redux"
-import {getPageComments,likePage} from "../../actions/PageActions"
+import {getPageComments} from "../../actions/PageActions"
+import {likePage} from "../../actions/LikeActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
 // import useWindowSize from "../useWindowSize"
@@ -71,10 +72,19 @@ import PageCommentIndex from "./PageCommentIndex"
     }
   }  
   function ynBtn(){
+    let like = props.likes.find(like=>{return like.attributes.page.id === props.page.id})
+    if(like) {
 
-
+      switch(like.attributes.score){
+        case 1:
+        return(<div className="likeBtns "><button className={"invert"}onClick={(e)=>handleLike(e)}>Yea</button><button onClick={(e)=>handleLike(e)}>Nah</button>
+        </div>)
+        case -1:
+          return(<div className="likeBtns "><button onClick={(e)=>handleLike(e)}>Yea</button><button className={"invert"}onClick={(e)=>handleLike(e)}>Nah</button></div>)
+      }
+    }else{
     return (<div className="likeBtns"><button onClick={(e)=>handleLike(e)}>Yea</button><button onClick={(e)=>handleLike(e)}>Nah</button>
-    </div>)
+    </div>)}
   }
   function handleLike(e){
     let text = e.target.textContent
@@ -170,13 +180,13 @@ config={readonly: true,width:375,iframe: true}
   return (<div>Nothing here</div>)
 }
     
-    }
+}
 
 function mapState(state){
 
   return{
     comments: state.pages.pageCommentsInView,
-    user_likes: state.users.user_likes
+    userLikes: state.users.userLikes
   }
 }
 export default connect(mapState)(PageCard)

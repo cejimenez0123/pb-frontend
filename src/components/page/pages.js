@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from "./page"
-import {getLikesOfUser} from "../../actions/UserActions"
+import {getLikesOfUser} from "../../actions/LikeActions"
 import {getPagesComments} from "../../actions/PageActions"
 import PageCard from "../page/PageCards"
 import {connect ,useDispatch} from 'react-redux'
@@ -26,7 +26,7 @@ class Pages extends React.Component{
                 let comments = []
                 page = page.attributes
                 return (
-                        <PageCard page={page} key={page.id}  pageComments={this.props.pageComments} size={size}/>
+                        <PageCard likes={this.props.userLikes} page={page} key={page.id}  pageComments={this.props.pageComments} size={size}/>
                         )
                         })
                     )
@@ -53,7 +53,8 @@ class Pages extends React.Component{
 
 const mapState=(state)=>{
     return{
-        comments: state.pages.pageCommentsInView
+        comments: state.pages.pageCommentsInView,
+        userLikes: state.users.userLikes
     }
 }
 const mapDispatch=(dispatch)=>{

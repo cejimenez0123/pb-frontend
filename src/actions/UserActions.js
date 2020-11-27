@@ -212,20 +212,10 @@ return(dispatch)=>{fetch(`http://localhost:3000/${localStorage.getItem("currentU
   };
   }
 
-function getLikesOfUser(){
-    
 
-    return(dispatch)=>{
-    fetch(likePath+`/users/${localStorage.getItem("currentUser")}`).then(res=>res.json()).then(obj=>{
-        debugger
-        let userLikes = obj.data
-dispatch({type:"USER_LIKES",userLikes})
-    })
-    }
-  }
 
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
-export {getLikesOfUser,uploadProfilePic,userPageStream,LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
+export {uploadProfilePic,userPageStream,LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
 
