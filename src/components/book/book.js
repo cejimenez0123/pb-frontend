@@ -33,15 +33,19 @@ function Book(props){
          return false
      }
  }
+
     let pages =[]
 
         if(props.book){
 
             if(ifSome(props.pagesInView)){
+            console.log(props.pagesInView)
+            
            pages= props.book.published_pages.map(id=>{
                 let page=props.pagesInView.find(page=>{return page.id == id})
             
                 return (<Page page={page.attributes}/>)
+               
             })}else if(ifSome(props.pages && !ifSome(props.pagesInView  ))){
                 pages= props.book.published_pages.map(id=>{
                 let page=props.pages.find(page=>{return page.id == id})
@@ -51,19 +55,8 @@ function Book(props){
 
                 pages = <Pages pages={props.pagesInView}/>
             }
-        //     if(props.pagesInView && props.pagesInView.length > 0){
-        //        pages = props.pagesInView
-            
-               
-                
-        //     }else if(!props.pagesInView){
-        //  pages = props.pages.filter(page=>{
-        //        return page.attributes.book.id == props.book.id
-        //    })}
-                
+            console.log("PAGES",pages)
               
-            
-           
               return (
 <div>
               

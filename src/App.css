@@ -682,6 +682,17 @@ flex-direction: column;
 			box-shadow: 5px 5px grey;
 		
 		}
+		.bookContainer{display: flex;
+			flex-direction: column;}
+		.idCard{padding: 10px;
+		
+			width: 100%;
+		   height: auto;
+		   max-height: 500px;
+		   overflow: scroll;
+	   background-color: #004242;
+	   color: white;
+	   }
 		.profileContainer{display: flex;
 			flex-direction: column;
 				}

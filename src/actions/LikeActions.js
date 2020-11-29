@@ -14,7 +14,7 @@ let config ={
             score: score
         })}
         return(dispatch)=>{fetch(likePath,config).then(res=>res.json()).then(obj=>{
-debugger
+
 dispatch(getLikesOfUser())
          
         })
@@ -27,7 +27,7 @@ dispatch(getLikesOfUser())
 
     return(dispatch)=>{
     fetch(likePath+`/users/${localStorage.getItem("currentUser")}`).then(res=>res.json()).then(obj=>{
-   debugger
+  
         let userLikes = obj.data
 dispatch({type: "USER_LIKES",userLikes})
     })

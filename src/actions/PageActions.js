@@ -49,6 +49,7 @@ const startPage =(title)=>{
 }
 const getPagesOfBook=(id)=>{
   return(dispatch)=>{fetch(bookPath+"/"+id+"/pages").then(res=>res.json()).then(obj=>{
+
   let pages=obj.data
   dispatch(pagesInView(pages))
   })}
@@ -98,7 +99,7 @@ const publishPage=(page)=>{
       })}
       return(dispatch)=>{(fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
         obj=>{
-         
+         debugger
           let page=obj.data.attributes
           dispatch(getPagesOfBook(page.book.id))
          dispatch(getAllPages())
@@ -228,16 +229,7 @@ const deletePage=(page)=>{
       
   })
 }
-function getPublicPages(){
 
-  return(dispatch)=>{
-    fetch(pageUrl+"/public_pages").then(res=>res.json()).then(obj=>{
-debugger
-      let pages= obj.data
-      dispatch(pagesInView(pages))
-    })
-  }
-}
 function getPage(){
  
   let id = window.location.pathname.split("/")[2]
@@ -248,7 +240,16 @@ function getPage(){
    dispatch({type: "GET_PAGE",page})}
  )}
 }
+function getPublicPages(pages){
 
+  return(dispatch)=>{
+    fetch(pageUrl+`/page_count/${pages}`).then(res=>res.json()).then(obj=>{
+
+      let pages= obj.data
+      dispatch(pagesInView(pages))
+    })
+  }
+}
 function getPagesById(id){
   return(dispatch)=>{ fetch(userPath+`/${id}/pages`,{
     headers : { 

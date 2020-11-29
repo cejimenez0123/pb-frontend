@@ -11,13 +11,14 @@ import SearchCardIndex from '../components/user/SearchCardIndex'
 import "../App.css"
 import SignUpForm from "../components/user/SignUpForm"
 import LogInForm from "../components/user/LogInForm"
+import {BottomScrollListener }from 'react-bottom-scroll-listener';
 class HomeContainer extends React.Component{
-    //     props.getAllPages()
-    // let store = useStore()
-    // let pages = store.getState().pages.pages
-    // debugger
+    constructor(props){
+        super(props)
+        this.state={pages: 10}
+    }
     componentDidMount(){
-        this.props.getPublicPages()
+        this.props.getPublicPages(10)
     }
   
     
@@ -52,7 +53,13 @@ class HomeContainer extends React.Component{
                 </div>
           )
       }
-  }  
+  } 
+  handleOnBottom(){
+ 
+
+    let pages=10+this.state.pages
+    this.props.getPublicPages(pages)
+  } 
  render(){
      console.log(this.props.pagesInView)
         return(
@@ -62,7 +69,9 @@ class HomeContainer extends React.Component{
                 <div>
                 </div>
                 <div id="main">
+                <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
                     <Pages pages={this.props.pagesInView}/>
+                    </BottomScrollListener>
                 </div>
                 {this.signBtns()}
                 </div>

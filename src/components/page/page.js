@@ -153,7 +153,7 @@ config={readonly: true,width:375,iframe: true}
   return (<div>Nothing here</div>)
 }
     
-    }
+}
 
 function mapState(state){
 

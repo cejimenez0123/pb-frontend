@@ -4,6 +4,7 @@ import {getLikesOfUser} from "../../actions/LikeActions"
 import {getPagesComments} from "../../actions/PageActions"
 import PageCard from "../page/PageCards"
 import {connect ,useDispatch} from 'react-redux'
+import {useBottomScrollListener} from "react-bottom-scroll-listener"
   let size= {width: window.innerWidth,height: window.innerHeight}
 
 class Pages extends React.Component{
@@ -21,7 +22,7 @@ class Pages extends React.Component{
     
       // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
         if(this.props.pages && this.props.pages.length>0){
-            
+  
             return ( this.props.pages.map(page=>{
                 let comments = []
                 page = page.attributes

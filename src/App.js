@@ -62,7 +62,7 @@ class App extends React.Component{
   
 <Switch>
   <Route exact path="/library/1">
-   <LocalLibraryContainer getAllLibraries={this.props.getAllLibraries} libraries={this.props.librariesInView} books={this.props.books} users={this.props.users} pages={this.props.pages} getBookLibraries={this.props.getBookLibraries}/>
+   <LocalLibraryContainer getAllLibraries={this.props.getAllLibraries} libraries={this.props.librariesInView} books={this.props.books} users={this.props.users} pages={this.props.pagesInView} getBookLibraries={this.props.getBookLibraries}/>
   </Route>
   <Route exact path="/user/:id/settings">
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
@@ -133,7 +133,7 @@ function mapDispatchToProps(dispatch){
     getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id)),
     getUserBookAccess: ()=>dispatch(getUserBookAccess()),
     getLibraryPages:(id)=>dispatch(getLibraryPages(id)),
-    getPublicPages:()=>dispatch(getPublicPages()),
+    getPublicPages:(pages)=>dispatch(getPublicPages(pages)),
     getAllLibraries:()=>dispatch(getAllLibraries())
   }
 }

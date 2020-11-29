@@ -72,7 +72,9 @@ import PageCommentIndex from "./PageCommentIndex"
     }
   }  
   function ynBtn(){
-    let like = props.likes.find(like=>{return like.attributes.page.id === props.page.id})
+      let like 
+    if(props.likes){
+  like= props.likes.find(like=>{return like.attributes.page.id === props.page.id})}
     if(like) {
 
       switch(like.attributes.score){

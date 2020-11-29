@@ -31,6 +31,8 @@ export default function PageReducer(
             case "PAGES_IN_VIEW":
      
                 return {...state,pagesInView: action.pages}
+            case "APPEND_PAGES_IN_VIEW":
+                return {...state, pagesInView: state.pagesInView.append(action.pages)}
             case "GET_ALL_PAGES":
         
                 return {...state,pages: action.pages}
