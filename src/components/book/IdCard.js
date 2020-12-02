@@ -159,9 +159,14 @@ const handleEditClick = () => {
         props.editMode? props.setEditMode(false):props.setEditMode(true)
     }
     function editBtn(){
-        if(props.book.user.id === localStorage.getItem("currentUser")){
+        if(props.book.user.id === localStorage.getItem("currentUser")&&!props.editMode){
             return(<p onClick={setEditMode}>Edit</p>)
-// return( <Modal button={
+        }else if(props.book.user.id === localStorage.getItem("currentUser")&&props.editMode){
+           return(<p onClick={handleBookUpdate}>Save</p>) 
+        }else{
+            return("")
+        }
+        // return( <Modal button={
         
 //         <a className="">Edit</a>
 //        } content={<div className="editForm"
@@ -182,9 +187,9 @@ const handleEditClick = () => {
 //    </select>
 //    <button type="submit" >Update</button>
 //    </form>
-//    </div>}/>)
+//    </div>}/>
         }
-    }
+    
   function handleModalClose(e){
 
       if(e.target === e.currentTarget){
@@ -198,13 +203,17 @@ function draftsBtn(){
     return( <a className={"aBtn button yellow"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
     )}}
     function handleBookUpdate(e){
-        debugger
+    
 e.preventDefault()
-        let title = e.target.querySelector(".bookName").value
-        let intro = e.target.querySelector(".introBook").value
-        let privacy = e.target.querySelector("select").value
+
+        let title = document.querySelector("#bookTitle").value
+        let intro = document.querySelector("#bookIntro").value
+        let privacy = document.querySelector("#bookPrivacy").value
+        
+      debugger
         let hash = {bookId: props.book.id,title, intro,privacy}
         dispatch(updateBook(hash))
+          props.setEditMode(false)
     }
     if(props.book && props.editMode){
 
@@ -214,13 +223,20 @@ e.preventDefault()
     <div id="idCardHeader">
      {editBtn()}
     </div>
-    <div className="bookTitle">
-         <h4><input type="text" className="form-control" defaultValue={props.book.title}/></h4>  
+    
+    <form>
+         <h4>
+            <input type="text" className="form-control" id="bookTitle" defaultValue={props.book.title}/>
+        </h4>  
          <br/>
-         <h6> from {props.book.user.name}</h6>
-     </div>
-         <textarea className="form-control" defaultValue={props.book.intro}/>
-         
+         <h6> by {props.book.user.name}</h6>
+    
+        <textarea className="form-control" id="bookIntro" defaultValue={props.book.intro}/>
+        <select style={{width: "100px"}} id="bookPrivacy" className="form-control " defaultValue={props.book.privacy}>
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+        </select>
+    </form>
          <div className="btnBox"> 
         
     {addPageBtn()} {draftsBtn()} {shareBtn()}
