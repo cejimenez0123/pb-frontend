@@ -41,15 +41,36 @@ function Book(props){
  }
 
     let pagesHTML=""
-    const PageSortContainer=sortableContainer(({ children } )=> <div >{children}</div>)
+    let pages =[]
+    const PagesSortContainer=sortableContainer(({ children } )=> <div >{children}</div>)
     const SortablePage = sortableElement(({ page,id }) => <Page key={id} page={page} />);  
         if(props.book){
             console.log("book", props.book)
-            if(ifSome(props.pagesInView)){
+            
+    if(props.editMode){
+        if(ifSome(props.pagesInView)){
+        
+            
+      
+         let sortpages= props.book.published_pages.map(id=>{
+           
+           let page=props.pagesInView.find(page=>{return page.id == id})
+            if(!page){
+                return("")
+            }else{
+                return (
+                    <SortablePage page={page.attributes} key={id}/>
+                )}
+            pagesHTML=(<PagesSortContainer>{sortpages}</PagesSortContainer>)
+               
+    })
+    }
+    }else{
+        if(ifSome(props.pagesInView)){
         
             console.log(props.pagesInView)
       
-           pagesHTML= props.book.published_pages.map(id=>{
+           pages= props.book.published_pages.map(id=>{
            
                 let page=props.pagesInView.find(page=>{return page.id == id})
             if(!page){
@@ -58,16 +79,20 @@ function Book(props){
                 return (<Page page={page.attributes}/>)}
                
             })}else if(ifSome(props.pages && !ifSome(props.pagesInView  ))){
-                pagesHTML= props.book.published_pages.map(id=>{
+                pages= props.book.published_pages.map(id=>{
                 let page=props.pages.find(page=>{return page.id == id})
             debugger
                 return (<Page page={page.attributes}/>)
             })}else{
 
-                pagesHTML = <Pages pages={props.pagesInView}/>
+                pages = <Pages pages={props.pagesInView}/>
             }
+                pagesHTML=( <div>
+                         {pages}
+                        </div>)
+    }
            
-              
+            
               return (
 <div>
               
@@ -77,26 +102,18 @@ function Book(props){
                 {/* <PageInput book={props.book}/> */}
                <div className={"scroll bookPages is-dark"}>
                <section>
-               <div style={{display: props.show}} className={"bookEditor"}>
-                
-               <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
-               </div>
+                    <div style={{display: props.show}} className={"bookEditor"}>
+                        <Editor book={props.book} handleTruthyClose={handleTruthyClose}/>
+                    </div>
               
-               <div className="pages">
-               {pagesHTML}
-               </div>
-                {/* <Pages pages={pages}/> */}
-        
+                    <div className="pages">
+                        {pagesHTML}
+                    </div>        
                 </section>
-                {/* </div> */}
-
-        </div>
-              </div>  
-            )}else{
-                
-                return(<div></div>)
-        
-
+            </div>
+        </div>  
+    )}else{
+        return(<div></div>)
     }       
 }
 
