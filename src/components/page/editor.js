@@ -87,7 +87,6 @@ function removeEditor(){
 
     function handlePublish(){
         page = {...page,data:text,status:"published"}
-        debugger
         dispatch({type:"SHOW_EDITOR",show: "none"})
         dispatch(publishPage(page))
          

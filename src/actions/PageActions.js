@@ -1,5 +1,5 @@
 import {history} from "../history"
-
+import {getBook} from "./BookActions"
 import {push } from 'react-router-redux'
 import store from '../index'
 const path1= "https://elegant-croissant-40634.herokuapp.com"
@@ -84,6 +84,7 @@ const getDraftsOfBook=(id)=>{
 //     })}
 // }
 const publishPage=(page)=>{
+
    let config = {    
     method: 'PUT',
     headers: {
@@ -99,10 +100,11 @@ const publishPage=(page)=>{
       })}
       return(dispatch)=>{(fetch(pageUrl+"/publish",config).then(res=>res.json()).then(
         obj=>{
-         debugger
+       
           let page=obj.data.attributes
+          
           dispatch(getPagesOfBook(page.book.id))
-         dispatch(getAllPages())
+          dispatch(getBook(page.book.id))
         }
       ))
       }
@@ -124,19 +126,19 @@ const updatePage=(page)=>{
       })}
       return(dispatch)=>{fetch(pageUrl+`/${page.id}/update`,config).then(res=>res.json()).then(
         obj=>{
-
           let page=obj.data.attributes
           window.alert("saved!!")
        
           if(window.location.pathname.includes("books") && window.location.pathname.includes("drafts")){
             dispatch(getDraftsOfBook(page.book.id ))
           }else{
+            dispatch(getPagesOfBook(page.book.id))
          dispatch(getAllPages())}
         }
       ).catch(err=>window.alert(err))}
 }
 const savePage = (page)=>{
- debugger
+
   let config = {    
     method: 'POST',
     headers: {
@@ -155,6 +157,7 @@ const savePage = (page)=>{
           let page=obj.data.attributes
           
           dispatch(getPagesOfBook(page.book.id))
+          dispatch(getBook(page.book.id))
          dispatch(getAllPages())
         }
       )}

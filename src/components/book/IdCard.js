@@ -154,31 +154,35 @@ const handleEditClick = () => {
         }
     }}
     
+    function setEditMode(){
     
+        props.editMode? props.setEditMode(false):props.setEditMode(true)
+    }
     function editBtn(){
         if(props.book.user.id === localStorage.getItem("currentUser")){
-return( <Modal button={
+            return(<p onClick={setEditMode}>Edit</p>)
+// return( <Modal button={
         
-        <a className="">Edit</a>
-       } content={<div className="editForm"
-   >
-   <form  onSubmit={(e)=>handleBookUpdate(e)}>
-   <label>Name of Book:</label>
-   <br/>
-   <input style={{width: "200px"}} className="form-control bookName " type="text" defaultValue={props.book.title}/>
-   <br/>
-   <label>Introduction to book</label> 
-   <textarea style={{width: "350px",height: "200px"}} className="form-control introBook " defaultValue={props.book.intro}/>
-   <br/>
+//         <a className="">Edit</a>
+//        } content={<div className="editForm"
+//    >
+//    <form  onSubmit={(e)=>handleBookUpdate(e)}>
+//    <label>Name of Book:</label>
+//    <br/>
+//    <input style={{width: "200px"}} className="form-control bookName " type="text" defaultValue={props.book.title}/>
+//    <br/>
+//    <label>Introduction to book</label> 
+//    <textarea style={{width: "350px",height: "200px"}} className="form-control introBook " defaultValue={props.book.intro}/>
+//    <br/>
    
-   <select style={{width: "100px"}}className="form-control " defaultValue={props.book.privacy}id='privacy'>
-        <option value="private">Private</option>
-        <option value="public">Public</option>
+//    <select style={{width: "100px"}}className="form-control " defaultValue={props.book.privacy}id='privacy'>
+//         <option value="private">Private</option>
+//         <option value="public">Public</option>
         
-   </select>
-   <button type="submit" >Update</button>
-   </form>
-   </div>}/>)
+//    </select>
+//    <button type="submit" >Update</button>
+//    </form>
+//    </div>}/>)
         }
     }
   function handleModalClose(e){
@@ -202,9 +206,37 @@ e.preventDefault()
         let hash = {bookId: props.book.id,title, intro,privacy}
         dispatch(updateBook(hash))
     }
-    if(props.book){
+    if(props.book && props.editMode){
 
         return(<section className="idCard">
+         
+    <div>
+    <div id="idCardHeader">
+     {editBtn()}
+    </div>
+    <div className="bookTitle">
+         <h4><input type="text" className="form-control" defaultValue={props.book.title}/></h4>  
+         <br/>
+         <h6> from {props.book.user.name}</h6>
+     </div>
+         <textarea className="form-control" defaultValue={props.book.intro}/>
+         
+         <div className="btnBox"> 
+        
+    {addPageBtn()} {draftsBtn()} {shareBtn()}
+      <button class="button is-dark blue" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
+        <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
+            <div   class="modal-content">
+                <span  class="close">&times;</span>
+                  {followerCards()}
+            </div>
+            </div>
+        </div></div>
+       </section>)
+    }
+    else if(props.book && !props.editMode){
+    
+return(<section className="idCard">
          
     <div>
     <div id="idCardHeader">
@@ -229,7 +261,8 @@ e.preventDefault()
             </div>
         </div></div>
        </section>)
-    }else{
+
+    } else{
         return("no Book")
     }
 

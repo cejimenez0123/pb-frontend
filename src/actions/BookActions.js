@@ -20,7 +20,7 @@ function startBook(book,is_Home_Book="false"){
       body: JSON.stringify({
           userId: localStorage.getItem("currentUser"),
           title: book.name,
-          book: book.intro,
+          intro: book.intro,
           privacy: book.privacy,
           isHomeBook: is_Home_Book
     })}

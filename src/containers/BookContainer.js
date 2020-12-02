@@ -14,12 +14,13 @@ import IdCard from '../components/book/IdCard'
 import Modal from "../components/modal"
  let truthy = "none"
 class BookContainer extends React.Component{
-constructor(){
-    super()
+constructor(props){
+    super(props)
     this.state={title: "",
     show: "none",
     editor: false,
-    truthy: "none"}
+    truthy: "none",
+    editMode: false}
 }
  handleOnClick(){
      this.props.followBook(this.props.book.id)
@@ -37,6 +38,9 @@ constructor(){
     
 
  }
+ setEditMode(truthy){
+     this.setState({editMode: truthy})
+ }
 
 ifBook(){
 
@@ -48,7 +52,7 @@ ifBook(){
                    return    new Date(b.updated_at )- new Date(a.updated_at )})
         return (
         <div>
-           <Book editor={this.state.editor} truthy={truthy} book={this.props.book} pagesInView={pages} followBook={this.props.followBook}/>
+           <Book editMode={this.state.editMode} editor={this.state.editor} truthy={truthy} book={this.props.book} pagesInView={pages} followBook={this.props.followBook}/>
         </div>
         )
     }else{
@@ -102,15 +106,7 @@ button=( <button onClick={()=>this.setState({editor:true})}>Add Page</button>)
         }
   } 
     }
-  handleModalClose(e){
-
-      if(e.target === e.currentTarget){
-       console.log("!")
-       
-         
-        this.set.state({show:"none"})
-     }
-  }
+  
     followBtn(){
     
         if(this.props.followers){
@@ -145,7 +141,7 @@ button=( <button onClick={()=>this.setState({editor:true})}>Add Page</button>)
      
     
     <div className="bookContainer">
-       <IdCard bookAccessors={this.props.bookAccessors} users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
+       <IdCard  editMode={this.state.editMode} setEditMode={this.setEditMode.bind(this)} bookAccessors={this.props.bookAccessors} users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
      
         <div className="book">
        {this.ifBook()}

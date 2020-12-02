@@ -128,8 +128,9 @@ this.props.startBook({name,intro,privacy})
   
         
         return(
-<div>
+<div><div className="profileBackground">
     <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+   
     <div className="profileContainer">
         <div className="profile">
             <div classname="" id="my-info">
@@ -220,7 +221,7 @@ this.props.startBook({name,intro,privacy})
                             <img src="https://img.icons8.com/ios/50/000000/settings.png"/>
                         </a>
     </div>
-    
+    </div>
 </div>
         )
     }

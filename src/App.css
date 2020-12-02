@@ -211,8 +211,9 @@ overflow-y: scroll;
   .updateLibrary input{
 	width: 200px;
   }
+  /* #c1d3f5 */
   .app{
-	background-color:#c1d3f5;
+	background-color:rgb(26, 29, 26);
 	height: 120vw;
 	
   }
@@ -420,8 +421,7 @@ height: 200px;
 height: 80px;}
 
 
-.pageMain{
-padding-top: 40px}
+
 
 .idBox{
 	border: 2px solid blue;
@@ -574,7 +574,10 @@ align-content: center;}
 	height: 700px;
 } */
 
-
+.profileBackground{
+	background-color: rgb(63, 65, 63);
+	box-shadow: 40px 30px 40px 30px rgb(48, 49, 48) inset;
+}
 @media only screen and (max-width: 768px)
 and (min-device-width : 375px) {
 	.libContainer{
@@ -614,15 +617,17 @@ flex-direction: column;
 	color: white;
 	}
 }
-.profileContainer{display: flex;
-	
-	
-}
+
 
 	@media only screen and (min-width: 900px){
 		.homeContainer .main{
 			margin:auto;
 		}
+		.profileContainer{display: flex;
+			margin-top: 20px;
+	
+		}
+		
 		.homeContainer{
 			display:flex;
 		margin-top:20px;
@@ -644,8 +649,6 @@ flex-direction: column;
 			height: auto;
 			max-height: 500px;
 			overflow: scroll;
-			background-color: #004242;
-			box-shadow: 5px 5px black;
 			color: white;
 			border-radius: 10px;}
 		
@@ -658,11 +661,14 @@ flex-direction: column;
 			min-height: 296px;
 			box-shadow: 5px 5px grey;
 			width: 702px;
+			margin-left: 20px;
 			margin: auto;
 		}
+		.pageMain{margin-left:30px}
 		.profile{
-			background-color: #1a1818;
-			color: white;
+			
+			
+			
 			margin-left: 20px;
 			padding: 20px;
 			width: 300px;
@@ -682,6 +688,7 @@ flex-direction: column;
 			box-shadow: 5px 5px grey;
 		
 		}
+		
 		.bookContainer{display: flex;
 			flex-direction: column;}
 		.idCard{padding: 10px;

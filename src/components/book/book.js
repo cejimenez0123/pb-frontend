@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import "../../App.css"
 import Page from "../page/page"
 import Popup from 'reactjs-popup'
@@ -11,6 +11,8 @@ import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 import Pages from "../page/pages"
 import Infinite from "react-infinite"
+import {sortableContainer,sortableElement} from 'react-sortable-hoc'
+import arrayMove from 'array-move'
 import FollowerCards from "../user/FollowerCards"
 
 let book
@@ -19,6 +21,10 @@ function Book(props){
     const dispatch = useDispatch()
 
     let [truthy,setTruthy]=useState("none")
+    let [published_pages,setPublishedPages]=useState([])
+    useEffect(()=>{
+
+    })
     const handleTruthyClose=(text)=>{
         
         setTruthy("none");}
@@ -34,28 +40,33 @@ function Book(props){
      }
  }
 
-    let pages =[]
-
+    let pagesHTML=""
+    const PageSortContainer=sortableContainer(({ children } )=> <div >{children}</div>)
+    const SortablePage = sortableElement(({ page,id }) => <Page key={id} page={page} />);  
         if(props.book){
-
+            console.log("book", props.book)
             if(ifSome(props.pagesInView)){
+        
             console.log(props.pagesInView)
-            
-           pages= props.book.published_pages.map(id=>{
+      
+           pagesHTML= props.book.published_pages.map(id=>{
+           
                 let page=props.pagesInView.find(page=>{return page.id == id})
-            
-                return (<Page page={page.attributes}/>)
+            if(!page){
+                return("")
+            }else{
+                return (<Page page={page.attributes}/>)}
                
             })}else if(ifSome(props.pages && !ifSome(props.pagesInView  ))){
-                pages= props.book.published_pages.map(id=>{
+                pagesHTML= props.book.published_pages.map(id=>{
                 let page=props.pages.find(page=>{return page.id == id})
             debugger
                 return (<Page page={page.attributes}/>)
             })}else{
 
-                pages = <Pages pages={props.pagesInView}/>
+                pagesHTML = <Pages pages={props.pagesInView}/>
             }
-            console.log("PAGES",pages)
+           
               
               return (
 <div>
@@ -72,7 +83,7 @@ function Book(props){
                </div>
               
                <div className="pages">
-               {pages}
+               {pagesHTML}
                </div>
                 {/* <Pages pages={pages}/> */}
         
@@ -87,7 +98,7 @@ function Book(props){
         
 
     }       
-};
+}
 
 
 function mapDispatch(dispatch){
