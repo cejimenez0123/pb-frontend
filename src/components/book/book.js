@@ -16,20 +16,22 @@ import arrayMove from 'array-move'
 import FollowerCards from "../user/FollowerCards"
 
 let book
-
+let ids
 function Book(props){
     const dispatch = useDispatch()
 
     let [truthy,setTruthy]=useState("none")
     let [published_pages,setPublishedPages]=useState([])
+    
     useEffect(()=>{
-        setPublishedPages(props.book.published_pages)
-        
+         setPublishedPages(props.book.published_pages)
+            ids = props.book.published_pages
+            
          localStorage.setItem("published_pages",props.book.published_pages.join())
     },[props.book])
     useEffect(()=>{
+      
          localStorage.setItem("published_pages",published_pages.join())
-          debugger
     },[published_pages])
     const handleTruthyClose=(text)=>{
         
@@ -48,7 +50,10 @@ function Book(props){
 
     let pagesHTML=""
     let pages =[]
-    const onSortEnd = ({ oldIndex, newIndex }) => setPublishedPages(arrayMove(published_pages, oldIndex, newIndex))
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        
+        setPublishedPages(arrayMove(published_pages, oldIndex, newIndex))
+        }
     const PagesSortContainer=SortableContainer(({ children } )=> <div >{children}</div>
     )
     const SortablePage = SortableElement(({ page,id }) => {
@@ -61,8 +66,7 @@ function Book(props){
             
     if(props.editMode){
         if(ifSome(props.pagesInView)){
-        
-            
+    
       
          let pages= published_pages.map(((id,index)=>{
            
@@ -74,17 +78,16 @@ function Book(props){
                 )}else{
                     return("")
                 }
-        
-           
-               
-    
-    }))
+            }
+        ))
      pagesHTML=(<PagesSortContainer onSortEnd={onSortEnd} axis="y">{pages}</PagesSortContainer>)
-    }
+        }
     }else{
         if(ifSome(props.pagesInView)){
-      
-           pages= published_pages.map((id,index)=>{
+            
+        
+
+           pages= props.book.published_pages.map((id,index)=>{
            
                 let page=props.pagesInView.find(page=>{return page.id == id})
             if(!page){
@@ -136,7 +139,7 @@ function mapDispatch(dispatch){
      pageComments: (comments)=>dispatch({type: "PAGE_COMMENTS",comments})}
 }
 function mapState(state){
-   console.log("SHOW",state.books.showEditor)
+  
     return{
         currentUser: state.users.currentUser,
         bookInView: state.books.bookInView,

@@ -212,7 +212,7 @@ e.preventDefault()
         let intro = document.querySelector("#bookIntro").value
         let privacy = document.querySelector("#bookPrivacy").value
         let published_pages = localStorage.getItem("published_pages").split(",")
-        let hash = {bookId: props.book.id,title, intro,privacy,published_pages: book.published_pages}
+        let hash = {bookId: props.book.id,title, intro,privacy,published_pages}
         dispatch(updateBook(hash))
           props.setEditMode(false)
     }
