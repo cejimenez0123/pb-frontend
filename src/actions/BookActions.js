@@ -69,7 +69,7 @@ function getPublicBooksOfUser(id){
 
     })}
 }
-function updateBook({bookId,title,intro,privacy}){
+function updateBook({bookId,title,intro,privacy,published_pages}){
     let config={   
     method: 'PATCH',
     headers: {
@@ -80,10 +80,11 @@ function updateBook({bookId,title,intro,privacy}){
           bookId: bookId,
           title: title,
           intro: intro,
-          privacy: privacy
+          privacy: privacy,
+          published_pages: published_pages
     })}
     return(dispatch)=>{fetch(bookPath+`/${bookId}/update`,config).then(res=>res.json()).then(obj=>{
-        debugger
+    
     alert("UPDATED!!")
     let book = obj.data.attributes
     dispatch(bookInView(book))

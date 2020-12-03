@@ -11,7 +11,7 @@ import {Modal,Button} from "react-bootstrap"
 import PageCards from "../page/PageCards"
 import Pages from "../page/pages"
 import Infinite from "react-infinite"
-import {sortableContainer,sortableElement} from 'react-sortable-hoc'
+import {SortableContainer,SortableElement} from 'react-sortable-hoc'
 import arrayMove from 'array-move'
 import FollowerCards from "../user/FollowerCards"
 
@@ -23,8 +23,14 @@ function Book(props){
     let [truthy,setTruthy]=useState("none")
     let [published_pages,setPublishedPages]=useState([])
     useEffect(()=>{
-
-    })
+        setPublishedPages(props.book.published_pages)
+        
+         localStorage.setItem("published_pages",props.book.published_pages.join())
+    },[props.book])
+    useEffect(()=>{
+         localStorage.setItem("published_pages",published_pages.join())
+          debugger
+    },[published_pages])
     const handleTruthyClose=(text)=>{
         
         setTruthy("none");}
@@ -42,41 +48,49 @@ function Book(props){
 
     let pagesHTML=""
     let pages =[]
-    const PagesSortContainer=sortableContainer(({ children } )=> <div >{children}</div>)
-    const SortablePage = sortableElement(({ page,id }) => <Page key={id} page={page} />);  
+    const onSortEnd = ({ oldIndex, newIndex }) => setPublishedPages(arrayMove(published_pages, oldIndex, newIndex))
+    const PagesSortContainer=SortableContainer(({ children } )=> <div >{children}</div>
+    )
+    const SortablePage = SortableElement(({ page,id }) => {
+       
+      book ={ published_pages}
+        return(<Page key={id} page={page} />)});  
+
         if(props.book){
-            console.log("book", props.book)
+            
             
     if(props.editMode){
         if(ifSome(props.pagesInView)){
         
             
       
-         let sortpages= props.book.published_pages.map(id=>{
+         let pages= published_pages.map(((id,index)=>{
            
            let page=props.pagesInView.find(page=>{return page.id == id})
-            if(!page){
-                return("")
-            }else{
+           
+            if(page){
                 return (
-                    <SortablePage page={page.attributes} key={id}/>
-                )}
-            pagesHTML=(<PagesSortContainer>{sortpages}</PagesSortContainer>)
+                    <SortablePage index={index} page={page.attributes} key={id}/>
+                )}else{
+                    return("")
+                }
+        
+           
                
-    })
+    
+    }))
+     pagesHTML=(<PagesSortContainer onSortEnd={onSortEnd} axis="y">{pages}</PagesSortContainer>)
     }
     }else{
         if(ifSome(props.pagesInView)){
-        
-            console.log(props.pagesInView)
       
-           pages= props.book.published_pages.map(id=>{
+           pages= published_pages.map((id,index)=>{
            
                 let page=props.pagesInView.find(page=>{return page.id == id})
             if(!page){
                 return("")
             }else{
-                return (<Page page={page.attributes}/>)}
+                return (<Page key={index} page={page.attributes} id={id}/>)}
                
             })}else if(ifSome(props.pages && !ifSome(props.pagesInView  ))){
                 pages= props.book.published_pages.map(id=>{
@@ -90,8 +104,7 @@ function Book(props){
                 pagesHTML=( <div>
                          {pages}
                         </div>)
-    }
-           
+    }    
             
               return (
 <div>
@@ -135,4 +148,5 @@ function mapState(state){
             }
 }
 export default connect(mapState,mapDispatch)(Book)
+
 

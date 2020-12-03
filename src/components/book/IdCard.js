@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import Popup from 'reactjs-popup'
 import {useDispatch} from "react-redux"
 import {updateBook} from "../../actions/BookActions"
@@ -198,10 +198,12 @@ const handleEditClick = () => {
         setShow("none")
      }
   }
+ 
 function draftsBtn(){
     if(props.book.user.id === localStorage.getItem("currentUser")){
     return( <a className={"aBtn button yellow"} style={{padding: "7px 15px"}} href={`/books/${props.book.id}/drafts`}>Drafts</a>
     )}}
+ 
     function handleBookUpdate(e){
     
 e.preventDefault()
@@ -209,9 +211,8 @@ e.preventDefault()
         let title = document.querySelector("#bookTitle").value
         let intro = document.querySelector("#bookIntro").value
         let privacy = document.querySelector("#bookPrivacy").value
-        
-      debugger
-        let hash = {bookId: props.book.id,title, intro,privacy}
+        let published_pages = localStorage.getItem("published_pages").split(",")
+        let hash = {bookId: props.book.id,title, intro,privacy,published_pages: book.published_pages}
         dispatch(updateBook(hash))
           props.setEditMode(false)
     }

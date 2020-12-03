@@ -110,7 +110,7 @@ config={readonly: true,width:375,iframe: true}
       return(
         <div className="">
           <div  >
-            <div className="page">
+            <div className="page" data-id={props.id}>
               <JoditEditor
             	ref={editor}
               value={content}

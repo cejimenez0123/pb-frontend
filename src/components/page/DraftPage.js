@@ -30,12 +30,12 @@ const dispatch = useDispatch()
   const handleModalClose=(e)=>{
    let div = document.querySelector(`#modal-${props.page.id}`)
      if(e.target === e.currentTarget){
-       console.log("!")
+   
        e.target.style.display="none"
 
      }
    }
-   console.log("PGGEE",props.page)
+
    function handleSave(e){
      
  let status =e.target.parentElement.querySelector("#status").value
@@ -82,8 +82,7 @@ const dispatch = useDispatch()
   if(props.page){
     let page = {...props.page}
     content = props.page.data
-  
-    console.log(config)
+
       let html =(
         <div className="draftPage">
           <div >
@@ -107,7 +106,7 @@ const dispatch = useDispatch()
           //       onChange={newContent => {handleOnClick(newContent)}}
           //   />}/> 
   }
-           <button classname="green" onClick={(e)=>handleSave(e)}>Save</button>
+           <button className="green" onClick={(e)=>handleSave(e)}>Save</button>
           <select id="status" defaultValue={props.page.status}>
             <option value="draft">Draft</option>
             <option value="published">Publish</option>
