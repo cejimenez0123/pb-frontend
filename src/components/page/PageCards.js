@@ -9,9 +9,16 @@ import {getPageComments} from "../../actions/PageActions"
 import {likePage} from "../../actions/LikeActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import 'froala-editor/js/plugins/image.min.js'
+import FroalaEditor from 'react-froala-wysiwyg';
+
+// Import all Froala Editor plugins;
+import 'froala-editor/js/plugins.pkgd.min.js';
 // import useWindowSize from "../useWindowSize"
 //.jodit-toolbar__box
- function PageCard(props){
+function PageCard(props){
   const dispatch = useDispatch()
   const store = useStore()
   const [show, setShow] = useState("none")

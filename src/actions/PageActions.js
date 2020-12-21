@@ -171,6 +171,15 @@ const getAllPages = ()=>{
     }
   )}
 }
+function uploadPic(formData){
+  return (dispatch)=>{fetch(`http://localhost:3000/pic/upload`, {
+      method: "POST",
+      body: formData
+    }).then(res=>res.json()).then(obj=>{
+      debugger
+
+    })}
+}
 const share=(id,pageId)=>{
 
   const config = {    

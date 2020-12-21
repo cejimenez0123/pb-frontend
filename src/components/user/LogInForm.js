@@ -19,7 +19,7 @@ function LogInForm (props){
  
         return(
             <div className="LogI">
-                <form class="LogInForm" onSubmit={(e)=>handleOnSubmit(e)}> 
+                <form className="LogInForm" onSubmit={(e)=>handleOnSubmit(e)}> 
                     <label htmlFor="username">Username:</label>
                     <input type="text" name="username" onChange={(e)=>handleOnChange(e)}/>
                     <br />

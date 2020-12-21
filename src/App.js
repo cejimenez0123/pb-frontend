@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter,HashRouter, Route, Switch, Redirect,withRouter} from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
+import NavbarContainer from "./containers/NavbarContainer"
 import LogInContainer from "./containers/LogInContainer"
 import EditBookContainer from "./containers/EditBookContainer"
 import { connect} from "react-redux"
@@ -12,7 +13,7 @@ import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
-import {getUsers, useUserActions,LOG_IN,signUp,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
+import {getUsers, useUserActions,LOG_IN,signUp,END_CURRENT_USER,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
 import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary,getAllLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook,getPublicPages} from "./actions/PageActions"
@@ -48,6 +49,7 @@ class App extends React.Component{
     <div className="app">
       <header>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
       <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -55,7 +57,7 @@ class App extends React.Component{
 <script data-ad-client="ca-pub-3452062624129177" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
       </header>
-  
+  <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
   <Route exact path="/" >
     <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages} loggedIn={this.props.loggedIn}/>
   </Route>
@@ -121,6 +123,7 @@ function mapDispatchToProps(dispatch){
     getUser:(id)=>dispatch(getUser(id)),
     getBooksOfUser:(id)=>dispatch(getBooksOfUser(id)),
     getLibrary:(id)=>dispatch(getLibrary(id)),
+    endSession: ()=>END_CURRENT_USER(),
     getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id)),
     getDrafts:(id)=>dispatch(getDraftsOfBook(id)),
     updateUser: (user)=>dispatch(updateUser(user)),

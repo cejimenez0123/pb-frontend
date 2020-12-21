@@ -1,15 +1,31 @@
 import React, {useState, useRef,useEffect} from 'react';
 import {useDispatch,connect,useStore} from 'react-redux'
+import url from "../../actions/url"
 // import 'jodit';
 // import 'jodit/build/jodit.min.css';
-import JoditEditor from "jodit-react";
+// import JoditEditor from "jodit-react";
 import {savePage,publishPage} from '../../actions/PageActions'
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+
+// Require Font Awesome.
+
+
+import FroalaEditor from 'react-froala-wysiwyg'
+
+
+import JoditEditor from "jodit-react";
+
 let page
 const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
     let [show,setShow]= useState("none")
-	let [config,setConfig]=useState({
+	// let [config,setConfig]=useState({imageCORSProxy: "http://localhost:3000",imageUploadURL:"http://localhost:3000/image/upload",imageUploadRemoteUrls: false})
+    let [config,setConfig]=useState({
         width: 700,
         height: "auto",
 		readonly: false,
@@ -107,6 +123,10 @@ function removeEditor(){
 	
 	return (<div style={{textAlign: "center",margin: "auto"}}className="editor">
     <button onClick={()=>handlePublish()}>Publish</button><span  onClick={()=>showModal()} class="close">&times;</span>
+    {/* <FroalaEditor
+    
+    config={config}
+    onModelChange={(content)=>handleOnClick(content)}/> */}
  <JoditEditor
             	ref={editor}
                 value={content}

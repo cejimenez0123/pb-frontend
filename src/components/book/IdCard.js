@@ -226,12 +226,22 @@ e.preventDefault()
     </div>
     
     <form>
-         <h4>
+    <table>
+    <tr>
+    <th colspan={2}>
+        
             <input type="text" className="form-control" id="bookTitle" defaultValue={props.book.title}/>
-        </h4>  
-         <br/>
-         <h6> by {props.book.user.name}</h6>
-    
+        </th>
+    </tr> 
+    <tr>
+        <th>
+            by 
+        </th>
+        <td>
+         <h6> {props.book.user.name}</h6>
+         </td>
+    </tr>
+    </table>
         <textarea className="form-control" id="bookIntro" defaultValue={props.book.intro}/>
         <select style={{width: "100px"}} id="bookPrivacy" className="form-control " defaultValue={props.book.privacy}>
             <option value="private">Private</option>
@@ -255,28 +265,66 @@ e.preventDefault()
     
 return(<section className="idCard">
          
-    <div>
+
     <div id="idCardHeader">
      {editBtn()}
     </div>
-    <div className="bookTitle">
-         <h4>{props.book.title}</h4>  
-         <br/>
-         <h6> from {props.book.user.name}</h6>
-     </div>
-         <p>{props.book.intro}</p> 
-         
-         <div className="btnBox"> 
+    <table>
+    <tr>
+    <th colspan={2}>
         
-    {addPageBtn()} {draftsBtn()} {shareBtn()}
-      <button class="button is-dark blue" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
-        <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
-            <div   class="modal-content">
-                <span  class="close">&times;</span>
+
+         <h4>{props.book.title}</h4>  
+         </th>
+     </tr>
+     <tr>
+         <th>
+            by {props.book.user.name}
+        </th>
+        <td>
+          
+         </td>
+  </tr>
+  <tr>
+  <td>
+        <p>{props.book.intro}</p> 
+  </td>
+
+  </tr>
+  <tr>
+    <td>
+    {followBtn()}
+        
+    </td>
+    <td>
+        <Modal button={<button class="button is-dark blue" >Followers</button> } content={
+        <div>
                   {followerCards()}
-            </div>
-            </div>
-        </div></div>
+         </div>
+          }/>
+    </td>
+
+  </tr>
+  <tr>
+    <td>
+{addPageBtn()}
+    </td>
+    <td>
+    {draftsBtn()}
+    </td>
+  </tr>
+  <tr>
+    <td>
+{shareBtn()}
+    </td>
+  </tr>
+    </table>
+         
+         
+         {/* <div className="btnBox"> 
+        
+     
+      </div> */}
        </section>)
 
     } else{

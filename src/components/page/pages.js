@@ -44,6 +44,7 @@ class Pages extends React.Component{
     
    render(){     
     return(<div className="pages">
+
     {this.renderPages()}
     </div>)
    }

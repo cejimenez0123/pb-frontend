@@ -62,16 +62,18 @@ class HomeContainer extends React.Component{
   } 
  render(){
      console.log(this.props.pagesInView)
+
         return(
             <div className="" >
-                <NavbarContainer />
+             
                 <div className="homeContainer">
-                <div>
+                <div style={{color: "white"}}>
+            
                 </div>
                 <div id="main">
                 <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
                     <Pages pages={this.props.pagesInView}/>
-                    </BottomScrollListener>
+                </BottomScrollListener>
                 </div>
                 {this.signBtns()}
                 </div>

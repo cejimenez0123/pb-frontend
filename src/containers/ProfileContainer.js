@@ -93,6 +93,54 @@ this.props.startBook({name,intro,privacy})
     }
     componentDidUpdate(){  
     }
+    profileCard(){
+        if(!!this.props.currentUser){
+      
+        let user = this.props.currentUser
+      
+        return(<div>
+         <table className="profileTable">
+            <tr>
+                <td rowspan="2">
+                <div className="profilePic">
+                    <img inline="true" src={user.photo} alt=""  width="50px" height="auto"/>
+                    </div>
+                </td>
+                <td>
+                    <h3>{user.name}</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>@{user.username}</h4>
+                </td>
+            </tr>
+            </table> 
+          
+  <div className="profile-buttons">
+           
+              
+           
+                           
+
+                     
+                     <button type="button" class=" green button" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
+            
+                    <button type="button" class=" blue button" onClick={()=>this.handleStartLib()}>Start Library</button>
+         
+              <FollowersBtn/>
+                         
+                            <FollowingBtn followedUsers={this.props.followedUsers}/> 
+                             </div> 
+        
+            </div>)
+    
+        }else{return (
+            <img src="https://media.giphy.com/media/sSgvbe1m3n93G/source.gif"  alt="gif" width="50" height="50" />)}
+        
+        
+        }
+    
     handleShowBooks(){
         if(this.state.showBooks==="none"){
             this.setState({showBooks: "block"})
@@ -129,15 +177,19 @@ this.props.startBook({name,intro,privacy})
         
         return(
 <div><div className="profileBackground">
-    <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+    
    
     <div className="profileContainer">
         <div className="profile">
             <div classname="" id="my-info">
                
+                   
+                    
+                        {this.profileCard()}
+                    
                         
                         <section>
-                            <ProfileCard user={this.props.currentUser} setCurrentUser={this.props.setCurrentUser}/>
+                           
                             
                 <div onClick={(e)=>this.handleModalClose(e)} style={{width: "100%",display: this.state.showStartLibraries}} class="modal">
                     <div   class="modalContent">
@@ -192,15 +244,7 @@ this.props.startBook({name,intro,privacy})
                 </div>
             </div>
             {/* "start-btn btn btn-secondary btn-dark btn-sm */}
-            <div className="profile-buttons">
-            <button type="button" class=" green button" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
-              <button type="button" class=" blue button" onClick={()=>this.handleStartLib()}>Start Library</button>
-               <br/>
-                            <FollowersBtn/>
-                         
-                            <FollowingBtn followedUsers={this.props.followedUsers}/> 
-
-                     </div>       
+               
                         </section>
                         
                   

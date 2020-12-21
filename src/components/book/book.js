@@ -80,7 +80,7 @@ function Book(props){
                 }
             }
         ))
-     pagesHTML=(<PagesSortContainer onSortEnd={onSortEnd} axis="y">{pages}</PagesSortContainer>)
+     pagesHTML=(<PagesSortContainer passionSortEnd={onSortEnd} axis="y">{pages}</PagesSortContainer>)
         }
     }else{
         if(ifSome(props.pagesInView)){

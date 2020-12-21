@@ -64,18 +64,18 @@ this.setState({type: e.target.files[0].type})
         
                 <form className="SignUpForm" onSubmit={this.handleOnSubmit}> 
                     {/* <DirectUpload/> */}
-                    <label for="file">Profile Photo:</label>
-                    <input  inl minlength="2" attachments="true" webkitdirectory onChange={this.handleOnChange} name="file" type="file"/>
+                    <label htmlFor="file">Profile Photo:</label>
+                    <input  inl minlength="2" attachments="true" onChange={this.handleOnChange} name="file" type="file"/>
                     <br/>
                     <label htmlFor="name">Name:</label>
-                    <input required minlength="2" type="text" name="name" 
+                    <input required minLength="2" type="text" name="name" 
                     onChange={this.handleOnChange} />
                     <br/>
                     <label htmlFor="username">Username:</label>
-                    <input required type="text" minlength="2" name="username"  onChange={this.handleOnChange} />
+                    <input required type="text" minLength="2" name="username"  onChange={this.handleOnChange} />
                     <br />
                     <label htmlFor="password">Password:</label>
-                    <input required type="password" minlength="2" name="password"  onChange={this.handleOnChange} />
+                    <input required type="password" minLength="2" name="password"  onChange={this.handleOnChange} />
                     <br />
                     < input type="submit" value="Sign Up"/>
                 </form>

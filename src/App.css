@@ -213,7 +213,7 @@ overflow-y: scroll;
   }
   /* #c1d3f5 */
   .app{
-	background-color:rgb(26, 29, 26);
+	
 	height: 120vw;
 	
   }
@@ -431,6 +431,8 @@ height: 80px;}
 }
 
 
+.page .fr-toolbar {display: none}
+.page .fr-second-toolbar{display: none;}
 .followBtn{
 	background-color: #243dca;
 	border: none;
@@ -574,10 +576,10 @@ align-content: center;}
 	height: 700px;
 } */
 
-.profileBackground{
+/* .profileBackground{
 	background-color: rgb(63, 65, 63);
 	box-shadow: 40px 30px 40px 30px rgb(48, 49, 48) inset;
-}
+} */
 @media only screen and (max-width: 768px)
 and (min-device-width : 375px) {
 	.libContainer{
@@ -652,7 +654,7 @@ flex-direction: column;
 			color: white;
 			border-radius: 10px;}
 		
-		.localLibMain .books{
+		.localLibMain{
 			margin: auto;
 			width: 700px
 		}

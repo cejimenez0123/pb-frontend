@@ -131,7 +131,7 @@ let pages = this.pages()
         return(
          
     <div>
-        <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+        
              <div className=" profileContainer">
         <section className="profile">
              < ProfileCard user={this.props.user}/>
