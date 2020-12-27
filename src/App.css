@@ -151,12 +151,16 @@ overflow-y: scroll;
 	  width: 98%
   }
   
-  
+  .app{
+	font-family: 'Montserrat', sans-serif;
+  }
   .commentBox{
 	border-left: 1px solid grey;
 	  text-align: left;
 	  
   }
+  a{font-family: 'Montserrat', sans-serif;
+	font-weight: 500;}
   .pageCommentIndex{
 	background-color:#e3e5e8;
 	width: 99%;
@@ -770,6 +774,9 @@ flex-direction: column;
 		.homeContainer .main{
 			margin:auto;
 		}
+		.flex{
+			display: flex;
+		}
 		.profileContainer{display: flex;
 			margin-top: 20px;
 	
@@ -1112,15 +1119,19 @@ border: 1px solid #888}
 .navbar-light{
 	color: white;
 }
-.active{
-	text-decoration: underline;
-}
+
 
 .SignUpForm{
-	margin: 15% auto;
+	margin: 15% 50px;
 	width: 300px;
 }
+.SignUpForm form{
+	margin: 40px;
+}
+.LogInForm form{
+	margin: 40px;
+}
 .LogInForm{
-	margin: 15% auto;
+	margin: 15% 100px 100px;
 	width: 300px;
 }

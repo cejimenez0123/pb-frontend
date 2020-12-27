@@ -1,15 +1,17 @@
 import React from 'react'
-
+import LogInForm from "../components/user/LogInForm"
+import SignUpForm from "../components/user/SignUpForm" 
 class FormContainer extends React.Component{
-    renderIf(){
-        debugger
-    }
+   
     render(){
         
         return(
             
             <div>
-            { this.renderIf()}
+            <div className="flex">
+                <LogInForm/>
+                <SignUpForm/>
+            </div>
             </div>
         )
     }

@@ -21,6 +21,7 @@ import {getAllBooks,getBook,getBooksOfUser,getUserBookAccess} from "./actions/Bo
 // import BookIndexContainer from "./containers/BookIndexContainer"
 import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
 import {history} from "./history"
+import FormContainer from "./containers/FormContainer"
 import StreetContainer from "./containers/StreetContainer"
 
 import PublicProfileContainer from "./containers/PublicProfileContainer"
@@ -117,14 +118,11 @@ class App extends React.Component{
               <StreetContainer books={this.props.books}/>
           </Route>
           
-          <Route exact path="/login">
-            <LogInContainer logIn={this.props.logIn}/>
-          </Route>
-          <Route exact path="/signup">
-            <SignUpForm/>
+          <Route exact path="/signin">
+                <FormContainer/>
           </Route>
 
-     
+
     </div>
   )}
   }

@@ -68,14 +68,14 @@ this.setState({type: e.target.files[0].type})
                     <input  inl minlength="2" attachments="true" onChange={this.handleOnChange} name="file" type="file"/>
                     <br/>
                     <label htmlFor="name">Name:</label>
-                    <input required minLength="2" type="text" name="name" 
+                    <input required minLength="2" type="text" className="form-control" name="name" 
                     onChange={this.handleOnChange} />
                     <br/>
                     <label htmlFor="username">Username:</label>
-                    <input required type="text" minLength="2" name="username"  onChange={this.handleOnChange} />
+                    <input required type="text" minLength="2" className="form-control" name="username"  onChange={this.handleOnChange} />
                     <br />
                     <label htmlFor="password">Password:</label>
-                    <input required type="password" minLength="2" name="password"  onChange={this.handleOnChange} />
+                    <input required type="password" minLength="2" className="form-control" name="password"  onChange={this.handleOnChange} />
                     <br />
                     < input type="submit" value="Sign Up"/>
                 </form>

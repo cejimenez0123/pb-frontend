@@ -83,7 +83,7 @@ renderif(){
                 </li>
             
                 <li><a href={'/library/1'}>Public Library</a></li>
-                <li><a href={'/signin'}>Sign In/Sign Up</a></li>
+                <li><a href={'/signin'}>Sign In</a></li>
             </ul>
         </nav>
 //               <Navbar bg="dark" variant="dark" expand="lg">

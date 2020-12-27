@@ -18,13 +18,13 @@ function LogInForm (props){
     }
  
         return(
-            <div className="LogI">
+            <div >
                 <form className="LogInForm" onSubmit={(e)=>handleOnSubmit(e)}> 
                     <label htmlFor="username">Username:</label>
-                    <input type="text" name="username" onChange={(e)=>handleOnChange(e)}/>
+                    <input type="text" className="form-control" name="username" onChange={(e)=>handleOnChange(e)}/>
                     <br />
                     <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" onChange={(e)=>handleOnChange(e)}/>
+                    <input type="password" className="form-control" name="password" onChange={(e)=>handleOnChange(e)}/>
                     <br />
                     < input type="submit" value="Log In"/>
                 </form>    
