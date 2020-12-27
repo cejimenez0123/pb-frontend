@@ -153,6 +153,7 @@ const END_CURRENT_USER=()=>{
 return(dispatch)=>{
     localStorage.setItem("currentUser","")
     localStorage.setItem("loggedIn",false)
+    fetch()
     dispatch({type:"END_CURRENT_USER"})}
 }
 const shareWith=(user,content)=>{

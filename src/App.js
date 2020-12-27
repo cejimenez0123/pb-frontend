@@ -28,7 +28,9 @@ import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 import LibraryContainer from "./containers/LibraryContainer"
 
 let bot
+let truthy = false
 class App extends React.Component{
+
   componentDidMount(){
     if(localStorage.getItem("currentUser") && localStorage.getItem("currentUser").length>0){
       this.props.setCurrentUser()
@@ -41,7 +43,17 @@ class App extends React.Component{
     // this.props.getBookLibraries()
   }
   
-  bot = useUserActions()
+  handleOnClick(){
+  
+    let active = document.getElementById("sidebar").classList.value.includes("active")
+   
+    if ((document.activeElement == document.getElementById("sidebarCollapse"))&& !active){
+      document.getElementById("sidebar").classList+="active"
+
+    }else{
+      document.getElementById("sidebar").classList.remove("active")
+    }
+  }
 
   render(){
   return (
@@ -49,7 +61,8 @@ class App extends React.Component{
     <div className="app">
       <header>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      
+      <link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet"/>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
       <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -58,6 +71,14 @@ class App extends React.Component{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
       </header>
   <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+
+   <div id="content">
+            <button onClick={()=>this.handleOnClick()} type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
   <Route exact path="/" >
     <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages} loggedIn={this.props.loggedIn}/>
   </Route>
@@ -102,8 +123,7 @@ class App extends React.Component{
           <Route exact path="/signup">
             <SignUpForm/>
           </Route>
-     
-       
+
      
     </div>
   )}
@@ -123,7 +143,7 @@ function mapDispatchToProps(dispatch){
     getUser:(id)=>dispatch(getUser(id)),
     getBooksOfUser:(id)=>dispatch(getBooksOfUser(id)),
     getLibrary:(id)=>dispatch(getLibrary(id)),
-    endSession: ()=>END_CURRENT_USER(),
+    endSession: ()=>dispatch(END_CURRENT_USER()),
     getBooksOfLib:(id)=>dispatch(getBooksOfLibrary(id)),
     getDrafts:(id)=>dispatch(getDraftsOfBook(id)),
     updateUser: (user)=>dispatch(updateUser(user)),

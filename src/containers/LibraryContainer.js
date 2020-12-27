@@ -121,7 +121,6 @@ if(this.props.library && this.props.library.user.id === localStorage.getItem("cu
         }
        console.log("books",this.props.books)
         return(<div>
-        <NavbarContainer/>
         <div className="libContainer">
         <div className="idCard">
         <h2 className={"libName"}>{lib.name}</h2>

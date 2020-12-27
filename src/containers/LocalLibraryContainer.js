@@ -56,7 +56,7 @@ this.props.getBookLibraries()
     render(){
 
         return(<div>
-    <NavbarContainer/>
+
    
     
    
