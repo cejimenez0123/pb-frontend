@@ -7,6 +7,7 @@ import {connect,Provider} from 'react-redux'
 import {createStore} from 'redux'
 import LibraryIndex from "../components/library/LibraryIndex"
 import store from '../index'
+import {getPublicPages} from "../actions/PageActions"
 import Pages from "../components/page/pages"
 import BookIndex from "../components/book/BookIndex"
 import Books from "../components/book/books"
@@ -20,6 +21,7 @@ class LocalLibraryContainer extends React.Component{
     componentDidMount(){
 this.props.getAllLibraries()
 this.props.getBookLibraries()
+this.props.getPublicPages("10")
         // this.setState({inView:})
     }
 
@@ -40,8 +42,6 @@ this.props.getBookLibraries()
             ReactDOM.render(
             <Provider store={store}><Books  books={books}/></Provider>,container)
         }else if(e.target.innerText=="Pages"){
-          
-        //    this.setState(inView: ()=>{return(<Library  books={this.props.books} users={this.props.users} pages={this.props.pages}/>)})
            
             ReactDOM.render(<Provider store={store}><Pages pages={this.props.pages}/></Provider>,container)
         }else if(e.target.innerText=="Libraries"){
@@ -80,4 +80,7 @@ const mapState=(state)=>{
     return{librariesInView: state.libraries.librariesInView,
     bookLibraries: state.libraries.bookLibraries}
 }
-export default connect(mapState)(LocalLibraryContainer)
+const mapDispatch=(dispatch)=>{
+    return { getPublicPages:(count)=> dispatch(getPublicPages(count))}
+}
+export default connect(mapState,mapDispatch)(LocalLibraryContainer)

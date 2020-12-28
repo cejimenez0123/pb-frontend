@@ -22,7 +22,7 @@ class Pages extends React.Component{
     
       // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
         if(this.props.pages && this.props.pages.length>0){
-  
+            debugger
             return ( this.props.pages.map(page=>{
                 let comments = []
                 page = page.attributes
