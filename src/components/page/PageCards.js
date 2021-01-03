@@ -118,7 +118,7 @@ function PageCard(props){
         }else{
           return (<div className="likeBtns"><button onClick={(e)=>handleLike(e)}>Yea</button><button onClick={(e)=>handleLike(e)}>Nah</button>
     </div>)}}else{
-      debugger
+   
       return(
       <div>
      <div class="popover__wrapper">
@@ -164,9 +164,9 @@ dispatch(likePage({pageId: props.page.id,score:-1}))
   if(dimensions.width>740){
   
   config={readonly: true,width: 700,iframe: true}
-  }else if(dimensions.width <740 && dimensions.width>375){
+  }else if(dimensions.width <=740 && dimensions.width>=375){
  
-  config={readonly: true,width:600,iframe: true}}
+  config={readonly: true,width:dimensions.width,iframe: true}}
   else if(dimensions.width <=375){
 
 config={readonly: true,width:375,iframe: true}

@@ -70,7 +70,7 @@ class HomeContainer extends React.Component{
                 <div style={{color: "white"}}>
             
                 </div>
-                <div id="main">
+                <div >
                 <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
                     <Pages pages={this.props.pagesInView}/>
                 </BottomScrollListener>

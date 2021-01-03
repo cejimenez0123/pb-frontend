@@ -90,12 +90,12 @@ import PageCommentIndex from "./PageCommentIndex"
   if(dimensions.width>740){
   
   config={readonly: true,width: 700,iframe: true}
-  }else if(dimensions.width <740 && dimensions.width>375){
+  }else if(dimensions.width <=740 && dimensions.width>=375){
  
   config={readonly: true,width:dimensions.width,iframe: true}}
-  else if(dimensions.width <=375){
+  else{
 
-config={readonly: true,width:375,iframe: true}
+config={readonly: true,iframe: true}
   }
   
     

@@ -14,7 +14,8 @@ class Pages extends React.Component{
 //     debugger
 //       this.props.getLikesOfPages(this.props.pages)
 //       }
-      this.props.getLikesOfUser()
+if(this.props.currentUser){
+      this.props.getLikesOfUser()}
   }
 
  renderPages(){
@@ -55,6 +56,7 @@ class Pages extends React.Component{
 
 const mapState=(state)=>{
     return{
+        currentUser: state.users.currentUser,
         comments: state.pages.pageCommentsInView,
         userLikes: state.users.userLikes
     }
