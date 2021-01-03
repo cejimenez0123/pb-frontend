@@ -41,19 +41,7 @@ class HomeContainer extends React.Component{
        // do something with the returned data
       });
   };
-  signBtns(){
-      if(this.props.loggedIn){
-          return(<div></div>)
-      }else{
-          return(
-                <div className="signbtns">
-                <Modal button={ <p className="btn"><b>Sign Up</b></p>} content={<SignUpForm/>}/>
-        
-                <Modal button={<p className="btn"><b>Log In</b></p>} content={<LogInForm/>}/>
-                </div>
-          )
-      }
-  } 
+ 
   handleOnBottom(){
  
 
@@ -67,15 +55,15 @@ class HomeContainer extends React.Component{
             <div className="" >
              
                 <div className="homeContainer">
-                <div style={{color: "white"}}>
+                <div  style={{color: "white"}}>
             
                 </div>
-                <div >
+                <div id="HomePagesContainer">
                 <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
                     <Pages pages={this.props.pagesInView}/>
                 </BottomScrollListener>
                 </div>
-                {this.signBtns()}
+                
                 </div>
             </div>
         )

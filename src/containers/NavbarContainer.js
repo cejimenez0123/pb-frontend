@@ -86,23 +86,7 @@ renderif(){
                 <li><a href={'/signin'}>Sign In</a></li>
             </ul>
         </nav>
-//               <Navbar bg="dark" variant="dark" expand="lg">
-//   <Navbar.Brand href="/">Pb</Navbar.Brand>
-//   <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//   <Navbar.Collapse id="basic-navbar-nav">
-//     <Nav className="mr-auto">
-//       <Nav.Link href="/login">Log In </Nav.Link>
-//       <Nav.Link href={`/street`}>Street</Nav.Link>
-//       <Nav.Link href={'/library/1'}>Public Library</Nav.Link>
-//       <Nav.Link onClick={()=>this.handleOnClick()}href="/">Log Out</Nav.Link>
-//     </Nav>
-//     <Form inline>
-   
-//                   <SearchBar/>
-//     </Form>
-//   </Navbar.Collapse>
-// </Navbar>
-//         
+       
   )
   
   }
@@ -126,14 +110,10 @@ renderif(){
        
    } 
       render(){
-        return(
+        return this.renderif()
     
-            <div >
-          
-      {this.renderif()}
-    
-            </div>
-        )
+            
+        
     }
     }
 

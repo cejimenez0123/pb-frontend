@@ -103,7 +103,7 @@ this.props.startBook({name,intro,privacy})
             <tr>
                 <td rowspan="2">
                 <div className="profilePic">
-                    <img inline="true" src={user.photo} alt=""  width="50px" height="auto"/>
+                    <img inline="true" style={{objectFit:"contain"}} src={user.photo} alt=""  height="auto"/>
                     </div>
                 </td>
                 <td>
