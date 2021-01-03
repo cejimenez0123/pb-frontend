@@ -59,7 +59,7 @@ this.props.getPublicPages("10")
 
    
     
-   
+  <div id="PublicLibraryMain"> 
  <button className="button" onClick={(e)=>this.handleOnClick(e)}>Books</button>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Pages</button>
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Libraries</button>
@@ -71,7 +71,7 @@ this.props.getPublicPages("10")
     
     
     </div>
-    
+    </div>
     
         </div>)
     }

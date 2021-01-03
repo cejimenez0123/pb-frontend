@@ -72,13 +72,15 @@ class App extends React.Component{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossOrigin="anonymous"/>
       </header>
   <NavbarContainer loggedIn={this.props.loggedIn} endSession={this.props.endSession} />
+<div id="AppWrapper">
 
    <div id="content">
-            <button onClick={()=>this.handleOnClick()} type="button" id="sidebarCollapse" class="navbar-btn">
+           <button onClick={()=>this.handleOnClick()} type="button" id="sidebarCollapse" class="navbar-btn">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+            </button> 
+        </div>
         </div>
   <Route exact path="/" >
     <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages} loggedIn={this.props.loggedIn}/>
