@@ -44,7 +44,7 @@ function getAllBooks(){
      
     let books = obj.data
     dispatch(getallbooks(books))
-    })}
+    }).catch(err=>console.log(err))}
 }
 function getBooksOfUser(id){
  
@@ -98,7 +98,7 @@ function getBook(id){
 
         let book = obj.data.attributes
         dispatch(bookInView(book))
-    })}
+    }).catch(err=>console.log(err))}
 }
 function accessBook({bookId,access,userId}){
     let config={   
@@ -125,7 +125,7 @@ let accessors = obj
 
 dispatch(bookAccessors(accessors)
 )}
-)}
+).catch(err=>console.log(err))}
 }
 
     

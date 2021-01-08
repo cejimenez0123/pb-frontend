@@ -107,7 +107,7 @@ function getFollowersOfUser(id){
 
 }
 function getFollowedUsersOfUser(id){
-    console.log("EEAST")
+
     return(dispatch)=>{fetch(userPath+"/"+id+"/followed_users").then(res=>res.json()).then(obj=>{
 
         let follows= obj.data

@@ -22,15 +22,15 @@ dispatch(getLikesOfUser())
 
   }
  
-  function getLikesOfUser(){
+  function getLikesOfUser(id){
     
 
     return(dispatch)=>{
-    fetch(likePath+`/users/${localStorage.getItem("currentUser")}`).then(res=>res.json()).then(obj=>{
-  
+    fetch(likePath+`/users/${id}`).then(res=>res.json()).then(obj=>{
+  debugger
         let userLikes = obj.data
 dispatch({type: "USER_LIKES",userLikes})
-    })
+    }).catch(err=>alert(err))
     }
   }
 function userLikes(userLikes){return {type: "USER_LIKES",userLikes}}

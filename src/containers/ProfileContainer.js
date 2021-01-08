@@ -18,6 +18,7 @@ import Modal from "../components/modal"
 import BookContainer from './BookContainer'
 import {getFollowersOfUser,getFollowedUsersOfUser,getFollowedBooksOfUser} from "../actions/FollowActions"
 import {getBooksOfUser,getAllBooks,startBook} from "../actions/BookActions"
+import {getLikesOfUser} from "../actions/LikeActions"
 import PageInput from "../components/page/PageInput"
 import BookIndex from "../components/book/BookIndex"
 import PageCards from "../components/page/PageCards"
@@ -37,7 +38,7 @@ class ProfileContainer extends React.Component{
    let html=document.querySelector(".app")
 html.style.backgroundColor="#ededed"
        const id=  localStorage.getItem("currentUser")
-        // this.props.getInbox()
+
         this.props.setCurrentUser()
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
@@ -45,7 +46,7 @@ html.style.backgroundColor="#ededed"
        this.props.getMyPages()
     //    this.props.getBookLibraries()
         this.props.getAllLibraries()
-
+        this.props.getLikesOfUser(id)
         this.props.getUserLibraries({id,privacy:"private"})
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
@@ -99,24 +100,17 @@ this.props.startBook({name,intro,privacy})
         let user = this.props.currentUser
       
         return(<div>
-         <table className="profileTable">
-            <tr>
-                <td rowspan="2">
+      <div className="flex">
                 <div className="profilePic">
                     <img inline="true" style={{objectFit:"contain"}} src={user.photo} alt=""  height="auto"/>
-                    </div>
-                </td>
-                <td>
+                </div>
+                <div className="flex flex-direction-column profileCardNames">
                     <h3>{user.name}</h3>
-                </td>
-            </tr>
-            <tr>
-                <td>
+            
+           
                     <h4>@{user.username}</h4>
-                </td>
-            </tr>
-            </table> 
-          
+            </div>
+            </div>
   <div className="profile-buttons">
            
               
@@ -124,9 +118,9 @@ this.props.startBook({name,intro,privacy})
                            
 
                      
-                     <button type="button" class=" green button" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
+                     <button type="button" class=" mountain button" onClick={()=>this.setState({showStartBook: "block"})}>Start Book</button>
             
-                    <button type="button" class=" blue button" onClick={()=>this.handleStartLib()}>Start Library</button>
+                    <button type="button" class=" blueJean button" onClick={()=>this.handleStartLib()}>Start Library</button>
          
               <FollowersBtn/>
                          
@@ -181,7 +175,7 @@ this.props.startBook({name,intro,privacy})
    
     <div className="profileContainer">
         <div className="profile">
-            <div classname="" id="my-info">
+            <div classname="" >
                
                    
                     
@@ -292,7 +286,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getAllLibraries: ()=>dispatch(getAllLibraries()),
     getBookLibraries: ()=>dispatch(getBookLibraries()),
     userPageStream: ()=>dispatch(userPageStream()),
-    getPagesComments: (pages)=>dispatch(getPagesComments(pages))}
+    getPagesComments: (pages)=>dispatch(getPagesComments(pages)),
+    getLikesOfUser: (id)=>dispatch(getLikesOfUser(id))}
 }
 function mapStateToProps(state){
     return{

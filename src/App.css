@@ -151,10 +151,7 @@ overflow-y: scroll;
 	  width: 98%
   }
   
-  .app{
 
-	font-family: 'Montserrat', sans-serif;
-  }
   .commentBox{
 	border-left: 1px solid grey;
 	  text-align: left;
@@ -277,7 +274,22 @@ overflow-y: scroll;
     color: #fff;
     padding: 10px;
 }
-
+.rose{
+	background-color: #FF0F80;
+	color: white;
+}
+.mountain{
+	background-color: #09BC8A;
+	color:white;
+}
+.purpleNavy{
+	background-color: #40476D;
+	color: white;
+}
+.blueJean{
+	background-color: #48ACF0;
+	color: white;
+}
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
@@ -298,12 +310,17 @@ overflow-y: scroll;
   .commentSection .comTextarea{
 	  margin: auto;
   }
+  .flex{display: flex;}
+  .flex-direction-column{flex-direction: column;}
+  .flex-direction-row{flex-direction: row;}
   .updateLibrary input{
 	width: 200px;
   }
-  
+  .profileCardNames{margin-left: 1vw;}
   /* #c1d3f5 */
+  
   .app{
+	background: radial-gradient(#c5b8e0, #a37018);
 	 display:flex;
 	font-family: 'Montserrat', sans-serif;
 	align-items: stretch;
@@ -346,9 +363,9 @@ a[data-toggle="collapse"] {
 	  width: 500px;
 	  height: 400px;
   }
-  /* html{
+  html{
 	background-color:#ededed
-  } */
+  }
 
   .book-index .list-group-item{
 	  width: 400px;
@@ -471,7 +488,7 @@ height: 200px;
   }
   
 
-  /* Hide default HTML checkbox */
+
   .switch input {
 	opacity: 0;
 	width: 0;
@@ -674,7 +691,6 @@ color: white}
 color: white;}
 
   .button{
-	  border: 1px solid #004242;
 	  text-align: center;
 	box-sizing: border-box;
 	padding: 7px 8px;
@@ -754,13 +770,13 @@ align-content: center;}
 	height: 700px;
 } */
 
-/* .profileBackground{
-	background-color: rgb(63, 65, 63);
-	box-shadow: 40px 30px 40px 30px rgb(48, 49, 48) inset;
-} */
+
 @media only screen and (max-width: 768px)
 and (min-device-width : 375px) {
-	
+	#FormContainer{
+		display: flex;
+		flex-direction: column;
+	}
 	.libContainer{
 		display: flex;
 		flex-direction: column;
@@ -808,7 +824,7 @@ flex-direction: column;
 	.bookContainer{display: flex;
 	flex-direction: column;}
 	.profile{
-		background-color: #1a1818;
+		/* background-color: #1a1818; */
 	color: white;
 	padding: 20px;
 	width: 100%;
@@ -838,6 +854,9 @@ flex-direction: column;
 
 
 	@media only screen and (min-width: 900px){
+		#FormContainer{
+			display: flex;
+		}
 		#sidebarCollapse {
 
 			
@@ -891,7 +910,7 @@ flex-direction: column;
 			box-shadow: 5px 5px grey;
 			width: 702px;
 			
-			margin-left: 10vmax;
+			margin-left: 10%;
 		}
 		.pageMain{margin-left:30px}
 		.profile{
@@ -982,7 +1001,7 @@ flex-direction: column;
 			}
 		
 		.profile{
-			background-color: #1a1818;
+			/* background-color: #1a1818; */
 			color: white;
 			padding: 20px;
 			height: 500px;

@@ -8,7 +8,7 @@ class FormContainer extends React.Component{
         return(
             
             <div>
-            <div className="flex">
+            <div id="FormContainer">
                 <LogInForm/>
                 <SignUpForm/>
             </div>
