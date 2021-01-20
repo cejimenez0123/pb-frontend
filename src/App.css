@@ -22,6 +22,8 @@
 	position: absolute;
 	z-index: 1;
 }
+
+
 .bookAccessors .list-group{
 	width: 400px;
 }
@@ -93,19 +95,7 @@ border-radius: 10%;
 	color: white;
 }
 
-.modalContent {
-	/* overflow: scroll; */
-	background-color: #fefefe;
-	margin: 5% auto;
-overflow-y: scroll;
-	border-radius: 5px;
-	 /* 15% from the top and centered */
-	height: 600px;
-	color: black;
-	max-width: 800px;
-	border: 1px solid #888; 
-	/* Could be more or less, depending on screen size */
-}
+
 .modal .modalContent{
 	margin: auto;
 }
@@ -146,7 +136,7 @@ overflow-y: scroll;
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
 
-  
+.modal body{z-index: 1;}
   #main .list-group{
 	  width: 98%
   }
@@ -687,10 +677,13 @@ color: white}
 .coral{
 	background-color: #F17374;
 }
-.pink{background-color: #EDC7D1;
+.pink{background-color: #ffafcc;
 color: white;}
-
+.ab0560{
+	background-color: #ab0560;
+}
   .button{
+	  font-weight:bold;
 	  text-align: center;
 	box-sizing: border-box;
 	padding: 7px 8px;
@@ -817,6 +810,19 @@ and (min-device-width : 375px) {
 		  height: 40px;
 		  background: #f5f5f5;
 	  }
+	  .modalContent {
+		/* overflow: scroll; */
+		background-color:#fefefe;
+		margin: 5% auto;
+	overflow-y: scroll;
+		border-radius: 5px;
+		 /* 15% from the top and centered */
+		height: 600px;
+		color: black;
+		max-width: 800px;
+		border: 1px solid #888; 
+		/* Could be more or less, depending on screen size */
+	}
 
 	.profileContainer{display: flex;
 flex-direction: column;
@@ -847,7 +853,7 @@ flex-direction: column;
 		height: auto;
 		max-height: 500px;
 		overflow: scroll;
-	background-color: #004242;
+
 	color: white;
 	}
 }
@@ -856,6 +862,19 @@ flex-direction: column;
 	@media only screen and (min-width: 900px){
 		#FormContainer{
 			display: flex;
+		}
+		.modalContent {
+			/* overflow: scroll; */
+			background-color:rgb(0,0,0,0);
+			margin: 5% auto;
+		overflow-y: scroll;
+			border-radius: 5px;
+			 /* 15% from the top and centered */
+			height: 600px;
+			color: black;
+			max-width: 800px;
+			border: 1px solid #888; 
+			/* Could be more or less, depending on screen size */
 		}
 		#sidebarCollapse {
 
@@ -903,6 +922,7 @@ flex-direction: column;
 			margin: auto;
 			width: 700px
 		}
+		/* 900 min */
 		.pages{
 			overflow: auto;
 			background-color: rgb(223, 223, 223);
@@ -910,7 +930,7 @@ flex-direction: column;
 			box-shadow: 5px 5px grey;
 			width: 702px;
 			
-			margin-left: 10%;
+
 		}
 		.pageMain{margin-left:30px}
 		.profile{
@@ -945,7 +965,6 @@ flex-direction: column;
 		   height: auto;
 		   max-height: 500px;
 		   overflow: scroll;
-	   background-color: #004242;
 	   color: white;
 	   }
 		.profileContainer{display: flex;
@@ -996,7 +1015,6 @@ flex-direction: column;
 			height: inherit;
 			min-height: 300px;
 			overflow: scroll;
-			background-color: #004242;
 			color: white;
 			}
 		
@@ -1050,7 +1068,6 @@ flex-direction: column;}
 	background-color:#7B91EA;
 }
 *{
-	font-family:  Helvetica, sans-serif;
 	box-sizing: border-box;
 }
 .bio-textarea{
@@ -1107,9 +1124,7 @@ flex-direction: column;}
 .searchForm{
 	position: relative;
 }
-*{
-	font-family: Verdana, Geneva, Tahoma, sans-serif
-}
+
 
 .startForm{
 	font-size: 20px;

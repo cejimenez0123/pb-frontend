@@ -24,14 +24,14 @@ const Editor = (props) => {
     const store = useStore()
 	const editor = useRef(null)
     let [show,setShow]= useState("none")
-	// let [config,setConfig]=useState({imageCORSProxy: "http://localhost:3000",imageUploadURL:"http://localhost:3000/image/upload",imageUploadRemoteUrls: false})
-    let [config,setConfig]=useState({
-        width: 700,
-        height: "auto",
-		readonly: false,
-        iframe: true
+	let [config,setConfig]=useState({imageCORSProxy: "http://127.0.0.1:3000/",imageUploadURL:"http://localhost:3000/image/upload",imageUploadRemoteUrls: false})
+    // let [config,setConfig]=useState({
+    //     width: 700,
+    //     height: "auto",
+	// 	readonly: false,
+    //     iframe: true
 
-	})
+	// })
     let [text,setText]=useState("")
     
 	function debounce(fn, ms) {
@@ -123,11 +123,11 @@ function removeEditor(){
 	
 	return (<div style={{textAlign: "center",margin: "auto"}}className="editor">
     <button onClick={()=>handlePublish()}>Publish</button><span  onClick={()=>showModal()} class="close">&times;</span>
-    {/* <FroalaEditor
+    <FroalaEditor
     
     config={config}
-    onModelChange={(content)=>handleOnClick(content)}/> */}
- <JoditEditor
+    onModelChange={(content)=>handleOnClick(content)}/>
+ {/* <JoditEditor
             	ref={editor}
                 value={content}
                 config={config}
@@ -144,9 +144,10 @@ function removeEditor(){
 </div>
                   </div>
               </div>
-             Hashtags to add <input type="text" className="form-control"/><button>Add</button>
+             Hashtags to add <input type="text" className="form-control"/><button>Add</button>*/}
         </div>
-        );
+        ); 
+    
 }
 const mapState = (state)=>{
     return{

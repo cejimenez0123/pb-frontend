@@ -18,16 +18,14 @@ function SIGN_UP_START(){
     return {
     type: "SIGN_UP_START"}
 }
-
 function newUser(){
 let user
-  fetch(userPath+"/new").then(res=>res.json()).then(obj=>{
+  return (dispatch)=>{fetch(userPath+"/new").then(res=>res.json()).then(obj=>{
        debugger
      user = obj.data.attributes  
-       localStorage.setItem("profile_photo",obj.data.attributes.photo)
+    dispatch(userInView(user))
 })
-
-return user }
+ } }
 
 function signUp(user,formData) { 
    debugger

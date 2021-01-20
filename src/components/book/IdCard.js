@@ -7,6 +7,7 @@ import FollowerCards from "../user/FollowerCards"
 import Modal from "../modal"
 import SearchUsersShare from "../user/SearchUsersShare"
 import "../../App.css"
+import url from "../../actions/url"
 function IdCard(props){
     const [title,setTitle]=useState("")
     let [truthy,setTruthy]=useState("none")
@@ -112,7 +113,7 @@ const handleEditClick = () => {
         if(follow){
             return (<button class={" button pink "} onClick={()=>handleFollow()}>Following</button>)
         }else{
-            return( <button class={" button red "} onClick={()=>handleFollow()}>Follow</button>)
+            return( <button class={" button ab0560 "} onClick={()=>handleFollow()}>Follow</button>)
         }
         
     }
@@ -226,22 +227,15 @@ e.preventDefault()
     </div>
     
     <form>
-    <table>
-    <tr>
-    <th colspan={2}>
+   
         
             <input type="text" className="form-control" id="bookTitle" defaultValue={props.book.title}/>
-        </th>
-    </tr> 
-    <tr>
-        <th>
+ 
             by 
-        </th>
-        <td>
-         <h6> {props.book.user.name}</h6>
-         </td>
-    </tr>
-    </table>
+        
+         <h6> <a href={`${url}/users/${props.book.user.id}`}>{props.book.user.name}
+         </a></h6>
+     
         <textarea className="form-control" id="bookIntro" defaultValue={props.book.intro}/>
         <select style={{width: "100px"}} id="bookPrivacy" className="form-control " defaultValue={props.book.privacy}>
             <option value="private">Private</option>
@@ -251,7 +245,7 @@ e.preventDefault()
          <div className="btnBox"> 
         
     {addPageBtn()} {draftsBtn()} {shareBtn()}
-      <button class="button is-dark blue" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
+      <button class=" aBtn is-dark blueJean" onClick={()=>setShow( "block")}>Followers</button> {followBtn()}
         <div onClick={(e)=>handleModalClose(e)} style={{width: "100%",display: show}} class="modal">
             <div   class="modal-content">
                 <span  class="close">&times;</span>

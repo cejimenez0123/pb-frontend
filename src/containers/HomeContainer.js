@@ -15,7 +15,7 @@ import {BottomScrollListener }from 'react-bottom-scroll-listener';
 class HomeContainer extends React.Component{
     constructor(props){
         super(props)
-        this.state={pages: 10}
+        this.state={loading:false,pages: 10}
     }
     componentDidMount(){
         this.props.getPublicPages(10)

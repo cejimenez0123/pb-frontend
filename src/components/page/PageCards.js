@@ -160,6 +160,13 @@ dispatch(likePage({pageId: props.page.id,score:-1}))
    }
   const handleClose = () => setShow("none");
   const handleShow = () => setShow("block");
+  // let [config,setConfig]=useState({imageCORSProxy: "http://127.0.0.1:3000/",imageUploadURL:"http://localhost:3000/image/upload",imageUploadRemoteUrls: false,iframe:true,events:{
+  //   'initialized' : function(e, editor) {
+    
+  //     this.html.insert(content)
+      
+  //     this.edit.off();
+  // }}})
   let config
   if(dimensions.width>740){
   
@@ -185,6 +192,10 @@ config={readonly: true,width:375,iframe: true}
         <div className="">
           <div  >
             <div className="page">
+              <FroalaEditor
+    
+    config={config}
+  />
               <JoditEditor
             	ref={editor}
               value={content}
@@ -194,19 +205,21 @@ config={readonly: true,width:375,iframe: true}
             <div className="pageBtns">
           {YeaNahBtn()} <Modal 
            button ={ <button variant="primary" onFocus={()=>getPageComments(props.page.id)}  >Comment</button>} content={
-              <div>
+              <div >
                   <div className="pageHeader" > <div><a href={`/books/${page.book.id}`}>{page.book.title}</a> by 
                    <a href={`/users/${page.user.id}`}> 
                     {page.user.username}
                    </a></div>{editBtn()}
                   </div>
-
-                 <JoditEditor
-                 	ref={editor}
-                  value={content}
-                  config={config}
+                  <div className="Froala">
+                 
+              <JoditEditor
+            	ref={editor}
+              value={content}
+              config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
-                />
+            />
+</div>
               <div >
                 <div className="commentSection">
                 <PageCommentInput page={page}/>

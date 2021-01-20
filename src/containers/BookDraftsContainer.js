@@ -18,8 +18,7 @@ class BookDraftsContainer extends React.Component{
     render(){
         if(this.props.bookInView){
         return(<div className="">
-           
-            <NavbarContainer/>
+      
             <div className="drafts">
       <h5>  <a href={`/books/${this.props.bookInView.id}`}>{this.props.bookInView.title} </a>Draft's</h5>
       <div className="draftPages">

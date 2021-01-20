@@ -133,13 +133,7 @@ button=( <button onClick={()=>this.setState({editor:true})}>Add Page</button>)
        
        
         return(<div>
-        <NavbarContainer/>
-        
-              
-               
-    
-     
-    
+            
     <div className="bookContainer">
        <IdCard  editMode={this.state.editMode} setEditMode={this.setEditMode.bind(this)} bookAccessors={this.props.bookAccessors} users={this.props.users}book={this.props.book} currentUser={this.props.currentUser} truthy={truthy} followers={this.props.followers}/>
      

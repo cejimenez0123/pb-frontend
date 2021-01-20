@@ -8,13 +8,20 @@ import {connect} from "react-redux"
 import {getPageComments} from "../../actions/PageActions"
 import PageCommentInput from "./PageCommentInput"
 import PageCommentIndex from "./PageCommentIndex"
+import FroalaEditor from 'react-froala-wysiwyg'
 // import useWindowSize from "../useWindowSize"
 //.jodit-toolbar__box
  function Page(props){
   const dispatch = useDispatch()
   const store = useStore()
   const [show, setShow] = useState("none")
-
+// let [config,setConfig]=useState({imageCORSProxy: "http://127.0.0.1:3000/",imageUploadURL:"http://localhost:3000/image/upload",imageUploadRemoteUrls: false,iframe:true,events:{
+//     'initialized' : function(e, editor) {
+    
+//       this.html.insert(content)
+      
+//       this.edit.off();
+//   }}})
   let [size,setSize]=useState({width: 0,height: 0})
   // const [width,height]=useWindowSize()
   let content
@@ -89,7 +96,7 @@ import PageCommentIndex from "./PageCommentIndex"
   let config
   if(dimensions.width>740){
   
-  config={readonly: true,width: 700,iframe: true}
+  config={readonly: true,width: dimensions.width-300,iframe: true}
   }else if(dimensions.width <=740 && dimensions.width>=375){
  
   config={readonly: true,width:dimensions.width,iframe: true}}
@@ -111,6 +118,10 @@ config={readonly: true,iframe: true}
         <div className="">
           <div  >
             <div className="page" data-id={props.id}>
+           {/* <FroalaEditor
+    
+    config={config}
+   /> */}
               <JoditEditor
             	ref={editor}
               value={content}
@@ -126,7 +137,10 @@ config={readonly: true,iframe: true}
                     {page.user.username}
                    </a></div>{editBtn()}
                   </div>
-
+   {/* <FroalaEditor
+    
+    config={config}
+   /> */}
                  <JoditEditor
                  	ref={editor}
                   value={content}

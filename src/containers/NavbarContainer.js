@@ -72,7 +72,7 @@ renderif(){
             return(
                <nav id="sidebar">
        
-            <div class="sidebar-header">
+            <div className="sidebar-header">
                 <h3>Pb</h3>
             </div>
 
