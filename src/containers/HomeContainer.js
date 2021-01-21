@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState,useEffect,useLayoutEffect}from 'react'
 import {Link} from 'react-router-dom'
 import BookContainer from "./BookContainer"
 import Navbar from './NavbarContainer'
@@ -12,20 +12,35 @@ import "../App.css"
 import SignUpForm from "../components/user/SignUpForm"
 import LogInForm from "../components/user/LogInForm"
 import {BottomScrollListener }from 'react-bottom-scroll-listener';
-class HomeContainer extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={loading:false,page: 0, pages: 10}
-    }
-    componentDidMount(){
-
-      this.props.loggedIn ?  this.props.getPublicPages(10):this.props.recommendPages(localStorage.getItem("currentUser"),this.state.page)
-    }
+function HomeContainer(props){
+    
+        
+        let [loading,setLoading] = useState(false)
+        let [page,setPage] =useState(0)
+        let [publicPagesPer,setPublicPagesPer] = useState(10)
+        let [lastPackLength,setLastPackLength] =useState(0)
+        let [pages,setPages] = useState([])
+        let [endRecommend,setEndRecommend]=useState(false)
   
+
+      useLayoutEffect(()=>{
+          
+          if(props.loggedIn){  props.getPublicPages(10)
+          }else{
+              props.recommendPages(localStorage.getItem("currentUser"),page)
+              }
+          
+          },[])
     
-    
-    
-    uploadPhoto(e){
+    useEffect(()=>{
+
+       
+          let num =  props.pagesInView.length - pages.length 
+
+            setPages(props.pagesInView)
+             setLastPackLength(num)}
+            ,[props.pagesInView])
+    function uploadPhoto(e){
         debugger
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
@@ -43,14 +58,25 @@ class HomeContainer extends React.Component{
       });
   };
  
-  handleOnBottom(){
+ function handleOnBottom(){
  
+ if(!endRecommend){
+    let newPage=page+1
+    props.recommendPages(localStorage.getItem("currentUser"),newPage)
+    setPage(newPage)
+    
+ }else{
+ let per=10+publicPagesPer
+    props.getPublicPages(per)
+ }
+ if(lastPackLength<10){
+     setEndRecommend(true)
+ }
 
-    let pages=10+this.state.pages
-    this.props.getPublicPages(pages)
-  } 
- render(){
-     console.log(this.props.pagesInView)
+
+}
+
+     console.log(props.pagesInView)
 
         return(
             <div className="" >
@@ -60,14 +86,14 @@ class HomeContainer extends React.Component{
             
                 </div>
                 <div id="HomePagesContainer">
-                <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
-                    <Pages pages={this.props.pagesInView}/>
+                <BottomScrollListener onBottom={()=>handleOnBottom()}>
+                    <Pages pages={props.pagesInView}/>
                 </BottomScrollListener>
                 </div>
                 
                 </div>
             </div>
         )
-        } 
+        
 }
 export default HomeContainer

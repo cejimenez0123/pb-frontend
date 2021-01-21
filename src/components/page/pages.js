@@ -24,7 +24,7 @@ if(this.props.currentUser){
       // console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
         if(this.props.pages && this.props.pages.length>0){
          
-            return ( this.props.pages.map(page=>{
+            return ( this.props.pages.map((page,key)=>{
                 let comments = []
       
                 if(page.table && page.table.page){
@@ -34,7 +34,7 @@ if(this.props.currentUser){
                 }else if(page.attributes){
                     page = page.attributes}
                 return (
-                        <PageCard likes={this.props.userLikes} page={page} key={page.id}  pageComments={this.props.pageComments} size={size}/>
+                        <PageCard likes={this.props.userLikes} page={page} key={key}  pageComments={this.props.pageComments} size={size}/>
                         )
                         })
                     )
