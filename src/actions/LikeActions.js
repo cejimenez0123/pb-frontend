@@ -23,11 +23,17 @@ dispatch(getLikesOfUser())
   }
  
   function getLikesOfUser(id){
-    
+    if(id){
+
+    }else if(localStorage.getItem("currentUser").length>0 && id== localStorage.getItem("currentUser")){
+        
+    }else if(localStorage.getItem("currentUser").length>0){
+      id = localStorage.getItem("currentUser")
+    }
 
     return(dispatch)=>{
     fetch(likePath+`/users/${id}`).then(res=>res.json()).then(obj=>{
-
+debugger
         let userLikes = obj.data
 dispatch({type: "USER_LIKES",userLikes})
     }).catch(err=>console.log(err))

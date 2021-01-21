@@ -23,7 +23,7 @@ import ProfileSettingsContainer from "./containers/ProfileSettingsContainer"
 import {history} from "./history"
 import FormContainer from "./containers/FormContainer"
 import StreetContainer from "./containers/StreetContainer"
-
+import PrivateCollection from "./containers/PrivateCollection"
 import PublicProfileContainer from "./containers/PublicProfileContainer"
 import LocalLibraryContainer from "./containers/LocalLibraryContainer"
 import LibraryContainer from "./containers/LibraryContainer"
@@ -105,6 +105,9 @@ class App extends React.Component{
             <LibraryContainer getLibraryPages={this.props.getLibraryPages} deleteBookLibrary={this.props.deleteBookLibrary} updateLibrary={this.props.updateLibrary}allBooks={this.props.books} getBooksOfUser={this.props.getBooksOfUser} getFollowersOfLibrary={this.props.getFollowersOfLibrary} books={this.props.booksInView} library={this.props.libraryInView} getAllPages={this.props.getAllPages} followLibrary={this.props.followLibrary} pages={this.props.pages}
             pagesInView={this.props.pagesInView} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
+        <PrivateRoute exact path={"/private/collection"}>
+          <PrivateCollection getUserBookAccess={this.props.getUserBookAccess} getBook={this.props.getBook} pagesInView={this.props.pagesInView} getLibrary={this.props.getLibrary} getFollowedBooks={this.props.getFollowedBooks}/>
+        </PrivateRoute>
       </Switch>
          < Route exact path="/books/:id/edit">
             <EditBookContainer  book={this.props.currentBook} allBooks={this.props.books} getBook={this.props.getBook}/>

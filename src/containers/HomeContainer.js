@@ -85,7 +85,7 @@ function HomeContainer(props){
                 <div  style={{color: "white"}}>
             
                 </div>
-                <div id="HomePagesContainer">
+                <div id="">
                 <BottomScrollListener onBottom={()=>handleOnBottom()}>
                     <Pages pages={props.pagesInView}/>
                 </BottomScrollListener>
