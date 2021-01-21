@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
 import {startLibrary,getUserLibraries,getAllLibraries,getBookLibraries} from "../actions/LibraryAction"
 import {startPage,myPages,savePage,getPagesComments} from "../actions/PageActions"
-import {SET_CURRENT_USER,getUsers, END_CURRENT_USER,userPageStream} from '../actions/UserActions'
+import {SET_CURRENT_USER,getUsers, END_CURRENT_USER,userPageStream,recommendPages} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
 import Pages from "../components/page/pages"
@@ -28,11 +28,15 @@ import FollowingBtn from "../components/user/FollowingBtn"
 import FollowersBtn from "../components/user/FollowersBtn"
 import Editor from "../components/page/editor"
 import BookIndexModal from "../components/book/BookIndexModal"
+import {BottomScrollListener }from 'react-bottom-scroll-listener';
+
 let book
+let page =0
 class ProfileContainer extends React.Component{
     constructor(){
         super()
-        this.state={showBooks: "none",showLibraries: "none",showStartLibraries: "none",showStartBook: "none"}
+        this.state={page: 0,loading: false,
+        showStartLibraries: "none",showStartBook: "none"}
     }
     componentDidMount(){
    let html=document.querySelector(".app")
@@ -42,15 +46,15 @@ html.style.backgroundColor="#ededed"
         this.props.setCurrentUser()
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
-        this.props.userPageStream()
-       this.props.getMyPages()
+        // this.props.userPageStream()
+    //    this.props.getMyPages()
     //    this.props.getBookLibraries()
         this.props.getAllLibraries()
         this.props.getLikesOfUser(id)
         this.props.getUserLibraries({id,privacy:"private"})
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
-         
+         this.props.recommendPages(id,0)
         
     }
     handleStartBookModal(){
@@ -76,6 +80,12 @@ html.style.backgroundColor="#ededed"
         //     this.props.startLibrary(name)
         // }
         
+    }
+    handleOnBottom(){
+  
+         page = page + 1
+        
+        this.props.recommendPages(localStorage.getItem("currentUser"),page)
     }
     startLib(e){
 e.preventDefault()
@@ -251,8 +261,9 @@ this.props.startBook({name,intro,privacy})
              
               <div >
               <div className="pageMain">
-              
+           <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
         <Pages pages={this.props.pagesInView} />
+ </BottomScrollListener>
         </div>
         </div>
         <a href={`/user/${this.props.currentUser.id}/settings`} >
@@ -287,7 +298,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     getBookLibraries: ()=>dispatch(getBookLibraries()),
     userPageStream: ()=>dispatch(userPageStream()),
     getPagesComments: (pages)=>dispatch(getPagesComments(pages)),
-    getLikesOfUser: (id)=>dispatch(getLikesOfUser(id))}
+    getLikesOfUser: (id)=>dispatch(getLikesOfUser(id)),
+    recommendPages: (id,page_num)=>dispatch(recommendPages(id,page_num))}
 }
 function mapStateToProps(state){
     return{

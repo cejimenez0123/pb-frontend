@@ -146,7 +146,16 @@ const getUser = (id)=>{
 
     })}
 }
+function recommendPages(id,page_num){
+    
+    return (dispatch)=>fetch(userPath+`/${id}/recommend_pages/${page_num}`).then(res=>res.json()).then(obj=>{
 
+   
+    let pages =obj.data
+    dispatch(pagesInView(pages))
+
+    })
+}
 const END_CURRENT_USER=()=>{
 return(dispatch)=>{
     localStorage.setItem("currentUser","")
@@ -216,5 +225,5 @@ return(dispatch)=>{fetch(`http://localhost:3000/${localStorage.getItem("currentU
 
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
-export {uploadProfilePic,userPageStream,LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
+export {recommendPages,uploadProfilePic,userPageStream,LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}
 

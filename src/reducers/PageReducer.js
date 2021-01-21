@@ -29,7 +29,7 @@ export default function PageReducer(
               localStorage.setItem("currentPage",action.page)
                 return {...state, currentPage: action.page}
             case "PAGES_IN_VIEW":
-     
+
                 return {...state,pagesInView: action.pages}
             case "APPEND_PAGES_IN_VIEW":
                 return {...state, pagesInView: state.pagesInView.append(action.pages)}

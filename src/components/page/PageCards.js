@@ -106,7 +106,10 @@ function PageCard(props){
      
     if(Object.keys(props.currentUser).length !== 0){
       if(props.likes){
-        like= props.likes.find(like=>{return like.attributes.page.id === props.page.id})}
+
+        like= props.likes.find(like=>{
+  
+          return like.attributes.page_id === props.page.id})}
         if(like) {
           switch(like.attributes.score){
             case 1:
@@ -183,19 +186,16 @@ config={readonly: true,width:375,iframe: true}
   let modalContent
   
   if(props.page){
-
+let user_id
     let page = props.page
+   
     content = page.data
-
     // dispatch(getPageComments(page))
       return(
         <div className="">
           <div  >
             <div className="page">
-              <FroalaEditor
-    
-    config={config}
-  />
+             
               <JoditEditor
             	ref={editor}
               value={content}
