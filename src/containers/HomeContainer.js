@@ -15,10 +15,11 @@ import {BottomScrollListener }from 'react-bottom-scroll-listener';
 class HomeContainer extends React.Component{
     constructor(props){
         super(props)
-        this.state={loading:false,pages: 10}
+        this.state={loading:false,page: 0, pages: 10}
     }
     componentDidMount(){
-        this.props.getPublicPages(10)
+
+      this.props.loggedIn ?  this.props.getPublicPages(10):this.props.recommendPages(localStorage.getItem("currentUser"),this.state.page)
     }
   
     

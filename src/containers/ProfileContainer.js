@@ -47,14 +47,14 @@ html.style.backgroundColor="#ededed"
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
         // this.props.userPageStream()
-    //    this.props.getMyPages()
+       this.props.getMyPages()
     //    this.props.getBookLibraries()
         this.props.getAllLibraries()
         this.props.getLikesOfUser(id)
         this.props.getUserLibraries({id,privacy:"private"})
         this.props.getFollowedBooks(id)
          this.props.getFollowers(id)
-         this.props.recommendPages(id,0)
+       
         
     }
     handleStartBookModal(){

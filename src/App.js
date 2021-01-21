@@ -13,7 +13,7 @@ import SignUpForm from "./components/user/SignUpForm"
 import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
-import {getUsers, useUserActions,LOG_IN,signUp,END_CURRENT_USER,SET_CURRENT_USER,getUser,followUser,updateUser} from "./actions/UserActions"
+import {getUsers, useUserActions,LOG_IN,signUp,END_CURRENT_USER,SET_CURRENT_USER,getUser,followUser,updateUser,recommendPages} from "./actions/UserActions"
 import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
 import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary,getAllLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook,getPublicPages} from "./actions/PageActions"
@@ -88,7 +88,7 @@ class App extends React.Component{
     
       
   <Route exact path="/" >
-    <HomeContainer users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages} loggedIn={this.props.loggedIn}/>
+    <HomeContainer recommendPages={this.props.recommendPages} users={this.props.users} getAllPages={this.props.getAllPages} pages={this.props.pages} pagesInView={this.props.pagesInView} getPublicPages={this.props.getPublicPages} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>
   </Route>
   
 <Switch>
@@ -162,7 +162,8 @@ function mapDispatchToProps(dispatch){
     getUserBookAccess: ()=>dispatch(getUserBookAccess()),
     getLibraryPages:(id)=>dispatch(getLibraryPages(id)),
     getPublicPages:(pages)=>dispatch(getPublicPages(pages)),
-    getAllLibraries:()=>dispatch(getAllLibraries())
+    getAllLibraries:()=>dispatch(getAllLibraries()),
+    recommendPages:(id,page_num)=>dispatch(recommendPages(id,page_num))
   }
 }
 function mapStateToProps(state){
