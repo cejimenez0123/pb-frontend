@@ -106,8 +106,8 @@ class App extends React.Component{
             pagesInView={this.props.pagesInView} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
         <PrivateRoute exact path={"/private/collection"}>
-          <PrivateCollection getUserBookAccess={this.props.getUserBookAccess} getBook={this.props.getBook} pagesInView={this.props.pagesInView} getLibrary={this.props.getLibrary}
-          getFollowedLibrariesOfUser={this.props.getFollowedLibrariesOfUser} getFollowedBooks={this.props.getFollowedBooks} followedBooks={this.props.followed_books} followedLibraries={this.props.followedLibraries}/>
+          <PrivateCollection getUserBookAccess={this.props.getUserBookAccess} getBook={this.props.getBook} pagesInView={this.props.pagesInView} getLibrary={this.props.getLibrary} followedBooksOfUser={this.props.f}
+          getFollowedLibrariesOfUser={this.props.getFollowedLibrariesOfUser} getFollowedBooksOfUser={this.props.getFollowedBooksOfUser} followedBooks={this.props.followed_books} followedLibraries={this.props.followedLibraries}/>
         </PrivateRoute>
       </Switch>
          < Route exact path="/books/:id/edit">
@@ -191,6 +191,7 @@ function mapStateToProps(state){
     libraryFollowers: state.libraries.libraryFollowers,
     followedBooks: state.books.followedBooksOfUser,
     followedLibraries: state.libraries.followedLibraries
+    
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

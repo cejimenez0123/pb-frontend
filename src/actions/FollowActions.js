@@ -120,8 +120,9 @@ function getFollowedUsersOfUser(id){
 function getFollowedLibrariesOfUser(id){
     return(dispatch)=>{
         fetch(followLibraryPath+`/users/${id}`).then(res=>res.json()).then(obj=>{
-            debugger
-
+         
+            let follows = obj.data
+dispatch(followedLibraries(follows))
         })
     }
 }
