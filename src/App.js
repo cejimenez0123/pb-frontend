@@ -14,7 +14,7 @@ import PrivateRoute from "./PrivateRoute"
 import ProfileContainer from './containers/ProfileContainer';
 import BookContainer from "./containers/BookContainer"
 import {getUsers, useUserActions,LOG_IN,signUp,END_CURRENT_USER,SET_CURRENT_USER,getUser,followUser,updateUser,recommendPages} from "./actions/UserActions"
-import {getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
+import {getFollowedLibrariesOfUser,getFollowersOfLibrary,followLibrary,deleteFollowLibrary,getFollowedBooksOfUser} from "./actions/FollowActions"
 import {getLibraryPages,getLibrary,getBooksOfLibrary,getBookLibraries,updateLibrary,deleteBookLibrary,getAllLibraries} from "./actions/LibraryAction"
 import {savePage,getAllPages, getInbox,getDraftsOfBook,getPublicPages} from "./actions/PageActions"
 import {getAllBooks,getBook,getBooksOfUser,getUserBookAccess} from "./actions/BookActions"
@@ -106,7 +106,8 @@ class App extends React.Component{
             pagesInView={this.props.pagesInView} followedBooks={this.props.followedBooks} getLibrary={this.props.getLibrary} getBooksOfLib={this.props.getBooksOfLib} followers={this.props.libraryFollowers} deleteFollowLibrary={this.props.deleteFollowLibrary} booksOfUser={this.props.booksOfUser}/>
         </Route>
         <PrivateRoute exact path={"/private/collection"}>
-          <PrivateCollection getUserBookAccess={this.props.getUserBookAccess} getBook={this.props.getBook} pagesInView={this.props.pagesInView} getLibrary={this.props.getLibrary} getFollowedBooks={this.props.getFollowedBooks}/>
+          <PrivateCollection getUserBookAccess={this.props.getUserBookAccess} getBook={this.props.getBook} pagesInView={this.props.pagesInView} getLibrary={this.props.getLibrary}
+          getFollowedLibrariesOfUser={this.props.getFollowedLibrariesOfUser} getFollowedBooks={this.props.getFollowedBooks} followedBooks={this.props.followed_books} followedLibraries={this.props.followedLibraries}/>
         </PrivateRoute>
       </Switch>
          < Route exact path="/books/:id/edit">
@@ -166,7 +167,8 @@ function mapDispatchToProps(dispatch){
     getLibraryPages:(id)=>dispatch(getLibraryPages(id)),
     getPublicPages:(pages)=>dispatch(getPublicPages(pages)),
     getAllLibraries:()=>dispatch(getAllLibraries()),
-    recommendPages:(id,page_num)=>dispatch(recommendPages(id,page_num))
+    recommendPages:(id,page_num)=>dispatch(recommendPages(id,page_num)),
+    getFollowedLibrariesOfUser:(id)=>dispatch(getFollowedLibrariesOfUser(id))
   }
 }
 function mapStateToProps(state){
@@ -187,8 +189,8 @@ function mapStateToProps(state){
     libraryInView: state.libraries.libraryInView,
     librariesInView: state.libraries.librariesInView,
     libraryFollowers: state.libraries.libraryFollowers,
-    followedBooks: state.books.followedBooksOfUser
-
+    followedBooks: state.books.followedBooksOfUser,
+    followedLibraries: state.libraries.followedLibraries
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App)

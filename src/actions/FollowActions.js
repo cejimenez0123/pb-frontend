@@ -117,6 +117,14 @@ function getFollowedUsersOfUser(id){
     })}
 
 }
+function getFollowedLibrariesOfUser(id){
+    return(dispatch)=>{
+        fetch(followLibraryPath+`/users/${id}`).then(res=>res.json()).then(obj=>{
+            debugger
+
+        })
+    }
+}
 function followBook(id){
 let config = {
         method: 'POST',
@@ -163,8 +171,9 @@ let config = {
 }
 
 function libraryFollowers(follows){return{type:"LIBRARY_FOLLOWERS",follows}}
+const followedLibraries=(follows)=>{return{type:"USER_FOLLOWED_LIBRARIES",follows}}
 const followedUsers=(follows)=>{return{ type: "FOLLOWED_USERS",follows}}
 const booksFollows=(follows)=>{return{type:"BOOK_FOLLOWERS",follows}}             
 const usersFollowers=(follows)=>{return{type: "USERS_FOLLOWERS",follows}}
 const followedBooks=(follows)=>{return{type: "USERS_FOLLOWED_BOOKS",follows}}
-export {deleteBookFollow,followLibrary,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser,getFollowersOfLibrary,deleteFollowLibrary}
+export {getFollowedLibrariesOfUser,deleteBookFollow,followLibrary,bookFollowers,deleteFollow,followUser, getFollowersOfUser,getFollowedUsersOfUser,followBook,getFollowedBooksOfUser,getFollowersOfLibrary,deleteFollowLibrary}
