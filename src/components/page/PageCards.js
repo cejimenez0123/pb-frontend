@@ -211,7 +211,7 @@ let user_id
                     {page.user.username}
                    </a></div>{editBtn()}
                   </div>
-                  <div className="Froala">
+                  <div >
                  
               <JoditEditor
             	ref={editor}

@@ -875,6 +875,7 @@ flex-direction: column;
 			border-radius: 5px;
 			 /* 15% from the top and centered */
 			height: 600px;
+			background-color: rgb(243, 241, 241);
 			color: black;
 			max-width: 800px;
 			border: 1px solid #888; 
