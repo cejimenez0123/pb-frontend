@@ -165,7 +165,6 @@ const savePage = (page)=>{
 const getAllPages = ()=>{
   return(dispatch)=>{fetch(pageUrl+"/xklmno/all").then(res=>res.json()).then(
     obj=>{
-    
       let pages = obj.data
       dispatch({type: "GET_ALL_PAGES", pages})
     }
@@ -252,13 +251,13 @@ function getPage(){
    dispatch({type: "GET_PAGE",page})}
  )}
 }
-function getPublicPages(pages){
-
+function getPublicPages(page){
   return(dispatch)=>{
-    fetch(pageUrl+`/page_count/${pages}`).then(res=>res.json()).then(obj=>{
+    fetch(pageUrl+`/pages/public/${page}`).then(res=>res.json()).then(obj=>{
 
       let pages= obj.data
-      dispatch(pagesInView(pages))
+      
+      dispatch(appendPages(pages))
     })
   }
 }
@@ -387,5 +386,5 @@ const pagesOfUser=(pages)=>{return{type: "PAGES_OF_USER",pages}}
 const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
-
+const appendPages=(pages)=>{return{type:"APPEND_PAGES_IN_VIEW",pages}}
 export {searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

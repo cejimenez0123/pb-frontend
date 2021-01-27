@@ -32,7 +32,7 @@ export default function PageReducer(
 
                 return {...state,pagesInView: action.pages}
             case "APPEND_PAGES_IN_VIEW":
-                return {...state, pagesInView: state.pagesInView.append(action.pages)}
+                return {...state, pagesInView: state.pagesInView.concat(action.pages)}
             case "GET_ALL_PAGES":
         
                 return {...state,pages: action.pages}
@@ -40,7 +40,7 @@ export default function PageReducer(
          
                 return {...state, myPages: action.pages}
             case "SEARCHED_FOR_PAGES":
-                return {...state,searchedFor: state.searchedFor.concaet(action.pages)}
+                return {...state,searchedFor: state.searchedFor.concat(action.pages)}
             default:
                 return state
         }

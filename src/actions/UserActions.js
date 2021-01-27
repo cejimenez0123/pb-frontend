@@ -152,7 +152,12 @@ function recommendPages(id,page_num){
 
    
     let pages =obj.data
-    dispatch(pagesInView(pages))
+    if (page_num == 0){
+    
+dispatch(pagesInView(pages))
+    }else{
+dispatch(appendPages(pages))
+    }
 
     })
 }
@@ -222,7 +227,7 @@ return(dispatch)=>{fetch(`http://localhost:3000/${localStorage.getItem("currentU
 
 
 
-
+const appendPages=(pages)=>{return {type:"APPEND_PAGES_IN_VIEW",pages}}
 function userInView(user){return{type: "USER_IN_VIEW",user}}
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 export {recommendPages,uploadProfilePic,userPageStream,LOG_IN,signUp, getUser,SET_CURRENT_USER, getUsers,END_CURRENT_USER, useUserActions,updateUser}

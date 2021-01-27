@@ -17,10 +17,11 @@ function HomeContainer(props){
         
         let [loading,setLoading] = useState(false)
         let [page,setPage] =useState(0)
-        let [publicPagesPer,setPublicPagesPer] = useState(10)
+        
+        let [pagina,setPagina]=useState(0)
         let [lastPackLength,setLastPackLength] =useState(0)
         let [pages,setPages] = useState([])
-        let [endRecommend,setEndRecommend]=useState(false)
+        
   
 
       useLayoutEffect(()=>{
@@ -33,48 +34,55 @@ function HomeContainer(props){
           },[])
     
     useEffect(()=>{
-
-       
-          let num =  props.pagesInView.length - pages.length 
+let num
+       if(props.pagesInView && pages){
+           num =  props.pagesInView.length - pages.length 
+  setLastPackLength(num)
 
             setPages(props.pagesInView)
-             setLastPackLength(num)}
+           
+             }
+             
+             
+}
+             
             ,[props.pagesInView])
-    function uploadPhoto(e){
-        debugger
-    const formData = new FormData();
-    formData.append("file", e.target.files[0]);
+    // function uploadPhoto(e){
+    //     debugger
+    // const formData = new FormData();
+    // formData.append("file", e.target.files[0]);
     
     // configure your fetch url appropriately
-    fetch(`http://localhost:3000/${localStorage.getItem("currentUser")}/upload`, {
-      method: "POST",
-      body: formData
-    })
-      .then(res => res.json())
-      .then(data => {
-          debugger
+    // fetch(`http://localhost:3000/${localStorage.getItem("currentUser")}/upload`, {
+    //   method: "POST",
+    //   body: formData
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //       debugger
 
-       // do something with the returned data
-      });
-  };
+    //    // do something with the returned data
+    //   });
+    
+//   };
  
  function handleOnBottom(){
  
- if(!endRecommend){
+ if(lastPackLength>=10){
     let newPage=page+1
     props.recommendPages(localStorage.getItem("currentUser"),newPage)
     setPage(newPage)
     
  }else{
- let per=10+publicPagesPer
-    props.getPublicPages(per)
- }
- if(lastPackLength<10){
-     setEndRecommend(true)
- }
+
+    
+    props.getPublicPages(pagina)
+    setPagina(pagina+1)
+ }}
+ 
 
 
-}
+
 
      console.log(props.pagesInView)
 

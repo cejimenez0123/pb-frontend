@@ -33,7 +33,7 @@ dispatch(getLikesOfUser())
 
     return(dispatch)=>{
     fetch(likePath+`/users/${id}`).then(res=>res.json()).then(obj=>{
-debugger
+
         let userLikes = obj.data
 dispatch({type: "USER_LIKES",userLikes})
     }).catch(err=>console.log(err))

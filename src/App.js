@@ -165,7 +165,7 @@ function mapDispatchToProps(dispatch){
     getFollowedBooksOfUser: (id)=>dispatch(getFollowedBooksOfUser(id)),
     getUserBookAccess: ()=>dispatch(getUserBookAccess()),
     getLibraryPages:(id)=>dispatch(getLibraryPages(id)),
-    getPublicPages:(pages)=>dispatch(getPublicPages(pages)),
+    getPublicPages:(page)=>dispatch(getPublicPages(page)),
     getAllLibraries:()=>dispatch(getAllLibraries()),
     recommendPages:(id,page_num)=>dispatch(recommendPages(id,page_num)),
     getFollowedLibrariesOfUser:(id)=>dispatch(getFollowedLibrariesOfUser(id))
