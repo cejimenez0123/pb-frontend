@@ -104,6 +104,9 @@ border-radius: 10%;
 	display: flex;
 	justify-content: space-between;
 }
+.page{
+	border-bottom:aliceblue;
+}
 .pageHeader div{
 	margin: 0px 10px
 }
@@ -860,6 +863,9 @@ flex-direction: column;
 		#FormContainer{
 			display: flex;
 		}
+		#PublicLibraryMain{
+			margin-left:  18%;
+		}
 		.homeContainer .pages{
 			margin-left: 10em;
 		}
@@ -901,9 +907,7 @@ flex-direction: column;
 		margin-top:20px;
 		justify-content: space-around;
 		}
-		.LibraryContainer{
-			display: flex;
-		}
+		
 		.BookContainer{
 			margin-top: 10px;
 			text-align: center;
@@ -928,11 +932,16 @@ flex-direction: column;
 		.pages{
 			overflow: scroll;
 			background-color: rgb(223, 223, 223);
-			min-height: 296px;
+			min-height: 400px;
 			box-shadow: 5px 5px grey;
 			width: 702px;
+			margin: left 20w;
 			
 
+		}
+		.pageContent{
+			margin: 20px;
+			min-height: 250px;
 		}
 		.pageMain{margin-left:30px}
 		.profile{

@@ -196,20 +196,22 @@ let user_id
     // dispatch(getPageComments(page))
       return(
         <div className="">
-          <div className="page">
-          {parse(content)}
-          <div>
+          
           
          
+          
+            
+             <div className="page">
+             <div class="pageContent">
+          {parse(content)}
           </div>
-            <div className="page">
-             
-              <JoditEditor
+          <div>
+              {/* <JoditEditor
             	ref={editor}
               value={content}
               config={config}
                 // onChange={newContent => {handleOnClick(newContent)}}
-            />
+            /> */}
             <div className="pageBtns">
           {YeaNahBtn()} <Modal 
            button ={ <button variant="primary" onFocus={()=>getPageComments(props.page.id)}  >Comment</button>} content={
