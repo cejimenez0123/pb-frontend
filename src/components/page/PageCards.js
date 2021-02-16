@@ -16,6 +16,7 @@ import FroalaEditor from 'react-froala-wysiwyg';
 import Popover from '@material-ui/core/popover'
 import Typography from '@material-ui/core/typography'
 import { makeStyles } from '@material-ui/core/styles';
+import parse from "html-react-parser"
 // Import all Froala Editor plugins;
 import 'froala-editor/js/plugins.pkgd.min.js';
 // import useWindowSize from "../useWindowSize"
@@ -188,12 +189,19 @@ config={readonly: true,width:375,iframe: true}
   if(props.page){
 let user_id
     let page = props.page
-   
+  
+
     content = page.data
+    
     // dispatch(getPageComments(page))
       return(
         <div className="">
-          <div  >
+          <div className="page">
+          {parse(content)}
+          <div>
+          
+         
+          </div>
             <div className="page">
              
               <JoditEditor

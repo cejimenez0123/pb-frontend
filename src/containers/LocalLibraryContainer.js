@@ -11,17 +11,18 @@ import {getPublicPages} from "../actions/PageActions"
 import Pages from "../components/page/pages"
 import BookIndex from "../components/book/BookIndex"
 import Books from "../components/book/books"
+import {BottomScrollListener} from 'react-bottom-scroll-listener'
 let toggle = "pages"
 class LocalLibraryContainer extends React.Component{
     constructor(){
         super()
-        
+        this.state={pageCounter: 0}
     }
 
     componentDidMount(){
 this.props.getAllLibraries()
 this.props.getBookLibraries()
-this.props.getPublicPages("10")
+this.props.getPublicPages(this.state.pageCounter)
         // this.setState({inView:})
     }
 
@@ -52,7 +53,11 @@ this.props.getPublicPages("10")
 
 
     }
-
+    handleOnBottom(){
+        let num = this.state.pageCounter+1
+        this.props.getPublicPages(num)
+        this.setState({pageCounter: num})
+    }
     render(){
 
         return(<div>
@@ -65,9 +70,13 @@ this.props.getPublicPages("10")
     <button className="button" onClick={(e)=>this.handleOnClick(e)}>Libraries</button>
    <SearchContent/>
     <div className="LibraryContainer">
+     <BottomScrollListener onBottom={()=>this.handleOnBottom()}>
    <div className="localLibMain"> 
-<Pages pages={this.props.pages}/>
-    </div>
+
+                    <Pages pages={this.props.pagesInView}/>
+                       </div>
+   </BottomScrollListener>
+ 
     
     
     </div>

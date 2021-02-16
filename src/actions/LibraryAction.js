@@ -44,7 +44,7 @@ function startLibrary(lib){
 }
 function getLibrary(id){
     return(dispatch)=>{fetch(libraryPath+`/${id}`).then(res=>res.json()).then(obj=>{
-   
+   debugger
         let library = obj.data.attributes
         dispatch(libraryInView(library))
     })}

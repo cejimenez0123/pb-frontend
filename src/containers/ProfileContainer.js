@@ -4,7 +4,7 @@ import ProfileCard from "../components/user/ProfileCard"
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router'
 import {startLibrary,getUserLibraries,getAllLibraries,getBookLibraries} from "../actions/LibraryAction"
-import {startPage,myPages,savePage,getPagesComments} from "../actions/PageActions"
+import {startPage,myPages,savePage,getPagesComments,getPagesOfFollowing} from "../actions/PageActions"
 import {SET_CURRENT_USER,getUsers, END_CURRENT_USER,userPageStream,recommendPages} from '../actions/UserActions'
 import NavbarContainer from './NavbarContainer'
 import SearchUsers from '../components/user/SearchUsers'
@@ -39,15 +39,16 @@ class ProfileContainer extends React.Component{
         showStartLibraries: "none",showStartBook: "none"}
     }
     componentDidMount(){
-   let html=document.querySelector(".app")
-html.style.backgroundColor="#ededed"
+//    let html=document.querySelector(".app")
+// html.style.backgroundColor="#ededed"
        const id=  localStorage.getItem("currentUser")
 
         this.props.setCurrentUser()
         this.props.getFollowedUsers(id)  
         this.props.getBooksOfUser(id)
+        this.props.getPagesOfFollowing(id)
         // this.props.userPageStream()
-       this.props.getMyPages()
+    //    this.props.getMyPages()
     //    this.props.getBookLibraries()
         this.props.getAllLibraries()
         this.props.getLikesOfUser(id)
@@ -177,7 +178,9 @@ this.props.startBook({name,intro,privacy})
            if(book.attributes){book=book.attributes}
            
        }
-  
+    if(this.props.pagesInView && this.props.pagesInView.length >0 ){
+        debugger
+    }
         
         return(
 <div><div className="profileBackground">
@@ -299,7 +302,8 @@ getFollowers: (id)=>dispatch(getFollowersOfUser(id)),
     userPageStream: ()=>dispatch(userPageStream()),
     getPagesComments: (pages)=>dispatch(getPagesComments(pages)),
     getLikesOfUser: (id)=>dispatch(getLikesOfUser(id)),
-    recommendPages: (id,page_num)=>dispatch(recommendPages(id,page_num))}
+    recommendPages: (id,page_num)=>dispatch(recommendPages(id,page_num)),
+    getPagesOfFollowing:(id)=>dispatch(getPagesOfFollowing(id))}
 }
 function mapStateToProps(state){
     return{

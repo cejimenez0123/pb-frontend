@@ -117,6 +117,7 @@ config={readonly: true,iframe: true}
       return(
         <div className="">
           <div  >
+            
             <div className="page" data-id={props.id}>
            {/* <FroalaEditor
     

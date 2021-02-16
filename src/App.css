@@ -310,7 +310,7 @@ border-radius: 10%;
   /* #c1d3f5 */
   
   .app{
-	background: radial-gradient(#c5b8e0, #a37018);
+	background: radial-gradient(#b2bdb4, #ebebeb);
 	 display:flex;
 	font-family: 'Lato', sans-serif;
 	align-items: stretch;
@@ -707,10 +707,7 @@ color: white;}
 .bookTitle{
 	margin: 10px 20px;
 }
-#PublicLibraryMain{
-	position: fixed;
 
-}
 #idCardHeader{display: flex;
 justify-content: flex-end;}
 .idCard .btnBox{
@@ -929,7 +926,7 @@ flex-direction: column;
 		}
 		/* 900 min */
 		.pages{
-			overflow: auto;
+			overflow: scroll;
 			background-color: rgb(223, 223, 223);
 			min-height: 296px;
 			box-shadow: 5px 5px grey;

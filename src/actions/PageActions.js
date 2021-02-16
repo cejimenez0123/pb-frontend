@@ -19,7 +19,14 @@ savePage:(data)=>savePage(data),
 getPagesOfBook: (id)=>getPagesOfBook(id)
   }
 }
-
+const getPagesOfFollowing=(id)=>{
+  return(dispatch)=>{fetch(userPath+`/${id}/follows/pages`).then(res=>res.json()).then(obj=>
+  {
+    debugger
+    dispatch(pagesInView(obj.data))
+  })
+}
+}
 const startPage =(title)=>{
   
   // let config = {    
@@ -253,7 +260,7 @@ function getPage(){
 }
 function getPublicPages(page){
   return(dispatch)=>{
-    fetch(pageUrl+`/pages/public/${page}`).then(res=>res.json()).then(obj=>{
+    fetch(pageUrl+`/public/${page}`).then(res=>res.json()).then(obj=>{
 
       let pages= obj.data
       
@@ -330,6 +337,7 @@ pages.forEach(page=>{
     
 }
 }
+
 function getPageComments(id){
 
   if (id.id){
@@ -387,4 +395,4 @@ const pageComments =(comments)=>{return{type: "PAGE_COMMENTS",comments: comments
 const pagesInView = (pages)=>{return{ type: "PAGES_IN_VIEW",pages}}
 const currentPage=(page)=>{return{type:"CURRENT_PAGE",page}}
 const appendPages=(pages)=>{return{type:"APPEND_PAGES_IN_VIEW",pages}}
-export {searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}
+export {getPagesOfFollowing,searchPhrases,getPublicPages,getPagesComments,getDraftsOfBook,getPageCommentComments,publishPage,getPageComments,commentOnPage,commentOnPageComment,updatePage,savePage,getAllPages,startPage,myPages, getPage,getPagesById,usePageActions,share,getInbox,deletePage,getPagesOfBook}

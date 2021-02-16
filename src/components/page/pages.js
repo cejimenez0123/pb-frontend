@@ -26,12 +26,8 @@ if(this.props.currentUser){
          
             return ( this.props.pages.map((page,key)=>{
                 let comments = []
-      
-                if(page.table && page.table.page){
-                    
-                    page = page.table.page
-                
-                }else if(page.attributes){
+
+                 if(page.attributes){
                     page = page.attributes}
                 return (
                         <PageCard likes={this.props.userLikes} page={page} key={key}  pageComments={this.props.pageComments} size={size}/>

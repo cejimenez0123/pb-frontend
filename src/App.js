@@ -37,9 +37,6 @@ class App extends React.Component{
       this.props.setCurrentUser()
       this.props.getUserBookAccess()
     }
-    this.props.getAllBooks()
-    this.props.getAllPages()
-    this.props.getUsers()
   
     // this.props.getBookLibraries()
   }
@@ -93,7 +90,7 @@ class App extends React.Component{
   
 <Switch>
   <Route exact path="/library/1">
-   <LocalLibraryContainer getAllLibraries={this.props.getAllLibraries} libraries={this.props.librariesInView} books={this.props.books} users={this.props.users} pages={this.props.pagesInView} getBookLibraries={this.props.getBookLibraries}/>
+   <LocalLibraryContainer getAllLibraries={this.props.getAllLibraries} libraries={this.props.librariesInView} books={this.props.books} users={this.props.users} pagesInView={this.props.pagesInView} getBookLibraries={this.props.getBookLibraries}/>
   </Route>
   <Route exact path="/user/:id/settings">
     <ProfileSettingsContainer updateUser={this.props.updateUser} currentUser={this.props.currentUser}/>
